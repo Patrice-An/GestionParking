@@ -1,5 +1,6 @@
 package vue;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ public class accueil {
 	 */
 	public static void main(String[] args) {
 		// Définir le look-and-feel FlatLaf
-		FlatLightLaf.setup();
+		FlatDarculaLaf.setup();
 
 		// Créer et afficher la fenêtre d'accueil
 		EventQueue.invokeLater(() -> {

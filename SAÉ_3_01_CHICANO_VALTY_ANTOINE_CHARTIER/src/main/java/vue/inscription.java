@@ -1,4 +1,4 @@
-package vue;
+package main.java.vue;
 
 import java.awt.EventQueue;
 
@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;

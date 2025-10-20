@@ -37,8 +37,8 @@ public class accueil {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Accueil - FlatLaf Demo");
-		frame.setBounds(100, 100, 450, 300);
+		frame = new JFrame("Accueil - Parkéo ");
+		frame.setBounds(1080, 720, 1080, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

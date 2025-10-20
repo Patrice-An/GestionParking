@@ -1,5 +1,6 @@
 package vue;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ public class accueil {
 	 */
 	public static void main(String[] args) {
 		// Définir le look-and-feel FlatLaf
-		FlatLightLaf.setup();
+		FlatDarculaLaf.setup();
 
 		// Créer et afficher la fenêtre d'accueil
 		EventQueue.invokeLater(() -> {
@@ -36,8 +37,8 @@ public class accueil {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Accueil - FlatLaf Demo");
-		frame.setBounds(100, 100, 450, 300);
+		frame = new JFrame("Accueil - Parkéo ");
+		frame.setBounds(1080, 720, 1080, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

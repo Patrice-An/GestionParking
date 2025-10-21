@@ -82,16 +82,29 @@ public class Parking {
 		return place_max_moto;
 	}
 
-	public void setPlace_max_moto(int place_max_moto) {
-		this.place_max_moto = place_max_moto;
+	public void setPlace_max_moto(int place_max_moto) throws IllegalArgumentException {
+		if (this.getPlaces_max() > place_max_moto + this.getPlace_max_electrique() + this.getPlace_max_thermique()) {
+			throw new IllegalArgumentException("Le nombre de place incorrect disponible ne peut pas dépassé le nombre de place maximum");
+		}
+		else {
+			this.place_max_moto = place_max_moto;
+		}
 	}
 
 	public int getPlace_max_electrique() {
 		return place_max_electrique;
 	}
+	
+	public int getPlace_max_thermique() {
+		return this.getPlaces_max() - this.getPlace_max_electrique() - this.getPlace_max_moto();
+	}
 
-	public void setPlace_max_electrique(int place_max_electrique) {
-		this.place_max_electrique = place_max_electrique;
+	public void setPlace_max_electrique(int place_max_electrique) throws IllegalArgumentException{
+		if (this.getPlaces_max() < place_max_electrique + this.getPlace_max_moto() + this.getPlace_max_thermique()) {
+			throw new IllegalArgumentException("Le nombre de place incorrect disponible ne peut pas dépassé le nombre de place maximum");
+		} else {
+			this.place_max_electrique = place_max_electrique;
+		}
 	}
 
 	public float getHauteur() {
@@ -104,6 +117,26 @@ public class Parking {
 	
 	public boolean estRelais() {
 		return !this.transports.isEmpty();
+	}
+	
+	public int nb_place_libres() {
+		return this.places_max - (this.getVoituresElectriques().size() + this.getMotos().size() + this.getVoituresThermiques().size());
+	}
+	
+	public Set<Vehicule> getVehicules() {
+		return this.vehicules;
+		}
+	
+	public void removeVehicule(Vehicule v) throws IllegalArgumentException {
+		if (this.vehicules.contains(v)) {
+			this.vehicules.remove(v);
+		} else {
+			throw new IllegalArgumentException("Impossible de retirer un véhicule absent du parking");
+		}	
+	}
+	
+	public void vider() {
+		this.vehicules.clear();
 	}
 
 }

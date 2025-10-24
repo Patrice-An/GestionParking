@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class inscription extends JFrame {
+public class Inscription extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -44,7 +44,7 @@ public class inscription extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					inscription frame = new inscription();
+					Inscription frame = new Inscription();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class inscription extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public inscription() {
+	public Inscription() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setTitle("Inscription");

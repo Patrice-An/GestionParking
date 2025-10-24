@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class accueil {
+public class Accueil {
 	private JFrame frame;
 
 	public static void main(String[] args) {
 		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(() -> {
 			try {
-				accueil window = new accueil();
+				Accueil window = new Accueil();
 				window.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -23,7 +23,7 @@ public class accueil {
 		});
 	}
 
-	public accueil() {
+	public Accueil() {
 		initialize();
 	}
 

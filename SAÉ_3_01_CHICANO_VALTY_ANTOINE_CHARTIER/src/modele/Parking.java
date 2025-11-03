@@ -1,6 +1,8 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Parking {
@@ -12,6 +14,7 @@ public class Parking {
 	private float hauteur;
 	private Set<Transport> transports;
 	private Set<Vehicule> vehicules;
+	private List<Tarif> tarifs;
 	
 	public Parking(String adresse, int places_max, int place_max_moto, int place_max_electrique, float hauteur) {
 		super();
@@ -22,6 +25,7 @@ public class Parking {
 		this.hauteur = hauteur;
 		this.transports = new HashSet<>();
 		this.vehicules = new HashSet<>();
+		this.tarifs = new ArrayList<>();
 	}
 	
 	public void addTransport(Transport t) {
@@ -125,7 +129,7 @@ public class Parking {
 	
 	public Set<Vehicule> getVehicules() {
 		return this.vehicules;
-		}
+	}
 	
 	public void removeVehicule(Vehicule v) throws IllegalArgumentException {
 		if (this.vehicules.contains(v)) {
@@ -137,6 +141,14 @@ public class Parking {
 	
 	public void vider() {
 		this.vehicules.clear();
+	}
+	
+	public List<Tarif> getTarifs() {
+		return this.tarifs;
+	}
+	
+	public void addTarif(Tarif t) {
+		this.tarifs.add(t);
 	}
 
 }

@@ -36,7 +36,7 @@ public class testParking {
 	}
 	
 	@Test
-	public void testRetirerVehicule() {
+	public void testRetirerVehiculeParkingNonVide() {
 		p1.addVehicule(vt);
 		assertEquals(p1.getVehicules().size(), 1);
 		p1.removeVehicule(vt);
@@ -44,10 +44,20 @@ public class testParking {
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void testRetirerParkingVide() {
+	public void testRetirerUneVehiculeParkingVide() {
 		p1.addVehicule(vt);
 		assertEquals(p1.getVehicules().size(), 1);
 		p1.removeVehicule(ve);
+	}
+	
+	@Test
+	public void testViderParking() {
+		p1.addVehicule(ve);
+		p1.addVehicule(vt);
+		assertEquals(p1.getVehicules().size(), 2);
+		p1.vider();
+		assertEquals(p1.getVehicules().size(), 0);
+		
 	}
 
 }

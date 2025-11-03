@@ -34,12 +34,12 @@ public class Accueil {
 
 		// Charger le logo pour l'icône de la fenêtre depuis les ressources
 		try {
-			InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png");
+			InputStream imgStream = getClass().getResourceAsStream("../images/Parkeo_Logo.png");
 			if (imgStream != null) {
 				BufferedImage img = ImageIO.read(imgStream);
 				frame.setIconImage(img);
 			} else {
-				System.err.println("Erreur : Le fichier '/images/Parkeo_Logo.png' est introuvable dans les ressources.");
+				System.err.println("Erreur : Le fichier '../images/Parkeo_Logo.png' est introuvable dans les ressources.");
 			}
 		} catch (IOException e) {
 			System.err.println("Erreur : Impossible de charger l'image.");

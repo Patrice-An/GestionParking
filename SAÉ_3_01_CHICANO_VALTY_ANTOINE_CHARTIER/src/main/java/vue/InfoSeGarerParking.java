@@ -1,0 +1,110 @@
+package main.java.vue;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JComboBox;
+
+public class InfoSeGarerParking extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField SaisieHeureArrive;
+	private JTextField SaisieHeureDebut;
+	private JTextField SaisieImmatriculation;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InfoSeGarerParking frame = new InfoSeGarerParking();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public InfoSeGarerParking() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JPanel PanneauNord = new JPanel();
+		contentPane.add(PanneauNord, BorderLayout.NORTH);
+		
+		JPanel PanneauCentre = new JPanel();
+		contentPane.add(PanneauCentre, BorderLayout.CENTER);
+		PanneauCentre.setLayout(new BorderLayout(0, 0));
+		
+		JLabel TitreDonnees = new JLabel("Renseignez les données pour la simulation");
+		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
+		
+		JPanel ListeInfos = new JPanel();
+		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
+		ListeInfos.setLayout(new GridLayout(4, 2, 0, 0));
+		
+		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
+		ListeInfos.add(LabelHeureArrive);
+		
+		SaisieHeureArrive = new JTextField();
+		SaisieHeureArrive.setText("HH:MM");
+		ListeInfos.add(SaisieHeureArrive);
+		SaisieHeureArrive.setColumns(10);
+		
+		JLabel LabelHeureDepart = new JLabel("Heure de début :");
+		ListeInfos.add(LabelHeureDepart);
+		
+		SaisieHeureDebut = new JTextField();
+		SaisieHeureDebut.setText("HH:MM");
+		ListeInfos.add(SaisieHeureDebut);
+		SaisieHeureDebut.setColumns(10);
+		
+		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
+		ListeInfos.add(LabelTypeVehicule);
+		
+		JComboBox DeroulantTypeV = new JComboBox();
+		ListeInfos.add(DeroulantTypeV);
+		
+		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");
+		ListeInfos.add(LabelImmatriculation);
+		
+		SaisieImmatriculation = new JTextField();
+		SaisieImmatriculation.setText("AB-123-CD");
+		ListeInfos.add(SaisieImmatriculation);
+		SaisieImmatriculation.setColumns(10);
+		
+		JPanel PanneauSud = new JPanel();
+		contentPane.add(PanneauSud, BorderLayout.SOUTH);
+		PanneauSud.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnValider = new JButton("Valider");
+		btnValider.setHorizontalTextPosition(SwingConstants.RIGHT);
+		btnValider.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
+		PanneauSud.add(btnValider, BorderLayout.EAST);
+
+	}
+
+}

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class InfoSeGarerParking extends JFrame {
 
@@ -58,11 +59,12 @@ public class InfoSeGarerParking extends JFrame {
 		PanneauCentre.setLayout(new BorderLayout(0, 0));
 		
 		JLabel TitreDonnees = new JLabel("Renseignez les données pour la simulation");
+		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
 		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
 		
 		JPanel ListeInfos = new JPanel();
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
-		ListeInfos.setLayout(new GridLayout(4, 2, 0, 0));
+		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
 		
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
 		ListeInfos.add(LabelHeureArrive);
@@ -93,6 +95,16 @@ public class InfoSeGarerParking extends JFrame {
 		SaisieImmatriculation.setText("AB-123-CD");
 		ListeInfos.add(SaisieImmatriculation);
 		SaisieImmatriculation.setColumns(10);
+		
+		JLabel LabelSelectionParking = new JLabel("Sélectionnez le parking utilisé :");
+		LabelSelectionParking.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ListeInfos.add(LabelSelectionParking);
+		
+		JLabel lblNewLabel = new JLabel(" ");
+		ListeInfos.add(lblNewLabel);
+		
+		JComboBox DeroulantSlectionParking = new JComboBox();
+		ListeInfos.add(DeroulantSlectionParking);
 		
 		JPanel PanneauSud = new JPanel();
 		contentPane.add(PanneauSud, BorderLayout.SOUTH);

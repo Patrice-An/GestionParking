@@ -23,7 +23,7 @@ public class Inscription extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JPanel panel;
+	private JPanel PanneauCentre;
 	private JLabel title;
 	private JLabel nomLabel;
 	private JTextField nomField;
@@ -35,6 +35,10 @@ public class Inscription extends JFrame {
 	private JTextField adresseField;
 	private JLabel telLabel;
 	private JTextField telField;
+	private JPanel PanneauSud;
+	private JButton btnValider;
+	private JLabel LabelVide;
+	private JLabel LabelConnection;
 
 	/**
 	 * Launch the application.
@@ -70,44 +74,57 @@ public class Inscription extends JFrame {
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(title, BorderLayout.NORTH);
 		
-		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(5, 2, 0, 0));
+		PanneauCentre = new JPanel();
+		contentPane.add(PanneauCentre, BorderLayout.CENTER);
+		PanneauCentre.setLayout(new GridLayout(5, 2, 0, 0));
 		
 		nomLabel = new JLabel("Nom :");
-		panel.add(nomLabel);
+		PanneauCentre.add(nomLabel);
 		
 		nomField = new JTextField();
-		panel.add(nomField);
+		PanneauCentre.add(nomField);
 		nomField.setColumns(10);
 		
 		prenomLabel = new JLabel("Prenom :");
-		panel.add(prenomLabel);
+		PanneauCentre.add(prenomLabel);
 		
 		prenomField = new JTextField();
 		prenomField.setColumns(10);
-		panel.add(prenomField);
+		PanneauCentre.add(prenomField);
 		
 		mailLabel = new JLabel("Mail :");
-		panel.add(mailLabel);
+		PanneauCentre.add(mailLabel);
 		
 		mailField = new JTextField();
 		mailField.setColumns(10);
-		panel.add(mailField);
+		PanneauCentre.add(mailField);
 		
 		adresseLabel = new JLabel("Adresse :");
-		panel.add(adresseLabel);
+		PanneauCentre.add(adresseLabel);
 		
 		adresseField = new JTextField();
 		adresseField.setColumns(10);
-		panel.add(adresseField);
+		PanneauCentre.add(adresseField);
 		
 		telLabel = new JLabel("Numéro de téléphone :");
-		panel.add(telLabel);
+		PanneauCentre.add(telLabel);
 		
 		telField = new JTextField();
 		telField.setColumns(10);
-		panel.add(telField);
+		PanneauCentre.add(telField);
+		
+		PanneauSud = new JPanel();
+		contentPane.add(PanneauSud, BorderLayout.SOUTH);
+		PanneauSud.setLayout(new GridLayout(1, 3, 0, 0));
+		
+		LabelVide = new JLabel(" ");
+		PanneauSud.add(LabelVide);
+		
+		LabelConnection = new JLabel("Déjà inscrit ? Connectez-vous ");
+		PanneauSud.add(LabelConnection);
+		
+		btnValider = new JButton("Valider");
+		PanneauSud.add(btnValider);
 	}
 
 }

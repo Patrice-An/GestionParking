@@ -57,7 +57,6 @@ public class testParking {
 		assertEquals(p1.getVehicules().size(), 2);
 		p1.vider();
 		assertEquals(p1.getVehicules().size(), 0);
-		
 	}
 
 }

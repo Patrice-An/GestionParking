@@ -35,6 +35,7 @@ public class Inscription extends JFrame {
 	private JTextField adresseField;
 	private JLabel telLabel;
 	private JTextField telField;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -59,6 +60,8 @@ public class Inscription extends JFrame {
 	public Inscription() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setSize(400, 400);
+		System.out.println("Hello World");
 		setTitle("Inscription");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -108,6 +111,9 @@ public class Inscription extends JFrame {
 		telField = new JTextField();
 		telField.setColumns(10);
 		panel.add(telField);
+		
+		lblNewLabel = new JLabel("New label");
+		contentPane.add(lblNewLabel, BorderLayout.SOUTH);
 	}
 
 }

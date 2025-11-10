@@ -61,7 +61,7 @@ public class Inscription extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(400, 400);
-		System.out.println("Hello World");
+		
 		setTitle("Inscription");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

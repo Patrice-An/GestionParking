@@ -21,7 +21,7 @@ public class InfoSeGarerParking extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField SaisieHeureArrive;
-	private JTextField SaisieHeureDebut;
+	private JTextField SaisieDuree;
 	private JTextField SaisieImmatriculation;
 
 	/**
@@ -44,6 +44,7 @@ public class InfoSeGarerParking extends JFrame {
 	 * Create the frame.
 	 */
 	public InfoSeGarerParking() {
+		setTitle("Se garer dans un parking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -70,17 +71,15 @@ public class InfoSeGarerParking extends JFrame {
 		ListeInfos.add(LabelHeureArrive);
 		
 		SaisieHeureArrive = new JTextField();
-		SaisieHeureArrive.setText("HH:MM");
 		ListeInfos.add(SaisieHeureArrive);
 		SaisieHeureArrive.setColumns(10);
 		
-		JLabel LabelHeureDepart = new JLabel("Heure de début :");
+		JLabel LabelHeureDepart = new JLabel("Heure de départ :");
 		ListeInfos.add(LabelHeureDepart);
 		
-		SaisieHeureDebut = new JTextField();
-		SaisieHeureDebut.setText("HH:MM");
-		ListeInfos.add(SaisieHeureDebut);
-		SaisieHeureDebut.setColumns(10);
+		SaisieDuree = new JTextField();
+		ListeInfos.add(SaisieDuree);
+		SaisieDuree.setColumns(10);
 		
 		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
 		ListeInfos.add(LabelTypeVehicule);
@@ -92,13 +91,12 @@ public class InfoSeGarerParking extends JFrame {
 		ListeInfos.add(LabelImmatriculation);
 		
 		SaisieImmatriculation = new JTextField();
-		SaisieImmatriculation.setText("AB-123-CD");
 		ListeInfos.add(SaisieImmatriculation);
 		SaisieImmatriculation.setColumns(10);
 		
-		JLabel LabelSelectionParking = new JLabel("Sélectionnez le parking utilisé :");
-		LabelSelectionParking.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ListeInfos.add(LabelSelectionParking);
+		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le voirie utilisé :");
+		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ListeInfos.add(LabelSelectionVoirie);
 		
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
@@ -116,6 +114,12 @@ public class InfoSeGarerParking extends JFrame {
 		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		PanneauSud.add(btnValider, BorderLayout.EAST);
+		
+		JPanel panel = new JPanel();
+		PanneauSud.add(panel, BorderLayout.NORTH);
+		
+		JButton btnAnnuler = new JButton("Annuler");
+		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 
 	}
 

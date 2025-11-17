@@ -114,6 +114,12 @@ public class InfoSeGarerVoirie extends JFrame {
 		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		PanneauSud.add(btnValider, BorderLayout.EAST);
+		
+		JButton btnAnnuler = new JButton("Annuler");
+		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
+		
+		JPanel panel = new JPanel();
+		PanneauSud.add(panel, BorderLayout.NORTH);
 
 	}
 

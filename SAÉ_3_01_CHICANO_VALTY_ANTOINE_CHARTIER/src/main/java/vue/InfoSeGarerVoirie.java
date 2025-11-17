@@ -15,6 +15,8 @@ import java.awt.GridLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
+import modele.Type_vehicule;
 
 public class InfoSeGarerVoirie extends JFrame {
 
@@ -85,6 +87,7 @@ public class InfoSeGarerVoirie extends JFrame {
 		ListeInfos.add(LabelTypeVehicule);
 		
 		JComboBox DeroulantTypeV = new JComboBox();
+		DeroulantTypeV.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
 		ListeInfos.add(DeroulantTypeV);
 		
 		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");

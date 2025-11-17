@@ -11,20 +11,19 @@ import java.io.InputStream;
 public class ChoixSeGarer extends JFrame{
 	private JFrame frame;
 
-	public static void main(String[] args) {
+	
+
+	public ChoixSeGarer() {
+		initialize();
 		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(() -> {
 			try {
-				ChoixSeGarer window = new ChoixSeGarer();
-				window.frame.setVisible(true);
+				
+				this.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
-	}
-
-	public ChoixSeGarer() {
-		initialize();
 	}
 
 	private void initialize() {

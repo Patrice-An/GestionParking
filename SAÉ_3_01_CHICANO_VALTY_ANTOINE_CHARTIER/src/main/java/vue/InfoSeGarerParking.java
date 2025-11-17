@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controleur.ControleurInfosSeGarerParking;
+
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
@@ -46,6 +49,8 @@ public class InfoSeGarerParking extends JFrame {
 	 * Create the frame.
 	 */
 	public InfoSeGarerParking() {
+		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this);
+		
 		setTitle("Se garer dans un parking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -123,6 +128,7 @@ public class InfoSeGarerParking extends JFrame {
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
+		btnAnnuler.addActionListener(controleur);
 
 	}
 

@@ -1,6 +1,9 @@
 package main.java.vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+
+import controleur.ControleurAccueil;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +12,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class Accueil {
+public class Accueil extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
 	private JFrame frame;
 
 	public static void main(String[] args) {
@@ -29,6 +36,7 @@ public class Accueil {
 	}
 
 	private void initialize() {
+		ControleurAccueil controleur = new ControleurAccueil(this);
 		frame = new JFrame("Accueil - Parkéo");
 		frame.setBounds(100, 100, 1080, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,14 +75,20 @@ public class Accueil {
 		btnSeGarer.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnSeGarer.setPreferredSize(new Dimension(200, 60));
 		buttonPanel.add(btnSeGarer);
+		btnSeGarer.addActionListener(controleur);
 
 		// Bouton "Partir"
 		JButton btnPartir = new JButton("Partir");
 		btnPartir.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnPartir.setPreferredSize(new Dimension(200, 60));
 		buttonPanel.add(btnPartir);
+		btnPartir.addActionListener(controleur);
 
 		// Ajouter le panel des boutons au centre
 		panel.add(buttonPanel, BorderLayout.CENTER);
+	}
+	
+	public void fermer() {
+		this.dispose();
 	}
 }

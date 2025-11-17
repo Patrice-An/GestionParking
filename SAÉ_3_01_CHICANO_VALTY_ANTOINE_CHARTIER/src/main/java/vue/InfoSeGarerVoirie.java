@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controleur.ControleurInfoSeGarerVoirie;
+
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
@@ -46,7 +49,8 @@ public class InfoSeGarerVoirie extends JFrame {
 	 * Create the frame.
 	 */
 	public InfoSeGarerVoirie() {
-		setTitle("Se garer dans un parking");
+		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this);
+		setTitle("Se garer en voirie");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -97,9 +101,9 @@ public class InfoSeGarerVoirie extends JFrame {
 		ListeInfos.add(SaisieImmatriculation);
 		SaisieImmatriculation.setColumns(10);
 		
-		JLabel LabelSelectionParking = new JLabel("Sélectionnez le parking utilisé :");
-		LabelSelectionParking.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ListeInfos.add(LabelSelectionParking);
+		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez la zone utilisé :");
+		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ListeInfos.add(LabelSelectionVoirie);
 		
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
@@ -120,6 +124,7 @@ public class InfoSeGarerVoirie extends JFrame {
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
+		btnAnnuler.addActionListener(controleur);
 		
 		JPanel panel = new JPanel();
 		PanneauSud.add(panel, BorderLayout.NORTH);

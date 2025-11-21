@@ -123,6 +123,7 @@ public class InfoSeGarerParking extends JFrame {
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		PanneauSud.add(btnValider, BorderLayout.EAST);
 		
+<<<<<<< Updated upstream
 		JPanel panel = new JPanel();
 		PanneauSud.add(panel, BorderLayout.NORTH);
 		
@@ -130,6 +131,8 @@ public class InfoSeGarerParking extends JFrame {
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
 
+=======
+>>>>>>> Stashed changes
 	}
 
 }

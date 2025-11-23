@@ -11,6 +11,13 @@ import main.java.vue.SeConnecter;
 
 public class ControleurInscription implements ActionListener{
 	
+	public ControleurInscription(Inscription vue) {
+		super();
+		this.vue = vue;
+	}
+
+
+
 	Inscription vue;
 	
 	
@@ -19,10 +26,11 @@ public class ControleurInscription implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Valider") {
-			new SeConnecter();
 			vue.dispose();
-		} else if (b.getText() == "S'inscrire") {
-			new Inscription();
+			new SeConnecter();
+		} else if (b.getText() == "Connectez-vous") {
+			vue.dispose();
+			new SeConnecter();
 		}
 	}
 

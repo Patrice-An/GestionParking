@@ -27,7 +27,6 @@ public class ControleurAccueil implements ActionListener{
 
 		} 
 		if (b.getText() == "Partir"){
-			System.out.println("ntm putain de perceuse");
 			vue.fermer();
 		}
 		

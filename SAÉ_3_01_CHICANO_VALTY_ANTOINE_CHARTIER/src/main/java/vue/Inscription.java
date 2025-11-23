@@ -1,6 +1,9 @@
 package main.java.vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+
+import controleur.ControleurInscription;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -61,6 +64,7 @@ public class Inscription extends JFrame {
 	 * Create the frame.
 	 */
 	public Inscription() {
+		ControleurInscription controleur = new ControleurInscription();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setTitle("Inscription");
@@ -125,6 +129,7 @@ public class Inscription extends JFrame {
 		
 		btnValider = new JButton("Valider");
 		PanneauSud.add(btnValider);
+		btnValider.addActionListener(controleur);
 	}
 
 }

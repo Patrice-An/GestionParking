@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 
+import controleur.ControleurSeConnecter;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSplitPane;
@@ -26,7 +28,7 @@ public class SeConnecter extends JFrame {
 	private JPasswordField passwordField;
 	private JSplitPane splitPane;
 	private JButton btnNewButton;
-
+	
 	public static void main(String[] args) {
 		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(new Runnable() {
@@ -42,6 +44,7 @@ public class SeConnecter extends JFrame {
 	}
 
 	public SeConnecter() {
+		ControleurSeConnecter controler = new ControleurSeConnecter(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 200);
 
@@ -105,10 +108,20 @@ public class SeConnecter extends JFrame {
 
 		JButton boutonConnexion = new JButton("Se connecter");
 		splitPane.setRightComponent(boutonConnexion);
+		boutonConnexion.addActionListener(controler);
 
 		btnNewButton = new JButton("S'inscrire");
 		splitPane.setLeftComponent(btnNewButton);
+		btnNewButton.addActionListener(controler);
 
 		this.setLocationRelativeTo(null);
+	}
+	
+	public String getTextChampNomUtilisateur() {
+		return champNomUtilisateur.getText();
+	}
+
+	public char[] getPasswordField() {
+		return passwordField.getPassword();
 	}
 }

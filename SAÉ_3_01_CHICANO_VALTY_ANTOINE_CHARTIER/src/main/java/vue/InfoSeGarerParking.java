@@ -8,14 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 import controleur.ControleurInfosSeGarerParking;
 
-import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;

@@ -8,5 +8,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/patri/Downloads/flatlaf-demo-3.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/patri/.modelio/4.1/modules/JavaDesigner_3.10.00/JavaDesigner/bin/javadesigner.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

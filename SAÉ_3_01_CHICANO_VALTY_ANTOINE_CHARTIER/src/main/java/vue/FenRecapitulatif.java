@@ -21,12 +21,13 @@ public class FenRecapitulatif extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public FenRecapitulatif(String heureArrive, String heureDepart, String typeVehicule, String plaqueImma, String parking) {
+	public FenRecapitulatif(String heureArrive, String heureDepart, String plaqueImma, String parking) {
 		try {
-			this.initialize(heureArrive, heureDepart, typeVehicule, plaqueImma, parking);
+			this.initialize(heureArrive, heureDepart, plaqueImma, parking);
 			this.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
+
 		}
 	}
 
@@ -34,16 +35,8 @@ public class FenRecapitulatif extends JFrame {
 	 * Create the frame.
 	 * @return 
 	 */
-	public void initialize(String heureArrive, String heureDepart, String typeVehicule, String plaqueImma, String parking) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-
-
-
+	public void initialize(String heureArrive, String heureDepart, String plaqueImma, String parking) {
+		
 		setTitle("Récapitulatif");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 400, 250);
@@ -56,20 +49,32 @@ public class FenRecapitulatif extends JFrame {
 		panelCentre.setLayout(new GridLayout(5, 2, 5, 5));
 		contentPane.add(panelCentre, BorderLayout.CENTER);
 
-		panelCentre.add(new JLabel("Heure d'arrivée :"));
-		panelCentre.add(new JLabel(heureArrive));
+		JLabel label_6 = new JLabel("Heure d'arrivée :");
+		panelCentre.add(label_6);
+		JLabel label_7 = new JLabel(heureArrive);
+		label_6.setLabelFor(label_7);
+		panelCentre.add(label_7);
 
-		panelCentre.add(new JLabel("Heure Départ :"));
-		panelCentre.add(new JLabel(heureDepart));
+		JLabel label_4 = new JLabel("Heure Départ :");
+		panelCentre.add(label_4);
+		JLabel label_5 = new JLabel(heureDepart);
+		label_4.setLabelFor(label_5);
+		panelCentre.add(label_5);
 
-		panelCentre.add(new JLabel("Immatriculation :"));
-		panelCentre.add(new JLabel(plaqueImma));
+		JLabel label = new JLabel("Immatriculation :");
+		panelCentre.add(label);
+		JLabel label_1 = new JLabel(plaqueImma);
+		label.setLabelFor(label_1);
+		panelCentre.add(label_1);
 
-		panelCentre.add(new JLabel("Type de véhicule :"));
-		panelCentre.add(new JLabel(typeVehicule));
+		//panelCentre.add(new JLabel("Type de véhicule :"));
+		//panelCentre.add(new JLabel(typeVehicule.toString()));
 
-		panelCentre.add(new JLabel("Parking choisi :"));
-		panelCentre.add(new JLabel(parking));
+		JLabel label_2 = new JLabel("Parking choisi :");
+		panelCentre.add(label_2);
+		JLabel label_3 = new JLabel(parking);
+		label_2.setLabelFor(label_3);
+		panelCentre.add(label_3);
 
 		JPanel panelSud = new JPanel();
 		panelSud.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -77,11 +82,11 @@ public class FenRecapitulatif extends JFrame {
 
 		JButton btnConfirmer = new JButton("Confirmer");
 		panelSud.add(btnConfirmer);
-
+		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 }
-}
 
-}
+
+

@@ -24,7 +24,7 @@ public class ControleurInfosSeGarerParking implements ActionListener{
 			vue.dispose();
 		}else if(b.getText() == "Valider") {
 			vue.dispose();
-			new FenRecapitulatif(vue.getSaisieHeureArrive(), vue.getSaisieDuree() , vue.getDeroulantTypeV(), vue.getSaisieImmatriculation(), vue.getParking());
+			new FenRecapitulatif(vue.getSaisieHeureArrive(), vue.getSaisieDuree() , vue.getSaisieImmatriculation(), vue.getParking());
 		}
 	}
 

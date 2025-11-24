@@ -89,7 +89,7 @@ public class InfoSeGarerParking extends JFrame {
 		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
 		ListeInfos.add(LabelTypeVehicule);
 		
-		JComboBox<Type_vehicule> DeroulantTypeV = new JComboBox<Type_vehicule>();
+		DeroulantTypeV = new JComboBox<Type_vehicule>();
 		DeroulantTypeV.setModel(new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values()));
 		ListeInfos.add(DeroulantTypeV);
 		
@@ -107,7 +107,7 @@ public class InfoSeGarerParking extends JFrame {
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
 		
-		JComboBox<String> DeroulantSelectionParking = new JComboBox<String>();
+		DeroulantSelectionParking = new JComboBox<String>();
 		String[] options = {"JEANNE D'ARC", "CAPITOLE"};
 		DeroulantSelectionParking.setModel(new DefaultComboBoxModel<String>(options));
 		ListeInfos.add(DeroulantSelectionParking);
@@ -135,15 +135,15 @@ public class InfoSeGarerParking extends JFrame {
 	}
 
 	public String getSaisieHeureArrive() {
-		return SaisieHeureArrive.getSelectedText();
+		return SaisieHeureArrive.getText();
 	}
 
 	public String getSaisieDuree() {
-		return SaisieDuree.getSelectedText();
+		return SaisieDuree.getText();
 	}
 
 	public String getSaisieImmatriculation() {
-		return SaisieImmatriculation.getSelectedText();
+		return SaisieImmatriculation.getText();
 	}
 	
 	public String getParking(){
@@ -151,7 +151,7 @@ public class InfoSeGarerParking extends JFrame {
 	}
 
 	public String getDeroulantTypeV() {
-		return (String) DeroulantTypeV.getSelectedItem();
+		return DeroulantTypeV.getSelectedItem().toString();
 	}
 	
 	

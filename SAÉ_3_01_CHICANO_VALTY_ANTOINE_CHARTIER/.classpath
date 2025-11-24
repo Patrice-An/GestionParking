@@ -7,7 +7,12 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/patri/Downloads/flatlaf-demo-3.6.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/patri/.modelio/4.1/modules/JavaDesigner_3.10.00/JavaDesigner/bin/javadesigner.jar"/>
+	<classpathentry kind="lib" path="libraries/flatlaf-3.6.2.jar"/>
+	<classpathentry kind="lib" path="libraries/mariadb-java-client-3.5.6.jar"/>
+	<classpathentry kind="lib" path="libraries/mssql-jdbc-13.2.1.jre8.jar" sourcepath="/Users/liam/Documents/Cours/S3/S3A/sae3_2025_chartier_valdi_antoine_chicano-queralta/SAÉ_3_01_CHICANO_VALTY_ANTOINE_CHARTIER/libraries/mssql-jdbc-13.2.1.jre8-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/Users/liam/Documents/Cours/S3/S3A/sae3_2025_chartier_valdi_antoine_chicano-queralta/SAÉ_3_01_CHICANO_VALTY_ANTOINE_CHARTIER/libraries/mssql-jdbc-13.2.1.jre8-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

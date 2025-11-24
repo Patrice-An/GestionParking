@@ -16,9 +16,6 @@ public class Accueil extends JFrame{
 	
 	private static final long serialVersionUID = 2L;
 
-	public static void main(String[] args) {
-		Accueil accueil = new Accueil();
-	}
 	
 	public Accueil() {
 		FlatDarculaLaf.setup();

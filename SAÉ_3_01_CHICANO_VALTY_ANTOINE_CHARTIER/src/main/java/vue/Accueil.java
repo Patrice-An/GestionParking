@@ -19,20 +19,16 @@ public class Accueil extends JFrame{
 	private static final long serialVersionUID = 2L;
 	private JFrame frame;
 
-	public static void main(String[] args) {
+	public Accueil() {
 		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(() -> {
 			try {
-				Accueil window = new Accueil();
-				window.frame.setVisible(true);
+				initialize();
+				this.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
-	}
-
-	public Accueil() {
-		initialize();
 	}
 
 	private void initialize() {
@@ -87,7 +83,7 @@ public class Accueil extends JFrame{
 		// Ajouter le panel des boutons au centre
 		panel.add(buttonPanel, BorderLayout.CENTER);
 	}
-	
+
 	public void fermer() {
 		this.dispose();
 	}

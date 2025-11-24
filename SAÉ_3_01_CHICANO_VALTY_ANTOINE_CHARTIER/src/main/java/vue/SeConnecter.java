@@ -27,7 +27,7 @@ public class SeConnecter extends JFrame {
 	private JLabel lblNewLabel;
 	private JPasswordField passwordField;
 	private JSplitPane splitPane;
-	private JButton btnNewButton;
+	private JButton btnInscrire;
 	
 	public static void main(String[] args) {
 		FlatDarculaLaf.setup();
@@ -110,15 +110,15 @@ public class SeConnecter extends JFrame {
 		splitPane.setRightComponent(boutonConnexion);
 		boutonConnexion.addActionListener(controler);
 
-		btnNewButton = new JButton("S'inscrire");
-		splitPane.setLeftComponent(btnNewButton);
-		btnNewButton.addActionListener(controler);
+		btnInscrire = new JButton("S'inscrire");
+		splitPane.setLeftComponent(btnInscrire);
+		btnInscrire.addActionListener(controler);
 
 		this.setLocationRelativeTo(null);
 	}
 	
-	public String getTextChampNomUtilisateur() {
-		return champNomUtilisateur.getText();
+	public JTextField getChampNomUtilisateur() {
+		return champNomUtilisateur;
 	}
 
 	public char[] getPasswordField() {

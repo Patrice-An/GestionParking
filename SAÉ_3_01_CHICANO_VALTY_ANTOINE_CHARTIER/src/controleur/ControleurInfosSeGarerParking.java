@@ -22,6 +22,7 @@ public class ControleurInfosSeGarerParking implements ActionListener{
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Annuler") {
 			vue.dispose();
+			new ChoixSeGarer();
 		}else if(b.getText() == "Valider") {
 			vue.dispose();
 			new FenRecapitulatif(vue.getSaisieHeureArrive(), vue.getSaisieDuree() , vue.getSaisieImmatriculation(), vue.getParking());

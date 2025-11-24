@@ -126,7 +126,7 @@ public class InfoSeGarerParking extends JFrame {
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
-		btnAnnuler.addActionListener(controleur);
+		
 
 	}
 

@@ -26,7 +26,9 @@ public class InfoSeGarerParking extends JFrame {
 	private JTextField SaisieHeureArrive;
 	private JTextField SaisieDuree;
 	private JTextField SaisieImmatriculation;
-
+	JComboBox<String> DeroulantSelectionParking;
+	JComboBox<Type_vehicule> DeroulantTypeV;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -87,8 +89,8 @@ public class InfoSeGarerParking extends JFrame {
 		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
 		ListeInfos.add(LabelTypeVehicule);
 		
-		JComboBox DeroulantTypeV = new JComboBox();
-		DeroulantTypeV.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
+		JComboBox<Type_vehicule> DeroulantTypeV = new JComboBox<Type_vehicule>();
+		DeroulantTypeV.setModel(new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values()));
 		ListeInfos.add(DeroulantTypeV);
 		
 		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");
@@ -98,15 +100,17 @@ public class InfoSeGarerParking extends JFrame {
 		ListeInfos.add(SaisieImmatriculation);
 		SaisieImmatriculation.setColumns(10);
 		
-		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le voirie utilisé :");
+		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
 		ListeInfos.add(LabelSelectionVoirie);
 		
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
 		
-		JComboBox DeroulantSlectionParking = new JComboBox();
-		ListeInfos.add(DeroulantSlectionParking);
+		JComboBox<String> DeroulantSelectionParking = new JComboBox<String>();
+		String[] options = {"JEANNE D'ARC", "CAPITOLE"};
+		DeroulantSelectionParking.setModel(new DefaultComboBoxModel<String>(options));
+		ListeInfos.add(DeroulantSelectionParking);
 		
 		JPanel PanneauSud = new JPanel();
 		contentPane.add(PanneauSud, BorderLayout.SOUTH);
@@ -129,5 +133,32 @@ public class InfoSeGarerParking extends JFrame {
 		
 
 	}
+
+	public String getSaisieHeureArrive() {
+		return SaisieHeureArrive.getSelectedText();
+	}
+
+	public String getSaisieDuree() {
+		return SaisieDuree.getSelectedText();
+	}
+
+	public String getSaisieImmatriculation() {
+		return SaisieImmatriculation.getSelectedText();
+	}
+	
+	public String getParking(){
+		return (String) DeroulantSelectionParking.getSelectedItem();
+	}
+
+	public String getDeroulantTypeV() {
+		return (String) DeroulantTypeV.getSelectedItem();
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }

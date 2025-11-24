@@ -24,6 +24,7 @@ public class ControleurInfoSeGarerVoirie implements ActionListener{
 			new ChoixSeGarer();
 		}
 		
+		
 	}
 
 }

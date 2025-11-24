@@ -15,32 +15,29 @@ import java.io.InputStream;
 public class Accueil extends JFrame{
 	
 	private static final long serialVersionUID = 2L;
-	private JFrame frame;
 
 	public Accueil() {
 		FlatDarculaLaf.setup();
-		EventQueue.invokeLater(() -> {
 			try {
 				initialize();
-				this.frame.setVisible(true);
+				this.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		});
 	}
 
 	private void initialize() {
 		ControleurAccueil controleur = new ControleurAccueil(this);
-		frame = new JFrame("Accueil - Parkéo");
-		frame.setBounds(100, 100, 1080, 720);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Accueil - Parkéo");
+		this.setBounds(100, 100, 1080, 720);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Charger le logo pour l'icône de la fenêtre depuis les ressources
 		try {
 			InputStream imgStream = getClass().getResourceAsStream("src/images/Parkeo_Logo.png");
 			if (imgStream != null) {
 				BufferedImage img = ImageIO.read(imgStream);
-				frame.setIconImage(img);
+				this.setIconImage(img);
 			} else {
 				System.err.println("Erreur : Le fichier '/src/images/Parkeo_Logo.png' est introuvable dans les ressources.");
 			}
@@ -52,7 +49,7 @@ public class Accueil extends JFrame{
 		// Panel principal
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		this.getContentPane().add(panel, BorderLayout.CENTER);
 
 		// Texte "Mode Simulation" centré en haut
 		JLabel label = new JLabel("Mode Simulation", SwingConstants.CENTER);
@@ -82,7 +79,4 @@ public class Accueil extends JFrame{
 		panel.add(buttonPanel, BorderLayout.CENTER);
 	}
 
-	public void fermer() {
-		this.dispose();
-	}
 }

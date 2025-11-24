@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import main.java.vue.ChoixSeGarer;
+import main.java.vue.FenRecapitulatif;
 import main.java.vue.InfoSeGarerParking;
 
 public class ControleurInfosSeGarerParking implements ActionListener{
@@ -21,10 +22,10 @@ public class ControleurInfosSeGarerParking implements ActionListener{
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Annuler") {
 			vue.dispose();
-
-			
+		}else if(b.getText() == "Valider") {
+			vue.dispose();
+			new FenRecapitulatif(vue.getSaisieHeureArrive(), vue.getSaisieDuree() , vue.getDeroulantTypeV(), vue.getSaisieImmatriculation(), vue.getParking());
 		}
-		
 	}
 
 }

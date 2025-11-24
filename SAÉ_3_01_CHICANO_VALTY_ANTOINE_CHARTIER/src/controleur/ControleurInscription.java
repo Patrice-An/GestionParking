@@ -12,7 +12,6 @@ import main.java.vue.SeConnecter;
 public class ControleurInscription implements ActionListener{
 	
 	public ControleurInscription(Inscription vue) {
-		super();
 		this.vue = vue;
 	}
 

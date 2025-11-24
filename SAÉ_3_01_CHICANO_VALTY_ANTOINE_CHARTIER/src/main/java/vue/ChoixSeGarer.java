@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ChoixSeGarer extends JFrame{
-	private JFrame frame;
 
 	
 
@@ -22,7 +21,7 @@ public class ChoixSeGarer extends JFrame{
 		EventQueue.invokeLater(() -> {
 			try {
 				
-				this.frame.setVisible(true);
+				this.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -31,16 +30,16 @@ public class ChoixSeGarer extends JFrame{
 
 	private void initialize() {
 		ControleurSeGarer controler = new ControleurSeGarer(this);
-		frame = new JFrame("Choix de la zone - Parkéo");
-		frame.setBounds(100, 100, 1080, 720);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Choix de la zone - Parkéo");
+		this.setBounds(100, 100, 1080, 720);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Charger le logo pour l'icône de la fenêtre depuis les ressources
 		try {
 			InputStream imgStream = getClass().getResourceAsStream("src/images/Parkeo_Logo.png");
 			if (imgStream != null) {
 				BufferedImage img = ImageIO.read(imgStream);
-				frame.setIconImage(img);
+				this.setIconImage(img);
 			} else {
 				System.err.println("Erreur : Le fichier '/src/images/Parkeo_Logo.png' est introuvable dans les ressources.");
 			}
@@ -52,7 +51,7 @@ public class ChoixSeGarer extends JFrame{
 		// Panel principal
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		this.getContentPane().add(panel, BorderLayout.CENTER);
 
 		// Texte "Mode Simulation" centré en haut
 		JLabel label = new JLabel("Choisissez ou vous garer", SwingConstants.CENTER);

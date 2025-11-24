@@ -22,12 +22,12 @@ public class ControleurAccueil implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Se Garer") {
-			vue.setVisible(false);
+			vue.dispose();
 			new ChoixSeGarer();
 
 		} 
 		if (b.getText() == "Partir"){
-			vue.fermer();
+			vue.dispose();
 		}
 		
 	}}

@@ -30,23 +30,21 @@ public class InfoSeGarerParking extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public InfoSeGarerParking() {
 				try {
-					InfoSeGarerParking frame = new InfoSeGarerParking();
-					frame.setVisible(true);
+					this.initialize();
+					this.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
-	}
+			
+			};
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public InfoSeGarerParking() {
+	public void initialize() {
 		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this);
 		
 		setTitle("Se garer dans un parking");
@@ -120,12 +118,14 @@ public class InfoSeGarerParking extends JFrame {
 		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		PanneauSud.add(btnValider, BorderLayout.EAST);
+		btnValider.addActionListener(controleur);
 
 		JPanel panel = new JPanel();
 		PanneauSud.add(panel, BorderLayout.NORTH);
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
+		btnAnnuler.addActionListener(controleur);
 		btnAnnuler.addActionListener(controleur);
 
 	}

@@ -1,6 +1,9 @@
 package main.java.vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+
+import controleur.ControleurSeGarer;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +30,7 @@ public class ChoixSeGarer extends JFrame{
 	}
 
 	private void initialize() {
+		ControleurSeGarer controler = new ControleurSeGarer(this);
 		frame = new JFrame("Choix de la zone - Parkéo");
 		frame.setBounds(100, 100, 1080, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,12 +69,14 @@ public class ChoixSeGarer extends JFrame{
 		btnSeGarer.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnSeGarer.setPreferredSize(new Dimension(200, 60));
 		buttonPanel.add(btnSeGarer);
+		btnSeGarer.addActionListener(controler);
 
 		// Bouton "Voirie"
 		JButton btnPartir = new JButton("Voirie");
 		btnPartir.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnPartir.setPreferredSize(new Dimension(200, 60));
 		buttonPanel.add(btnPartir);
+		btnPartir.addActionListener(controler);
 
 		// Ajouter le panel des boutons au centre
 		panel.add(buttonPanel, BorderLayout.CENTER);

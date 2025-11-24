@@ -32,23 +32,20 @@ public class InfoSeGarerVoirie extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public InfoSeGarerVoirie() {
 				try {
-					InfoSeGarerVoirie frame = new InfoSeGarerVoirie();
-					frame.setVisible(true);
+					this.initialize();
+					this.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
 	}
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public InfoSeGarerVoirie() {
+	public void initialize() {
 		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this);
 		setTitle("Se garer en voirie");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

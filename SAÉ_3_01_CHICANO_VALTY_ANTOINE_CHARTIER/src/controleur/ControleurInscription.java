@@ -16,11 +16,7 @@ public class ControleurInscription implements ActionListener{
 		this.vue = vue;
 	}
 
-
-
 	Inscription vue;
-	
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

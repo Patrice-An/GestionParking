@@ -13,9 +13,7 @@ import java.io.InputStream;
 
 
 public class Accueil extends JFrame{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2L;
 	private JFrame frame;
 

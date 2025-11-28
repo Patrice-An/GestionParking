@@ -25,7 +25,7 @@ public class ControleurSeConnecter implements ActionListener{
 		if (b.getText() == "Se connecter") {
 			if(vue.getChampNomUtilisateur().getText().equals("etu") && TestMdp(vue.getPasswordField())) {
 				vue.dispose();
-				new Accueil();
+				new Accueil(vue.getChampNomUtilisateur().getText());
 			}
 		} else if (b.getText() == "S'inscrire") {
 			vue.dispose();

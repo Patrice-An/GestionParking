@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.Accueil;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
 

@@ -17,17 +17,17 @@ public class Accueil extends JFrame{
 	private static final long serialVersionUID = 2L;
 
 	
-	public Accueil() {
+	public Accueil(String user) {
 		FlatDarculaLaf.setup();
 			try {
-				initialize();
+				initialize(user);
 				this.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 	}
 
-	private void initialize() {
+	private void initialize(String user) {
 		ControleurAccueil controleur = new ControleurAccueil(this);
 		this.setTitle("Accueil - Parkéo");
 		this.setBounds(100, 100, 1080, 720);
@@ -48,19 +48,19 @@ public class Accueil extends JFrame{
 		}
 
 		// Panel principal
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		this.getContentPane().add(panel, BorderLayout.CENTER);
+		JPanel panelHaut = new JPanel();
+		panelHaut.setLayout(new BorderLayout());
+		this.getContentPane().add(panelHaut, BorderLayout.CENTER);
 
 		// Texte "Mode Simulation" centré en haut
-		JLabel label = new JLabel("Mode Simulation", SwingConstants.CENTER);
+		JLabel label = new JLabel("Mode Simulation: Bienvenue " + user, SwingConstants.CENTER);
 		label.setFont(new Font("Arial", Font.BOLD, 32));
-		panel.add(label, BorderLayout.NORTH);
+		panelHaut.add(label, BorderLayout.NORTH);
 
 		// Panel pour les boutons
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(1, 2, 20, 0));
 		buttonPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 50, 100));
+		buttonPanel.setLayout(new GridLayout(0, 2, 0, 0));
 
 		// Bouton "Se Garer"
 		JButton btnSeGarer = new JButton("Se Garer");
@@ -77,7 +77,7 @@ public class Accueil extends JFrame{
 		btnPartir.addActionListener(controleur);
 
 		// Ajouter le panel des boutons au centre
-		panel.add(buttonPanel, BorderLayout.CENTER);
+		panelHaut.add(buttonPanel, BorderLayout.CENTER);
 	}
 
 }

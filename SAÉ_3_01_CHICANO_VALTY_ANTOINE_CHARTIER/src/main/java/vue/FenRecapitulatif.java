@@ -83,6 +83,12 @@ public class FenRecapitulatif extends JFrame {
 		JButton btnConfirmer = new JButton("Confirmer");
 		panelSud.add(btnConfirmer);
 		
+		JPanel panelHaut = new JPanel();
+		contentPane.add(panelHaut, BorderLayout.NORTH);
+		
+		JLabel lbTitre = new JLabel("VOUS ÊTES STATIONNÉ !");
+		panelHaut.add(lbTitre);
+		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}

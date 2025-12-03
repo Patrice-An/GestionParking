@@ -1,8 +1,11 @@
-package dao;
+package modele.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import modele.Utilisateur;
 
 public class AzureSQLDataSource {
 	
@@ -43,8 +46,11 @@ public class AzureSQLDataSource {
     public static void main(String[] args) throws SQLException {
     	Connection conn = AzureSQLDataSource.getConnexion();
     	System.out.println("Connexion");
+		ArrayList<Utilisateur> resList = (ArrayList<Utilisateur>) new DaoUtilisateur().findAll();
+		if (resList.isEmpty()) {
+			System.out.println("List is empty");
+		}
     	AzureSQLDataSource.deconnecter();
     	System.out.println("Déconnexion");
-
     }
 }

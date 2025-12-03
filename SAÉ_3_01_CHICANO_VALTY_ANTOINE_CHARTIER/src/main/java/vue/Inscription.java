@@ -149,4 +149,29 @@ private void initialize() {
 	btnValider.addActionListener(controleur);
 }
 
+
+public JTextField getNomField() {
+	return nomField;
+}
+
+
+public JTextField getPrenomField() {
+	return prenomField;
+}
+
+
+public JTextField getMailField() {
+	return mailField;
+}
+
+
+public JTextField getAdresseField() {
+	return adresseField;
+}
+
+
+public JTextField getTelField() {
+	return telField;
+}
+
 }

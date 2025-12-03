@@ -1,6 +1,5 @@
 package main.java.vue;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

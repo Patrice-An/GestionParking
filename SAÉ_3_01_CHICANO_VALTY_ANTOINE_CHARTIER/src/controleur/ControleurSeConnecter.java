@@ -12,7 +12,8 @@ import main.java.vue.SeConnecter;
 public class ControleurSeConnecter implements ActionListener{
 
 	private SeConnecter vue;
-	
+	private String user;
+	private String pwd;
 	
 	public ControleurSeConnecter(SeConnecter vue) {
 		this.vue = vue;
@@ -23,6 +24,7 @@ public class ControleurSeConnecter implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Se connecter") {
+			
 			if(vue.getChampNomUtilisateur().getText().equals("etu") && TestMdp(vue.getPasswordField())) {
 				vue.dispose();
 				new Accueil(vue.getChampNomUtilisateur().getText());

@@ -41,7 +41,6 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		String date = formatter.format(utilisateur.getNaissance());
 		req.parametres(
 			stUtil,
-			Integer.toString(utilisateur.getid()), 
 			utilisateur.getNom(),
 			utilisateur.getPrenom(),
 			utilisateur.getTel(),

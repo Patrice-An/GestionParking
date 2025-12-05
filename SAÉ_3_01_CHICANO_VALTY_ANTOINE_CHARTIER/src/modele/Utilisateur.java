@@ -6,21 +6,29 @@ import java.util.Set;
 
 public class Utilisateur {
 
+	private int id;
 	private String nom;
 	private String prenom;
 	private String tel;
-	private String mail;
 	private LocalDate naissance;
+	private String mail;
+	protected String password;
 	private Set<Vehicule> vehicules;
 	
-	public Utilisateur(String nom, String prenom, String tel, String mail, LocalDate naissance) {
+	public Utilisateur(int id, String nom, String prenom, String tel, LocalDate naissance, String mail, String password) {
 		super();
+		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
-		this.mail = mail;
 		this.naissance = naissance;
+		this.mail = mail;
+		this.password = password;
 		this.vehicules = new HashSet<>();
+	}
+
+	public int getid() {
+		return id;
 	}
 
 	public String getNom() {
@@ -63,8 +71,19 @@ public class Utilisateur {
 		this.naissance = naissance;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
 	public void addVehicule(Vehicule v) {
 		this.vehicules.add(v);
 	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", naissance="
+				+ naissance + ", mail=" + mail + "]";
+	}
+	
 	
 }

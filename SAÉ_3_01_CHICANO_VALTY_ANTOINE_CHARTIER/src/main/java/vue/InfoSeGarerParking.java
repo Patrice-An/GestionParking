@@ -1,21 +1,17 @@
 package main.java.vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.ControleurInfosSeGarerParking;
 
-import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
@@ -28,25 +24,24 @@ public class InfoSeGarerParking extends JFrame {
 	private JTextField SaisieHeureArrive;
 	private JTextField SaisieDuree;
 	private JTextField SaisieImmatriculation;
+	JComboBox<String> DeroulantSelectionParking;
+	JComboBox<Type_vehicule> DeroulantTypeV;
+	
 	/**
 	 * Launch the application.
 	 */
 	public InfoSeGarerParking() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
 				try {
-					initialize();
-					setVisible(true);
+					this.initialize();
+					this.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
-	}
+			
+			};
 
 	/**
 	 * Create the frame.
-	 * @return 
 	 * @return 
 	 */
 	public void initialize() {
@@ -92,8 +87,8 @@ public class InfoSeGarerParking extends JFrame {
 		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
 		ListeInfos.add(LabelTypeVehicule);
 		
-		JComboBox DeroulantTypeV = new JComboBox();
-		DeroulantTypeV.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
+		DeroulantTypeV = new JComboBox<Type_vehicule>();
+		DeroulantTypeV.setModel(new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values()));
 		ListeInfos.add(DeroulantTypeV);
 		
 		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");
@@ -103,15 +98,17 @@ public class InfoSeGarerParking extends JFrame {
 		ListeInfos.add(SaisieImmatriculation);
 		SaisieImmatriculation.setColumns(10);
 		
-		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le voirie utilisé :");
+		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
 		ListeInfos.add(LabelSelectionVoirie);
 		
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
 		
-		JComboBox DeroulantSlectionParking = new JComboBox();
-		ListeInfos.add(DeroulantSlectionParking);
+		DeroulantSelectionParking = new JComboBox<String>();
+		String[] options = {"JEANNE D'ARC", "CAPITOLE"};
+		DeroulantSelectionParking.setModel(new DefaultComboBoxModel<String>(options));
+		ListeInfos.add(DeroulantSelectionParking);
 		
 		JPanel PanneauSud = new JPanel();
 		contentPane.add(PanneauSud, BorderLayout.SOUTH);
@@ -123,7 +120,7 @@ public class InfoSeGarerParking extends JFrame {
 		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		PanneauSud.add(btnValider, BorderLayout.EAST);
-		
+		btnValider.addActionListener(controleur);
 
 		JPanel panel = new JPanel();
 		PanneauSud.add(panel, BorderLayout.NORTH);
@@ -131,7 +128,35 @@ public class InfoSeGarerParking extends JFrame {
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
+		
 
 	}
+
+	public String getSaisieHeureArrive() {
+		return SaisieHeureArrive.getText();
+	}
+
+	public String getSaisieDuree() {
+		return SaisieDuree.getText();
+	}
+
+	public String getSaisieImmatriculation() {
+		return SaisieImmatriculation.getText();
+	}
+	
+	public String getParking(){
+		return (String) DeroulantSelectionParking.getSelectedItem();
+	}
+
+	public String getDeroulantTypeV() {
+		return DeroulantTypeV.getSelectedItem().toString();
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }

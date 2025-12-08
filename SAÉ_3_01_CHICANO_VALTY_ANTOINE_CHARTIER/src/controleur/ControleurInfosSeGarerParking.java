@@ -1,0 +1,32 @@
+package controleur;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+import main.java.vue.ChoixSeGarer;
+import main.java.vue.FenRecapitulatif;
+import main.java.vue.InfoSeGarerParking;
+
+public class ControleurInfosSeGarerParking implements ActionListener{
+	
+	private InfoSeGarerParking vue;
+	
+	public ControleurInfosSeGarerParking (InfoSeGarerParking vue) {
+		this.vue = vue;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton b = (JButton) e.getSource();
+		if (b.getText() == "Annuler") {
+			vue.dispose();
+			new ChoixSeGarer();
+		}else if(b.getText() == "Valider") {
+			vue.dispose();
+			new FenRecapitulatif(vue.getSaisieHeureArrive(), vue.getSaisieDuree() , vue.getSaisieImmatriculation(), vue.getParking());
+		}
+	}
+
+}

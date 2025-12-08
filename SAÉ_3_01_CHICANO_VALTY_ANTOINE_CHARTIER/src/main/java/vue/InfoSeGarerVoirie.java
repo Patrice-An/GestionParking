@@ -28,24 +28,22 @@ public class InfoSeGarerVoirie extends JFrame {
 	private JTextField SaisieHeureArrive;
 	private JTextField SaisieHeureDebut;
 	private JTextField SaisieImmatriculation;
+
 	/**
 	 * Launch the application.
 	 */
 	public InfoSeGarerVoirie() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
 				try {
-					initialize();
-					setVisible(true);
+					this.initialize();
+					this.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
 	}
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
 	public void initialize() {
 		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this);

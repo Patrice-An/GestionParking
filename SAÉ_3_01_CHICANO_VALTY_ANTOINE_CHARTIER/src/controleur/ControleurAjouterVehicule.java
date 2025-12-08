@@ -2,6 +2,7 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -28,20 +29,21 @@ public class ControleurAjouterVehicule implements ActionListener{
 		System.out.println("action field");
 		f.setText("");
 		
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = new JButton();
 		JTextField f = new JTextField();
-		System.out.println(e.getSource().);
-		System.out.println(b);
-		if (e.getSource() == b) {
+		System.out.println(e.getSource());
+		if (e.getSource() instanceof JButton) {
 			b = (JButton) e.getSource();
 			this.actionPerformedButton(b);
 		}
-		if (e.getSource() == f) {
+		if (e.getSource() instanceof JTextField) {
 			f = (JTextField) e.getSource();
+			f.hasFocus();
 			this.actionPerformedField(f);
 		}
 	}

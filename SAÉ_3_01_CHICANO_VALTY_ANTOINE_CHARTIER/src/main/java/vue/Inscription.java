@@ -1,7 +1,5 @@
 package main.java.vue;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
-
 import controleur.ControleurInscription;
 
 import javax.imageio.ImageIO;

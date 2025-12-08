@@ -39,7 +39,7 @@ public class Parking {
 	public Set<Vehicule> getVoituresThermiques() {
 		Set<Vehicule> resultat = new HashSet<>();
 		for (Vehicule v : this.vehicules) {
-			if (v.getType() == Type_vehicule.VOITURE_THERMIQUE) {
+			if (v.getType() == Type_vehicule.THERMIQUE) {
 				resultat.add(v);
 			}
 		}
@@ -49,7 +49,7 @@ public class Parking {
 	public Set<Vehicule> getVoituresElectriques() {
 		Set<Vehicule> resultat = new HashSet<>();
 		for (Vehicule v : this.vehicules) {
-			if (v.getType() == Type_vehicule.VOITURE_ELECTRIQUE) {
+			if (v.getType() == Type_vehicule.ELECTRIQUE) {
 				resultat.add(v);
 			}
 		}

@@ -10,39 +10,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import modele.Type_vehicule;
 import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
+import modele.dao.requetes.requeteVehicule.CreateVehicule;
+import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
+import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
+import modele.dao.requetes.requeteVehicule.VehiculeSelectById;
 
-public class DaoVehicule implements Dao<Utilisateur, String> {
+public class DaoVehicule implements Dao<Vehicule, String> {
 
 	@Override
 	public Vehicule createInstance(ResultSet curseur) throws SQLException {
-		
+		return new Vehicule(
+			curseur.getString(1),
+			curseur.getFloat(2),
+			curseur.getInt(3),
+			curseur.getString(4),
+			Type_vehicule.valueOf(curseur.getString(5)));
 	}
 
 	@Override
-	public void create(Utilisateur utilisateur) throws SQLException {
+	public void create(Vehicule vehicule) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new CreateUtilisateur();
+		Requete<Vehicule> req = new CreateVehicule();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String date = formatter.format(utilisateur.getNaissance());
 		req.parametres(
 			stUtil,
-			utilisateur.getNom(),
-			utilisateur.getPrenom(),
-			utilisateur.getTel(),
-			date,
-			utilisateur.getMail(),
-			utilisateur.getPassword());
+			vehicule.getImmatriculation(),
+			String.valueOf(vehicule.getHauteur()),
+			String.valueOf(vehicule.getId_utilisateur()),
+			vehicule.getDésignation(),
+			vehicule.getType().name()
+		);
 		stUtil.executeUpdate();
 	}
 	
 	@Override
-	public Optional<Vehicule> findById(Integer id) throws SQLException {
+	public Optional<Vehicule> findById(String id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new SelectUtilisateurById();
+		Requete<Vehicule> req = new VehiculeSelectById();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, id.toString());
 		ResultSet res = stUtil.executeQuery();
@@ -56,10 +65,10 @@ public class DaoVehicule implements Dao<Utilisateur, String> {
 	@Override
 	public List<Vehicule> findAll() throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new SelectAllUtilisateur();
+		Requete<Vehicule> req = new VehiculeSelectAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		ResultSet resSet = stUtil.executeQuery();
-		ArrayList<Utilisateur> resList = new ArrayList<Utilisateur>();
+		ArrayList<Vehicule> resList = new ArrayList<Vehicule>();
 		while (resSet.next()) {
 			resList.add(this.createInstance(resSet));
 		}
@@ -73,6 +82,11 @@ public class DaoVehicule implements Dao<Utilisateur, String> {
 
 	@Override
 	public boolean deleteById(String id) throws SQLException {
-		return true;
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new VehiculeDeleteById();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, String.valueOf(id));
+		int res = stUtil.executeUpdate();
+		return res > 0;
 	}
 }

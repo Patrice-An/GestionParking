@@ -1,46 +1,50 @@
 package modele;
 
-import java.util.Objects;
-
 public class Vehicule{
 	
 	private String immatriculation;
-	private Type_vehicule type;
 	private float hauteur;
-	
-	public Vehicule(String immatriculation, Type_vehicule type, float hauteur) {
+	private int id_utilisateur;
+	private String désignation;
+	private Type_vehicule type;
+
+	public Vehicule(String immatriculation, float hauteur, int id_utilisateur, String désignation, Type_vehicule type) {
 		this.immatriculation = immatriculation;
-		this.type = type; 
 		this.hauteur = hauteur;
+		this.id_utilisateur = id_utilisateur;
+		this.désignation = désignation;
+		this.type = type;
 	}
 
 	public String getImmatriculation() {
 		return immatriculation;
 	}
 
-	public Type_vehicule getType() {
-		return type;
-	}
-	
 	public float getHauteur() {
 		return hauteur;
 	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(hauteur, immatriculation, type);
+
+	public int getId_utilisateur() {
+		return id_utilisateur;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Vehicule other = (Vehicule) obj;
-		return Float.floatToIntBits(hauteur) == Float.floatToIntBits(other.hauteur)
-				&& Objects.equals(immatriculation, other.immatriculation) && type == other.type;
+	public String getDésignation() {
+		return désignation;
+	}
+
+	public Type_vehicule getType() {
+		return type;
+	}
+
+	public void setHauteur(float hauteur) {
+		this.hauteur = hauteur;
+	}
+
+	public void setDésignation(String désignation) {
+		this.désignation = désignation;
+	}
+
+	public void setType(Type_vehicule type) {
+		this.type = type;
 	}
 }

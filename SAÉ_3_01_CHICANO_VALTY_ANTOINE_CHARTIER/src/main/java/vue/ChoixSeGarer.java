@@ -1,7 +1,6 @@
 package main.java.vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-
 import controleur.ControleurSeGarer;
 
 import javax.imageio.ImageIO;
@@ -11,73 +10,89 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ChoixSeGarer extends JFrame{
+public class ChoixSeGarer extends JFrame {
 
-	
+    private static final long serialVersionUID = 1L;
 
-	public ChoixSeGarer() {
-		initialize();
-		FlatDarculaLaf.setup();
-		EventQueue.invokeLater(() -> {
-			try {
-				
-				this.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
+    public ChoixSeGarer() {
+        FlatDarculaLaf.setup();
+        initialize();
+        setVisible(true);
+    }
 
-	private void initialize() {
-		ControleurSeGarer controler = new ControleurSeGarer(this);
-		this.setTitle("Choix de la zone - Parkéo");
-		this.setBounds(100, 100, 1080, 720);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private void initialize() {
+        ControleurSeGarer controler = new ControleurSeGarer(this);
 
-		// Charger le logo pour l'icône de la fenêtre depuis les ressources
-		try {
-			InputStream imgStream = getClass().getResourceAsStream("src/images/Parkeo_Logo.png");
-			if (imgStream != null) {
-				BufferedImage img = ImageIO.read(imgStream);
-				this.setIconImage(img);
-			} else {
-				System.err.println("Erreur : Le fichier '/src/images/Parkeo_Logo.png' est introuvable dans les ressources.");
-			}
-		} catch (IOException e) {
-			System.err.println("Erreur : Impossible de charger l'image.");
-			e.printStackTrace();
-		}
+        // --- Paramètres fenêtre ---
+        setTitle("Choix de la zone - Parkéo");
+        setSize(1080, 720);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-		// Panel principal
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		this.getContentPane().add(panel, BorderLayout.CENTER);
+        // --- Icone corrigée ---
+        try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {
+            if (imgStream != null) {
+                BufferedImage img = ImageIO.read(imgStream);
+                setIconImage(img);
+            } else {
+                System.err.println("Erreur : Ressource /images/Parkeo_Logo.png introuvable.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		// Texte "Mode Simulation" centré en haut
-		JLabel label = new JLabel("Choisissez ou vous garer", SwingConstants.CENTER);
-		label.setFont(new Font("Arial", Font.BOLD, 32));
-		panel.add(label, BorderLayout.NORTH);
+        // --- Bandeau supérieur ---
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		// Panel pour les boutons
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(1, 2, 20, 0));
-		buttonPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 50, 100));
+        JLabel labelTitre = new JLabel("Choisissez où vous garer", SwingConstants.CENTER);
+        labelTitre.setFont(new Font("Arial", Font.BOLD, 32));
 
-		// Bouton "Parkign"
-		JButton btnSeGarer = new JButton("Parking");
-		btnSeGarer.setFont(new Font("Arial", Font.PLAIN, 24));
-		btnSeGarer.setPreferredSize(new Dimension(200, 60));
-		buttonPanel.add(btnSeGarer);
-		btnSeGarer.addActionListener(controler);
+        topPanel.add(labelTitre, BorderLayout.CENTER);
+        add(topPanel, BorderLayout.NORTH);
 
-		// Bouton "Voirie"
-		JButton btnPartir = new JButton("Voirie");
-		btnPartir.setFont(new Font("Arial", Font.PLAIN, 24));
-		btnPartir.setPreferredSize(new Dimension(200, 60));
-		buttonPanel.add(btnPartir);
-		btnPartir.addActionListener(controler);
+        // --- Zone centrale (boutons) ---
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 
-		// Ajouter le panel des boutons au centre
-		panel.add(buttonPanel, BorderLayout.CENTER);
-	}
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(30, 30, 30, 30);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+
+        // --- Bouton Parking ---
+        JButton btnParking = createBigButton("Parking");
+        btnParking.addActionListener(controler);
+
+        gbc.gridy = 0;
+        centerPanel.add(btnParking, gbc);
+
+        // --- Bouton Voirie ---
+        JButton btnVoirie = createBigButton("Voirie");
+        btnVoirie.addActionListener(controler);
+
+        gbc.gridy = 1;
+        centerPanel.add(btnVoirie, gbc);
+
+        add(centerPanel, BorderLayout.CENTER);
+    }
+
+    /**
+     * Bouton stylé homogène avec la fenêtre d’accueil.
+     */
+    private JButton createBigButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.PLAIN, 24));
+        button.setPreferredSize(new Dimension(350, 80));
+        button.setFocusPainted(false);
+
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY, 1),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
+        ));
+
+        return button;
+    }
 }

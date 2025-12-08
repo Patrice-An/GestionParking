@@ -1,7 +1,6 @@
 package main.java.vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-
 import controleur.ControleurAccueil;
 
 import javax.imageio.ImageIO;
@@ -11,73 +10,91 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
+public class Accueil extends JFrame {
 
-public class Accueil extends JFrame{
-	
-	private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 2L;
 
-	
-	public Accueil(String user) {
-		FlatDarculaLaf.setup();
-			try {
-				initialize(user);
-				this.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	}
+    public Accueil(String user) {
+        FlatDarculaLaf.setup();
+        try {
+            initialize(user);
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	private void initialize(String user) {
-		ControleurAccueil controleur = new ControleurAccueil(this);
-		this.setTitle("Accueil - Parkéo");
-		this.setBounds(100, 100, 1080, 720);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private void initialize(String user) {
 
-		// Charger le logo pour l'icône de la fenêtre depuis les ressources
-		try {
-			InputStream imgStream = getClass().getResourceAsStream("src/images/Parkeo_Logo.png");
-			if (imgStream != null) {
-				BufferedImage img = ImageIO.read(imgStream);
-				this.setIconImage(img);
-			} else {
-				System.err.println("Erreur : Le fichier '/src/images/Parkeo_Logo.png' est introuvable dans les ressources.");
-			}
-		} catch (IOException e) {
-			System.err.println("Erreur : Impossible de charger l'image.");
-			e.printStackTrace();
-		}
+        ControleurAccueil controleur = new ControleurAccueil(this);
 
-		// Panel principal
-		JPanel panelHaut = new JPanel();
-		panelHaut.setLayout(new BorderLayout());
-		this.getContentPane().add(panelHaut, BorderLayout.CENTER);
+        setTitle("Accueil - Parkéo");
+        setSize(1080, 720);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-		// Texte "Mode Simulation" centré en haut
-		JLabel label = new JLabel("Mode Simulation: Bienvenue " + user, SwingConstants.CENTER);
-		label.setFont(new Font("Arial", Font.BOLD, 32));
-		panelHaut.add(label, BorderLayout.NORTH);
+        // --- Chargement du logo corrigé ---
+        try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {
+            if (imgStream != null) {
+                BufferedImage img = ImageIO.read(imgStream);
+                setIconImage(img);
+            } else {
+                System.err.println("Erreur : Ressource /images/Parkeo_Logo.png introuvable.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		// Panel pour les boutons
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 50, 100));
-		buttonPanel.setLayout(new GridLayout(0, 2, 0, 0));
+        // --- Bandeau supérieur ---
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        topPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		// Bouton "Se Garer"
-		JButton btnSeGarer = new JButton("Se Garer");
-		btnSeGarer.setFont(new Font("Arial", Font.PLAIN, 24));
-		btnSeGarer.setPreferredSize(new Dimension(200, 60));
-		buttonPanel.add(btnSeGarer);
-		btnSeGarer.addActionListener(controleur);
+        JLabel labelTitre = new JLabel("Mode Simulation : Bienvenue " + user, SwingConstants.CENTER);
+        labelTitre.setFont(new Font("Arial", Font.BOLD, 32));
 
-		// Bouton "Partir"
-		JButton btnPartir = new JButton("Partir");
-		btnPartir.setFont(new Font("Arial", Font.PLAIN, 24));
-		btnPartir.setPreferredSize(new Dimension(200, 60));
-		buttonPanel.add(btnPartir);
-		btnPartir.addActionListener(controleur);
+        topPanel.add(labelTitre, BorderLayout.CENTER);
+        add(topPanel, BorderLayout.NORTH);
 
-		// Ajouter le panel des boutons au centre
-		panelHaut.add(buttonPanel, BorderLayout.CENTER);
-	}
+        // --- Panel central ---
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(20, 20, 20, 20);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+
+        // ----- BOUTON : Se Garer -----
+        JButton btnSeGarer = createBigButton("Se Garer");
+        btnSeGarer.addActionListener(controleur);
+
+        gbc.gridy = 0;
+        centerPanel.add(btnSeGarer, gbc);
+
+        // ----- BOUTON : Quitter l'application -----
+        JButton btnQuitter = createBigButton("Quitter l'application");
+        btnQuitter.addActionListener(controleur);
+
+        gbc.gridy = 1;
+        centerPanel.add(btnQuitter, gbc);
+
+       
+
+        add(centerPanel, BorderLayout.CENTER);
+    }
+
+    private JButton createBigButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.PLAIN, 24));
+        button.setPreferredSize(new Dimension(350, 80));
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY, 1),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)
+        ));
+        return button;
+    }
 }

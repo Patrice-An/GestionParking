@@ -1,98 +1,95 @@
 package main.java.vue;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import modele.Type_vehicule;
+import javax.swing.*;
+import java.awt.*;
 
 public class FenRecapitulatif extends JFrame {
 
-	private JPanel contentPane;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Launch the application.
-	 */
-	public FenRecapitulatif(String heureArrive, String heureDepart, String plaqueImma, String parking) {
-		try {
-			this.initialize(heureArrive, heureDepart, plaqueImma, parking);
-			this.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
+    public FenRecapitulatif(String heureArrive, String heureDepart, String plaqueImma, String parking) {
+        try {
+            initialize(heureArrive, heureDepart, plaqueImma, parking);
+            setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-		}
-	}
+    private void initialize(String heureArrive, String heureDepart, String plaqueImma, String parking) {
 
-	/**
-	 * Create the frame.
-	 * @return 
-	 */
-	public void initialize(String heureArrive, String heureDepart, String plaqueImma, String parking) {
-		
-		setTitle("Récapitulatif");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 400, 250);
-		contentPane = new JPanel();
-		contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+        setTitle("Récapitulatif stationnement");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(480, 350);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
-		JPanel panelCentre = new JPanel();
-		panelCentre.setLayout(new GridLayout(5, 2, 5, 5));
-		contentPane.add(panelCentre, BorderLayout.CENTER);
+        // --- Panel Titre ---
+        JPanel panelTop = new JPanel(new BorderLayout());
+        panelTop.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
 
-		JLabel label_6 = new JLabel("Heure d'arrivée :");
-		panelCentre.add(label_6);
-		JLabel label_7 = new JLabel(heureArrive);
-		label_6.setLabelFor(label_7);
-		panelCentre.add(label_7);
+        JLabel titre = new JLabel("VOUS ÊTES STATIONNÉ !", SwingConstants.CENTER);
+        titre.setFont(new Font("Arial", Font.BOLD, 26));
+        panelTop.add(titre, BorderLayout.CENTER);
 
-		JLabel label_4 = new JLabel("Heure Départ :");
-		panelCentre.add(label_4);
-		JLabel label_5 = new JLabel(heureDepart);
-		label_4.setLabelFor(label_5);
-		panelCentre.add(label_5);
+        add(panelTop, BorderLayout.NORTH);
 
-		JLabel label = new JLabel("Immatriculation :");
-		panelCentre.add(label);
-		JLabel label_1 = new JLabel(plaqueImma);
-		label.setLabelFor(label_1);
-		panelCentre.add(label_1);
+        // --- Panel Central : tableau d'informations ---
+        JPanel panelCenter = new JPanel(new GridBagLayout());
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 10, 10, 10);
 
-		//panelCentre.add(new JLabel("Type de véhicule :"));
-		//panelCentre.add(new JLabel(typeVehicule.toString()));
+        // Ligne A
+        gbc.gridx = 0; gbc.gridy = 0;
+        panelCenter.add(createLabel("Heure d'arrivée : "), gbc);
+        gbc.gridx = 1;
+        panelCenter.add(createDataLabel(heureArrive), gbc);
 
-		JLabel label_2 = new JLabel("Parking choisi :");
-		panelCentre.add(label_2);
-		JLabel label_3 = new JLabel(parking);
-		label_2.setLabelFor(label_3);
-		panelCentre.add(label_3);
+        // Ligne B
+        gbc.gridx = 0; gbc.gridy = 1;
+        panelCenter.add(createLabel("Heure de départ : "), gbc);
+        gbc.gridx = 1;
+        panelCenter.add(createDataLabel(heureDepart), gbc);
 
-		JPanel panelSud = new JPanel();
-		panelSud.setLayout(new FlowLayout(FlowLayout.CENTER));
-		contentPane.add(panelSud, BorderLayout.SOUTH);
+        // Ligne C
+        gbc.gridx = 0; gbc.gridy = 2;
+        panelCenter.add(createLabel("Immatriculation : "), gbc);
+        gbc.gridx = 1;
+        panelCenter.add(createDataLabel(plaqueImma), gbc);
 
-		JButton btnConfirmer = new JButton("Confirmer");
-		panelSud.add(btnConfirmer);
-		
-		JPanel panelHaut = new JPanel();
-		contentPane.add(panelHaut, BorderLayout.NORTH);
-		
-		JLabel lbTitre = new JLabel("VOUS ÊTES STATIONNÉ !");
-		panelHaut.add(lbTitre);
-		
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	}
+        // Ligne D
+        gbc.gridx = 0; gbc.gridy = 3;
+        panelCenter.add(createLabel("Parking choisi : "), gbc);
+        gbc.gridx = 1;
+        panelCenter.add(createDataLabel(parking), gbc);
+
+        add(panelCenter, BorderLayout.CENTER);
+
+        // --- Panel Bas : bouton Confirmer ---
+        JPanel panelBottom = new JPanel();
+        panelBottom.setBorder(BorderFactory.createEmptyBorder(15, 0, 20, 0));
+
+        JButton btnConfirmer = new JButton("Confirmer");
+        btnConfirmer.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnConfirmer.setPreferredSize(new Dimension(200, 50));
+
+        panelBottom.add(btnConfirmer);
+        add(panelBottom, BorderLayout.SOUTH);
+    }
+
+    /** Label descriptif */
+    private JLabel createLabel(String text) {
+        JLabel lbl = new JLabel(text);
+        lbl.setFont(new Font("Arial", Font.BOLD, 18));
+        return lbl;
+    }
+
+    /** Label données utilisateur */
+    private JLabel createDataLabel(String text) {
+        JLabel lbl = new JLabel(text);
+        lbl.setFont(new Font("Arial", Font.PLAIN, 18));
+        return lbl;
+    }
 }
-
-
-

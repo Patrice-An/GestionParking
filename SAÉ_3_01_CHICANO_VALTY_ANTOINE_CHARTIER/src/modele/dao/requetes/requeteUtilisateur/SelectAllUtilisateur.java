@@ -1,11 +1,12 @@
-package modele.dao.requetes;
+package modele.dao.requetes.requeteUtilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import modele.Utilisateur;
+import modele.dao.requetes.Requete;
 
-public class RequeteSelectAllUtilisateur extends Requete<Utilisateur> {
+public class SelectAllUtilisateur extends Requete<Utilisateur> {
 
     private String requete;
 

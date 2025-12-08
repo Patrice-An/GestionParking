@@ -12,9 +12,9 @@ import java.util.Optional;
 
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.Utilisateur.CreateUtilisateur;
-import modele.dao.requetes.Utilisateur.SelectAllUtilisateur;
-import modele.dao.requetes.Utilisateur.SelectUtilisateurById;
+import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 	

@@ -116,11 +116,11 @@ public class SeConnecter extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 	
-	public JTextField getChampNomUtilisateur() {
-		return champNomUtilisateur;
+	public String getEmail() {
+		return champNomUtilisateur.getText();
 	}
 
-	public char[] getPasswordField() {
-		return passwordField.getPassword();
+	public String getPassword() {
+		return String.valueOf(passwordField.getPassword());
 	}
 }

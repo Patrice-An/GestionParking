@@ -3,10 +3,10 @@ package modele.dao.requetes.requeteVehicule;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import modele.Utilisateur;
+import modele.Vehicule;
 import modele.dao.requetes.Requete;
 
-public class VehiculeDeleteById extends Requete<Utilisateur> {
+public class VehiculeDeleteById extends Requete<Vehicule> {
 
     private String requete;
 

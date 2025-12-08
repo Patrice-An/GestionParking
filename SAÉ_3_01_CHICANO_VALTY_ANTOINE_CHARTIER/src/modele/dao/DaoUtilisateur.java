@@ -15,6 +15,7 @@ import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
 import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
 import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 	
@@ -77,13 +78,22 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		return resList;
 	}
 
+	public boolean utilisateurCanConnect(String email, String password) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurConnection();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, email, password);
+		ResultSet resSet = stUtil.executeQuery();
+		return resSet.next();
+	}
+
 	@Override
-	public void update(Utilisateur utilisateur) {
+	public void update(Utilisateur utilisateur) throws SQLException {
 		
 	}
 
 	@Override
-	public boolean deleteById(Integer id) {
+	public boolean deleteById(Integer id) throws SQLException {
 		return true;
 	}
 

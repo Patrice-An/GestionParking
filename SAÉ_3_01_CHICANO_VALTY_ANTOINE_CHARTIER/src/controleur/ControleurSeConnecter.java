@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import main.java.vue.Accueil;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
-import modele.dao.requetes.requeteUtilisateur.SelectIdUtilisateurByNomAndPassword;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
 
 public class ControleurSeConnecter implements ActionListener{
 

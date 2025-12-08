@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
 
-public class SelectIdUtilisateurByNomAndPassword extends Requete<Utilisateur> {
+public class UtilisateurConnection extends Requete<Utilisateur> {
 
     private String requete;
 
 	@Override
 	public String requete() {
-		this.requete = "select * from utilisateur where nom = ? and password = ?";
+		this.requete = "select * from utilisateur where mail = ? and password = ?";
 		return this.requete;
 	}
 	

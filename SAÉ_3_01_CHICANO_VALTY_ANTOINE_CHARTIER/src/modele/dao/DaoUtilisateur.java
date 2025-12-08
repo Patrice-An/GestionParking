@@ -12,9 +12,11 @@ import java.util.Optional;
 
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.Utilisateur.CreateUtilisateur;
-import modele.dao.requetes.Utilisateur.SelectAllUtilisateur;
-import modele.dao.requetes.Utilisateur.SelectUtilisateurById;
+import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 	
@@ -41,7 +43,6 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		String date = formatter.format(utilisateur.getNaissance());
 		req.parametres(
 			stUtil,
-			Integer.toString(utilisateur.getid()), 
 			utilisateur.getNom(),
 			utilisateur.getPrenom(),
 			utilisateur.getTel(),
@@ -78,14 +79,27 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		return resList;
 	}
 
-	@Override
-	public void update(Utilisateur utilisateur) {
-		
+	public boolean utilisateurCanConnect(String email, String password) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurConnection();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, email, password);
+		ResultSet resSet = stUtil.executeQuery();
+		return resSet.next();
 	}
 
 	@Override
-	public boolean deleteById(Integer id) {
-		return true;
+	public void update(Utilisateur utilisateur) throws SQLException {
+		//todo
 	}
 
+	@Override
+	public boolean deleteById(Integer id) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurDeleteById();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, String.valueOf(id));
+		int res = stUtil.executeUpdate();
+		return res > 0;
+	}
 }

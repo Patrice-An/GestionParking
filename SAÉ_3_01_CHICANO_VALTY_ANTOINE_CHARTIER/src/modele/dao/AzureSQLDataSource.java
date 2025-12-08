@@ -3,6 +3,7 @@ package modele.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modele.Utilisateur;
@@ -44,7 +45,7 @@ public class AzureSQLDataSource {
     }
 	    
     public static void main(String[] args) throws SQLException {
-    	printEveryUtilisateur();
+		addUtilisateur();
     }
 
 	private static void printEveryUtilisateur() throws SQLException {
@@ -59,6 +60,7 @@ public class AzureSQLDataSource {
 	}
 
 	private static void addUtilisateur() throws SQLException {
-		// Utilisateur newUser = Utilisateur(10, "Seong", "Gi-Hun", );
+		Utilisateur newUser = new Utilisateur(10, "Seong", "Gi-Hun", "07", LocalDate.of(2001, 11, 9), "mail.mail.com", "password");
+		new DaoUtilisateur().create(newUser);
 	}
 }

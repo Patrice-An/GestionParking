@@ -14,8 +14,8 @@ public class testParking {
 	@Before
 	public void setup() {
 		p1 = new Parking("5 rue du chemin", 100, 10, 10, 3.0f);
-		vt = new Vehicule("ab-123-cd", Type_vehicule.VOITURE_THERMIQUE, 2.0f);
-		ve = new Vehicule("ef-456-gh", Type_vehicule.VOITURE_ELECTRIQUE, 2.5f);
+		vt = new Vehicule("ab-123-cd", Type_vehicule.THERMIQUE, 2.0f);
+		ve = new Vehicule("ef-456-gh", Type_vehicule.ELECTRIQUE, 2.5f);
 		moto = new Vehicule("ij-789-kl", Type_vehicule.MOTO, 1.0f);
 	}
 	

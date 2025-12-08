@@ -21,7 +21,7 @@ public class ControleurInscription implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText().equals("Valider")) {
-			System.out.println(vue.getMailField().getText()+" "+ vue.getPrenomField().getText()+ " "+ vue.getNomField().getText() +" "+ vue.getTelField().getText());
+			System.out.println(vue.getMailField().getText()+""+ vue.getPrenomField().getText()+ " "+ vue.getNomField().getText() +" "+ vue.getTelField().getText());
 			if (!vue.getMailField().getText().isEmpty() && !vue.getAdresseField().getText().isEmpty()
 					&& !vue.getNomField().getText().isEmpty() && !vue.getPrenomField().getText().isEmpty() && !vue.getTelField().getText().isEmpty()) {
 				new PopUpInscriptionValide();
@@ -30,7 +30,8 @@ public class ControleurInscription implements ActionListener{
 			
 		} else if (b.getText().equals("Connectez-vous")) {
 			vue.dispose();
-			new SeConnecter();
+			System.out.println("se connecter");
+			SeConnecter.main(null);
 		}
 	}
 

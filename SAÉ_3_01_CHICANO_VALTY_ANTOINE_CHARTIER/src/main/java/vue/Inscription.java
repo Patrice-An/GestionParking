@@ -42,6 +42,10 @@ public class Inscription extends JFrame {
 	private JButton btnValider;
 	private JLabel lblDjInscrit;
 	private JButton btnConnection;
+	private JLabel pwdLabel;
+	private JPasswordField passwordField;
+	private JPanel panel;
+	private JPanel panel_1;
 
 	/**
 	 * Launch the application.
@@ -77,7 +81,7 @@ private void initialize() {
 
 	PanneauCentre = new JPanel();
 	contentPane.add(PanneauCentre, BorderLayout.CENTER);
-	PanneauCentre.setLayout(new GridLayout(5, 2, 0, 0));
+	PanneauCentre.setLayout(new GridLayout(6, 2, 0, 0));
 
 	nomLabel = new JLabel("Nom :");
 	PanneauCentre.add(nomLabel);
@@ -109,10 +113,16 @@ private void initialize() {
 
 	telLabel = new JLabel("Numéro de téléphone :");
 	PanneauCentre.add(telLabel);
-
-	telField = new JTextField();
-	telField.setColumns(10);
-	PanneauCentre.add(telField);
+	
+		telField = new JTextField();
+		telField.setColumns(10);
+		PanneauCentre.add(telField);
+	
+	pwdLabel = new JLabel("Mot de passe :");
+	PanneauCentre.add(pwdLabel);
+	
+	passwordField = new JPasswordField();
+	PanneauCentre.add(passwordField);
 
 	PanneauSud = new JPanel();
 	contentPane.add(PanneauSud, BorderLayout.SOUTH);
@@ -146,6 +156,12 @@ private void initialize() {
 	gbc_btnValider.gridx = 2;
 	gbc_btnValider.gridy = 0;
 	PanneauSud.add(btnValider, gbc_btnValider);
+	
+	panel = new JPanel();
+	contentPane.add(panel, BorderLayout.WEST);
+	
+	panel_1 = new JPanel();
+	contentPane.add(panel_1, BorderLayout.EAST);
 	btnValider.addActionListener(controleur);
 }
 

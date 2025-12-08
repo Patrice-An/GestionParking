@@ -41,13 +41,6 @@ public class PopUpInscriptionValide extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JTextArea txtrLinscrptionABien = new JTextArea();
-		txtrLinscrptionABien.setBounds(88, 31, 426, 89);
-		txtrLinscrptionABien.setBackground(UIManager.getColor("Button.background"));
-		txtrLinscrptionABien.setFont(new Font("Arial", Font.PLAIN, 20));
-		txtrLinscrptionABien.setText("L'inscrption a bien été efféctué !");
-		contentPane.add(txtrLinscrptionABien);
 
 	}
 

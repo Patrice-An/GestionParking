@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +12,6 @@ import modele.Type_vehicule;
 import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
 import modele.dao.requetes.requeteVehicule.CreateVehicule;
 import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
@@ -77,7 +74,6 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 
 	@Override
 	public void update(Vehicule vehicule) throws SQLException {
-		
 	}
 
 	@Override

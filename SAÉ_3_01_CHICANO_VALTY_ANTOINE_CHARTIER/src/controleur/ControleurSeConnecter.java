@@ -2,41 +2,43 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Optional;
 
 import javax.swing.JButton;
 
 import main.java.vue.Accueil;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
-import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
+import modele.Utilisateur;
+import modele.dao.DaoUtilisateur;
 
 public class ControleurSeConnecter implements ActionListener{
 
 	private SeConnecter vue;
-	private String user;
-	private String pwd;
 			
 	public ControleurSeConnecter(SeConnecter vue) {
 		this.vue = vue;
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Se connecter") {
-			if(true) {
-				vue.dispose();
-				new Accueil(vue.getChampNomUtilisateur().getText());
+			String email = vue.getEmail();
+			String password = vue.getPassword();
+			try {
+				Optional<Utilisateur> user = new DaoUtilisateur().utilisateurCanConnect(email, password);
+				if (user.isPresent()) {
+					vue.dispose();
+					new Accueil("User");
+				}
+			} catch (SQLException exeption) {
+				return;
 			}
 		} else if (b.getText() == "S'inscrire") {
 			vue.dispose();
 			new Inscription();
 		}
 	}
-	
-	
-	
-	
-
 }

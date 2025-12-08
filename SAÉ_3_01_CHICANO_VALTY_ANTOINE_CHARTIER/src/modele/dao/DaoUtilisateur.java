@@ -79,13 +79,17 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		return resList;
 	}
 
-	public boolean utilisateurCanConnect(String email, String password) throws SQLException {
+	public Optional<Utilisateur> utilisateurCanConnect(String email, String password) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Utilisateur> req = new UtilisateurConnection();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, email, password);
 		ResultSet resSet = stUtil.executeQuery();
-		return resSet.next();
+		if (resSet.next()) {
+			return Optional.of(createInstance(resSet));
+		} else {
+			return Optional.of(null);
+		}
 	}
 
 	@Override

@@ -1,6 +1,9 @@
 package modele.dao;
 
-public class DaoParking {
+import modele.Parking;
+import modele.Vehicule;
+
+public class DaoParking implements Dao<Parking, Integer> {
 
 
 

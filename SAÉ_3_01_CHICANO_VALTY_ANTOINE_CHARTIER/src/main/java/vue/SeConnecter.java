@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
-
 import controleur.ControleurSeConnecter;
 
 import javax.swing.JLabel;

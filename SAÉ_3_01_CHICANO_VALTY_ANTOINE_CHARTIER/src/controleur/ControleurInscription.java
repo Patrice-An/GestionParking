@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import main.java.vue.Inscription;
-import main.java.vue.PopUpInscriptionValide;
 import main.java.vue.SeConnecter;
 
 public class ControleurInscription implements ActionListener{
@@ -24,7 +23,6 @@ public class ControleurInscription implements ActionListener{
 			System.out.println(vue.getMailField().getText()+""+ vue.getPrenomField().getText()+ " "+ vue.getNomField().getText() +" "+ vue.getTelField().getText());
 			if (!vue.getMailField().getText().isEmpty() && !vue.getAdresseField().getText().isEmpty()
 					&& !vue.getNomField().getText().isEmpty() && !vue.getPrenomField().getText().isEmpty() && !vue.getTelField().getText().isEmpty()) {
-				new PopUpInscriptionValide();
 				
 			}
 			

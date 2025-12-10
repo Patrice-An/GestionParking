@@ -35,6 +35,7 @@ public class AjouterVehicule extends JFrame{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

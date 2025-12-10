@@ -46,7 +46,7 @@ public class ControleurInscription implements ActionListener{
 						if (dao.emailUnique(mail)) {
 							dao.create(utilisateur);
 						} else {
-							JOptionPane.showMessageDialog(null, "GFG", "Geeks Premier League 2023", JOptionPane.INFORMATION_MESSAGE);						}
+							JOptionPane.showMessageDialog(null, "Email déjà utilisé", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);						}
 					} catch (SQLException exception) {
 						exception.printStackTrace();
 					}

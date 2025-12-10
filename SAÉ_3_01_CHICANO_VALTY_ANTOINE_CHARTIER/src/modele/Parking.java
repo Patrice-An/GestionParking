@@ -1,8 +1,6 @@
 package modele;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Parking {
@@ -158,7 +156,7 @@ public class Parking {
 		this.vehicules.clear();
 	}
 	
-	public List<Tarif> getTarifs() {
+	public Set<Tarif> getTarifs() {
 		return this.tarifs;
 	}
 	

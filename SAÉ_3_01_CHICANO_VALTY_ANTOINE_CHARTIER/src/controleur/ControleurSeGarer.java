@@ -8,10 +8,8 @@ import javax.swing.JButton;
 import main.java.vue.ChoixSeGarer;
 import main.java.vue.InfoSeGarerParking;
 import main.java.vue.InfoSeGarerVoirie;
-import main.java.vue.SeConnecter;
 
 public class ControleurSeGarer implements ActionListener{
-
 	
 	private ChoixSeGarer vue;
 	

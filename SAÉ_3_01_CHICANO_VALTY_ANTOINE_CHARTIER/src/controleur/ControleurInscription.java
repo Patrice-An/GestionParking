@@ -2,12 +2,18 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import main.java.vue.Inscription;
 import main.java.vue.PopUpInscriptionValide;
 import main.java.vue.SeConnecter;
+import modele.Utilisateur;
+import modele.dao.DaoUtilisateur;
 
 public class ControleurInscription implements ActionListener{
 	
@@ -21,11 +27,30 @@ public class ControleurInscription implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText().equals("Valider")) {
-			System.out.println(vue.getMailField().getText()+""+ vue.getPrenomField().getText()+ " "+ vue.getNomField().getText() +" "+ vue.getTelField().getText());
-			if (!vue.getMailField().getText().isEmpty() && !vue.getAdresseField().getText().isEmpty()
-					&& !vue.getNomField().getText().isEmpty() && !vue.getPrenomField().getText().isEmpty() && !vue.getTelField().getText().isEmpty()) {
-				new PopUpInscriptionValide();
-				
+			if (!vue.getNomField().getText().isEmpty()
+				&& !vue.getPrenomField().getText().isEmpty()
+				&& !vue.getMailField().getText().isEmpty()
+				&& !vue.getNaissanceField().getText().isEmpty()
+				&& !vue.getTelField().getText().isEmpty()
+				&& vue.getPasswordField().getPassword().length > 0) {
+					String nom = vue.getNomField().getText();
+					String prenom = vue.getPrenomField().getText();
+					String mail = vue.getMailField().getText();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					LocalDate naissance = LocalDate.parse(vue.getNaissanceField().getText(), formatter);
+					String tel = vue.getTelField().getText();
+					String password = String.valueOf(vue.getPasswordField().getPassword());
+					Utilisateur utilisateur = new Utilisateur(0, nom, prenom, tel, naissance, mail, password);
+					try {
+						DaoUtilisateur dao = new DaoUtilisateur();
+						if (dao.emailUnique(mail)) {
+							dao.create(utilisateur);
+						} else {
+							JOptionPane.showMessageDialog(null, "GFG", "Geeks Premier League 2023", JOptionPane.INFORMATION_MESSAGE);						}
+					} catch (SQLException exception) {
+						exception.printStackTrace();
+					}
+					new PopUpInscriptionValide();
 			}
 			
 		} else if (b.getText().equals("Connectez-vous")) {
@@ -34,5 +59,7 @@ public class ControleurInscription implements ActionListener{
 			SeConnecter.main(null);
 		}
 	}
+
+	// public void inscription
 
 }

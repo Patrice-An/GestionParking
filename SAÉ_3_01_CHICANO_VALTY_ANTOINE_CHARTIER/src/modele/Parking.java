@@ -7,27 +7,42 @@ import java.util.Set;
 
 public class Parking {
 	
+	private int id_parking;
 	private String adresse;
+	private String nom;
+	private float hauteur;
 	private int places_max;
 	private int place_max_moto;
 	private int place_max_electrique;
-	private float hauteur;
 	private Set<Transport> transports;
 	private Set<Vehicule> vehicules;
-	private List<Tarif> tarifs;
+	private Set<Tarif> tarifs;
 	
-	public Parking(String adresse, int places_max, int place_max_moto, int place_max_electrique, float hauteur) {
-		super();
+	public Parking(int id_parking, String adresse, String nom, float hauteur, int places_max, int place_max_moto, int place_max_electrique) {
+		this.id_parking = id_parking;
 		this.adresse = adresse;
+		this.nom = nom;
+		this.hauteur = hauteur;
 		this.places_max = places_max;
 		this.place_max_moto = place_max_moto;
 		this.place_max_electrique = place_max_electrique;
-		this.hauteur = hauteur;
-		this.transports = new HashSet<>();
-		this.vehicules = new HashSet<>();
-		this.tarifs = new ArrayList<>();
+		this.transports = new HashSet<Transport>();
+		this.vehicules = new HashSet<Vehicule>();
+		this.tarifs = new HashSet<Tarif>();
 	}
-	
+
+	public int getId_parking() {
+		return id_parking;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 	public void addTransport(Transport t) {
 		this.transports.add(t);
 	}

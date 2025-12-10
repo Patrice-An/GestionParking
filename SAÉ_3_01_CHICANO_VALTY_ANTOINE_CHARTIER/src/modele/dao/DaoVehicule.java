@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import modele.Type_vehicule;
-import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteVehicule.CreateVehicule;
@@ -79,7 +78,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 	@Override
 	public boolean deleteById(String id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new VehiculeDeleteById();
+		Requete<Vehicule> req = new VehiculeDeleteById();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, String.valueOf(id));
 		int res = stUtil.executeUpdate();

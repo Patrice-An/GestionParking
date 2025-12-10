@@ -13,6 +13,7 @@ import java.util.Optional;
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.EmailUnique;
 import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
 import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
 import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
@@ -90,6 +91,15 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		} else {
 			return Optional.of(null);
 		}
+	}
+
+	public boolean emailUnique(String email) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new EmailUnique();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, email);
+		ResultSet resSet = stUtil.executeQuery();
+		return !resSet.next();
 	}
 
 	@Override

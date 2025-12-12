@@ -13,6 +13,7 @@ import modele.Vehicule;
 import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteVehicule.CreateVehicule;
 import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
+import modele.dao.requetes.requeteVehicule.VehiculeFindByUser;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectById;
 
@@ -44,12 +45,12 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		stUtil.executeUpdate();
 	}
 	
-	@Override
+	@Override	
 	public Optional<Vehicule> findById(String id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Vehicule> req = new VehiculeSelectById();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		req.parametres(stUtil, id.toString());
+		req.parametres(stUtil, id);
 		ResultSet res = stUtil.executeQuery();
 		if (res.next()) {
 			return Optional.of(this.createInstance(res));
@@ -65,6 +66,19 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		ResultSet resSet = stUtil.executeQuery();
 		ArrayList<Vehicule> resList = new ArrayList<Vehicule>();
+		while (resSet.next()) {
+			resList.add(this.createInstance(resSet));
+		}
+		return resList;
+	}
+
+	public List<Vehicule> findVehiculeByUser(Integer id_user) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Vehicule> req = new VehiculeFindByUser();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, id_user.toString());
+		ResultSet resSet = stUtil.executeQuery();
+		List<Vehicule> resList = new ArrayList<Vehicule>();
 		while (resSet.next()) {
 			resList.add(this.createInstance(resSet));
 		}

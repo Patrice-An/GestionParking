@@ -30,15 +30,13 @@ public class ControleurSeConnecter implements ActionListener{
 			try {
 				Optional<Utilisateur> user = new DaoUtilisateur().utilisateurCanConnect(email, password);
 				if (user.isPresent()) {
-					vue.dispose();
-					new Accueil("User");
+					
 				}
 			} catch (SQLException exeption) {
 				return;
 			}
 		} else if (b.getText() == "S'inscrire") {
-			vue.dispose();
-			new Inscription();
+			
 		}
 	}
 }

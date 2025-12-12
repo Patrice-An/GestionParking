@@ -49,16 +49,12 @@ public class ControleurInscription implements ActionListener{
 					} catch (SQLException exception) {
 						exception.printStackTrace();
 					}
-					new PopUpInscriptionValide();
+					
 			}
 			
 		} else if (b.getText().equals("Connectez-vous")) {
-			vue.dispose();
-			System.out.println("se connecter");
-			SeConnecter.main(null);
+			
 		}
 	}
-
-	// public void inscription
 
 }

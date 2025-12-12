@@ -21,7 +21,7 @@ public class ControleurRecapitulatif implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton btn = (JButton) e.getSource();
 		if(btn.getText().equals("Confirmer")) {
-			vue.dispose();
+			
 		}
 	}
 	

@@ -14,6 +14,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import com.jgoodies.forms.layout.FormLayout;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
@@ -25,33 +26,19 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import modele.Type_vehicule;
 
-public class AjouterVehicule extends JFrame{
+public class AjouterVehicule extends JPanel{
 
-	private JFrame frame;
+	
 	private JTextField txtDsignation;
 	private JTextField ImmatriculationField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		FlatDarculaLaf.setup();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AjouterVehicule window = new AjouterVehicule();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
 	public AjouterVehicule() {
+		FlatDarculaLaf.setup();
 		initialize();
 	}
 
@@ -60,16 +47,13 @@ public class AjouterVehicule extends JFrame{
 	 */
 	private void initialize() {
 		ControleurAjouterVehicule controleur = new ControleurAjouterVehicule(this);
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel enregistrerLabel = new JLabel("Enregister un nouveau véhicule");
 		enregistrerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(enregistrerLabel, BorderLayout.NORTH);
+		this.add(enregistrerLabel, BorderLayout.NORTH);
 		
 		JPanel PanneauCentre = new JPanel();
-		frame.getContentPane().add(PanneauCentre, BorderLayout.CENTER);
+		this.add(PanneauCentre, BorderLayout.CENTER);
 		PanneauCentre.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),

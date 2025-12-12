@@ -19,7 +19,6 @@ public class ControleurAjouterVehicule implements ActionListener{
 	public void actionPerformedButton(JButton b) {
 		if (b.getText().equals("Annuler")) {
 			System.out.println("Action bouton");
-			vue.dispose();
 		}
 		
 	}

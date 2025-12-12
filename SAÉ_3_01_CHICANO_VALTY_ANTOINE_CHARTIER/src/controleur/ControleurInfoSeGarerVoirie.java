@@ -20,8 +20,7 @@ public class ControleurInfoSeGarerVoirie implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Annuler") {
-			vue.dispose();
-			new ChoixSeGarer();
+			
 		}
 		
 		

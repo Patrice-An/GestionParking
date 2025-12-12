@@ -21,11 +21,9 @@ public class ControleurSeGarer implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Parking") {
-			vue.dispose();
-			new InfoSeGarerParking();
+			
 		} else if (b.getText() == "Voirie") {
-			vue.dispose();
-			new InfoSeGarerVoirie();
+		
 		}
 	}
 

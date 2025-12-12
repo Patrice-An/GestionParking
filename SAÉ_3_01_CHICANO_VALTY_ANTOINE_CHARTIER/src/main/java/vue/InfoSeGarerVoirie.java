@@ -21,10 +21,9 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import modele.Type_vehicule;
 
-public class InfoSeGarerVoirie extends JFrame {
+public class InfoSeGarerVoirie extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JTextField SaisieHeureArrive;
 	private JTextField SaisieHeureDebut;
 	private JTextField SaisieImmatriculation;
@@ -47,19 +46,15 @@ public class InfoSeGarerVoirie extends JFrame {
 	 */
 	public void initialize() {
 		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this);
-		setTitle("Se garer en voirie");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new BorderLayout(0, 0));
 		
 		JPanel PanneauNord = new JPanel();
-		contentPane.add(PanneauNord, BorderLayout.NORTH);
+		this.add(PanneauNord, BorderLayout.NORTH);
 		
 		JPanel PanneauCentre = new JPanel();
-		contentPane.add(PanneauCentre, BorderLayout.CENTER);
+		this.add(PanneauCentre, BorderLayout.CENTER);
 		PanneauCentre.setLayout(new BorderLayout(0, 0));
 		
 		JLabel TitreDonnees = new JLabel("Renseignez les données pour la simulation");
@@ -109,7 +104,7 @@ public class InfoSeGarerVoirie extends JFrame {
 		ListeInfos.add(DeroulantSlectionParking);
 		
 		JPanel PanneauSud = new JPanel();
-		contentPane.add(PanneauSud, BorderLayout.SOUTH);
+		this.add(PanneauSud, BorderLayout.SOUTH);
 		PanneauSud.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnValider = new JButton("Valider");

@@ -14,21 +14,16 @@ import javax.swing.border.EmptyBorder;
 
 import modele.Type_vehicule;
 
-public class FenRecapitulatif extends JFrame {
+public class FenRecapitulatif extends JPanel {
 
-	private JPanel contentPane;
+	
 
 	/**
 	 * Launch the application.
 	 */
 	public FenRecapitulatif(String heureArrive, String heureDepart, String plaqueImma, String parking) {
-		try {
-			this.initialize(heureArrive, heureDepart, plaqueImma, parking);
-			this.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
 
-		}
+		this.initialize(heureArrive, heureDepart, plaqueImma, parking);
 	}
 
 	/**
@@ -36,18 +31,16 @@ public class FenRecapitulatif extends JFrame {
 	 * @return 
 	 */
 	public void initialize(String heureArrive, String heureDepart, String plaqueImma, String parking) {
+
 		
-		setTitle("Récapitulatif");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 400, 250);
-		contentPane = new JPanel();
-		contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		
+		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		this.setLayout(new BorderLayout(0, 0));
 
 		JPanel panelCentre = new JPanel();
 		panelCentre.setLayout(new GridLayout(5, 2, 5, 5));
-		contentPane.add(panelCentre, BorderLayout.CENTER);
+		this.add(panelCentre, BorderLayout.CENTER);
 
 		JLabel label_6 = new JLabel("Heure d'arrivée :");
 		panelCentre.add(label_6);
@@ -78,19 +71,16 @@ public class FenRecapitulatif extends JFrame {
 
 		JPanel panelSud = new JPanel();
 		panelSud.setLayout(new FlowLayout(FlowLayout.CENTER));
-		contentPane.add(panelSud, BorderLayout.SOUTH);
+		this.add(panelSud, BorderLayout.SOUTH);
 
 		JButton btnConfirmer = new JButton("Confirmer");
 		panelSud.add(btnConfirmer);
-		
+
 		JPanel panelHaut = new JPanel();
-		contentPane.add(panelHaut, BorderLayout.NORTH);
-		
+		this.add(panelHaut, BorderLayout.NORTH);
+
 		JLabel lbTitre = new JLabel("VOUS ÊTES STATIONNÉ !");
 		panelHaut.add(lbTitre);
-		
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
 	}
 }
 

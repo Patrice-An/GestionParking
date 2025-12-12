@@ -17,10 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class Inscription extends JFrame {
+public class Inscription extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JPanel PanneauCentre;
 	private JLabel title;
 	private JLabel nomLabel;
@@ -46,13 +45,7 @@ public class Inscription extends JFrame {
 	 * Launch the application.
 	 */
 	public Inscription(){
-		FlatDarculaLaf.setup();
-		try {
 			this.initialize();
-			this.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	};
 
 
@@ -61,21 +54,19 @@ public class Inscription extends JFrame {
 	 */
 	private void initialize() {
 		ControleurInscription controleur = new ControleurInscription(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		setTitle("Inscription");
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		this.setLayout(new BorderLayout(0, 0));
 
 		title = new JLabel("Inscription");
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(title, BorderLayout.NORTH);
+		this.add(title, BorderLayout.NORTH);
 
 		PanneauCentre = new JPanel();
-		contentPane.add(PanneauCentre, BorderLayout.CENTER);
+		this.add(PanneauCentre, BorderLayout.CENTER);
 		PanneauCentre.setLayout(new GridLayout(6, 2, 0, 0));
 
 		nomLabel = new JLabel("Nom :");
@@ -120,7 +111,7 @@ public class Inscription extends JFrame {
 		PanneauCentre.add(passwordField);
 
 		PanneauSud = new JPanel();
-		contentPane.add(PanneauSud, BorderLayout.SOUTH);
+		this.add(PanneauSud, BorderLayout.SOUTH);
 		GridBagLayout gbl_PanneauSud = new GridBagLayout();
 		gbl_PanneauSud.columnWidths = new int[]{141, 141, 141, 0};
 		gbl_PanneauSud.rowHeights = new int[]{23, 0};
@@ -153,10 +144,10 @@ public class Inscription extends JFrame {
 		PanneauSud.add(btnValider, gbc_btnValider);
 		
 		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.WEST);
+		this.add(panel, BorderLayout.WEST);
 		
 		panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.EAST);
+		this.add(panel_1, BorderLayout.EAST);
 		btnValider.addActionListener(controleur);
 	}
 

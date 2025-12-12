@@ -24,9 +24,10 @@ public class ControleurSeGarer implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Parking") {
+			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "infoSeGarerParking" );
 			
 		} else if (b.getText() == "Voirie") {
-		
+			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "infoSeGarerVoirie" );
 		}
 	}
 

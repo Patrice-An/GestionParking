@@ -47,8 +47,9 @@ public class Inscription extends JPanel {
 	 * @param fenetrePrincipal 
 	 */
 	public Inscription(FenetrePrincipal fenetrePrincipal){
-			this.initialize();
+			
 			this.fenetrePrincipal = fenetrePrincipal;
+			this.initialize();
 	};
 
 

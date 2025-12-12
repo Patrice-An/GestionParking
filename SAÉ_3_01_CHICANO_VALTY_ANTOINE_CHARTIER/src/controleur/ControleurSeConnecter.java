@@ -33,13 +33,13 @@ public class ControleurSeConnecter implements ActionListener{
 			try {
 				Optional<Utilisateur> user = new DaoUtilisateur().utilisateurCanConnect(email, password);
 				if (user.isPresent()) {
-					
+					fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "accueil" );
 				}
 			} catch (SQLException exeption) {
 				return;
 			}
 		} else if (b.getText() == "S'inscrire") {
-			
+			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "inscription" );
 		}
 	}
 }

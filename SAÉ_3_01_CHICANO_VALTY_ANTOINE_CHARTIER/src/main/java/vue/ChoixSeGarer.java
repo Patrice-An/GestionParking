@@ -19,7 +19,6 @@ public class ChoixSeGarer extends JPanel {
     	this.fenetrePrincipal = fenetrePrincipal;
         FlatDarculaLaf.setup();
         initialize();
-        setVisible(true);
     }
 
     private void initialize() {

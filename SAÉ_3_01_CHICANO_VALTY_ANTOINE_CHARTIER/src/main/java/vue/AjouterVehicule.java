@@ -48,7 +48,7 @@ public class AjouterVehicule extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		ControleurAjouterVehicule controleur = new ControleurAjouterVehicule(this);
+		ControleurAjouterVehicule controleur = new ControleurAjouterVehicule(this, fenetrePrincipal);
 		
 		JLabel enregistrerLabel = new JLabel("Enregister un nouveau véhicule");
 		enregistrerLabel.setHorizontalAlignment(SwingConstants.CENTER);

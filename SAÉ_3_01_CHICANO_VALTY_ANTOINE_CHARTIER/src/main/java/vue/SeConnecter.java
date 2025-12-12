@@ -27,6 +27,7 @@ public class SeConnecter extends JPanel {
 	private FenetrePrincipal fenetrePrincipal;
 		
 	public SeConnecter(FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
 		FlatDarculaLaf.setup();
 		initialize();
 	}

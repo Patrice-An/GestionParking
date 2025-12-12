@@ -7,12 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import main.java.vue.AjouterVehicule;
+import main.java.vue.FenetrePrincipal;
 
 public class ControleurAjouterVehicule implements ActionListener{
 	
 	private AjouterVehicule vue;
-	
-	public ControleurAjouterVehicule(AjouterVehicule vue) {
+	private FenetrePrincipal fenetrePrincipal;
+	public ControleurAjouterVehicule(AjouterVehicule vue, FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
 		this.vue = vue;
 	}
 

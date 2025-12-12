@@ -20,13 +20,12 @@ public class Accueil extends JPanel {
     	this.fenetreprincipal = fenetreprincipal;
         FlatDarculaLaf.setup();
         initialize();
-         
     }
 
     private void initialize() {
 
         // --- Contrôleur ---
-        ControleurAccueil controleur = new ControleurAccueil(this, fenetreprincipal);
+        ControleurAccueil controleur = new ControleurAccueil(this, this.fenetreprincipal);
 
         setSize(1080, 720);
         setLayout(new BorderLayout());

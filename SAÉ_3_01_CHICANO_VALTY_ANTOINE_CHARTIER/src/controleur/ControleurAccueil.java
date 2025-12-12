@@ -25,10 +25,10 @@ public class ControleurAccueil implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Se Garer") {
-
+			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "choixSeGarer" );
 		} 
 		if (b.getText() == "Partir"){
-			
+			fenetrePrincipal.dispose();
 		}
 		
 	}}

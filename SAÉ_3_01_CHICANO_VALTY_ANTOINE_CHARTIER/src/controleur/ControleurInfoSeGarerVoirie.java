@@ -23,7 +23,7 @@ public class ControleurInfoSeGarerVoirie implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Annuler") {
-			
+			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "choixSeGarer" );
 		}
 		
 		

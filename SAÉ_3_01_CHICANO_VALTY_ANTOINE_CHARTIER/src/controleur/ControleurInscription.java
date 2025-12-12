@@ -57,7 +57,7 @@ public class ControleurInscription implements ActionListener{
 			}
 			
 		} else if (b.getText().equals("Connectez-vous")) {
-			
+			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "seConnecter" );
 		}
 	}
 

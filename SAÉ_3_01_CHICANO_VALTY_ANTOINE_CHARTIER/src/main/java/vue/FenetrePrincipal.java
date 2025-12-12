@@ -1,11 +1,13 @@
 package main.java.vue;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import java.awt.CardLayout;
 
 public class FenetrePrincipal extends JFrame {
@@ -16,6 +18,7 @@ public class FenetrePrincipal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,8 +57,12 @@ public class FenetrePrincipal extends JFrame {
 		
 	}
 	
-	public CardLayout getCardLayout() {
+	public CardLayout getLayout() {
 		return layout;
+	}
+	
+	public JPanel getContentPane() {
+		return contentPane;
 	}
 
 }

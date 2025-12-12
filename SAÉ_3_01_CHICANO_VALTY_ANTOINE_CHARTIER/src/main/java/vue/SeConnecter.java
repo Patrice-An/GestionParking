@@ -24,14 +24,15 @@ public class SeConnecter extends JPanel {
 	private JPasswordField passwordField;
 	private JSplitPane splitPane;
 	private JButton btnInscrire;
+	private FenetrePrincipal fenetrePrincipal;
 		
-	public SeConnecter() {
+	public SeConnecter(FenetrePrincipal fenetrePrincipal) {
 		FlatDarculaLaf.setup();
 		initialize();
 	}
 
 	private void initialize() {
-		ControleurSeConnecter controler = new ControleurSeConnecter(this);
+		ControleurSeConnecter controler = new ControleurSeConnecter(this, fenetrePrincipal);
 		setBounds(100, 100, 350, 200);
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -13,21 +13,20 @@ import java.io.InputStream;
 public class Accueil extends JPanel {
 
     private static final long serialVersionUID = 2L;
-
-    public Accueil(String user) {
+    
+    private FenetrePrincipal fenetreprincipal;
+    
+    public Accueil(FenetrePrincipal fenetreprincipal) {
+    	this.fenetreprincipal = fenetreprincipal;
         FlatDarculaLaf.setup();
-        try {
-            initialize(user);
-            this.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        initialize();
+         
     }
 
-    private void initialize(String user) {
+    private void initialize() {
 
         // --- Contrôleur ---
-        ControleurAccueil controleur = new ControleurAccueil(this);
+        ControleurAccueil controleur = new ControleurAccueil(this, fenetreprincipal);
 
         setSize(1080, 720);
         setLayout(new BorderLayout());
@@ -38,7 +37,7 @@ public class Accueil extends JPanel {
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel labelTitre = new JLabel("Mode Simulation : Bienvenue " + user, SwingConstants.CENTER);
+        JLabel labelTitre = new JLabel("Mode Simulation : Bienvenue ", SwingConstants.CENTER);
         labelTitre.setFont(new Font("Arial", Font.BOLD, 32));
 
         topPanel.add(labelTitre, BorderLayout.CENTER);

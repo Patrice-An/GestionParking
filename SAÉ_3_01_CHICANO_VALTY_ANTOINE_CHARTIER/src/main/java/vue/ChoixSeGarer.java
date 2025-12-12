@@ -13,15 +13,17 @@ import java.io.InputStream;
 public class ChoixSeGarer extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    private FenetrePrincipal fenetrePrincipal;
 
-    public ChoixSeGarer() {
+    public ChoixSeGarer(FenetrePrincipal fenetrePrincipal) {
+    	this.fenetrePrincipal = fenetrePrincipal;
         FlatDarculaLaf.setup();
         initialize();
         setVisible(true);
     }
 
     private void initialize() {
-        ControleurSeGarer controler = new ControleurSeGarer(this);
+        ControleurSeGarer controler = new ControleurSeGarer(this, fenetrePrincipal);
 
        
         setSize(1080, 720);

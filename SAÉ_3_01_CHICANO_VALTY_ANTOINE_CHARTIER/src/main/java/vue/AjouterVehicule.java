@@ -31,13 +31,15 @@ public class AjouterVehicule extends JPanel{
 	
 	private JTextField txtDsignation;
 	private JTextField ImmatriculationField;
-
+	private FenetrePrincipal fenetrePrincipal;
 	
 
 	/**
 	 * Create the application.
+	 * @param fenetrePrincipal
 	 */
-	public AjouterVehicule() {
+	public AjouterVehicule(FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
 		FlatDarculaLaf.setup();
 		initialize();
 	}

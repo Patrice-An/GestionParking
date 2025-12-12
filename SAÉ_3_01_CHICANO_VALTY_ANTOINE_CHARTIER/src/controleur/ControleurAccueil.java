@@ -3,16 +3,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import main.java.vue.Accueil;
 import main.java.vue.ChoixSeGarer;
+import main.java.vue.FenetrePrincipal;
 
 public class ControleurAccueil implements ActionListener{
 	
 	private Accueil vue;
+	private FenetrePrincipal fenetrePrincipal;
 	
-	public ControleurAccueil(Accueil vue) {
+	public ControleurAccueil(Accueil vue, FenetrePrincipal fenetrePrincipal) {
 		this.vue = vue;
+		this.fenetrePrincipal = fenetrePrincipal;
 	}
 
 

@@ -16,21 +16,23 @@ import modele.Type_vehicule;
 
 public class FenRecapitulatif extends JPanel {
 
-	
+	private FenetrePrincipal fenetrePrincipal;
 
 	/**
 	 * Launch the application.
+	 * @param fenetrePrincipal 
 	 */
-	public FenRecapitulatif(String heureArrive, String heureDepart, String plaqueImma, String parking) {
-
-		this.initialize(heureArrive, heureDepart, plaqueImma, parking);
+	public FenRecapitulatif(FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
+		
+		this.initialize();
 	}
 
 	/**
 	 * Create the frame.
 	 * @return 
 	 */
-	public void initialize(String heureArrive, String heureDepart, String plaqueImma, String parking) {
+	private void initialize() {
 
 		
 		setBounds(100, 100, 400, 250);
@@ -44,19 +46,19 @@ public class FenRecapitulatif extends JPanel {
 
 		JLabel label_6 = new JLabel("Heure d'arrivée :");
 		panelCentre.add(label_6);
-		JLabel label_7 = new JLabel(heureArrive);
+		JLabel label_7 = new JLabel();
 		label_6.setLabelFor(label_7);
 		panelCentre.add(label_7);
 
 		JLabel label_4 = new JLabel("Heure Départ :");
 		panelCentre.add(label_4);
-		JLabel label_5 = new JLabel(heureDepart);
+		JLabel label_5 = new JLabel();
 		label_4.setLabelFor(label_5);
 		panelCentre.add(label_5);
 
 		JLabel label = new JLabel("Immatriculation :");
 		panelCentre.add(label);
-		JLabel label_1 = new JLabel(plaqueImma);
+		JLabel label_1 = new JLabel();
 		label.setLabelFor(label_1);
 		panelCentre.add(label_1);
 
@@ -65,7 +67,7 @@ public class FenRecapitulatif extends JPanel {
 
 		JLabel label_2 = new JLabel("Parking choisi :");
 		panelCentre.add(label_2);
-		JLabel label_3 = new JLabel(parking);
+		JLabel label_3 = new JLabel();
 		label_2.setLabelFor(label_3);
 		panelCentre.add(label_3);
 

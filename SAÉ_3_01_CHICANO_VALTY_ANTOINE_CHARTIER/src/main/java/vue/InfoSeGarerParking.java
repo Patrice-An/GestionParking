@@ -25,93 +25,89 @@ public class InfoSeGarerParking extends JPanel {
 	private JTextField SaisieImmatriculation;
 	JComboBox<String> DeroulantSelectionParking;
 	JComboBox<Type_vehicule> DeroulantTypeV;
-	
+	private FenetrePrincipal fenetrePrincipal;
 	/**
 	 * Launch the application.
+	 * @param fenetrePrincipal 
 	 */
-	public InfoSeGarerParking() {
-				try {
-					this.initialize();
-					this.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			
-			};
+	public InfoSeGarerParking(FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
+		this.initialize();
+	}
 
 	/**
 	 * Create the frame.
 	 * @return 
 	 */
 	public void initialize() {
-		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this);
-		
-		
+		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this, fenetrePrincipal);
+
+
 		setBounds(100, 100, 450, 300);
-		
+
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		this.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel PanneauNord = new JPanel();
 		this.add(PanneauNord, BorderLayout.NORTH);
-		
+
 		JPanel PanneauCentre = new JPanel();
 		this.add(PanneauCentre, BorderLayout.CENTER);
 		PanneauCentre.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel TitreDonnees = new JLabel("Renseignez les données pour la simulation");
 		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
 		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
-		
+
 		JPanel ListeInfos = new JPanel();
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
 		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
-		
+
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
 		ListeInfos.add(LabelHeureArrive);
-		
+
 		SaisieHeureArrive = new JTextField();
 		ListeInfos.add(SaisieHeureArrive);
 		SaisieHeureArrive.setColumns(10);
-		
+
 		JLabel LabelHeureDepart = new JLabel("Heure de départ :");
 		ListeInfos.add(LabelHeureDepart);
-		
+
 		SaisieDuree = new JTextField();
 		ListeInfos.add(SaisieDuree);
 		SaisieDuree.setColumns(10);
-		
+
 		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
 		ListeInfos.add(LabelTypeVehicule);
-		
+
 		DeroulantTypeV = new JComboBox<Type_vehicule>();
 		DeroulantTypeV.setModel(new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values()));
 		ListeInfos.add(DeroulantTypeV);
-		
+
 		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");
 		ListeInfos.add(LabelImmatriculation);
-		
+
 		SaisieImmatriculation = new JTextField();
 		ListeInfos.add(SaisieImmatriculation);
 		SaisieImmatriculation.setColumns(10);
-		
+
 		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
 		ListeInfos.add(LabelSelectionVoirie);
-		
+
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
-		
+
 		DeroulantSelectionParking = new JComboBox<String>();
 		String[] options = {"JEANNE D'ARC", "CAPITOLE"};
 		DeroulantSelectionParking.setModel(new DefaultComboBoxModel<String>(options));
 		ListeInfos.add(DeroulantSelectionParking);
-		
+
 		JPanel PanneauSud = new JPanel();
 		this.add(PanneauSud, BorderLayout.SOUTH);
 		PanneauSud.setLayout(new BorderLayout(0, 0));
-		
+
 		JButton btnValider = new JButton("Valider");
 		btnValider.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnValider.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -122,11 +118,11 @@ public class InfoSeGarerParking extends JPanel {
 
 		JPanel panel = new JPanel();
 		PanneauSud.add(panel, BorderLayout.NORTH);
-		
+
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
-		
+
 
 	}
 
@@ -141,7 +137,7 @@ public class InfoSeGarerParking extends JPanel {
 	public String getSaisieImmatriculation() {
 		return SaisieImmatriculation.getText();
 	}
-	
+
 	public String getParking(){
 		return (String) DeroulantSelectionParking.getSelectedItem();
 	}
@@ -149,12 +145,12 @@ public class InfoSeGarerParking extends JPanel {
 	public String getDeroulantTypeV() {
 		return DeroulantTypeV.getSelectedItem().toString();
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 
 }

@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import main.java.vue.FenetrePrincipal;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
 import modele.Utilisateur;
@@ -16,8 +17,11 @@ import modele.dao.DaoUtilisateur;
 
 public class ControleurInscription implements ActionListener{
 	
-	public ControleurInscription(Inscription vue) {
+	private FenetrePrincipal fenetrePrincipal;
+
+	public ControleurInscription(Inscription vue, FenetrePrincipal fenetrePrincipal) {
 		this.vue = vue;
+		this.fenetrePrincipal = fenetrePrincipal;
 	}
 
 	Inscription vue;

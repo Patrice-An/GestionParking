@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.swing.JButton;
 
 import main.java.vue.Accueil;
+import main.java.vue.FenetrePrincipal;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
 import modele.Utilisateur;
@@ -16,8 +17,10 @@ import modele.dao.DaoUtilisateur;
 public class ControleurSeConnecter implements ActionListener{
 
 	private SeConnecter vue;
+	private FenetrePrincipal fenetrePrincipal;
 			
-	public ControleurSeConnecter(SeConnecter vue) {
+	public ControleurSeConnecter(SeConnecter vue, FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
 		this.vue = vue;
 	}
 

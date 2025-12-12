@@ -40,12 +40,15 @@ public class Inscription extends JPanel {
 	private JPasswordField passwordField;
 	private JPanel panel;
 	private JPanel panel_1;
+	private FenetrePrincipal fenetrePrincipal;
 
 	/**
 	 * Launch the application.
+	 * @param fenetrePrincipal 
 	 */
-	public Inscription(){
+	public Inscription(FenetrePrincipal fenetrePrincipal){
 			this.initialize();
+			this.fenetrePrincipal = fenetrePrincipal;
 	};
 
 
@@ -53,7 +56,7 @@ public class Inscription extends JPanel {
 	 * Create the frame.
 	 */
 	private void initialize() {
-		ControleurInscription controleur = new ControleurInscription(this);
+		ControleurInscription controleur = new ControleurInscription(this, fenetrePrincipal);
 		setBounds(100, 100, 450, 300);
 		
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));

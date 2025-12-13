@@ -8,9 +8,7 @@ import java.util.Optional;
 
 import javax.swing.JButton;
 
-import main.java.vue.Accueil;
 import main.java.vue.FenetrePrincipal;
-import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
 import main.java.vue.FenetrePrincipal.VUE;
 import modele.Utilisateur;

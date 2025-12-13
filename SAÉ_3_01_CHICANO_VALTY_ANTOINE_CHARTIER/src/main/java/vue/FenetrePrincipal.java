@@ -127,22 +127,6 @@ public class FenetrePrincipal extends JFrame {
 	}
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		FlatDarculaLaf.setup();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetrePrincipal frame = new FenetrePrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 
 }

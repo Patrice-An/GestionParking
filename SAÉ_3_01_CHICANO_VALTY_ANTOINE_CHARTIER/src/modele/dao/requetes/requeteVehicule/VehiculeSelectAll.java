@@ -12,7 +12,7 @@ public class VehiculeSelectAll extends Requete<Vehicule> {
 
     @Override
 	public String requete()  {
-		this.requete = "select * from vehicule";
+		this.requete = "select * from véhicule";
 		return this.requete;
 	}
 	

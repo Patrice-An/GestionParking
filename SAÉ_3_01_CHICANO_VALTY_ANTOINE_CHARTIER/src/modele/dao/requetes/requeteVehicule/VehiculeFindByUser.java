@@ -12,7 +12,7 @@ public class VehiculeFindByUser extends Requete<Vehicule> {
 
     @Override
 	public String requete()  {
-		this.requete = "select * from vehicule where id_utilisateur = ?";
+		this.requete = "select * from véhicule where id_utilisateur = ?";
 		return this.requete;
 	}
 	

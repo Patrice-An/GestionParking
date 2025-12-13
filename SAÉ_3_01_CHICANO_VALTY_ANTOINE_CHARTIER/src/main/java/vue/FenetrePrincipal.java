@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import controleur.ControleurFenetrePrincipal;
+import modele.Utilisateur;
 
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
@@ -23,6 +24,7 @@ public class FenetrePrincipal extends JFrame {
     private JPanel contentPane;
     private CardLayout layout;
     private JButton btnPrecedent ;
+	private Utilisateur utilisateur;
 
     public enum VUE {
 
@@ -115,4 +117,32 @@ public class FenetrePrincipal extends JFrame {
     public void setVisiblePrecedent(boolean p) {
     	btnPrecedent.setVisible(p);
     }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		FlatDarculaLaf.setup();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FenetrePrincipal frame = new FenetrePrincipal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
 }

@@ -12,7 +12,7 @@ public class CreateVehicule extends Requete<Vehicule> {
 
 	@Override
 	public String requete()  {
-		this.requete = "insert into vehicule values(?, ?, ?, ?, ?)";
+		this.requete = "insert into véhicule values(?, ?, ?, ?, ?)";
 		return this.requete;
 	}
 	

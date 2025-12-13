@@ -14,6 +14,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Window.Type;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -29,9 +31,10 @@ import modele.Type_vehicule;
 
 public class AjouterVehicule extends JPanel{
 
-	
-	private JTextField txtDsignation;
+	private JTextField txtDésignation;
 	private JTextField ImmatriculationField;
+	private JSpinner hauteurField;
+	private JComboBox<String> typeVehiculeComboBox;
 	private FenetrePrincipal fenetrePrincipal;
 	
 
@@ -92,16 +95,15 @@ public class AjouterVehicule extends JPanel{
 		JLabel lblNewLabel = new JLabel("Hauteur :");
 		PanneauCentre.add(lblNewLabel, "8, 6, left, bottom");
 		
-		txtDsignation = new JTextField();
-		txtDsignation.setForeground(new Color(128, 128, 128));
-		txtDsignation.setText("Désignation");
-		PanneauCentre.add(txtDsignation, "2, 8, fill, default");
-		txtDsignation.setColumns(10);
-		txtDsignation.addActionListener(controleur);
+		txtDésignation = new JTextField();
+		txtDésignation.setForeground(new Color(128, 128, 128));
+		txtDésignation.setText("Désignation");
+		PanneauCentre.add(txtDésignation, "2, 8, fill, default");
+		txtDésignation.setColumns(10);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(Double.valueOf(0), null, null, Double.valueOf(0.1)));
-		PanneauCentre.add(spinner, "8, 8, fill, default");
+		this.hauteurField = new JSpinner();
+		this.hauteurField.setModel(new SpinnerNumberModel(Float.valueOf(0), null, null, Float.valueOf(0.1F)));
+		PanneauCentre.add(this.hauteurField, "8, 8, fill, default");
 		
 		JLabel lblNewLabel_1 = new JLabel("m");
 		PanneauCentre.add(lblNewLabel_1, "10, 8");
@@ -119,9 +121,9 @@ public class AjouterVehicule extends JPanel{
 		ImmatriculationField.setColumns(10);
 		ImmatriculationField.addActionListener(controleur);
 		
-		JComboBox comboBoxType = new JComboBox();
-		comboBoxType.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
-		PanneauCentre.add(comboBoxType, "8, 14, fill, top");
+		this.typeVehiculeComboBox = new JComboBox<String>();
+		this.typeVehiculeComboBox.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
+		PanneauCentre.add(this.typeVehiculeComboBox, "8, 14, fill, top");
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauCentre.add(btnAnnuler, "2, 18, center, default");
@@ -129,7 +131,25 @@ public class AjouterVehicule extends JPanel{
 		
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		PanneauCentre.add(btnEnregistrer, "8, 18, center, center");
-		
+		btnEnregistrer.addActionListener(controleur);
+
 		this.add(PanneauCentre);
 	}
+
+	public String getDésignation() {
+		return txtDésignation.getText();
+	}
+
+	public String getImmatriculation() {
+		return ImmatriculationField.getText();
+	}
+
+	public float getHauteur() {
+		return (float) hauteurField.getValue();
+	}
+
+	public Type_vehicule getTypeVehicule() {
+		return Type_vehicule.valueOf(typeVehiculeComboBox.getModel().getSelectedItem().toString());
+	}
+
 }

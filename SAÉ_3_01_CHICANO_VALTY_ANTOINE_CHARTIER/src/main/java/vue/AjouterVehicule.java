@@ -71,6 +71,8 @@ public class AjouterVehicule extends JPanel{
 				ColumnSpec.decode("default:grow"),},
 			new RowSpec[] {
 				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("default:grow"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
@@ -87,46 +89,49 @@ public class AjouterVehicule extends JPanel{
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("default:grow"),}));
 		
+		JLabel labelTitre = new JLabel("Enregistrer un nouveau véhicule");
+		PanneauCentre.add(labelTitre, "1, 2, 10, 1, center, default");
+		
 		JLabel lblNewLabel = new JLabel("Hauteur :");
-		PanneauCentre.add(lblNewLabel, "8, 4, left, bottom");
+		PanneauCentre.add(lblNewLabel, "8, 6, left, bottom");
 		
 		txtDsignation = new JTextField();
 		txtDsignation.setForeground(new Color(128, 128, 128));
 		txtDsignation.setText("Désignation");
-		PanneauCentre.add(txtDsignation, "2, 6, fill, default");
+		PanneauCentre.add(txtDsignation, "2, 8, fill, default");
 		txtDsignation.setColumns(10);
 		txtDsignation.addActionListener(controleur);
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(Double.valueOf(0), null, null, Double.valueOf(0.1)));
-		PanneauCentre.add(spinner, "8, 6, fill, default");
+		PanneauCentre.add(spinner, "8, 8, fill, default");
 		
 		JLabel lblNewLabel_1 = new JLabel("m");
-		PanneauCentre.add(lblNewLabel_1, "10, 6");
+		PanneauCentre.add(lblNewLabel_1, "10, 8");
 		
 		JLabel ImmatriculationLabel = new JLabel("Immatriculation :");
-		PanneauCentre.add(ImmatriculationLabel, "2, 10, default, fill");
+		PanneauCentre.add(ImmatriculationLabel, "2, 12, default, fill");
 		
 		JLabel typeVehiculeLabel = new JLabel("Type de véhicule :");
-		PanneauCentre.add(typeVehiculeLabel, "8, 10");
+		PanneauCentre.add(typeVehiculeLabel, "8, 12");
 		
 		ImmatriculationField = new JTextField();
 		ImmatriculationField.setForeground(new Color(128, 128, 128));
 		ImmatriculationField.setText("AB-123-CD");
-		PanneauCentre.add(ImmatriculationField, "2, 12, fill, top");
+		PanneauCentre.add(ImmatriculationField, "2, 14, fill, top");
 		ImmatriculationField.setColumns(10);
 		ImmatriculationField.addActionListener(controleur);
 		
 		JComboBox comboBoxType = new JComboBox();
 		comboBoxType.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
-		PanneauCentre.add(comboBoxType, "8, 12, fill, top");
+		PanneauCentre.add(comboBoxType, "8, 14, fill, top");
 		
 		JButton btnAnnuler = new JButton("Annuler");
-		PanneauCentre.add(btnAnnuler, "2, 16, center, default");
+		PanneauCentre.add(btnAnnuler, "2, 18, center, default");
 		btnAnnuler.addActionListener(controleur);
 		
 		JButton btnEnregistrer = new JButton("Enregistrer");
-		PanneauCentre.add(btnEnregistrer, "8, 16, center, center");
+		PanneauCentre.add(btnEnregistrer, "8, 18, center, center");
 
 	}
 }

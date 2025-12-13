@@ -29,4 +29,7 @@ public class ControleurAccueil implements ActionListener{
 		if (b.getText() == "Partir"){
 			fenetrePrincipal.dispose();
 		}
+		if (b.getText().equals("Ajout Véhicule")) {
+			fenetrePrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
+		}
 	}}

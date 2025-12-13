@@ -4,11 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
@@ -52,15 +56,15 @@ public class AjouterVehicule extends JPanel{
 		
 		JLabel enregistrerLabel = new JLabel("Enregister un nouveau véhicule");
 		enregistrerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(enregistrerLabel, BorderLayout.NORTH);
 		
 		JPanel PanneauCentre = new JPanel();
-		this.add(PanneauCentre, BorderLayout.CENTER);
 		PanneauCentre.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
@@ -83,12 +87,22 @@ public class AjouterVehicule extends JPanel{
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("default:grow"),}));
 		
+		JLabel lblNewLabel = new JLabel("Hauteur :");
+		PanneauCentre.add(lblNewLabel, "8, 4, left, bottom");
+		
 		txtDsignation = new JTextField();
 		txtDsignation.setForeground(new Color(128, 128, 128));
 		txtDsignation.setText("Désignation");
 		PanneauCentre.add(txtDsignation, "2, 6, fill, default");
 		txtDsignation.setColumns(10);
 		txtDsignation.addActionListener(controleur);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(Double.valueOf(0), null, null, Double.valueOf(0.1)));
+		PanneauCentre.add(spinner, "8, 6, fill, default");
+		
+		JLabel lblNewLabel_1 = new JLabel("m");
+		PanneauCentre.add(lblNewLabel_1, "10, 6");
 		
 		JLabel ImmatriculationLabel = new JLabel("Immatriculation :");
 		PanneauCentre.add(ImmatriculationLabel, "2, 10, default, fill");
@@ -112,6 +126,7 @@ public class AjouterVehicule extends JPanel{
 		btnAnnuler.addActionListener(controleur);
 		
 		JButton btnEnregistrer = new JButton("Enregistrer");
-		PanneauCentre.add(btnEnregistrer, "8, 16, center, default");
+		PanneauCentre.add(btnEnregistrer, "8, 16, center, center");
+
 	}
 }

@@ -1,21 +1,16 @@
 package main.java.vue;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.ControleurInfoSeGarerVoirie;
 
-import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +19,6 @@ import modele.Type_vehicule;
 public class InfoSeGarerVoirie extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField SaisieHeureArrive;
 	private JTextField SaisieHeureDebut;
 	private JTextField SaisieImmatriculation;
 	private FenetrePrincipal fenetrePrincipal;
@@ -64,13 +58,6 @@ public void initialize() {
 	JPanel ListeInfos = new JPanel();
 	PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
 	ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
-
-	JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
-	ListeInfos.add(LabelHeureArrive);
-
-	SaisieHeureArrive = new JTextField();
-	ListeInfos.add(SaisieHeureArrive);
-	SaisieHeureArrive.setColumns(10);
 
 	JLabel LabelDuree = new JLabel("Durée :");
 	ListeInfos.add(LabelDuree);

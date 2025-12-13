@@ -3,10 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import main.java.vue.Accueil;
-import main.java.vue.ChoixSeGarer;
 import main.java.vue.FenetrePrincipal;
 import main.java.vue.FenetrePrincipal.VUE;
 
@@ -23,6 +21,17 @@ public class ControleurAccueil implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
+		switch (b.getText()) {
+			case "Se Garer":
+				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
+				break;
+			case "Partir":
+				fenetrePrincipal.dispose();
+				break;
+			case "Ajout Véhicule":
+				fenetrePrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
+				break;
+		}
 		if (b.getText() == "Se Garer") {
 			fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 		} 

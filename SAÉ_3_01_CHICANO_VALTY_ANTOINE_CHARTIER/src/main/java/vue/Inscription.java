@@ -5,11 +5,8 @@ import controleur.ControleurInscription;
 import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.formdev.flatlaf.FlatDarculaLaf;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;

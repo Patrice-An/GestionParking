@@ -34,17 +34,14 @@ public class ControleurAjouterVehicule implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton b = new JButton();
-		JTextField f = new JTextField();
-		System.out.println(e.getSource());
-		if (e.getSource() instanceof JButton) {
-			b = (JButton) e.getSource();
-			this.actionPerformedButton(b);
-		}
-		if (e.getSource() instanceof JTextField) {
-			f = (JTextField) e.getSource();
-			f.hasFocus();
-			this.actionPerformedField(f);
+		JButton b = (JButton) e.getSource();
+		switch (b.getText()) {
+			case "Valider":
+				
+				break;
+			case "Annuler":
+				fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "accueil" );
+				break;
 		}
 	}
 }

@@ -3,10 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import main.java.vue.Accueil;
-import main.java.vue.ChoixSeGarer;
 import main.java.vue.FenetrePrincipal;
 
 public class ControleurAccueil implements ActionListener{
@@ -19,16 +17,18 @@ public class ControleurAccueil implements ActionListener{
 		this.fenetrePrincipal = fenetrePrincipal;
 	}
 
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText() == "Se Garer") {
-			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "choixSeGarer" );
-		} 
-		if (b.getText() == "Partir"){
-			fenetrePrincipal.dispose();
+		switch (b.getText()) {
+			case "Se Garer":
+				fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "choixSeGarer" );
+				break;
+			case "Ajout Véhicule":
+				fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "ajouterVehicule" );
+				break;
+			case "Partir":
+				fenetrePrincipal.dispose();
+				break;
 		}
-		
 	}}

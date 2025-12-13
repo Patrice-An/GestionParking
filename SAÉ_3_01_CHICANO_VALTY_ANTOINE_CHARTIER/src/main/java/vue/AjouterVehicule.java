@@ -1,18 +1,11 @@
 package main.java.vue;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import com.jgoodies.forms.layout.FormLayout;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.jgoodies.forms.layout.ColumnSpec;

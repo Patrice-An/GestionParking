@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,12 +11,11 @@ import java.util.Optional;
 import modele.Transport;
 import modele.Type_Transport;
 import modele.Utilisateur;
-import modele.testParking;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteTransport.CreateTransport;
+import modele.dao.requetes.requeteTransport.TransportFindAll;
+import modele.dao.requetes.requeteTransport.TransportFindById;
 import modele.dao.requetes.requeteUtilisateur.EmailUnique;
-import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
-import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
 import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
 import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
 
@@ -52,7 +49,7 @@ public class DaoTransport implements Dao<Transport, Integer> {
 	@Override
 	public Optional<Transport> findById(Integer id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new SelectUtilisateurById();
+		Requete<Transport> req = new TransportFindById();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, id.toString());
 		ResultSet res = stUtil.executeQuery();
@@ -66,10 +63,10 @@ public class DaoTransport implements Dao<Transport, Integer> {
 	@Override
 	public List<Transport> findAll() throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new SelectAllUtilisateur();
+		Requete<Transport> req = new TransportFindAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		ResultSet resSet = stUtil.executeQuery();
-		ArrayList<Utilisateur> resList = new ArrayList<Utilisateur>();
+		List<Transport> resList = new ArrayList<Transport>();
 		while (resSet.next()) {
 			resList.add(this.createInstance(resSet));
 		}

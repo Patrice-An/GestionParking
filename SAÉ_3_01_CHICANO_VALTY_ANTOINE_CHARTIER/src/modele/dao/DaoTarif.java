@@ -29,7 +29,6 @@ public class DaoTarif implements Dao<Tarif, Integer> {
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(
 			stUtil,
-			String.valueOf(tarif.getId()),
             String.valueOf(tarif.getDurée()),
             String.valueOf(tarif.getMajoration())
 		);

@@ -8,12 +8,15 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 
+import modele.Utilisateur;
+
 import java.awt.CardLayout;
 
 public class FenetrePrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout layout;
+	private Utilisateur utilisateur;
 	public enum VUE{
 		
 		ACCUEIL("accueil"), 
@@ -78,6 +81,14 @@ public class FenetrePrincipal extends JFrame {
 				}
 			}
 		});
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
 }

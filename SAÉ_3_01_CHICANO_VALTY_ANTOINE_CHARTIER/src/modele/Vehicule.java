@@ -47,4 +47,11 @@ public class Vehicule{
 	public void setType(Type_vehicule type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return "Vehicule [immatriculation=" + immatriculation + ", hauteur=" + hauteur + ", id_utilisateur="
+				+ id_utilisateur + ", désignation=" + désignation + ", type=" + type + "]";
+	}
+
 }

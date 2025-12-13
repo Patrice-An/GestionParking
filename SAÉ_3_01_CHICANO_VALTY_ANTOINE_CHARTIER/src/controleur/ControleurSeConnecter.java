@@ -11,6 +11,7 @@ import main.java.vue.Accueil;
 import main.java.vue.FenetrePrincipal;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
+import main.java.vue.FenetrePrincipal.VUE;
 import modele.Utilisateur;
 import modele.dao.DaoUtilisateur;
 
@@ -33,13 +34,13 @@ public class ControleurSeConnecter implements ActionListener{
 			try {
 				Optional<Utilisateur> user = new DaoUtilisateur().utilisateurCanConnect(email, password);
 				if (user.isPresent()) {
-					fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "accueil" );
+					fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				}
 			} catch (SQLException exeption) {
 				return;
 			}
 		} else if (b.getText() == "S'inscrire") {
-			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "inscription" );
+			fenetrePrincipal.ChangementVue(VUE.INSCRIPTION);
 		}
 	}
 }

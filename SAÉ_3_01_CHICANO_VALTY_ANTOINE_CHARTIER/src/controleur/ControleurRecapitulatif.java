@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import main.java.vue.FenRecapitulatif;
 import main.java.vue.FenetrePrincipal;
+import main.java.vue.FenetrePrincipal.VUE;
 
 public class ControleurRecapitulatif implements ActionListener {
 
@@ -23,8 +24,7 @@ public class ControleurRecapitulatif implements ActionListener {
 		JButton btn = (JButton) e.getSource();
 		if(btn.getText().equals("Confirmer")) {
 			
-			
-			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "Accueil" );
+			fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 		}
 	}
 	

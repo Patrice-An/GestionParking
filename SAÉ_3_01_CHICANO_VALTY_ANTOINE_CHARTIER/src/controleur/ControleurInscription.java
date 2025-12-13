@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import main.java.vue.FenetrePrincipal;
 import main.java.vue.Inscription;
 import main.java.vue.SeConnecter;
+import main.java.vue.FenetrePrincipal.VUE;
 import modele.Utilisateur;
 import modele.dao.DaoUtilisateur;
 
@@ -57,7 +58,7 @@ public class ControleurInscription implements ActionListener{
 			}
 			
 		} else if (b.getText().equals("Connectez-vous")) {
-			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "seConnecter" );
+			fenetrePrincipal.ChangementVue(VUE.SECONNECTER);
 		}
 	}
 

@@ -9,6 +9,7 @@ import main.java.vue.ChoixSeGarer;
 import main.java.vue.FenRecapitulatif;
 import main.java.vue.FenetrePrincipal;
 import main.java.vue.InfoSeGarerParking;
+import main.java.vue.FenetrePrincipal.VUE;
 
 public class ControleurInfosSeGarerParking implements ActionListener{
 	
@@ -24,9 +25,9 @@ public class ControleurInfosSeGarerParking implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Annuler") {
-			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "choixSeGarer" );
+			fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 		}else if(b.getText() == "Valider") {
-			fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "fenRecapitulatif" );
+			fenetrePrincipal.ChangementVue(VUE.FENRECAPITULATIF);
 		}
 	}
 

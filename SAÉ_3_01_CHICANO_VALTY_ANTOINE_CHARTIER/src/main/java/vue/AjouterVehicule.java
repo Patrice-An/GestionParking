@@ -129,6 +129,7 @@ public class AjouterVehicule extends JPanel{
 		
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		PanneauCentre.add(btnEnregistrer, "8, 18, center, center");
-
+		
+		this.add(PanneauCentre);
 	}
 }

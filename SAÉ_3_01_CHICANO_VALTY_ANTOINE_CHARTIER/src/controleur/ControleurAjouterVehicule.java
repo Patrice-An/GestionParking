@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import main.java.vue.AjouterVehicule;
 import main.java.vue.FenetrePrincipal;
+import main.java.vue.FenetrePrincipal.VUE;
 
 public class ControleurAjouterVehicule implements ActionListener{
 	
@@ -40,7 +41,7 @@ public class ControleurAjouterVehicule implements ActionListener{
 				
 				break;
 			case "Annuler":
-				fenetrePrincipal.getLayout().show(fenetrePrincipal.getContentPane(), "accueil" );
+				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				break;
 		}
 	}

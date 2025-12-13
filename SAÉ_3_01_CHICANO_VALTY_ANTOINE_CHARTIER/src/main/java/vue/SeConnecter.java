@@ -34,10 +34,7 @@ public class SeConnecter extends JPanel {
 
 	private void initialize() {
 		ControleurSeConnecter controler = new ControleurSeConnecter(this, fenetrePrincipal);
-		setBounds(100, 100, 350, 200);
 
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
 		GridBagLayout gbl_this = new GridBagLayout();
 		gbl_this.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
 		gbl_this.columnWeights = new double[]{0.0, 0.0, 1.0};

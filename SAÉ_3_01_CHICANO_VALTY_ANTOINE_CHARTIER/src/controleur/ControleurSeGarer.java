@@ -24,6 +24,7 @@ public class ControleurSeGarer implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
+		System.out.println(b.getText());
 		if (b.getText() == "Parking") {
 			fenetrePrincipal.ChangementVue(VUE.INFOSEGARERPARKING);
 			

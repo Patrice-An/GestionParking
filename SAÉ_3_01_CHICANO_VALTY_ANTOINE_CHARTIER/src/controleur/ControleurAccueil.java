@@ -25,20 +25,11 @@ public class ControleurAccueil implements ActionListener{
 			case "Se Garer":
 				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 				break;
-			case "Partir":
+			case "Quitter l'application":
 				fenetrePrincipal.dispose();
 				break;
 			case "Ajout Véhicule":
 				fenetrePrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
 				break;
-		}
-		if (b.getText() == "Se Garer") {
-			fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
-		} 
-		if (b.getText() == "Partir"){
-			fenetrePrincipal.dispose();
-		}
-		if (b.getText().equals("Ajout Véhicule")) {
-			fenetrePrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
-		}
-	}}
+		}}
+	}

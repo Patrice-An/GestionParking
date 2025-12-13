@@ -60,7 +60,6 @@ public class ChoixSeGarer extends JPanel {
         centerPanel.add(btnVoirie, gbc);
 
         this.add(centerPanel, BorderLayout.CENTER);
-        
     }
 
     /**

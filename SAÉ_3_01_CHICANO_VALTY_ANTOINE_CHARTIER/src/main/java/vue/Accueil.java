@@ -56,10 +56,10 @@ public class Accueil extends JPanel {
         centerPanel.add(btnSeGarer, gbc);
 
         // ----- BOUTON : Partir -----
-        JButton btnPartir = createBigButton("Partir");
+        JButton btnPartir = createBigButton("Quitter l'application");
         btnPartir.addActionListener(controleur);
 
-        gbc.gridy = 1;
+        gbc.gridy = 3;
         centerPanel.add(btnPartir, gbc);
 
         // ----- NOUVEAUX BOUTONS POSSIBLES -----
@@ -72,7 +72,7 @@ public class Accueil extends JPanel {
         JButton btnGestionVehicule = createBigButton("Ajout Véhicule");
         btnGestionVehicule.addActionListener(controleur);
 
-        gbc.gridy = 3;
+        gbc.gridy = 1;
         centerPanel.add(btnGestionVehicule, gbc);
 
         // Ajouter le panneau central

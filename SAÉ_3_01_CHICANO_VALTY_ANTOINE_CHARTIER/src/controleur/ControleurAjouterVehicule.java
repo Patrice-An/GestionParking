@@ -50,6 +50,7 @@ public class ControleurAjouterVehicule implements ActionListener{
 				Vehicule vehicule = new Vehicule(immat, hauteur, id_user, designation, type);
 				try {
 					new DaoVehicule().create(vehicule);
+					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
 				} catch(SQLException exception) {
 					exception.printStackTrace();
 				}

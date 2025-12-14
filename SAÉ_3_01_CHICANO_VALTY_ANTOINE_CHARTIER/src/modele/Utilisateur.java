@@ -79,6 +79,10 @@ public class Utilisateur {
 		this.vehicules.add(v);
 	}
 
+	public Set<Vehicule> getVehicules() {
+		return vehicules;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", naissance="

@@ -56,7 +56,7 @@ public class FenetrePrincipal extends JFrame {
     }
 
     public FenetrePrincipal() {
-    	
+
     	ControleurFenetrePrincipal controleur = new ControleurFenetrePrincipal(this);
         // --- Icone ---
         try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {
@@ -100,7 +100,6 @@ public class FenetrePrincipal extends JFrame {
         contentPane.add(new InfoSeGarerParking(this), VUE.INFOSEGARERPARKING.name());
         contentPane.add(new InfoSeGarerVoirie(this), VUE.INFOSEGARERVOIRIE.name());
        
-
         ChangementVue(VUE.SECONNECTER);
         btnPrecedent.addActionListener(controleur);
     }
@@ -108,13 +107,20 @@ public class FenetrePrincipal extends JFrame {
     public void ChangementVue(VUE fen) {
         if(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
         	this.setVisiblePrecedent(true);
+            System.out.println("test1");
         } else {
         	this.setVisiblePrecedent(false);
+            System.out.println("test2");
         }
         if (this.utilisateur != null) {
         	 contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
+            System.out.println("test3");
         }
         
+        // if (fen.name() == "INFOSEGARERVOIRIE") {
+        //     contentPane. = new InfoSeGarerVoirie(this);
+        // }
+
     	layout.show(contentPane, fen.name());
         
     }

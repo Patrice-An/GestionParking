@@ -17,13 +17,13 @@ import javax.swing.DefaultComboBoxModel;
 
 import modele.Tarif;
 import modele.Type_vehicule;
+import modele.Vehicule;
 import modele.Zone;
 
 public class InfoSeGarerVoirie extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField SaisieHeureDebut;
-	private JTextField SaisieImmatriculation;
+	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Zone> comboZone;
 	private JComboBox<Tarif> comboTarif;
 	private FenetrePrincipal fenetrePrincipal;
@@ -44,6 +44,9 @@ public class InfoSeGarerVoirie extends JPanel {
 	 * @return 
 	 */
 	public void initialize() {
+		if (fenetrePrincipal.getUtilisateur() == null) {
+			return;
+		}
 		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this, fenetrePrincipal);
 		setBounds(100, 100, 450, 300);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,37 +63,21 @@ public class InfoSeGarerVoirie extends JPanel {
 		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
 		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
 
+		this.choixVehicule = new JComboBox<Vehicule>();
+		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
+		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
+			vehiculeModel.addElement(v);
+		}
+		this.choixVehicule.setModel(vehiculeModel);
+		// PanneauCentre.add(this.choixVehicule);
+
 		JPanel ListeInfos = new JPanel();
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
 		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
 
-		JLabel LabelDuree = new JLabel("Durée :");
-		ListeInfos.add(LabelDuree);
-
-		SaisieHeureDebut = new JTextField();
-		ListeInfos.add(SaisieHeureDebut);
-		SaisieHeureDebut.setColumns(10);
-
-		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
-		ListeInfos.add(LabelTypeVehicule);
-
-		JComboBox DeroulantTypeV = new JComboBox();
-		DeroulantTypeV.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
-		ListeInfos.add(DeroulantTypeV);
-
-		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");
-		ListeInfos.add(LabelImmatriculation);
-
-		SaisieImmatriculation = new JTextField();
-		ListeInfos.add(SaisieImmatriculation);
-		SaisieImmatriculation.setColumns(10);
-
 		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez la zone utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
 		ListeInfos.add(LabelSelectionVoirie);
-
-		JLabel lblNewLabel = new JLabel(" ");
-		ListeInfos.add(lblNewLabel);
 
 		this.comboZone = new JComboBox<Zone>();
 		this.comboZone.addItemListener(controleur.controleurVoirieTarif);

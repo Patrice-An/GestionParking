@@ -91,11 +91,7 @@ public void initialize() {
 	ListeInfos.add(lblNewLabel);
 
 	JComboBox DeroulantSlectionParking = new JComboBox<String>();
-	DeroulantSlectionParking.addItemListener(new ItemListener() {
-		public void itemStateChanged(ItemEvent arg0) {
-			System.out.println("éléments changé");
-		}
-	});
+	DeroulantSlectionParking.addItemListener(controleur.controleurVoirieZone);
 	DefaultComboBoxModel<String> voirieModel = new DefaultComboBoxModel<String>();
 	for (Zone z : controleur.getZones()) {
 		voirieModel.addElement(z.getCouleur());

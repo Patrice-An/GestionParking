@@ -14,6 +14,7 @@ import modele.dao.requetes.requeteTarif.CreateTarif;
 import modele.dao.requetes.requeteTarif.TarifDeleteById;
 import modele.dao.requetes.requeteTarif.TarifSelectAll;
 import modele.dao.requetes.requeteTarif.TarifSelectById;
+import modele.dao.requetes.requeteTarif.TarifSelectByZone;
 
 public class DaoTarif implements Dao<Tarif, Integer> {
 
@@ -54,6 +55,19 @@ public class DaoTarif implements Dao<Tarif, Integer> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Tarif> req = new TarifSelectAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		ResultSet resSet = stUtil.executeQuery();
+		List<Tarif> resList = new ArrayList<Tarif>();
+		while (resSet.next()) {
+			resList.add(this.createInstance(resSet));
+		}
+		return resList;
+	}
+
+	public List<Tarif> findByZone(Integer id_zone) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Tarif> req = new TarifSelectByZone();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, id_zone.toString());
 		ResultSet resSet = stUtil.executeQuery();
 		List<Tarif> resList = new ArrayList<Tarif>();
 		while (resSet.next()) {

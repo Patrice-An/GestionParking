@@ -31,5 +31,7 @@ public class ControleurAccueil implements ActionListener{
 			case "Ajout Véhicule":
 				fenetrePrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
 				break;
+			case "Gérer mes Véhicules":
+				fenetrePrincipal.ChangementVue(VUE.GESTIONVEHICULE);
 		}}
 	}

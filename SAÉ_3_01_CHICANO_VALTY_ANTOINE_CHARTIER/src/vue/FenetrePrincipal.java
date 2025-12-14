@@ -35,6 +35,7 @@ public class FenetrePrincipal extends JFrame {
         AJOUTERVEHICULE("AjouterVehicule"),
         FENRECAPITULATIF("fenRecapitulatif"),
         INFOSEGARERPARKING("infoSeGarerParking"),
+        GESTIONVEHICULE("GestionVehicule"),
         INFOSEGARERVOIRIE("infoSeGarerVoirie");
 
         VUE(String designation) {
@@ -42,7 +43,7 @@ public class FenetrePrincipal extends JFrame {
     };
 
     public static void main(String[] args) {
-        FlatDarculaLaf.setup();
+        
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

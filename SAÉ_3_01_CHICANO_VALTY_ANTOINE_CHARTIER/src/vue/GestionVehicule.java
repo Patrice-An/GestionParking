@@ -23,14 +23,14 @@ public class GestionVehicule extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField serachField;
-	private Utilisateur utilisateur;
+	private FenetrePrincipal fenetre;
 
 	/**
 	 * Create the panel.
 	 */
-	public GestionVehicule(Utilisateur utilisateur) {
+	public GestionVehicule(FenetrePrincipal fenetre) {
 		setLayout(new MigLayout("", "[45px,grow][][][][][][][][][][][][][][][]", "[13px][][][grow]"));
-		this.utilisateur = utilisateur;
+		this.fenetre = fenetre;
 		
 		JLabel TitreLabel = new JLabel("Gestion des véhicules");
 		add(TitreLabel, "cell 0 0 16 1,alignx center,aligny top");
@@ -42,7 +42,7 @@ public class GestionVehicule extends JPanel {
 		JButton btnSearch = new JButton("Rechercher");
 		add(btnSearch, "cell 4 2");
 		
-		for (Vehicule i:utilisateur.getVehicules()) {
+		for (Vehicule i:fenetre.getUtilisateur().getVehicules()) {
 			JPanel carteInfosVehicule = new JPanel();
 			carteInfosVehicule.setBorder(new LineBorder(new Color(0, 0, 0)));
 			add(carteInfosVehicule, "cell 0 3 4 1,growx,aligny center");

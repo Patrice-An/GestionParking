@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import controleur.ControleurFenetrePrincipal;
 import modele.Utilisateur;
 
@@ -97,6 +99,7 @@ public class FenetrePrincipal extends JFrame {
         contentPane.add(new FenRecapitulatif(this), VUE.FENRECAPITULATIF.name());
         contentPane.add(new InfoSeGarerParking(this), VUE.INFOSEGARERPARKING.name());
         contentPane.add(new InfoSeGarerVoirie(this), VUE.INFOSEGARERVOIRIE.name());
+        contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
 
         ChangementVue(VUE.SECONNECTER);
         btnPrecedent.addActionListener(controleur);

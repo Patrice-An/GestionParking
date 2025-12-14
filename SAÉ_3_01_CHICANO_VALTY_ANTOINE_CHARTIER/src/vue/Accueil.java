@@ -1,13 +1,22 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import controleur.ControleurAccueil;
-
-import vue.Accueil;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class Accueil extends JPanel {
 

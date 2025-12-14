@@ -1,23 +1,20 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-
-import com.formdev.flatlaf.FlatDarculaLaf;
 
 import controleur.ControleurFenetrePrincipal;
 import modele.Utilisateur;
-
-import java.awt.CardLayout;
-import java.awt.BorderLayout;
 
 public class FenetrePrincipal extends JFrame {
 

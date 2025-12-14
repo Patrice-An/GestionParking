@@ -32,5 +32,10 @@ public class Tarif {
 	public void setMajoration(int majoration) {
 		this.majoration = majoration;
 	}
+
+	@Override
+	public String toString() {
+		return "Tarif [durée=" + durée + ", majoration=" + majoration + "]";
+	}
 	
 }

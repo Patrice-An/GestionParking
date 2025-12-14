@@ -14,8 +14,7 @@ public class TarifSelectByZone extends Requete<Tarif> {
 	public String requete()  {
 		this.requete = "select * from tarif " +
         "join tarif_zone on tarif_zone.id_tarif = tarif.id_tarif " +
-        "join zone on zone.id_zone = tarif_zone.id_zone " +
-        "where zone.id_zone = ?";
+        "where tarif_zone.id_zone = ?";
 		return this.requete;
 	}
 	

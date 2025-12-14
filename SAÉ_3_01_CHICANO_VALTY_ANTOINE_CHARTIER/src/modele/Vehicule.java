@@ -50,8 +50,7 @@ public class Vehicule{
 
 	@Override
 	public String toString() {
-		return "Vehicule [immatriculation=" + immatriculation + ", hauteur=" + hauteur + ", id_utilisateur="
-				+ id_utilisateur + ", désignation=" + désignation + ", type=" + type + "]";
+		return this.désignation + " - " + this.immatriculation;
 	}
 
 }

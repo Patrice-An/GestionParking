@@ -25,12 +25,15 @@ public class GestionVehicule extends JPanel {
 	private JTextField serachField;
 	private FenetrePrincipal fenetre;
 
+	
+	public GestionVehicule(FenetrePrincipal fenetre) {
+		this.fenetre = fenetre;
+	}
 	/**
 	 * Create the panel.
 	 */
-	public GestionVehicule(FenetrePrincipal fenetre) {
+	public void initialize() {
 		setLayout(new MigLayout("", "[45px,grow][][][][][][][][][][][][][][][]", "[13px][][][grow]"));
-		this.fenetre = fenetre;
 		
 		JLabel TitreLabel = new JLabel("Gestion des véhicules");
 		add(TitreLabel, "cell 0 0 16 1,alignx center,aligny top");

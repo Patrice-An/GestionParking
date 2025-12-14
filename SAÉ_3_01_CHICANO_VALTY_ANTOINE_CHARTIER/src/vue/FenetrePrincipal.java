@@ -99,7 +99,7 @@ public class FenetrePrincipal extends JFrame {
         contentPane.add(new FenRecapitulatif(this), VUE.FENRECAPITULATIF.name());
         contentPane.add(new InfoSeGarerParking(this), VUE.INFOSEGARERPARKING.name());
         contentPane.add(new InfoSeGarerVoirie(this), VUE.INFOSEGARERVOIRIE.name());
-        contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
+       
 
         ChangementVue(VUE.SECONNECTER);
         btnPrecedent.addActionListener(controleur);
@@ -111,6 +111,10 @@ public class FenetrePrincipal extends JFrame {
         } else {
         	this.setVisiblePrecedent(false);
         }
+        if (this.utilisateur != null) {
+        	 contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
+        }
+        
     	layout.show(contentPane, fen.name());
         
     }

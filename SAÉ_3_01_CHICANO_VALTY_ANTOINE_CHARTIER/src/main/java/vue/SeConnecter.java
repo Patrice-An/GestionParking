@@ -7,7 +7,6 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 

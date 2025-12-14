@@ -3,10 +3,6 @@ package modele.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import modele.Utilisateur;
 
 public class AzureSQLDataSource {
 	
@@ -43,33 +39,4 @@ public class AzureSQLDataSource {
     	AzureSQLDataSource.conn.close();
     	AzureSQLDataSource.conn = null;
     }
-	    
-    public static void main(String[] args) throws SQLException {
-		testConnection();
-    }
-
-	private static void printEveryUtilisateur() throws SQLException {
-		ArrayList<Utilisateur> resList = (ArrayList<Utilisateur>) new DaoUtilisateur().findAll();
-		if (resList.isEmpty()) {
-			System.out.println("List is empty");
-		} else {
-			for (Utilisateur utilisateur : resList) {
-				System.out.println(utilisateur.toString());
-			}
-		}
-	}
-
-	private static void addUtilisateur() throws SQLException {
-		Utilisateur newUser = new Utilisateur(10, "Seong", "Gi-Hun", "07", LocalDate.of(2001, 11, 9), "mail.mail.com", "password");
-		new DaoUtilisateur().create(newUser);
-	}
-
-	private static void testConnection() throws SQLException {
-		String mail = "john@gmail.com";
-		String password = "pwddd";
-		boolean conn = new DaoUtilisateur().utilisateurCanConnect(mail, password);
-		if (conn) {
-			System.out.println("Connection utilisateur réussie");
-		}
-	}
 }

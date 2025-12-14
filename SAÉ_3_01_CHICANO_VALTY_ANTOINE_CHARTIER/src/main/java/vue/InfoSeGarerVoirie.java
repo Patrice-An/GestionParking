@@ -15,6 +15,9 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import modele.Type_vehicule;
+import modele.Zone;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class InfoSeGarerVoirie extends JPanel {
 
@@ -87,8 +90,21 @@ public void initialize() {
 	JLabel lblNewLabel = new JLabel(" ");
 	ListeInfos.add(lblNewLabel);
 
-	JComboBox DeroulantSlectionParking = new JComboBox();
+	JComboBox DeroulantSlectionParking = new JComboBox<String>();
+	DeroulantSlectionParking.addItemListener(new ItemListener() {
+		public void itemStateChanged(ItemEvent arg0) {
+			System.out.println("éléments changé");
+		}
+	});
+	DefaultComboBoxModel<String> voirieModel = new DefaultComboBoxModel<String>();
+	for (Zone z : controleur.getZones()) {
+		voirieModel.addElement(z.getCouleur());
+	}
+	DeroulantSlectionParking.setModel(voirieModel);
 	ListeInfos.add(DeroulantSlectionParking);
+	
+	JComboBox comboBox = new JComboBox();
+	ListeInfos.add(comboBox);
 
 	JPanel PanneauSud = new JPanel();
 	this.add(PanneauSud, BorderLayout.SOUTH);

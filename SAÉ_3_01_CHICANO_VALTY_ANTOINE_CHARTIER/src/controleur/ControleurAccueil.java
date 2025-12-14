@@ -4,9 +4,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.Accueil;
-import main.java.vue.FenetrePrincipal;
-import main.java.vue.FenetrePrincipal.VUE;
+import vue.Accueil;
+import vue.FenetrePrincipal;
+import vue.FenetrePrincipal.VUE;
 
 public class ControleurAccueil implements ActionListener{
 	

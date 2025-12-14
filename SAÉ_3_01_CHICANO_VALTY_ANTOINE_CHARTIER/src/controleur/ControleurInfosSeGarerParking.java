@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.ChoixSeGarer;
-import main.java.vue.FenRecapitulatif;
-import main.java.vue.FenetrePrincipal;
-import main.java.vue.InfoSeGarerParking;
-import main.java.vue.FenetrePrincipal.VUE;
+import vue.ChoixSeGarer;
+import vue.FenRecapitulatif;
+import vue.FenetrePrincipal;
+import vue.InfoSeGarerParking;
+import vue.FenetrePrincipal.VUE;
 
 public class ControleurInfosSeGarerParking implements ActionListener{
 	

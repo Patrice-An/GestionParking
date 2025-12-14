@@ -8,9 +8,9 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-import main.java.vue.FenetrePrincipal;
-import main.java.vue.FenetrePrincipal.VUE;
-import main.java.vue.InfoSeGarerVoirie;
+import vue.FenetrePrincipal;
+import vue.FenetrePrincipal.VUE;
+import vue.InfoSeGarerVoirie;
 import modele.Zone;
 import modele.dao.DaoZone;
 

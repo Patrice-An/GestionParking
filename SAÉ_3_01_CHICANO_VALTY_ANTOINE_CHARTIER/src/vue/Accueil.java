@@ -1,7 +1,10 @@
-package main.java.vue;
+package vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+
 import controleur.ControleurAccueil;
+
+import vue.Accueil;
 
 import javax.swing.*;
 import java.awt.*;

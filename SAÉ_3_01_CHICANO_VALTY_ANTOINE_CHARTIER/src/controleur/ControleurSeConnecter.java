@@ -8,9 +8,9 @@ import java.util.Optional;
 
 import javax.swing.JButton;
 
-import main.java.vue.FenetrePrincipal;
-import main.java.vue.SeConnecter;
-import main.java.vue.FenetrePrincipal.VUE;
+import vue.FenetrePrincipal;
+import vue.SeConnecter;
+import vue.FenetrePrincipal.VUE;
 import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.DaoUtilisateur;

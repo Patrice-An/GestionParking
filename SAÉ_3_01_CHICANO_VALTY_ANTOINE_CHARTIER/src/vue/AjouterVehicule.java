@@ -1,4 +1,4 @@
-package main.java.vue;
+package vue;
 
 import javax.swing.JPanel;
 import javax.swing.JSpinner;

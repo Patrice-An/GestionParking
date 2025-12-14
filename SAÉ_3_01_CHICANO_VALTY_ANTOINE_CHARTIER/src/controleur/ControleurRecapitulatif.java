@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.FenRecapitulatif;
-import main.java.vue.FenetrePrincipal;
-import main.java.vue.FenetrePrincipal.VUE;
+import vue.FenRecapitulatif;
+import vue.FenetrePrincipal;
+import vue.FenetrePrincipal.VUE;
 
 public class ControleurRecapitulatif implements ActionListener {
 

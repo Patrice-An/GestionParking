@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import main.java.vue.AjouterVehicule;
-import main.java.vue.FenetrePrincipal;
-import main.java.vue.FenetrePrincipal.VUE;
+import vue.AjouterVehicule;
+import vue.FenetrePrincipal;
+import vue.FenetrePrincipal.VUE;
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.DaoVehicule;

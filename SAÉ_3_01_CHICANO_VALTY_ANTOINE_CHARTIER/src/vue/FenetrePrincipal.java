@@ -40,7 +40,7 @@ public class FenetrePrincipal extends JFrame {
     };
 
     public static void main(String[] args) {
-        
+        FlatDarculaLaf.setup();
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

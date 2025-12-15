@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import vue.FenetrePrincipal;
 import vue.SeConnecter;
@@ -43,6 +44,8 @@ public class ControleurSeConnecter implements ActionListener{
 					fenetrePrincipal.setUtilisateur(utilisateur);
 					fenetrePrincipal.ChargerVueDependante();
 					fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
+				} else {
+					JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect", "Formulaire erroné", JOptionPane.INFORMATION_MESSAGE);
 				}
 			} catch (SQLException exception) {
 				exception.printStackTrace();

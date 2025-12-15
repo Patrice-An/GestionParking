@@ -90,7 +90,7 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		if (resSet.next()) {
 			return Optional.of(createInstance(resSet));
 		} else {
-			return Optional.of(null);
+			return Optional.empty();
 		}
 	}
 

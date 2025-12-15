@@ -44,23 +44,28 @@ public class HistoriqueStationnement extends JPanel {
 		JPanel paneCenter = new JPanel();
 		add(paneCenter, BorderLayout.CENTER);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Adresse", "V\u00E9hicule", "Dur\u00E9e", "Date"},
-			},
-			new String[] {
-				"Adresse", "V\u00E9hicule", "Dur\u00E9e", "Date"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
+		DefaultTableModel modele = new DefaultTableModel(
+				new Object[][] {
+					{"Adresse", "V\u00E9hicule", "Dur\u00E9e", "Date"},
+					
+				},
+				new String[] {
+					"Adresse", "V\u00E9hicule", "Dur\u00E9e", "Date"
+				}
+			) {
+				Class[] columnTypes = new Class[] {
+					String.class, String.class, String.class, String.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
 			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		table = new JTable();
+		//for (int i < )
+		//modele.insertRow(i, new Object[] {});
+		table.setModel(modele);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
 		paneCenter.add(table);
 
 	}

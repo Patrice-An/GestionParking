@@ -64,7 +64,7 @@ public class GestionVehicule extends JPanel {
 			gbc_Labeldesignation.gridy = 1;
 			carteInfosVehicule.add(Labeldesignation, gbc_Labeldesignation);
 			
-			JLabel labelHauteur = new JLabel(Float.toString(i.getHauteur()));
+			JLabel labelHauteur = new JLabel(Float.toString(i.getHauteur())+" m");
 			GridBagConstraints gbc_labelHauteur = new GridBagConstraints();
 			gbc_labelHauteur.insets = new Insets(0, 0, 5, 0);
 			gbc_labelHauteur.gridx = 0;
@@ -80,7 +80,7 @@ public class GestionVehicule extends JPanel {
 			JLabel labelType = new JLabel(i.getType().toString());
 			GridBagConstraints gbc_labelType = new GridBagConstraints();
 			gbc_labelType.gridx = 0;
-			gbc_labelType.gridy = 4;
+			gbc_labelType.gridy = 5;
 			carteInfosVehicule.add(labelType, gbc_labelType);
 			
 		}

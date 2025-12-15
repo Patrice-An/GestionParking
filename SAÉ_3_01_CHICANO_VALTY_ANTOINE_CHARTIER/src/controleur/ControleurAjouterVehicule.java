@@ -15,9 +15,9 @@ import modele.dao.DaoVehicule;
 
 public class ControleurAjouterVehicule implements ActionListener{
 	
+	private static AjouterVehicule vue;
 	private FenetrePrincipal fenetrePrincipal;
 	public ControleurAjouterVehicule(AjouterVehicule vue, FenetrePrincipal fenetrePrincipal) {
-		this.fenetrePrincipal = fenetrePrincipal;
 		this.vue = vue;
 		this.fenetrePrincipal = fenetrePrincipal;
 	}
@@ -34,8 +34,6 @@ public class ControleurAjouterVehicule implements ActionListener{
 				Type_vehicule type = vue.getTypeVehicule();
 				Vehicule vehicule = new Vehicule(immat, hauteur, id_user, designation, type);
 				try {
-					DaoVehicule daoVehicule = new DaoVehicule();
-					}
 					new DaoVehicule().create(vehicule);
 					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
 					fenetrePrincipal.getUtilisateur().getVehicules();

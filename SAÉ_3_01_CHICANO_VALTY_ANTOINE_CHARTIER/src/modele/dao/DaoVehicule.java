@@ -13,6 +13,7 @@ import modele.Vehicule;
 import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteVehicule.CreateVehicule;
 import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
+import modele.dao.requetes.requeteVehicule.VehiculeExistePourUser;
 import modele.dao.requetes.requeteVehicule.VehiculeFindByUser;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectById;
@@ -83,6 +84,15 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 			resList.add(this.createInstance(resSet));
 		}
 		return resList;
+	}
+
+	public boolean vehiculeExistePourUser(String immat, Integer id_user) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Vehicule> req = new VehiculeExistePourUser();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, immat, id_user.toString());
+		ResultSet resSet = stUtil.executeQuery();
+		return resSet.next();
 	}
 
 	@Override

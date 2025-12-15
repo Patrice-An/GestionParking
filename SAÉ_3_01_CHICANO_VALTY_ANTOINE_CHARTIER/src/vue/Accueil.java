@@ -14,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
-
 import controleur.ControleurAccueil;
 
 public class Accueil extends JPanel {

@@ -22,8 +22,8 @@ import modele.Vehicule;
 import modele.Zone;
 import modele.dao.DaoZone;
 
-public class ControleurInfoSeGarerVoirie implements ActionListener{
-	
+public class ControleurInfoSeGarerVoirie implements ActionListener {
+
 	private InfoSeGarerVoirie vue;
 	private FenetrePrincipal fenetrePrincipal;
 	private List<Zone> zones;

@@ -6,8 +6,6 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import vue.AjouterVehicule;
 import vue.FenetrePrincipal;
 import vue.FenetrePrincipal.VUE;
@@ -17,11 +15,11 @@ import modele.dao.DaoVehicule;
 
 public class ControleurAjouterVehicule implements ActionListener{
 	
-	private AjouterVehicule vue;
+	private static AjouterVehicule vue;
 	private FenetrePrincipal fenetrePrincipal;
 	public ControleurAjouterVehicule(AjouterVehicule vue, FenetrePrincipal fenetrePrincipal) {
-		this.fenetrePrincipal = fenetrePrincipal;
 		this.vue = vue;
+		this.fenetrePrincipal = fenetrePrincipal;
 	}
 
 	@Override
@@ -36,15 +34,11 @@ public class ControleurAjouterVehicule implements ActionListener{
 				Type_vehicule type = vue.getTypeVehicule();
 				Vehicule vehicule = new Vehicule(immat, hauteur, id_user, designation, type);
 				try {
-					DaoVehicule daoVehicule = new DaoVehicule();
-					if (daoVehicule.vehiculeExistePourUser(immat, id_user)) {
-						JOptionPane.showMessageDialog(null, "Plaque d'immatriculation déjà rentrée", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						daoVehicule.create(vehicule);
-						fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
-						JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
-						fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
-					}
+					new DaoVehicule().create(vehicule);
+					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
+					fenetrePrincipal.getUtilisateur().getVehicules();
+					JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
+					fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				} catch(SQLException exception) {
 					exception.printStackTrace();
 				}
@@ -55,4 +49,6 @@ public class ControleurAjouterVehicule implements ActionListener{
 				break;
 		}
 	}
+
+	
 }

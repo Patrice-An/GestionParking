@@ -5,22 +5,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import vue.FenetrePrincipal;
 import vue.FenetrePrincipal.VUE;
 import vue.InfoSeGarerVoirie;
 import modele.Tarif;
+import modele.Vehicule;
 import modele.Zone;
 import modele.dao.DaoZone;
 
-public class ControleurInfoSeGarerVoirie implements ActionListener{
-	
+public class ControleurInfoSeGarerVoirie implements ActionListener {
+
 	private InfoSeGarerVoirie vue;
 	private FenetrePrincipal fenetrePrincipal;
 	private List<Zone> zones;
@@ -54,15 +57,35 @@ public class ControleurInfoSeGarerVoirie implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText() == "Annuler") {
-			fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
+		System.out.println(b.getText());
+		switch (b.getText()) {
+			case "Valider":
+				if (fenetrePrincipal.getUtilisateur().getVehicules().size() < 1) {
+					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					Vehicule vehicule = (Vehicule) vue.getComboVehicule().getModel().getSelectedItem();
+					Zone zone = (Zone) vue.getComboZone().getModel().getSelectedItem();
+					LocalDateTime heureArrivée = LocalDateTime.now();
+					LocalDateTime heureSortie = LocalDateTime.now();
+					int place = 0;
+					byte borne = 0;
+					try {
+						new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivée, heureSortie, place, borne);
+						JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+					} catch(SQLException exception) {
+						exception.printStackTrace();
+					}
+				}
+				break;
+			case "Annuler":
+				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
+				break;
 		}
 	}
 
 	public void updateComboTarif() {
 		JComboBox<Zone> comboZone = vue.getComboZone();
 		Zone zone = (Zone) comboZone.getModel().getSelectedItem();
-		System.out.println(zone.toString());
 		DefaultComboBoxModel<Tarif> tarifModel = new DefaultComboBoxModel<Tarif>();
 		for (Tarif t : zone.getTarifs()) {
 			tarifModel.addElement(t);

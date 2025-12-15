@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 import controleur.ControleurInfoSeGarerVoirie;
 
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -16,7 +15,6 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 
 import modele.Tarif;
-import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.Zone;
 
@@ -71,7 +69,6 @@ public class InfoSeGarerVoirie extends JPanel {
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
 		System.out.println(fenetrePrincipal.getUtilisateur().toString());
 		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
-			System.out.println(v.toString());
 			vehiculeModel.addElement(v);
 		}
 		this.choixVehicule.setModel(vehiculeModel);
@@ -103,6 +100,7 @@ public class InfoSeGarerVoirie extends JPanel {
 		btnValider.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnValider.addActionListener(controleur);
 		PanneauSud.add(btnValider, BorderLayout.EAST);
 
 		JButton btnAnnuler = new JButton("Annuler");
@@ -112,6 +110,10 @@ public class InfoSeGarerVoirie extends JPanel {
 		JPanel panel = new JPanel();
 		PanneauSud.add(panel, BorderLayout.NORTH);
 
+	}
+
+	public JComboBox<Vehicule> getComboVehicule() {
+		return choixVehicule;
 	}
 
 	public JComboBox<Zone> getComboZone() {

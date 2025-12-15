@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import modele.Zone;
 import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteZone.CreateZone;
 import modele.dao.requetes.requeteZone.ZoneDeleteById;
+import modele.dao.requetes.requeteZone.ZoneSeGarer;
 import modele.dao.requetes.requeteZone.ZoneSelectAll;
 import modele.dao.requetes.requeteZone.ZoneSelectById;
 
@@ -74,6 +76,22 @@ public class DaoZone implements Dao<Zone, Integer> {
 		req.parametres(stUtil, id.toString());
 		int res = stUtil.executeUpdate();
 		return res > 0;
+	}
+
+	public void seGarerZone(int id_zone, String immat, LocalDateTime heureArrivée, LocalDateTime heureSortie, int place, byte borne) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Zone> req = new ZoneSeGarer();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(
+			stUtil,
+			String.valueOf(id_zone),
+			immat,
+			"2025-12-15 14:30:00",
+			"2025-12-15 16:00:00",
+			String.valueOf(place),
+			String.valueOf(borne)
+		);
+		stUtil.executeUpdate();
 	}
 
 }

@@ -62,19 +62,21 @@ public class InfoSeGarerVoirie extends JPanel {
 		JLabel TitreDonnees = new JLabel("Renseignez les données pour la simulation");
 		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
 		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
-
-		this.choixVehicule = new JComboBox<Vehicule>();
-		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
-		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
-			vehiculeModel.addElement(v);
-		}
-		this.choixVehicule.setModel(vehiculeModel);
-		// PanneauCentre.add(this.choixVehicule);
-
+		
 		JPanel ListeInfos = new JPanel();
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
 		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
-
+		
+		this.choixVehicule = new JComboBox<Vehicule>();
+		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
+		System.out.println(fenetrePrincipal.getUtilisateur().toString());
+		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
+			System.out.println(v.toString());
+			vehiculeModel.addElement(v);
+		}
+		this.choixVehicule.setModel(vehiculeModel);
+		ListeInfos.add(choixVehicule);
+		
 		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez la zone utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
 		ListeInfos.add(LabelSelectionVoirie);

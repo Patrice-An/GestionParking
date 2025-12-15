@@ -36,10 +36,15 @@ public class ControleurAjouterVehicule implements ActionListener{
 				Type_vehicule type = vue.getTypeVehicule();
 				Vehicule vehicule = new Vehicule(immat, hauteur, id_user, designation, type);
 				try {
-					new DaoVehicule().create(vehicule);
-					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
-					fenetrePrincipal.getUtilisateur().getVehicules();
-					JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
+					DaoVehicule daoVehicule = new DaoVehicule();
+					if (daoVehicule.vehiculeExistePourUser(immat, id_user)) {
+						JOptionPane.showMessageDialog(null, "Plaque d'immatriculation déjà rentrée", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						daoVehicule.create(vehicule);
+						fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
+						JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
+						fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
+					}
 				} catch(SQLException exception) {
 					exception.printStackTrace();
 				}

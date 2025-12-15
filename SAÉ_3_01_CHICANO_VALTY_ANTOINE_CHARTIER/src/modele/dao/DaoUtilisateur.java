@@ -116,4 +116,13 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		int res = stUtil.executeUpdate();
 		return res > 0;
 	}
+
+	public ResultSet garerByUtilisateur(Integer id) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurConnection();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, id.toString());
+		ResultSet resSet = stUtil.executeQuery();
+		return resSet;
+	}
 }

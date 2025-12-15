@@ -20,8 +20,6 @@ public class AjouterParking extends JPanel {
 	private JTextField textField_1;
 	private FenetrePrincipal fenetrePrincipal;
 	
-	
-	
 	public AjouterParking(FenetrePrincipal fenetrePrincipal) {
 		this.fenetrePrincipal = fenetrePrincipal;
 		FlatDarculaLaf.setup();
@@ -33,6 +31,7 @@ public class AjouterParking extends JPanel {
 	 */
 	public void initialize() {
 		
+		fenetrePrincipal.getUtilisateur();
 		setBounds(100, 100, 436, 300);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new MigLayout("", "[grow][][][grow][grow][grow][grow]", "[][][][grow][grow][grow][grow]"));

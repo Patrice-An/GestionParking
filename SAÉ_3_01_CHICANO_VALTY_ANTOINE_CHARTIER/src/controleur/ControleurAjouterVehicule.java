@@ -24,20 +24,6 @@ public class ControleurAjouterVehicule implements ActionListener{
 		this.vue = vue;
 	}
 
-	public void actionPerformedButton(JButton b) {
-		if (b.getText().equals("Annuler")) {
-			System.out.println("Action bouton");
-		}
-		System.out.println("Action bouton");
-	}
-	
-	public void actionPerformedField(JTextField f) {
-		System.out.println("action field");
-		f.setText("");
-		
-		
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
@@ -56,11 +42,13 @@ public class ControleurAjouterVehicule implements ActionListener{
 					} else {
 						daoVehicule.create(vehicule);
 						fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
+						JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
 						fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 					}
 				} catch(SQLException exception) {
 					exception.printStackTrace();
 				}
+
 				break;
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);

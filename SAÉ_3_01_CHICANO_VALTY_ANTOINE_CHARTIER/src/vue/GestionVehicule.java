@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class GestionVehicule extends JPanel {
 
@@ -22,6 +23,7 @@ public class GestionVehicule extends JPanel {
 
 	
 	public GestionVehicule(FenetrePrincipal fenetre) {
+		setMaximumSize(new Dimension(32767, 300));
 		this.fenetre = fenetre;
 		initialize();
 	}

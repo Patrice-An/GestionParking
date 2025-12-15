@@ -44,7 +44,7 @@ public class Accueil extends JPanel {
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel labelTitre = new JLabel("Mode Simulation : Bienvenue ", SwingConstants.CENTER);
+        JLabel labelTitre = new JLabel("Bonjour "+fenetreprincipal.getUtilisateur().getNom(), SwingConstants.CENTER);
         labelTitre.setFont(new Font("Arial", Font.BOLD, 32));
 
         topPanel.add(labelTitre, BorderLayout.CENTER);

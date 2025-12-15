@@ -7,8 +7,6 @@ import javax.swing.JButton;
 
 import vue.ChoixSeGarer;
 import vue.FenetrePrincipal;
-import vue.InfoSeGarerParking;
-import vue.InfoSeGarerVoirie;
 import vue.FenetrePrincipal.VUE;
 
 public class ControleurSeGarer implements ActionListener{
@@ -24,7 +22,6 @@ public class ControleurSeGarer implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		System.out.println(b.getText());
 		if (b.getText() == "Parking") {
 			fenetrePrincipal.ChangementVue(VUE.INFOSEGARERPARKING);
 			

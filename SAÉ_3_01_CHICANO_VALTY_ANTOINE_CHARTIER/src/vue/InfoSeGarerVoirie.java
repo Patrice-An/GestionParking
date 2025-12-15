@@ -67,7 +67,6 @@ public class InfoSeGarerVoirie extends JPanel {
 		
 		this.choixVehicule = new JComboBox<Vehicule>();
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
-		System.out.println(fenetrePrincipal.getUtilisateur().toString());
 		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
 			vehiculeModel.addElement(v);
 		}

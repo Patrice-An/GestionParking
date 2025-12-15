@@ -71,7 +71,6 @@ public class DaoTarif implements Dao<Tarif, Integer> {
 		ResultSet resSet = stUtil.executeQuery();
 		List<Tarif> resList = new ArrayList<Tarif>();
 		while (resSet.next()) {
-			System.out.println("Tarif trouvé");
 			resList.add(this.createInstance(resSet));
 		}
 		return resList;

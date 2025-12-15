@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import vue.ChoixSeGarer;
-import vue.FenRecapitulatif;
 import vue.FenetrePrincipal;
 import vue.InfoSeGarerParking;
 import vue.FenetrePrincipal.VUE;

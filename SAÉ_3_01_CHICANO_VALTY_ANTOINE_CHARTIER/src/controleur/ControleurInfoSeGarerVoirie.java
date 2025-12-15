@@ -57,7 +57,6 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		System.out.println(b.getText());
 		switch (b.getText()) {
 			case "Valider":
 				if (fenetrePrincipal.getUtilisateur().getVehicules().size() < 1) {

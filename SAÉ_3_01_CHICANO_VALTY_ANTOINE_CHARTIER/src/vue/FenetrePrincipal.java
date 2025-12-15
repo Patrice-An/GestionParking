@@ -35,7 +35,8 @@ public class FenetrePrincipal extends JFrame {
 		FENRECAPITULATIF("fenRecapitulatif"),
 		INFOSEGARERPARKING("infoSeGarerParking"),
 		GESTIONVEHICULE("GestionVehicule"),
-		INFOSEGARERVOIRIE("infoSeGarerVoirie");
+		INFOSEGARERVOIRIE("infoSeGarerVoirie"),
+		HISTORIQUESTATIONNEMENT("HistoriqueStationnement");
 
 		VUE(String designation) {
 		}
@@ -132,6 +133,7 @@ public class FenetrePrincipal extends JFrame {
 			contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
 			contentPane.add(new AjouterVehicule(this), VUE.AJOUTERVEHICULE.name());
 			contentPane.add(new FenRecapitulatif(this), VUE.FENRECAPITULATIF.name());
+			contentPane.add(new HistoriqueStationnement(this), VUE.HISTORIQUESTATIONNEMENT.name());
 		}
 	}
 

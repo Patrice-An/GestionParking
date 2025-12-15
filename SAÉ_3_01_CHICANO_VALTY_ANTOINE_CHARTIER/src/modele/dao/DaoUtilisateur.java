@@ -18,6 +18,7 @@ import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
 import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
 import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
 import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurSelectSeGarer;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 	
@@ -119,7 +120,7 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 
 	public ResultSet garerByUtilisateur(Integer id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Utilisateur> req = new UtilisateurConnection();
+		Requete<Utilisateur> req = new UtilisateurSelectSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, id.toString());
 		ResultSet resSet = stUtil.executeQuery();

@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import vue.FenetrePrincipal;
 import vue.Inscription;
-import vue.SeConnecter;
 import vue.FenetrePrincipal.VUE;
 import modele.Utilisateur;
 import modele.dao.DaoUtilisateur;

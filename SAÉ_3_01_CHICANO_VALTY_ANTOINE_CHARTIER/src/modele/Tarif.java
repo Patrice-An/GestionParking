@@ -35,7 +35,7 @@ public class Tarif {
 
 	@Override
 	public String toString() {
-		return "Tarif [durée=" + durée + ", majoration=" + majoration + "]";
+		return "Durée : " + durée + ", majoration : " + majoration;
 	}
 	
 }

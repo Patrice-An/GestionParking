@@ -1,18 +1,27 @@
 package modele;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import modele.dao.DaoTarif;
 
 public class Zone {
 
     private int id;
     private String couleur;
-    private Set<Tarif> tarifs;
+    private List<Tarif> tarifs;
 
     public Zone(int id, String couleur) {
         this.id = id;
         this.couleur = couleur;
-        this.tarifs = new HashSet<Tarif>();
+        try {
+            this.tarifs = new DaoTarif().findByZone(id);
+            System.out.println(this.toString() + " tarifs nb : " + this.tarifs.size());
+        } catch (SQLException e) {
+            this.tarifs = new ArrayList<Tarif>();
+            e.printStackTrace();
+        }
     }
 
     public int getId() {
@@ -27,8 +36,17 @@ public class Zone {
         this.tarifs.add(t);
     }
 
-    public Set<Tarif> getTarifs() {
+    public List<Tarif> getTarifs() {
         return tarifs;
+    }
+
+    public void setTarifs(List<Tarif> tarifs) {
+        this.tarifs = tarifs;
+    }
+
+    @Override
+    public String toString() {
+        return couleur;
     }
 
 }

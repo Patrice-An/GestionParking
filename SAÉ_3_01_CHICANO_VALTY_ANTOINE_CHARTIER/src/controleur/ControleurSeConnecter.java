@@ -41,6 +41,7 @@ public class ControleurSeConnecter implements ActionListener{
 						utilisateur.addVehicule(v);
 					}
 					fenetrePrincipal.setUtilisateur(utilisateur);
+					fenetrePrincipal.ChargerVueDependante();
 					fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				}
 			} catch (SQLException exception) {

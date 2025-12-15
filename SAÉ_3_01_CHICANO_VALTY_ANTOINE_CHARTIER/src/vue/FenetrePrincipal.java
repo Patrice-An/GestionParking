@@ -20,110 +20,101 @@ import modele.Utilisateur;
 
 public class FenetrePrincipal extends JFrame {
 
-    private JPanel contentPane;
-    private CardLayout layout;
-    private JButton btnPrecedent ;
+	private JPanel contentPane;
+	private CardLayout layout;
+	private JButton btnPrecedent ;
 	private Utilisateur utilisateur;
 
-    public enum VUE {
+	public enum VUE {
 
-        ACCUEIL("accueil"),
-        SECONNECTER("seConnecter"),
-        INSCRIPTION("incription"),
-        CHOIXSEGARER("choixSeGarer"),
-        AJOUTERVEHICULE("AjouterVehicule"),
-        FENRECAPITULATIF("fenRecapitulatif"),
-        INFOSEGARERPARKING("infoSeGarerParking"),
-        GESTIONVEHICULE("GestionVehicule"),
-        INFOSEGARERVOIRIE("infoSeGarerVoirie");
+		ACCUEIL("accueil"),
+		SECONNECTER("seConnecter"),
+		INSCRIPTION("incription"),
+		CHOIXSEGARER("choixSeGarer"),
+		AJOUTERVEHICULE("AjouterVehicule"),
+		FENRECAPITULATIF("fenRecapitulatif"),
+		INFOSEGARERPARKING("infoSeGarerParking"),
+		GESTIONVEHICULE("GestionVehicule"),
+		INFOSEGARERVOIRIE("infoSeGarerVoirie");
 
-        VUE(String designation) {
-        }
-    };
+		VUE(String designation) {
+		}
+	};
 
-    public static void main(String[] args) {
-        FlatDarculaLaf.setup();
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    FenetrePrincipal frame = new FenetrePrincipal();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	public static void main(String[] args) {
+		FlatDarculaLaf.setup();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FenetrePrincipal frame = new FenetrePrincipal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    public FenetrePrincipal() {
-    	
-    	ControleurFenetrePrincipal controleur = new ControleurFenetrePrincipal(this);
-        // --- Icone ---
-        try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {
-            if (imgStream != null) {
-                BufferedImage img = ImageIO.read(imgStream);
-                setIconImage(img);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	public FenetrePrincipal() {
 
-        // --- Paramètres fenêtre ---
-        setTitle("Parkéo");
-        setSize(1080, 720);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ControleurFenetrePrincipal controleur = new ControleurFenetrePrincipal(this);
+		// --- Icone ---
+		try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {
+			if (imgStream != null) {
+				BufferedImage img = ImageIO.read(imgStream);
+				setIconImage(img);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        // Layout principal
-        setLayout(new BorderLayout());
+		// --- Paramètres fenêtre ---
+		setTitle("Parkéo");
+		setSize(1080, 720);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // -------- PANEL NORD --------
-        JPanel panelNord = new JPanel();
-        
-        
-        btnPrecedent = new JButton("← Précédent");
-        panelNord.add(btnPrecedent);
-        add(panelNord, BorderLayout.NORTH);
-        
-        // -------- PANEL CENTER (CardLayout) --------
-        layout = new CardLayout();
-        contentPane = new JPanel(layout);
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        add(contentPane, BorderLayout.CENTER);
+		// Layout principal
+		setLayout(new BorderLayout());
 
-        contentPane.add(new Accueil(this), VUE.ACCUEIL.name());
-        contentPane.add(new SeConnecter(this), VUE.SECONNECTER.name());
-        contentPane.add(new Inscription(this), VUE.INSCRIPTION.name());
-        contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
-        contentPane.add(new AjouterVehicule(this), VUE.AJOUTERVEHICULE.name());
-        contentPane.add(new FenRecapitulatif(this), VUE.FENRECAPITULATIF.name());
-        contentPane.add(new InfoSeGarerParking(this), VUE.INFOSEGARERPARKING.name());
-        contentPane.add(new InfoSeGarerVoirie(this), VUE.INFOSEGARERVOIRIE.name());
-       
+		// -------- PANEL NORD --------
+		JPanel panelNord = new JPanel();
 
-        ChangementVue(VUE.SECONNECTER);
-        btnPrecedent.addActionListener(controleur);
-    }
 
-    public void ChangementVue(VUE fen) {
-        if(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
-        	this.setVisiblePrecedent(true);
-        } else {
-        	this.setVisiblePrecedent(false);
-        }
-        if (this.utilisateur != null) {
-        	 contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
-        }
-        
-    	layout.show(contentPane, fen.name());
-        
-    }
-    
-    public void setVisiblePrecedent(boolean p) {
-    	btnPrecedent.setVisible(p);
-    }
+		btnPrecedent = new JButton("← Précédent");
+		panelNord.add(btnPrecedent);
+		add(panelNord, BorderLayout.NORTH);
 
-    public void setUtilisateur(Utilisateur utilisateur) {
+		// -------- PANEL CENTER (CardLayout) --------
+		layout = new CardLayout();
+		contentPane = new JPanel(layout);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		add(contentPane, BorderLayout.CENTER);
+
+
+		contentPane.add(new SeConnecter(this), VUE.SECONNECTER.name());
+		contentPane.add(new Inscription(this), VUE.INSCRIPTION.name());
+
+
+
+		ChangementVue(VUE.SECONNECTER);
+		btnPrecedent.addActionListener(controleur);
+	}
+
+	public void ChangementVue(VUE fen) {
+		if(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
+			this.setVisiblePrecedent(true);
+		} else {
+			this.setVisiblePrecedent(false);
+		}
+		layout.show(contentPane, fen.name());
+	}
+
+	public void setVisiblePrecedent(boolean p) {
+		btnPrecedent.setVisible(p);
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 
@@ -131,7 +122,18 @@ public class FenetrePrincipal extends JFrame {
 		return utilisateur;
 	}
 
+	public void ChargerVueDependante() {
+		if (this.utilisateur != null) {
+			contentPane.add(new Accueil(this), VUE.ACCUEIL.name());
+			contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
+			contentPane.add(new InfoSeGarerParking(this), VUE.INFOSEGARERPARKING.name());
+			contentPane.add(new InfoSeGarerVoirie(this), VUE.INFOSEGARERVOIRIE.name());
+			contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
+			contentPane.add(new AjouterVehicule(this), VUE.AJOUTERVEHICULE.name());
+			contentPane.add(new FenRecapitulatif(this), VUE.FENRECAPITULATIF.name());
+		}
+	}
 
-	
+
 
 }

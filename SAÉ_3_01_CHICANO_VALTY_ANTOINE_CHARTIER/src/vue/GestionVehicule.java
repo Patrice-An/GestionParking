@@ -28,6 +28,7 @@ public class GestionVehicule extends JPanel {
 	
 	public GestionVehicule(FenetrePrincipal fenetre) {
 		this.fenetre = fenetre;
+		initialize();
 	}
 	/**
 	 * Create the panel.

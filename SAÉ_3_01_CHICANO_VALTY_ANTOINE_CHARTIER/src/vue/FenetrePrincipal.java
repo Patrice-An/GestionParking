@@ -104,6 +104,7 @@ public class FenetrePrincipal extends JFrame {
 	public void ChangementVue(VUE fen) {
 		if(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
 			this.setVisiblePrecedent(true);
+			ChargerVueDependante();
 		} else {
 			this.setVisiblePrecedent(false);
 		}

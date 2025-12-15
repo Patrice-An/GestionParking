@@ -1,14 +1,9 @@
 package vue;
 
 import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
-import modele.Utilisateur;
 import modele.Vehicule;
 
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridBagLayout;

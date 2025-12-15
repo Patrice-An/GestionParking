@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import vue.AjouterVehicule;
@@ -23,20 +24,6 @@ public class ControleurAjouterVehicule implements ActionListener{
 		this.vue = vue;
 	}
 
-	public void actionPerformedButton(JButton b) {
-		if (b.getText().equals("Annuler")) {
-			System.out.println("Action bouton");
-		}
-		System.out.println("Action bouton");
-	}
-	
-	public void actionPerformedField(JTextField f) {
-		System.out.println("action field");
-		f.setText("");
-		
-		
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
@@ -52,9 +39,11 @@ public class ControleurAjouterVehicule implements ActionListener{
 					new DaoVehicule().create(vehicule);
 					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
 					fenetrePrincipal.getUtilisateur().getVehicules();
+					JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
 				} catch(SQLException exception) {
 					exception.printStackTrace();
 				}
+
 				break;
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);

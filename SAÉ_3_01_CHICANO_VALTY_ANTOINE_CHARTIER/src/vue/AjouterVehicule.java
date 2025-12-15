@@ -27,7 +27,7 @@ public class AjouterVehicule extends JPanel{
 	private JTextField txtDésignation;
 	private JTextField ImmatriculationField;
 	private JSpinner hauteurField;
-	private JComboBox<String> typeVehiculeComboBox;
+	private JComboBox<Type_vehicule> typeVehiculeComboBox;
 	private FenetrePrincipal fenetrePrincipal;
 	
 
@@ -114,8 +114,9 @@ public class AjouterVehicule extends JPanel{
 		ImmatriculationField.setColumns(10);
 		ImmatriculationField.addActionListener(controleur);
 		
-		this.typeVehiculeComboBox = new JComboBox<String>();
-		this.typeVehiculeComboBox.setModel(new DefaultComboBoxModel(Type_vehicule.values()));
+		this.typeVehiculeComboBox = new JComboBox<Type_vehicule>();
+		DefaultComboBoxModel<Type_vehicule> typeVehiculeModel = new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values());
+		this.typeVehiculeComboBox.setModel(typeVehiculeModel);
 		PanneauCentre.add(this.typeVehiculeComboBox, "8, 14, fill, top");
 		
 		JButton btnAnnuler = new JButton("Annuler");
@@ -142,7 +143,7 @@ public class AjouterVehicule extends JPanel{
 	}
 
 	public Type_vehicule getTypeVehicule() {
-		return Type_vehicule.valueOf(typeVehiculeComboBox.getModel().getSelectedItem().toString());
+		return (Type_vehicule) typeVehiculeComboBox.getModel().getSelectedItem();
 	}
 
 }

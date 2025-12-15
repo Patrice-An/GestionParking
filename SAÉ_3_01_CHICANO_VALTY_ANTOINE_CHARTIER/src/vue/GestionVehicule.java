@@ -1,14 +1,9 @@
 package vue;
 
 import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
-import modele.Utilisateur;
 import modele.Vehicule;
 
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridBagLayout;
@@ -76,6 +71,12 @@ public class GestionVehicule extends JPanel {
 			gbc_labelImmat.gridx = 0;
 			gbc_labelImmat.gridy = 4;
 			carteInfosVehicule.add(labelImmat, gbc_labelImmat);
+			
+			JLabel labelType = new JLabel(i.getType().toString());
+			GridBagConstraints gbc_labelType = new GridBagConstraints();
+			gbc_labelType.gridx = 0;
+			gbc_labelType.gridy = 4;
+			carteInfosVehicule.add(labelType, gbc_labelType);
 			
 		}
 		

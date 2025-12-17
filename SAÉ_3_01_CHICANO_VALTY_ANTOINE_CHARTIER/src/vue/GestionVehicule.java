@@ -1,25 +1,31 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 import modele.Vehicule;
-
-import javax.swing.JLabel;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import java.awt.Dimension;
+import modele.Zone;
+import modele.dao.DaoUtilisateur;
+import modele.dao.DaoZone;
 
 public class GestionVehicule extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField serachField;
 	private FenetrePrincipal fenetre;
+	private JTextField searchField;
+	private JTable table;
 
 	
 	public GestionVehicule(FenetrePrincipal fenetre) {
@@ -31,59 +37,59 @@ public class GestionVehicule extends JPanel {
 	 * Create the panel.
 	 */
 	public void initialize() {
-		setLayout(new MigLayout("", "[45px,grow][][][][][][][][][][][][][][][]", "[13px][][][grow]"));
+		setLayout(new BorderLayout(0, 0));
 		
-		JLabel TitreLabel = new JLabel("Gestion des véhicules");
-		add(TitreLabel, "cell 0 0 16 1,alignx center,aligny top");
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
 		
-		serachField = new JTextField();
-		add(serachField, "cell 0 2 4 1,growx");
-		serachField.setColumns(10);
+		JLabel Title = new JLabel("Gestion des véhicules");
+		Title.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(Title, BorderLayout.NORTH);
+		
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.WEST);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		searchField = new JTextField();
+		panel_1.add(searchField, BorderLayout.WEST);
+		searchField.setColumns(10);
 		
 		JButton btnSearch = new JButton("Rechercher");
-		add(btnSearch, "cell 4 2");
+		panel_1.add(btnSearch, BorderLayout.CENTER);
 		
-		for (Vehicule i:fenetre.getUtilisateur().getVehicules()) {
-			JPanel carteInfosVehicule = new JPanel();
-			carteInfosVehicule.setBorder(new LineBorder(new Color(0, 0, 0)));
-			add(carteInfosVehicule, "cell 0 3 4 1,growx,aligny center");
-			GridBagLayout gbl_carteInfosVehicule = new GridBagLayout();
-			gbl_carteInfosVehicule.columnWidths = new int[]{0, 0};
-			gbl_carteInfosVehicule.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_carteInfosVehicule.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-			gbl_carteInfosVehicule.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			carteInfosVehicule.setLayout(gbl_carteInfosVehicule);
-			
-			JLabel Labeldesignation = new JLabel(i.getDésignation());
-			GridBagConstraints gbc_Labeldesignation = new GridBagConstraints();
-			gbc_Labeldesignation.insets = new Insets(0, 0, 5, 0);
-			gbc_Labeldesignation.gridx = 0;
-			gbc_Labeldesignation.gridy = 1;
-			carteInfosVehicule.add(Labeldesignation, gbc_Labeldesignation);
-			
-			JLabel labelHauteur = new JLabel(Float.toString(i.getHauteur())+" m");
-			GridBagConstraints gbc_labelHauteur = new GridBagConstraints();
-			gbc_labelHauteur.insets = new Insets(0, 0, 5, 0);
-			gbc_labelHauteur.gridx = 0;
-			gbc_labelHauteur.gridy = 3;
-			carteInfosVehicule.add(labelHauteur, gbc_labelHauteur);
-			
-			JLabel labelImmat = new JLabel(i.getImmatriculation());
-			GridBagConstraints gbc_labelImmat = new GridBagConstraints();
-			gbc_labelImmat.gridx = 0;
-			gbc_labelImmat.gridy = 4;
-			carteInfosVehicule.add(labelImmat, gbc_labelImmat);
-			
-			JLabel labelType = new JLabel(i.getType().toString());
-			GridBagConstraints gbc_labelType = new GridBagConstraints();
-			gbc_labelType.gridx = 0;
-			gbc_labelType.gridy = 5;
-			carteInfosVehicule.add(labelType, gbc_labelType);
-			
-		}
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2, BorderLayout.NORTH);
 		
+		JPanel panel_5 = new JPanel();
+		panel.add(panel_5, BorderLayout.SOUTH);
 		
-
+		JPanel panel_3 = new JPanel();
+		add(panel_3, BorderLayout.WEST);
+		
+		JPanel panel_4 = new JPanel();
+		add(panel_4, BorderLayout.EAST);
+		
+		table = new JTable();
+		DefaultTableModel modele = new DefaultTableModel();
+		modele.addColumn("Désignation");
+		modele.addColumn("Type");
+		modele.addColumn("Hauteur");
+		modele.addColumn("Immatriculation");
+		String[] titleRow = {"Désignation","Type","Hauteur","Immatriculation"};
+		modele.addRow(titleRow);
+		table.setModel(modele);
+		table.getColumnModel().getColumn(3).setPreferredWidth(91);
+		add(table, BorderLayout.CENTER);
+		
+		JPanel panel_6 = new JPanel();
+		add(panel_6, BorderLayout.SOUTH);
+		
+			Set<Vehicule> res = fenetre.getUtilisateur().getVehicules();
+			for (Vehicule i:res) {
+				String[] newRow = {i.getDésignation(), i.getType().toString(), Float.toString(i.getHauteur())+" m", i.getImmatriculation()};
+				modele.addRow(newRow);
+			}
 	}
 
 }

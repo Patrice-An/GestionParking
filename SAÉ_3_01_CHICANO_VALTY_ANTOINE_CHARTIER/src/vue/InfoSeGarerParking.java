@@ -11,19 +11,24 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
+
+import modele.Parking;
 import modele.Type_vehicule;
+import modele.Vehicule;
+import modele.dao.DaoParking;
 
 public class InfoSeGarerParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField SaisieHeureArrive;
 	private JTextField SaisieDuree;
-	private JTextField SaisieImmatriculation;
-	JComboBox<String> DeroulantSelectionParking;
-	JComboBox<Type_vehicule> DeroulantTypeV;
+	private JComboBox<Vehicule> choixVehicule;
+	private JComboBox<Parking> DeroulantSelectionParking;
 	private FenetrePrincipal fenetrePrincipal;
 	/**
 	 * Launch the application.
@@ -77,19 +82,16 @@ public class InfoSeGarerParking extends JPanel {
 		ListeInfos.add(SaisieDuree);
 		SaisieDuree.setColumns(10);
 
-		JLabel LabelTypeVehicule = new JLabel("Type Véhicule :");
-		ListeInfos.add(LabelTypeVehicule);
-
-		DeroulantTypeV = new JComboBox<Type_vehicule>();
-		DeroulantTypeV.setModel(new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values()));
-		ListeInfos.add(DeroulantTypeV);
-
-		JLabel LabelImmatriculation = new JLabel("Plaque Immatriculation :");
+		JLabel LabelImmatriculation = new JLabel("Choix véhicule :");
 		ListeInfos.add(LabelImmatriculation);
 
-		SaisieImmatriculation = new JTextField();
-		ListeInfos.add(SaisieImmatriculation);
-		SaisieImmatriculation.setColumns(10);
+		this.choixVehicule = new JComboBox<Vehicule>();
+		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
+		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
+			vehiculeModel.addElement(v);
+		}
+		this.choixVehicule.setModel(vehiculeModel);
+		ListeInfos.add(choixVehicule);
 
 		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -98,9 +100,16 @@ public class InfoSeGarerParking extends JPanel {
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
 
-		DeroulantSelectionParking = new JComboBox<String>();
-		String[] options = {"JEANNE D'ARC", "CAPITOLE"};
-		DeroulantSelectionParking.setModel(new DefaultComboBoxModel<String>(options));
+		this.DeroulantSelectionParking = new JComboBox<Parking>();
+		DefaultComboBoxModel<Parking> parkingModel = new DefaultComboBoxModel<Parking>();
+		try {
+			for (Parking p : new DaoParking().findAll()) {
+				parkingModel.addElement(p);
+			}
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		DeroulantSelectionParking.setModel(parkingModel);
 		ListeInfos.add(DeroulantSelectionParking);
 
 		JPanel PanneauSud = new JPanel();
@@ -133,23 +142,11 @@ public class InfoSeGarerParking extends JPanel {
 		return SaisieDuree.getText();
 	}
 
-	public String getSaisieImmatriculation() {
-		return SaisieImmatriculation.getText();
+	public JComboBox<Vehicule> getSaisieImmatriculation() {
+		return this.choixVehicule;
 	}
 
 	public String getParking(){
 		return (String) DeroulantSelectionParking.getSelectedItem();
 	}
-
-	public String getDeroulantTypeV() {
-		return DeroulantTypeV.getSelectedItem().toString();
-	}
-
-
-
-
-
-
-
-
 }

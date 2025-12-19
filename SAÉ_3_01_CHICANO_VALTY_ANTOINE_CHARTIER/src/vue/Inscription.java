@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import net.miginfocom.swing.MigLayout;
 
 public class Inscription extends JPanel {
 
@@ -68,48 +69,48 @@ public class Inscription extends JPanel {
 
 		PanneauCentre = new JPanel();
 		this.add(PanneauCentre, BorderLayout.CENTER);
-		PanneauCentre.setLayout(new GridLayout(6, 2, 0, 0));
+		PanneauCentre.setLayout(new MigLayout("", "[210px][][210px]", "[42px][42px][42px][42px][42px][42px]"));
 
 		nomLabel = new JLabel("Nom :");
-		PanneauCentre.add(nomLabel);
-
-		nomField = new JTextField();
-		PanneauCentre.add(nomField);
-		nomField.setColumns(10);
+		PanneauCentre.add(nomLabel, "cell 0 0,alignx left,growy");
+		
+				nomField = new JTextField();
+				PanneauCentre.add(nomField, "cell 2 0,growx,aligny center");
+				nomField.setColumns(10);
 
 		prenomLabel = new JLabel("Prenom :");
-		PanneauCentre.add(prenomLabel);
-
-		prenomField = new JTextField();
-		prenomField.setColumns(10);
-		PanneauCentre.add(prenomField);
+		PanneauCentre.add(prenomLabel, "cell 0 1,alignx left,growy");
+		
+				prenomField = new JTextField();
+				prenomField.setColumns(10);
+				PanneauCentre.add(prenomField, "cell 2 1,growx,aligny center");
 
 		mailLabel = new JLabel("Mail :");
-		PanneauCentre.add(mailLabel);
-
-		mailField = new JTextField();
-		mailField.setColumns(10);
-		PanneauCentre.add(mailField);
+		PanneauCentre.add(mailLabel, "cell 0 2,alignx left,growy");
+		
+				mailField = new JTextField();
+				mailField.setColumns(10);
+				PanneauCentre.add(mailField, "cell 2 2,growx,aligny center");
 
 		naissanceLabel = new JLabel("Naissance :");
-		PanneauCentre.add(naissanceLabel);
-
-		naissanceField = new JTextField();
-		naissanceField.setColumns(10);
-		PanneauCentre.add(naissanceField);
+		PanneauCentre.add(naissanceLabel, "cell 0 3,alignx left,growy");
+		
+				naissanceField = new JTextField();
+				naissanceField.setColumns(10);
+				PanneauCentre.add(naissanceField, "cell 2 3,growx,aligny center");
 
 		telLabel = new JLabel("Numéro de téléphone :");
-		PanneauCentre.add(telLabel);
+		PanneauCentre.add(telLabel, "cell 0 4,alignx left,growy");
 		
 			telField = new JTextField();
 			telField.setColumns(10);
-			PanneauCentre.add(telField);
+			PanneauCentre.add(telField, "cell 2 4,growx,aligny center");
 		
 		pwdLabel = new JLabel("Mot de passe :");
-		PanneauCentre.add(pwdLabel);
+		PanneauCentre.add(pwdLabel, "cell 0 5,alignx left,growy");
 		
 		passwordField = new JPasswordField();
-		PanneauCentre.add(passwordField);
+		PanneauCentre.add(passwordField, "cell 2 5,growx,aligny center");
 
 		PanneauSud = new JPanel();
 		this.add(PanneauSud, BorderLayout.SOUTH);

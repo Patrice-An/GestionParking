@@ -76,7 +76,9 @@ public class HistoriqueStationnement extends JPanel {
 		table.setRowSelectionAllowed(false);
 		table.setModel(modele);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setSize(new Dimension(1200, 400));
+		table.setPreferredSize(new Dimension(800, 400));
+		table.setMinimumSize(new Dimension(400, 200));
+		table.setMaximumSize(new Dimension(1200, 600));
 		paneCenter.add(table);
 
 	}

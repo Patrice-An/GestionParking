@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.ChoixSeGarer;
-import main.java.vue.InfoSeGarerParking;
-import main.java.vue.InfoSeGarerVoirie;
-import main.java.vue.SeConnecter;
+import vue.ChoixSeGarer;
+import vue.FenetrePrincipal;
+import vue.FenetrePrincipal.VUE;
 
 public class ControleurSeGarer implements ActionListener{
-
 	
 	private ChoixSeGarer vue;
+	private FenetrePrincipal fenetrePrincipal;
 	
-	public ControleurSeGarer(ChoixSeGarer vue) {
+	public ControleurSeGarer(ChoixSeGarer vue, FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
 		this.vue = vue;
 	}
 	
@@ -23,11 +23,10 @@ public class ControleurSeGarer implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Parking") {
-			vue.dispose();
-			new InfoSeGarerParking();
+			fenetrePrincipal.ChangementVue(VUE.INFOSEGARERPARKING);
+			
 		} else if (b.getText() == "Voirie") {
-			vue.dispose();
-			new InfoSeGarerVoirie();
+			fenetrePrincipal.ChangementVue(VUE.INFOSEGARERVOIRIE);
 		}
 	}
 

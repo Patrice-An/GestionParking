@@ -1,18 +1,18 @@
-package modele.dao.requetes.requeteUtilisateur;
+package modele.dao.requetes.requeteVehicule;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import modele.Utilisateur;
+import modele.Vehicule;
 import modele.dao.requetes.Requete;
 
-public class SelectIdUtilisateurByNomAndPassword extends Requete<Utilisateur> {
+public class VehiculeExistePourUser extends Requete<Vehicule> {
 
     private String requete;
 
-	@Override
-	public String requete() {
-		this.requete = "select * from utilisateur where nom = ? and password = ?";
+    @Override
+	public String requete()  {
+		this.requete = "select * from véhicule where immat = ? and id_utilisateur = ?";
 		return this.requete;
 	}
 	

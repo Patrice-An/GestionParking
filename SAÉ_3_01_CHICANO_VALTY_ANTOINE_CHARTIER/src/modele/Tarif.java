@@ -2,13 +2,19 @@ package modele;
 
 public class Tarif {
 
+	private int id;
 	private float durée;
-	private float majoration;
+	private int majoration;
 	
-	public Tarif(float durée, float majoration) {
+	public Tarif(int id, float durée, int majoration) {
 		super();
+		this.id = id;
 		this.durée = durée;
 		this.majoration = majoration;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public float getDurée() {
@@ -23,8 +29,13 @@ public class Tarif {
 		return majoration;
 	}
 
-	public void setMajoration(float majoration) {
+	public void setMajoration(int majoration) {
 		this.majoration = majoration;
+	}
+
+	@Override
+	public String toString() {
+		return "Durée : " + durée + ", majoration : " + majoration;
 	}
 	
 }

@@ -5,27 +5,27 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.ChoixSeGarer;
-import main.java.vue.FenRecapitulatif;
-import main.java.vue.InfoSeGarerParking;
+import vue.FenetrePrincipal;
+import vue.InfoSeGarerParking;
+import vue.FenetrePrincipal.VUE;
 
 public class ControleurInfosSeGarerParking implements ActionListener{
 	
 	private InfoSeGarerParking vue;
+	private FenetrePrincipal fenetrePrincipal;
 	
-	public ControleurInfosSeGarerParking (InfoSeGarerParking vue) {
+	public ControleurInfosSeGarerParking (InfoSeGarerParking vue, FenetrePrincipal fenetrePrincipal) {
 		this.vue = vue;
+		this.fenetrePrincipal = fenetrePrincipal;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText() == "Annuler") {
-			vue.dispose();
-			new ChoixSeGarer();
+			fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 		}else if(b.getText() == "Valider") {
-			vue.dispose();
-			new FenRecapitulatif(vue.getSaisieHeureArrive(), vue.getSaisieDuree() , vue.getSaisieImmatriculation(), vue.getParking());
+			fenetrePrincipal.ChangementVue(VUE.FENRECAPITULATIF);
 		}
 	}
 

@@ -5,13 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import main.java.vue.FenRecapitulatif;
+import vue.FenRecapitulatif;
+import vue.FenetrePrincipal;
+import vue.FenetrePrincipal.VUE;
 
 public class ControleurRecapitulatif implements ActionListener {
 
 	
 	FenRecapitulatif vue;
-	
+	private FenetrePrincipal fenetrePrincipal;
 	
 	public ControleurRecapitulatif(FenRecapitulatif vue) {
 		this.vue = vue;
@@ -21,7 +23,8 @@ public class ControleurRecapitulatif implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton btn = (JButton) e.getSource();
 		if(btn.getText().equals("Confirmer")) {
-			vue.dispose();
+			
+			fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 		}
 	}
 	

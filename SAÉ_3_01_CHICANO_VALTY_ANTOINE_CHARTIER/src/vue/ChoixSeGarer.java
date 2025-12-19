@@ -1,46 +1,29 @@
-package main.java.vue;
+package vue;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import controleur.ControleurSeGarer;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-public class ChoixSeGarer extends JFrame {
+public class ChoixSeGarer extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    private FenetrePrincipal fenetrePrincipal;
 
-    public ChoixSeGarer() {
+    public ChoixSeGarer(FenetrePrincipal fenetrePrincipal) {
+    	this.fenetrePrincipal = fenetrePrincipal;
         FlatDarculaLaf.setup();
         initialize();
-        setVisible(true);
     }
 
     private void initialize() {
-        ControleurSeGarer controler = new ControleurSeGarer(this);
+        ControleurSeGarer controler = new ControleurSeGarer(this, fenetrePrincipal);
 
-        // --- Paramètres fenêtre ---
-        setTitle("Choix de la zone - Parkéo");
+       
         setSize(1080, 720);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // --- Icone corrigée ---
-        try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {
-            if (imgStream != null) {
-                BufferedImage img = ImageIO.read(imgStream);
-                setIconImage(img);
-            } else {
-                System.err.println("Erreur : Ressource /images/Parkeo_Logo.png introuvable.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         // --- Bandeau supérieur ---
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -76,7 +59,7 @@ public class ChoixSeGarer extends JFrame {
         gbc.gridy = 1;
         centerPanel.add(btnVoirie, gbc);
 
-        add(centerPanel, BorderLayout.CENTER);
+        this.add(centerPanel, BorderLayout.CENTER);
     }
 
     /**

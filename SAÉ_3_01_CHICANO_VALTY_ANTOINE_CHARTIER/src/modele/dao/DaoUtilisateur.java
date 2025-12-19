@@ -13,8 +13,12 @@ import java.util.Optional;
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.EmailUnique;
 import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
 import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurSelectSeGarer;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 	
@@ -77,14 +81,49 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		return resList;
 	}
 
-	@Override
-	public void update(Utilisateur utilisateur) {
-		
+	public Optional<Utilisateur> utilisateurCanConnect(String email, String password) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurConnection();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, email, password);
+		ResultSet resSet = stUtil.executeQuery();
+		if (resSet.next()) {
+			return Optional.of(createInstance(resSet));
+		} else {
+			return Optional.empty();
+		}
+	}
+
+	public boolean emailUnique(String email) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new EmailUnique();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, email);
+		ResultSet resSet = stUtil.executeQuery();
+		return !resSet.next();
 	}
 
 	@Override
-	public boolean deleteById(Integer id) {
-		return true;
+	public void update(Utilisateur utilisateur) throws SQLException {
+		//todo
 	}
 
+	@Override
+	public boolean deleteById(Integer id) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurDeleteById();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, String.valueOf(id));
+		int res = stUtil.executeUpdate();
+		return res > 0;
+	}
+
+	public ResultSet garerByUtilisateur(Integer id) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Utilisateur> req = new UtilisateurSelectSeGarer();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, id.toString());
+		ResultSet resSet = stUtil.executeQuery();
+		return resSet;
+	}
 }

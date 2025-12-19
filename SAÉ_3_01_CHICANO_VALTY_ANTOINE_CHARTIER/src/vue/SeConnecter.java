@@ -1,15 +1,12 @@
-package main.java.vue;
+package vue;
 
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 
@@ -19,48 +16,35 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSplitPane;
 
-public class SeConnecter extends JFrame {
-
-	private JPanel contentPane;
+public class SeConnecter extends JPanel {
+	
 	private JTextField champNomUtilisateur;
 	private JLabel lblNewLabel;
 	private JPasswordField passwordField;
 	private JSplitPane splitPane;
 	private JButton btnInscrire;
-	
-	public static void main(String[] args) {
+	private FenetrePrincipal fenetrePrincipal;
+		
+	public SeConnecter(FenetrePrincipal fenetrePrincipal) {
+		this.fenetrePrincipal = fenetrePrincipal;
 		FlatDarculaLaf.setup();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SeConnecter frame = new SeConnecter();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		initialize();
 	}
 
-	public SeConnecter() {
-		ControleurSeConnecter controler = new ControleurSeConnecter(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 200);
+	private void initialize() {
+		ControleurSeConnecter controler = new ControleurSeConnecter(this, fenetrePrincipal);
 
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0};
-		contentPane.setLayout(gbl_contentPane);
+		GridBagLayout gbl_this = new GridBagLayout();
+		gbl_this.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
+		gbl_this.columnWeights = new double[]{0.0, 0.0, 1.0};
+		this.setLayout(gbl_this);
 
 		lblNewLabel = new JLabel("SE CONNECTER");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 2;
 		gbc_lblNewLabel.gridy = 0;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		this.add(lblNewLabel, gbc_lblNewLabel);
 
 
 
@@ -70,7 +54,7 @@ public class SeConnecter extends JFrame {
 		gbc_usernameLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_usernameLabel.gridx = 0;
 		gbc_usernameLabel.gridy = 1;
-		contentPane.add(usernameLabel, gbc_usernameLabel);
+		this.add(usernameLabel, gbc_usernameLabel);
 
 		champNomUtilisateur = new JTextField();
 
@@ -79,14 +63,14 @@ public class SeConnecter extends JFrame {
 		gbc_champNomUtilisateur.insets = new Insets(0, 0, 5, 0);
 		gbc_champNomUtilisateur.gridx = 2;
 		gbc_champNomUtilisateur.gridy = 1;
-		contentPane.add(champNomUtilisateur, gbc_champNomUtilisateur);
+		this.add(champNomUtilisateur, gbc_champNomUtilisateur);
 
 		JLabel passwordLabel = new JLabel("Mot de passe :");
 		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
 		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordLabel.gridx = 0;
 		gbc_passwordLabel.gridy = 2;
-		contentPane.add(passwordLabel, gbc_passwordLabel);
+		this.add(passwordLabel, gbc_passwordLabel);
 
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -94,7 +78,7 @@ public class SeConnecter extends JFrame {
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 2;
-		contentPane.add(passwordField, gbc_passwordField);
+		this.add(passwordField, gbc_passwordField);
 
 		splitPane = new JSplitPane();
 		splitPane.setEnabled(false);
@@ -103,7 +87,7 @@ public class SeConnecter extends JFrame {
 		gbc_splitPane.gridx = 2;
 		gbc_splitPane.gridy = 3;
 		splitPane.setDividerSize(0);
-		contentPane.add(splitPane, gbc_splitPane);
+		this.add(splitPane, gbc_splitPane);
 
 		JButton boutonConnexion = new JButton("Se connecter");
 		splitPane.setRightComponent(boutonConnexion);
@@ -113,14 +97,13 @@ public class SeConnecter extends JFrame {
 		splitPane.setLeftComponent(btnInscrire);
 		btnInscrire.addActionListener(controler);
 
-		this.setLocationRelativeTo(null);
 	}
 	
-	public JTextField getChampNomUtilisateur() {
-		return champNomUtilisateur;
+	public String getEmail() {
+		return champNomUtilisateur.getText();
 	}
 
-	public char[] getPasswordField() {
-		return passwordField.getPassword();
+	public String getPassword() {
+		return String.valueOf(passwordField.getPassword());
 	}
 }

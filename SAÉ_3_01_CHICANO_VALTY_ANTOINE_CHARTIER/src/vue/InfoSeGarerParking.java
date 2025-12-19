@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 import javax.swing.JComboBox;
 import java.awt.Font;
@@ -25,8 +26,7 @@ import modele.dao.DaoParking;
 public class InfoSeGarerParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField SaisieHeureArrive;
-	private JTextField SaisieDuree;
+	private JLabel SaisieHeureArrive;
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Parking> DeroulantSelectionParking;
 	private FenetrePrincipal fenetrePrincipal;
@@ -71,19 +71,13 @@ public class InfoSeGarerParking extends JPanel {
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
 		ListeInfos.add(LabelHeureArrive);
 
-		SaisieHeureArrive = new JTextField();
+		LocalTime current = LocalTime.now();
+		this.SaisieHeureArrive = new JLabel(String.valueOf(current.getHour()) + "H" + String.valueOf(current.getMinute()));
+
 		ListeInfos.add(SaisieHeureArrive);
-		SaisieHeureArrive.setColumns(10);
 
-		JLabel LabelHeureDepart = new JLabel("Heure de départ :");
-		ListeInfos.add(LabelHeureDepart);
-
-		SaisieDuree = new JTextField();
-		ListeInfos.add(SaisieDuree);
-		SaisieDuree.setColumns(10);
-
-		JLabel LabelImmatriculation = new JLabel("Choix véhicule :");
-		ListeInfos.add(LabelImmatriculation);
+		JLabel LabelChoixVehicule = new JLabel("Choix véhicule :");
+		ListeInfos.add(LabelChoixVehicule);
 
 		this.choixVehicule = new JComboBox<Vehicule>();
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
@@ -130,8 +124,6 @@ public class InfoSeGarerParking extends JPanel {
 		JButton btnAnnuler = new JButton("Annuler");
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
-
-
 	}
 
 	public String getSaisieHeureArrive() {

@@ -42,7 +42,6 @@ public class ControleurAjouterVehicule implements ActionListener{
 				} catch(SQLException exception) {
 					exception.printStackTrace();
 				}
-
 				break;
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);

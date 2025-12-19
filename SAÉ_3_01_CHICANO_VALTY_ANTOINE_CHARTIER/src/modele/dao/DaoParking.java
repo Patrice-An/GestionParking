@@ -27,7 +27,8 @@ public class DaoParking implements Dao<Parking, Integer> {
             curseur.getFloat(4),
             curseur.getInt(5),
             curseur.getInt(6),
-            curseur.getInt(7));
+            curseur.getInt(7)
+		);
 	}
 
 	@Override

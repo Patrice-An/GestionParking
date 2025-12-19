@@ -164,4 +164,9 @@ public class Parking {
 		this.tarifs.add(t);
 	}
 
+	@Override
+	public String toString() {
+		return this.nom + " - " + this.adresse;
+	}
+
 }

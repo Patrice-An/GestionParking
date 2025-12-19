@@ -71,7 +71,7 @@ public class FenetrePrincipal extends JFrame {
 
 		// --- Paramètres fenêtre ---
 		setTitle("Parkéo");
-		setSize(1080, 720);
+		setSize(500, 720);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

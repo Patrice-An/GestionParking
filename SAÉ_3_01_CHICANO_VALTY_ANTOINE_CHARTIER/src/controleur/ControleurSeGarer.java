@@ -11,8 +11,8 @@ import vue.FenetrePrincipal.VUE;
 
 public class ControleurSeGarer implements ActionListener{
 	
-	private ChoixSeGarer vue;
 	private FenetrePrincipal fenetrePrincipal;
+	private ChoixSeGarer vue;
 	
 	public ControleurSeGarer(ChoixSeGarer vue, FenetrePrincipal fenetrePrincipal) {
 		this.fenetrePrincipal = fenetrePrincipal;
@@ -22,11 +22,13 @@ public class ControleurSeGarer implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText() == "Parking") {
-			fenetrePrincipal.ChangementVue(VUE.INFOSEGARERPARKING);
-			
-		} else if (b.getText() == "Voirie") {
-			fenetrePrincipal.ChangementVue(VUE.INFOSEGARERVOIRIE);
+		switch (b.getText()) {
+			case "Parking":
+				fenetrePrincipal.ChangementVue(VUE.INFOSEGARERPARKING);
+				break;
+			case "Voirie":
+				fenetrePrincipal.ChangementVue(VUE.INFOSEGARERVOIRIE);
+				break;
 		}
 	}
 

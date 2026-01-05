@@ -15,11 +15,12 @@ import modele.dao.DaoVehicule;
 
 public class ControleurAjouterVehicule implements ActionListener{
 	
-	private static AjouterVehicule vue;
 	private FenetrePrincipal fenetrePrincipal;
+	private static AjouterVehicule vue;
+
 	public ControleurAjouterVehicule(AjouterVehicule vue, FenetrePrincipal fenetrePrincipal) {
-		this.vue = vue;
 		this.fenetrePrincipal = fenetrePrincipal;
+		this.vue = vue;
 	}
 
 	@Override
@@ -48,6 +49,4 @@ public class ControleurAjouterVehicule implements ActionListener{
 				break;
 		}
 	}
-
-	
 }

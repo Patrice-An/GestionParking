@@ -5,14 +5,11 @@ import controleur.ControleurInscription;
 import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 public class Inscription extends JPanel {
 
@@ -97,6 +94,9 @@ public class Inscription extends JPanel {
 		naissanceField = new JTextField();
 		naissanceField.setColumns(10);
 		PanneauCentre.add(naissanceField);
+		//UtilDateModel model = new UtilDateModel();
+		//JDatePanelImpl datePanel = new JDatePanelImpl(model);
+		//JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
 
 		telLabel = new JLabel("Numéro de téléphone :");
 		PanneauCentre.add(telLabel);

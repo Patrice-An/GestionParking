@@ -6,27 +6,26 @@ import javax.swing.border.EmptyBorder;
 import controleur.ControleurInfosSeGarerParking;
 
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.sql.SQLException;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 
 import modele.Parking;
-import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.DaoParking;
 
 public class InfoSeGarerParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JLabel SaisieHeureArrive;
+	private LocalDateTime heureArrivée;
+	private JLabel LabelHeureArrivée;
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Parking> DeroulantSelectionParking;
 	private FenetrePrincipal fenetrePrincipal;
@@ -45,7 +44,6 @@ public class InfoSeGarerParking extends JPanel {
 	 */
 	public void initialize() {
 		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this, fenetrePrincipal);
-
 
 		setBounds(100, 100, 450, 300);
 
@@ -71,10 +69,9 @@ public class InfoSeGarerParking extends JPanel {
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
 		ListeInfos.add(LabelHeureArrive);
 
-		LocalTime current = LocalTime.now();
-		this.SaisieHeureArrive = new JLabel(String.valueOf(current.getHour()) + "H" + String.valueOf(current.getMinute()));
-
-		ListeInfos.add(SaisieHeureArrive);
+		this.heureArrivée = LocalDateTime.now();
+		this.LabelHeureArrivée = new JLabel(String.valueOf(this.heureArrivée.getHour()) + "H" + String.valueOf(this.heureArrivée.getMinute()));
+		ListeInfos.add(LabelHeureArrivée);
 
 		JLabel LabelChoixVehicule = new JLabel("Choix véhicule :");
 		ListeInfos.add(LabelChoixVehicule);
@@ -87,9 +84,9 @@ public class InfoSeGarerParking extends JPanel {
 		this.choixVehicule.setModel(vehiculeModel);
 		ListeInfos.add(choixVehicule);
 
-		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
-		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ListeInfos.add(LabelSelectionVoirie);
+		JLabel LabelSelectionParking = new JLabel("Sélectionnez le Parking utilisé :");
+		LabelSelectionParking.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ListeInfos.add(LabelSelectionParking);
 
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel);
@@ -127,11 +124,7 @@ public class InfoSeGarerParking extends JPanel {
 	}
 
 	public String getSaisieHeureArrive() {
-		return SaisieHeureArrive.getText();
-	}
-
-	public String getSaisieDuree() {
-		return SaisieDuree.getText();
+		return this.LabelHeureArrivée.getText();
 	}
 
 	public JComboBox<Vehicule> getSaisieImmatriculation() {

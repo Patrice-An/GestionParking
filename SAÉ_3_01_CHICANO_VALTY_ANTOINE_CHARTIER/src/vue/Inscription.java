@@ -4,12 +4,16 @@ import controleur.ControleurInscription;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.border.EmptyBorder;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+
 
 public class Inscription extends JPanel {
 
@@ -90,13 +94,17 @@ public class Inscription extends JPanel {
 
 		naissanceLabel = new JLabel("Naissance :");
 		PanneauCentre.add(naissanceLabel);
-
-		naissanceField = new JTextField();
-		naissanceField.setColumns(10);
-		PanneauCentre.add(naissanceField);
-		//UtilDateModel model = new UtilDateModel();
-		//JDatePanelImpl datePanel = new JDatePanelImpl(model);
-		//JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+		
+		UtilDateModel model = new UtilDateModel();
+		java.util.Properties p = new java.util.Properties();
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, null);
+		PanneauCentre.add(datePicker);
+		
+		//Date selectedDate = (Date) datePicker.getModel().getValue();
+		
+		//model.setDate(1990, 8, 24);
+		
 
 		telLabel = new JLabel("Numéro de téléphone :");
 		PanneauCentre.add(telLabel);

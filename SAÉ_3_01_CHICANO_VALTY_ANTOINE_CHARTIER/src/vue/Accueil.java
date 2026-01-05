@@ -71,7 +71,7 @@ public class Accueil extends JPanel {
         JButton btnPartir = createBigButton("Quitter l'application");
         btnPartir.addActionListener(controleur);
 
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         centerPanel.add(btnPartir, gbc);
 
         // ----- BOUTON : Historique Stationnement
@@ -90,9 +90,13 @@ public class Accueil extends JPanel {
         JButton btnGererVehicule = createBigButton("Gérer mes Véhicules");
         btnGererVehicule.addActionListener(controleur);
         
-        
         gbc.gridy = 3;
         centerPanel.add(btnGererVehicule,gbc);
+       
+        gbc.gridy = 4;
+        JButton btnListeParking = createBigButton("Parkings disponibles");
+        centerPanel.add(btnListeParking,gbc);
+        btnGererVehicule.addActionListener(controleur);
         
         
 

@@ -96,7 +96,7 @@ public class Accueil extends JPanel {
         gbc.gridy = 4;
         JButton btnListeParking = createBigButton("Parkings disponibles");
         centerPanel.add(btnListeParking,gbc);
-        btnGererVehicule.addActionListener(controleur);
+        btnListeParking.addActionListener(controleur);
         
         
 

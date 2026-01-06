@@ -32,13 +32,13 @@ public class Inscription extends JPanel {
 	private JTextField telField;
 	private JPanel PanneauSud;
 	private JButton btnValider;
-	private JLabel lblDjInscrit;
 	private JButton btnConnection;
 	private JLabel pwdLabel;
 	private JPasswordField passwordField;
 	private JPanel panel;
 	private JPanel panel_1;
 	private FenetrePrincipal fenetrePrincipal;
+	private JLabel label;
 
 	/**
 	 * Launch the application.
@@ -114,36 +114,20 @@ public class Inscription extends JPanel {
 
 		PanneauSud = new JPanel();
 		this.add(PanneauSud, BorderLayout.SOUTH);
-		GridBagLayout gbl_PanneauSud = new GridBagLayout();
-		gbl_PanneauSud.columnWidths = new int[]{141, 141, 141, 0};
-		gbl_PanneauSud.rowHeights = new int[]{23, 0};
-		gbl_PanneauSud.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_PanneauSud.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		PanneauSud.setLayout(gbl_PanneauSud);
-
-		lblDjInscrit = new JLabel("Déjà inscrit ?");
-		GridBagConstraints gbc_lblDjInscrit = new GridBagConstraints();
-		gbc_lblDjInscrit.insets = new Insets(0, 0, 0, 5);
-		gbc_lblDjInscrit.gridx = 0;
-		gbc_lblDjInscrit.gridy = 0;
-		PanneauSud.add(lblDjInscrit, gbc_lblDjInscrit);
+		PanneauSud.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		label = new JLabel("");
+		PanneauSud.add(label);
 
 		btnConnection = new JButton("Connectez-vous");
-		GridBagConstraints gbc_btnConnection = new GridBagConstraints();
-		gbc_btnConnection.fill = GridBagConstraints.BOTH;
-		gbc_btnConnection.insets = new Insets(0, 0, 0, 5);
-		gbc_btnConnection.gridx = 1;
-		gbc_btnConnection.gridy = 0;
-		PanneauSud.add(btnConnection, gbc_btnConnection);
+		btnConnection.setPreferredSize(new Dimension(200, 50));
+		PanneauSud.add(btnConnection);
 		btnConnection.addActionListener(controleur);
 
 
 		btnValider = new JButton("Valider");
-		GridBagConstraints gbc_btnValider = new GridBagConstraints();
-		gbc_btnValider.fill = GridBagConstraints.BOTH;
-		gbc_btnValider.gridx = 2;
-		gbc_btnValider.gridy = 0;
-		PanneauSud.add(btnValider, gbc_btnValider);
+		btnValider.setPreferredSize(new Dimension(200, 50));
+		PanneauSud.add(btnValider);
 		
 		panel = new JPanel();
 		this.add(panel, BorderLayout.WEST);

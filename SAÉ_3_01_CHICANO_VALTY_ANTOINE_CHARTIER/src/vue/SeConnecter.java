@@ -15,13 +15,14 @@ import controleur.ControleurSeConnecter;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSplitPane;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Dimension;
 
 public class SeConnecter extends JPanel {
 	
 	private JTextField champNomUtilisateur;
 	private JLabel lblNewLabel;
 	private JPasswordField passwordField;
-	private JSplitPane splitPane;
 	private JButton btnInscrire;
 	private FenetrePrincipal fenetrePrincipal;
 		
@@ -33,69 +34,34 @@ public class SeConnecter extends JPanel {
 
 	private void initialize() {
 		ControleurSeConnecter controler = new ControleurSeConnecter(this, fenetrePrincipal);
-
-		GridBagLayout gbl_this = new GridBagLayout();
-		gbl_this.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
-		gbl_this.columnWeights = new double[]{0.0, 0.0, 1.0};
-		this.setLayout(gbl_this);
+		setLayout(new MigLayout("", "[84px][331px][]", "[13px][19px][19px][23px][][][][][][][]"));
 
 		lblNewLabel = new JLabel("SE CONNECTER");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 0;
-		this.add(lblNewLabel, gbc_lblNewLabel);
+		this.add(lblNewLabel, "cell 1 0,alignx center,aligny center");
 
 
 
 		JLabel usernameLabel = new JLabel("Nom d'utilisateur :");
-
-		GridBagConstraints gbc_usernameLabel = new GridBagConstraints();
-		gbc_usernameLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_usernameLabel.gridx = 0;
-		gbc_usernameLabel.gridy = 1;
-		this.add(usernameLabel, gbc_usernameLabel);
+		this.add(usernameLabel, "cell 0 1,alignx center,aligny center");
 
 		champNomUtilisateur = new JTextField();
-
-		GridBagConstraints gbc_champNomUtilisateur = new GridBagConstraints();
-		gbc_champNomUtilisateur.fill = GridBagConstraints.HORIZONTAL;
-		gbc_champNomUtilisateur.insets = new Insets(0, 0, 5, 0);
-		gbc_champNomUtilisateur.gridx = 2;
-		gbc_champNomUtilisateur.gridy = 1;
-		this.add(champNomUtilisateur, gbc_champNomUtilisateur);
+		this.add(champNomUtilisateur, "cell 1 1 2 1,growx,aligny center");
 
 		JLabel passwordLabel = new JLabel("Mot de passe :");
-		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
-		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordLabel.gridx = 0;
-		gbc_passwordLabel.gridy = 2;
-		this.add(passwordLabel, gbc_passwordLabel);
+		this.add(passwordLabel, "cell 0 2,alignx center,aligny center");
 
 		passwordField = new JPasswordField();
-		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField.gridx = 2;
-		gbc_passwordField.gridy = 2;
-		this.add(passwordField, gbc_passwordField);
-
-		splitPane = new JSplitPane();
-		splitPane.setEnabled(false);
-		GridBagConstraints gbc_splitPane = new GridBagConstraints();
-		gbc_splitPane.insets = new Insets(0, 0, 5, 0);
-		gbc_splitPane.gridx = 2;
-		gbc_splitPane.gridy = 3;
-		splitPane.setDividerSize(0);
-		this.add(splitPane, gbc_splitPane);
-
-		JButton boutonConnexion = new JButton("Se connecter");
-		splitPane.setRightComponent(boutonConnexion);
-		boutonConnexion.addActionListener(controler);
-
-		btnInscrire = new JButton("S'inscrire");
-		splitPane.setLeftComponent(btnInscrire);
-		btnInscrire.addActionListener(controler);
+		this.add(passwordField, "cell 1 2 2 1,growx,aligny center");
+						
+								btnInscrire = new JButton("S'inscrire");
+								btnInscrire.setPreferredSize(new Dimension(200, 50));
+								add(btnInscrire, "flowx,cell 0 10,alignx left");
+								btnInscrire.addActionListener(controler);
+				
+						JButton boutonConnexion = new JButton("Se connecter");
+						boutonConnexion.setPreferredSize(new Dimension(200, 50));
+						add(boutonConnexion, "cell 2 10,alignx right");
+				boutonConnexion.addActionListener(controler);
 
 	}
 	

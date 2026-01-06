@@ -37,5 +37,8 @@ public class ControleurAccueil implements ActionListener{
 			case "Quitter l'application":
 				fenetrePrincipal.dispose();
 				break;
+			case "Parkings disponibles":
+				fenetrePrincipal.ChangementVue(VUE.LISTEPARKING);
+				break;
 		}}
 	}

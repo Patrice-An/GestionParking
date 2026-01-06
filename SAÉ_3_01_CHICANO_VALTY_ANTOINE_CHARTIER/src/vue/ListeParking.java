@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controleur.ControleurListeParking;
 import modele.Parking;
 import modele.Zone;
 import modele.dao.DaoParking;
@@ -35,6 +36,7 @@ public class ListeParking extends JPanel {
 	 * Create the panel.
 	 */
 	public ListeParking() {
+		ControleurListeParking controleur = new ControleurListeParking(this, this.fenetreprincipal);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel paneCenter = new JPanel();
@@ -53,6 +55,7 @@ public class ListeParking extends JPanel {
 		textField.setColumns(10);
 		
 		JButton btnSearch = new JButton("Rechercher");
+		btnSearch.addActionListener(controleur);
 		paneSearch.add(btnSearch, BorderLayout.EAST);
 		
 		JLabel LabelTitre = new JLabel("Parking disponibles");

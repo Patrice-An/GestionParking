@@ -45,8 +45,9 @@ public class ControleurAjouterVehicule implements ActionListener{
 				}
 				break;
 			case "Annuler":
-				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
+				fenetrePrincipal.ChangementVue(VUE.GESTIONVEHICULE);
 				break;
+				
 		}
 	}
 }

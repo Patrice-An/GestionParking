@@ -96,6 +96,7 @@ public class FenetrePrincipal extends JFrame {
 
 		contentPane.add(new SeConnecter(this), VUE.SECONNECTER.name());
 		contentPane.add(new Inscription(this), VUE.INSCRIPTION.name());
+		contentPane.add(new ListeParking(), VUE.LISTEPARKING.name());
 
 
 

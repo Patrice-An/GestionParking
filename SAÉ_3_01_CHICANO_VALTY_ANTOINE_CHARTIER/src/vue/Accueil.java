@@ -80,12 +80,6 @@ public class Accueil extends JPanel {
 
         gbc.gridy = 2;
         centerPanel.add(btnHistorique, gbc);
-
-        JButton btnGestionVehicule = createBigButton("Ajout Véhicule");
-        btnGestionVehicule.addActionListener(controleur);
-
-        gbc.gridy = 1;
-        centerPanel.add(btnGestionVehicule, gbc);
         
         JButton btnGererVehicule = createBigButton("Gérer mes Véhicules");
         btnGererVehicule.addActionListener(controleur);

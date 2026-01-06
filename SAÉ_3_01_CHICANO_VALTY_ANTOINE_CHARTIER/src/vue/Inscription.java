@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControleurInscription;
+import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;

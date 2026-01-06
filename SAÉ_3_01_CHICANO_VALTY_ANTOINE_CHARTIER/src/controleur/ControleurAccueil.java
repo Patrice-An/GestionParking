@@ -25,9 +25,6 @@ public class ControleurAccueil implements ActionListener{
 			case "Se Garer":
 				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 				break;
-			case "Ajout Véhicule":
-				fenetrePrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
-				break;
 			case "Historique des Stationnements":
 				fenetrePrincipal.ChangementVue(VUE.HISTORIQUESTATIONNEMENT);
 				break;

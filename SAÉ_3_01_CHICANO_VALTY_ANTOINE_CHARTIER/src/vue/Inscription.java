@@ -98,10 +98,11 @@ public class Inscription extends JPanel {
 
 		PanneauCentre.add(naissanceLabel);
 		
-		UtilDateModel model = new UtilDateModel();
+		UtilDateModel modelDate = new UtilDateModel();
 		java.util.Properties p = new java.util.Properties();
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		JDatePanelImpl datePanel = new JDatePanelImpl(modelDate, p);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, null);
+		modelDate.setSelected(true);
 		PanneauCentre.add(datePicker);
 		
 		//Date selectedDate = (Date) datePicker.getModel().getValue();

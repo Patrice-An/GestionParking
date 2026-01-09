@@ -30,9 +30,7 @@ public class ListeParking extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTextField textField;
-	private JPanel paneCenter;
 	private FenetrePrincipal fenetreprincipal;
-	DefaultTableModel modele = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -41,7 +39,7 @@ public class ListeParking extends JPanel {
 		ControleurListeParking controleur = new ControleurListeParking(this, this.fenetreprincipal);
 		setLayout(new BorderLayout(0, 0));
 		
-		paneCenter = new JPanel();
+		JPanel paneCenter = new JPanel();
 		add(paneCenter, BorderLayout.CENTER);
 		paneCenter.setLayout(new BorderLayout(0, 0));
 		
@@ -70,14 +68,7 @@ public class ListeParking extends JPanel {
 		JPanel paneWest = new JPanel();
 		add(paneWest, BorderLayout.WEST);
 		
-		
-		this.faireTableauParking();
-		
-	}
-	
-	public void faireTableauParking() {
-		paneCenter.remove(table);
-		
+		DefaultTableModel modele = new DefaultTableModel();
 		modele.addColumn("Nom");
 		modele.addColumn("Adresse");
 		modele.addColumn("Hauteur");
@@ -106,7 +97,7 @@ public class ListeParking extends JPanel {
 		table.setMinimumSize(new Dimension(400, 200));
 		table.setMaximumSize(new Dimension(1200, 600));
 		paneCenter.add(table);
-		
+
 	}
 
 }

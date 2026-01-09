@@ -104,6 +104,7 @@ public class Inscription extends JPanel {
 				naissanceLabel = new JLabel("Naissance :");
 				
 						PanneauCentre.add(naissanceLabel, "cell 0 3");
+						//naissanceField.setText(datePicker.getDate());
 		
 		//Date selectedDate = (Date) datePicker.getModel().getValue();
 		

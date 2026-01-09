@@ -6,14 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Set;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.table.*;
 
 import controleur.ControleurGestionVehicule;
 import modele.Vehicule;
@@ -91,7 +87,8 @@ public class GestionVehicule extends JPanel {
 		modele.addColumn("Type");
 		modele.addColumn("Hauteur");
 		modele.addColumn("Immatriculation");
-		String[] titleRow = {"Désignation","Type","Hauteur","Immatriculation"};
+		modele.addColumn("");
+		String[] titleRow = {"Désignation","Type","Hauteur","Immatriculation",""};
 		modele.addRow(titleRow);
 		table.setModel(modele);
 		table.getColumnModel().getColumn(3).setPreferredWidth(91);
@@ -102,8 +99,11 @@ public class GestionVehicule extends JPanel {
 		
 			Set<Vehicule> res = fenetre.getUtilisateur().getVehicules();
 			for (Vehicule i:res) {
-				String[] newRow = {i.getDésignation(), i.getType().toString(), Float.toString(i.getHauteur())+" m", i.getImmatriculation()};
+				JButton button = new JButton("Modifier");
+				button.addActionListener(controleur);
+				Object[] newRow = {i.getDésignation(), i.getType().toString(), Float.toString(i.getHauteur())+" m", i.getImmatriculation(), button};
 				modele.addRow(newRow);
+				
 			}
 	}
 

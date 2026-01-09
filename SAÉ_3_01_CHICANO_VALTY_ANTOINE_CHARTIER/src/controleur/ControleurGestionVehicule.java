@@ -29,6 +29,9 @@ public class ControleurGestionVehicule implements ActionListener{
 			break;
 			case "Rechercher":
 				break;
+			case "Modifier":
+				fenPrincipal.ChangementVue(VUE.MODIFIERVEHICULE);
+			break;
 		}
 		
 	}

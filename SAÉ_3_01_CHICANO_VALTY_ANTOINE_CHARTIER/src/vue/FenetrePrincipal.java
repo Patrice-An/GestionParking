@@ -37,6 +37,7 @@ public class FenetrePrincipal extends JFrame {
 		GESTIONVEHICULE("GestionVehicule"),
 		INFOSEGARERVOIRIE("infoSeGarerVoirie"),
 		HISTORIQUESTATIONNEMENT("HistoriqueStationnement"),
+		MODIFIERVEHICULE("ModifierVehicule"),
 		LISTEPARKING("ListeParking");
 
 		VUE(String designation) {

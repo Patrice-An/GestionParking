@@ -24,7 +24,7 @@ public class ControleurListeParking implements ActionListener{
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 		case "Rechercher":
-			vue.repaint();
+			vue.faireTableauParking();
 			break;
 		}
 	}

@@ -83,7 +83,7 @@ public class FenetrePrincipal extends JFrame {
 		JPanel panelNord = new JPanel();
 
 
-		btnPrecedent = new JButton("← Précédent");
+		btnPrecedent = new JButton("Accueil");
 		panelNord.add(btnPrecedent);
 		add(panelNord, BorderLayout.NORTH);
 

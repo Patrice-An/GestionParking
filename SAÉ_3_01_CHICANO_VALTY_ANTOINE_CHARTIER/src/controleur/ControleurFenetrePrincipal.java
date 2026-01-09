@@ -20,7 +20,7 @@ public class ControleurFenetrePrincipal implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText().equals("← Précédent")) {
+		if (b.getText().equals("Accueil")) {
 			vue.ChangementVue(VUE.ACCUEIL);
 		}
 	}

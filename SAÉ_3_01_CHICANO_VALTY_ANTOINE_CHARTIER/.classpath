@@ -7,7 +7,6 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="libraries/flatlaf-3.6.2.jar"/>
 	<classpathentry kind="lib" path="libraries/mariadb-java-client-3.5.6.jar"/>
 	<classpathentry kind="lib" path="libraries/mssql-jdbc-13.2.1.jre8.jar" sourcepath="libraries/mssql-jdbc-13.2.1.jre8-sources.jar">
 		<attributes>

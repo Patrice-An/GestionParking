@@ -21,6 +21,11 @@ import modele.Parking;
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.DaoParking;
+import java.awt.Component;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class InfoSeGarerParking extends JPanel {
 
@@ -66,24 +71,33 @@ public class InfoSeGarerParking extends JPanel {
 
 		JPanel ListeInfos = new JPanel();
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
-		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
+		ListeInfos.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("220px"),
+				ColumnSpec.decode("220px"),},
+			new RowSpec[] {
+				FormSpecs.LABEL_COMPONENT_GAP_ROWSPEC,
+				RowSpec.decode("38px"),
+				RowSpec.decode("38px"),
+				RowSpec.decode("38px"),
+				RowSpec.decode("38px"),
+				RowSpec.decode("38px"),}));
 
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
-		ListeInfos.add(LabelHeureArrive);
+		ListeInfos.add(LabelHeureArrive, "1, 2, fill, fill");
 
 		SaisieHeureArrive = new JTextField();
-		ListeInfos.add(SaisieHeureArrive);
+		ListeInfos.add(SaisieHeureArrive, "2, 2, fill, fill");
 		SaisieHeureArrive.setColumns(10);
 
 		JLabel LabelHeureDepart = new JLabel("Heure de départ :");
-		ListeInfos.add(LabelHeureDepart);
+		ListeInfos.add(LabelHeureDepart, "1, 3, fill, fill");
 
 		SaisieDuree = new JTextField();
-		ListeInfos.add(SaisieDuree);
+		ListeInfos.add(SaisieDuree, "2, 3, fill, fill");
 		SaisieDuree.setColumns(10);
 
 		JLabel LabelImmatriculation = new JLabel("Choix véhicule :");
-		ListeInfos.add(LabelImmatriculation);
+		ListeInfos.add(LabelImmatriculation, "1, 4, fill, fill");
 
 		this.choixVehicule = new JComboBox<Vehicule>();
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
@@ -91,14 +105,14 @@ public class InfoSeGarerParking extends JPanel {
 			vehiculeModel.addElement(v);
 		}
 		this.choixVehicule.setModel(vehiculeModel);
-		ListeInfos.add(choixVehicule);
+		ListeInfos.add(choixVehicule, "2, 4, fill, fill");
 
 		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
 		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ListeInfos.add(LabelSelectionVoirie);
+		ListeInfos.add(LabelSelectionVoirie, "1, 5, fill, fill");
 
 		JLabel lblNewLabel = new JLabel(" ");
-		ListeInfos.add(lblNewLabel);
+		ListeInfos.add(lblNewLabel, "2, 5, fill, fill");
 
 		this.DeroulantSelectionParking = new JComboBox<Parking>();
 		DefaultComboBoxModel<Parking> parkingModel = new DefaultComboBoxModel<Parking>();
@@ -110,7 +124,7 @@ public class InfoSeGarerParking extends JPanel {
 			exception.printStackTrace();
 		}
 		DeroulantSelectionParking.setModel(parkingModel);
-		ListeInfos.add(DeroulantSelectionParking);
+		ListeInfos.add(DeroulantSelectionParking, "1, 6, 2, 1, fill, fill");
 
 		JPanel PanneauSud = new JPanel();
 		this.add(PanneauSud, BorderLayout.SOUTH);

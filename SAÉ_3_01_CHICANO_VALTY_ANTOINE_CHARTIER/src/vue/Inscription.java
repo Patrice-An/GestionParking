@@ -5,17 +5,12 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.swing.border.EmptyBorder;
-
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-
 
 public class Inscription extends JPanel {
 
@@ -29,7 +24,7 @@ public class Inscription extends JPanel {
 	private JLabel mailLabel;
 	private JTextField mailField;
 	private JLabel naissanceLabel;
-	private JTextField naissanceField;
+	private JDatePickerImpl naissancePicker;
 	private JLabel telLabel;
 	private JTextField telField;
 	private JPanel PanneauSud;
@@ -101,9 +96,9 @@ public class Inscription extends JPanel {
 		UtilDateModel modelDate = new UtilDateModel();
 		java.util.Properties p = new java.util.Properties();
 		JDatePanelImpl datePanel = new JDatePanelImpl(modelDate, p);
-		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, null);
+		naissancePicker = new JDatePickerImpl(datePanel, null);
 		modelDate.setSelected(true);
-		PanneauCentre.add(datePicker);
+		PanneauCentre.add(naissancePicker);
 		
 		//Date selectedDate = (Date) datePicker.getModel().getValue();
 		
@@ -160,9 +155,8 @@ public class Inscription extends JPanel {
 		return mailField;
 	}
 
-
-	public JTextField getNaissanceField() {
-		return naissanceField;
+	public JDatePickerImpl getNaissancePicker() {
+		return naissancePicker;
 	}
 
 	public JTextField getTelField() {

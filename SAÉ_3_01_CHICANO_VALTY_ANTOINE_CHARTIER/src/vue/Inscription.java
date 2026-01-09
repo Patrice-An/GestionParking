@@ -93,17 +93,17 @@ public class Inscription extends JPanel {
 				mailField = new JTextField();
 				mailField.setColumns(10);
 				PanneauCentre.add(mailField, "cell 2 2,growx,aligny center");
-
-		naissanceLabel = new JLabel("Naissance :");
-
-		PanneauCentre.add(naissanceLabel);
 		
 		UtilDateModel modelDate = new UtilDateModel();
 		java.util.Properties p = new java.util.Properties();
 		JDatePanelImpl datePanel = new JDatePanelImpl(modelDate, p);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, null);
 		modelDate.setSelected(true);
-		PanneauCentre.add(datePicker);
+		PanneauCentre.add(datePicker, "cell 2 3");
+		
+				naissanceLabel = new JLabel("Naissance :");
+				
+						PanneauCentre.add(naissanceLabel, "cell 0 3");
 		
 		//Date selectedDate = (Date) datePicker.getModel().getValue();
 		

@@ -2,20 +2,12 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Optional;
 import java.util.Set;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
 import controleur.ControleurGestionVehicule;
 import modele.Vehicule;
-import modele.Zone;
-import modele.dao.DaoUtilisateur;
-import modele.dao.DaoZone;
 
 public class GestionVehicule extends JPanel {
 

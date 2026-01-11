@@ -1,9 +1,5 @@
 package vue;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -14,7 +10,6 @@ import controleur.ControleurSeConnecter;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JSplitPane;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Dimension;
 

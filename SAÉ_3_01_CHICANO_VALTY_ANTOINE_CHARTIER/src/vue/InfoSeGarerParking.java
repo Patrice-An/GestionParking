@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import java.sql.SQLException;
 
 import javax.swing.JComboBox;
@@ -18,10 +17,8 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 
 import modele.Parking;
-import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.DaoParking;
-import java.awt.Component;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import modele.Vehicule;
 import vue.FenetrePrincipal;
 import vue.FenetrePrincipal.VUE;
 import vue.GestionVehicule;
@@ -30,7 +31,11 @@ public class ControleurGestionVehicule implements ActionListener{
 			case "Rechercher":
 				break;
 			case "Modifier":
-				fenPrincipal.ChangementVue(VUE.MODIFIERVEHICULE);
+				System.out.println(vue.getBoutonsModif());
+			break;
+			case "Supprimer":
+				System.out.println(vue.getBoutonsSuppr());
+				
 			break;
 		}
 		

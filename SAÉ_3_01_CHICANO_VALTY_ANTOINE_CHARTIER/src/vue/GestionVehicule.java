@@ -1,12 +1,13 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -16,20 +17,47 @@ import modele.Vehicule;
 import modele.Zone;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoZone;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import javax.swing.border.LineBorder;
+import net.miginfocom.swing.MigLayout;
 
 public class GestionVehicule extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private FenetrePrincipal fenetre;
+	private Set<Vehicule> listeVehicule = fenetre.getUtilisateur().getVehicules();
 	private JTextField searchField;
-	private JTable table;
-
+	private int posX = 0;
+	private int posY = 0;
+	private int maxVehiculeParLigne = 3;
+	private List<JButton> boutonsModif = new ArrayList<JButton>();
+	private List<JButton> boutonsSuppr = new ArrayList<JButton>();
 	
 	public GestionVehicule(FenetrePrincipal fenetre) {
 		setMaximumSize(new Dimension(32767, 300));
 		this.fenetre = fenetre;
 		initialize();
 	}
+	
+	
+	public Set<Vehicule> getListeVehicule() {
+		return listeVehicule;
+	}
+
+
+	public List<JButton> getBoutonsModif() {
+		return boutonsModif;
+	}
+
+
+	public List<JButton> getBoutonsSuppr() {
+		return boutonsSuppr;
+	}
+
+
 	/**
 	 * Create the panel.
 	 */
@@ -81,30 +109,59 @@ public class GestionVehicule extends JPanel {
 		JPanel marginRight = new JPanel();
 		add(marginRight, BorderLayout.EAST);
 		
-		table = new JTable();
-		DefaultTableModel modele = new DefaultTableModel();
-		modele.addColumn("Désignation");
-		modele.addColumn("Type");
-		modele.addColumn("Hauteur");
-		modele.addColumn("Immatriculation");
-		modele.addColumn("");
-		String[] titleRow = {"Désignation","Type","Hauteur","Immatriculation",""};
-		modele.addRow(titleRow);
-		table.setModel(modele);
-		table.getColumnModel().getColumn(3).setPreferredWidth(91);
-		add(table, BorderLayout.CENTER);
-		
 		JPanel marginBottom = new JPanel();
 		add(marginBottom, BorderLayout.SOUTH);
 		
-			Set<Vehicule> res = fenetre.getUtilisateur().getVehicules();
-			for (Vehicule i:res) {
-				JButton button = new JButton("Modifier");
-				button.addActionListener(controleur);
-				Object[] newRow = {i.getDésignation(), i.getType().toString(), Float.toString(i.getHauteur())+" m", i.getImmatriculation(), button};
-				modele.addRow(newRow);
+		JScrollPane scrollPane = new JScrollPane();
+		add(scrollPane, BorderLayout.CENTER);
+		
+		JPanel Listevéhicules = new JPanel();
+		scrollPane.setViewportView(Listevéhicules);
+		Listevéhicules.setLayout(new MigLayout("", "[85px,grow][][][]", "[21px]"));
+		
+		
+		for (Vehicule vehiculeIt:listeVehicule) {
+			Box verticalBox = Box.createVerticalBox();
+			verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
+			Listevéhicules.add(verticalBox, "cell "+posX+" "+posY);
 				
+			JTextField LabelDésignation = new JTextField(vehiculeIt.getDésignation());
+			LabelDésignation.setHorizontalAlignment(SwingConstants.CENTER);
+			LabelDésignation.setEnabled(false);
+			verticalBox.add(LabelDésignation);
+				
+			JTextField LabelType = new JTextField(vehiculeIt.getType().toString());
+			LabelType.setEnabled(false);
+			LabelType.setHorizontalAlignment(SwingConstants.CENTER);
+			verticalBox.add(LabelType);
+				
+			JTextField LabelImmat = new JTextField(vehiculeIt.getImmatriculation());
+			LabelImmat.setEnabled(false);
+			LabelImmat.setHorizontalAlignment(SwingConstants.CENTER);
+			verticalBox.add(LabelImmat);
+				
+			JTextField LabelHauteur = new JTextField(Float.toString(vehiculeIt.getHauteur()) + " m");
+			LabelHauteur.setEnabled(false);
+			LabelHauteur.setHorizontalAlignment(SwingConstants.CENTER);
+			verticalBox.add(LabelHauteur);
+				
+			JButton btnModifier = new JButton("Modifier");
+			btnModifier.setName("btnModif"+posX+posY);
+			boutonsModif.add(btnModifier);
+			verticalBox.add(btnModifier);
+			btnModifier.addActionListener(controleur);
+			
+			JButton btnSupprimer = new JButton("Supprimer");
+			btnSupprimer.setName("btnSuppr"+posX+posY);
+			boutonsSuppr.add(btnSupprimer);
+			verticalBox.add(btnSupprimer);
+			btnSupprimer.addActionListener(controleur);
+			if (posX == maxVehiculeParLigne-1) {
+				posX = 0-1;
+				posY += 1;
 			}
+			posX += 1;
+		}
 	}
 
 }

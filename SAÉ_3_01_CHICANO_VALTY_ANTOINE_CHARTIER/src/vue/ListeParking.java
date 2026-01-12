@@ -4,10 +4,8 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -16,10 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controleur.ControleurListeParking;
 import modele.Parking;
-import modele.Zone;
 import modele.dao.DaoParking;
-import modele.dao.DaoUtilisateur;
-import modele.dao.DaoZone;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;

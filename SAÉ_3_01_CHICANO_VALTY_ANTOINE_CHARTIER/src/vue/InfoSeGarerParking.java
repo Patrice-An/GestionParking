@@ -3,35 +3,35 @@ package vue;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controleur.ControleurInfosSeGarerParking;
+import controleur.ControleurInfoSeGarer;
 
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 
 import modele.Parking;
-import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.DaoParking;
-import java.awt.Component;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
+import java.awt.GridLayout;
 
 public class InfoSeGarerParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField SaisieHeureArrive;
-	private JTextField SaisieDuree;
+	private LocalDateTime heureArrive;
+	private JLabel labelHeureArrive;
+	JComboBox<Integer> heuresComboBox;
+	JComboBox<Integer> minutesComboBox;
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Parking> DeroulantSelectionParking;
 	private FenetrePrincipal fenetrePrincipal;
@@ -49,7 +49,7 @@ public class InfoSeGarerParking extends JPanel {
 	 * @return 
 	 */
 	public void initialize() {
-		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this, fenetrePrincipal);
+		ControleurInfoSeGarer controleur = new ControleurInfoSeGarer(this, fenetrePrincipal);
 
 
 		setBounds(100, 100, 450, 300);
@@ -73,11 +73,11 @@ public class InfoSeGarerParking extends JPanel {
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
 		ListeInfos.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("220px"),
-				ColumnSpec.decode("220px"),},
+				ColumnSpec.decode("220px:grow"),},
 			new RowSpec[] {
 				FormSpecs.LABEL_COMPONENT_GAP_ROWSPEC,
 				RowSpec.decode("38px"),
-				RowSpec.decode("38px"),
+				RowSpec.decode("38px:grow"),
 				RowSpec.decode("38px"),
 				RowSpec.decode("38px"),
 				RowSpec.decode("38px"),}));
@@ -85,16 +85,38 @@ public class InfoSeGarerParking extends JPanel {
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
 		ListeInfos.add(LabelHeureArrive, "1, 2, fill, fill");
 
-		SaisieHeureArrive = new JTextField();
-		ListeInfos.add(SaisieHeureArrive, "2, 2, fill, fill");
-		SaisieHeureArrive.setColumns(10);
+		heureArrive = LocalDateTime.now();
+		labelHeureArrive = new JLabel(heureArrive.getHour()+":"+heureArrive.getMinute());
+		ListeInfos.add(labelHeureArrive, "2, 2, fill, fill");
 
-		JLabel LabelHeureDepart = new JLabel("Heure de départ :");
-		ListeInfos.add(LabelHeureDepart, "1, 3, fill, fill");
+		JLabel LabelDurée = new JLabel("Durée :");
+		ListeInfos.add(LabelDurée, "1, 3, left, fill");
+		
+		JPanel saisieDureePanel = new JPanel();
+		ListeInfos.add(saisieDureePanel, "2, 3, fill, fill");
+		saisieDureePanel.setLayout(new GridLayout(2, 2, 0, 0));
+		
+		JLabel dureeHeureLabel = new JLabel("Heures");
+		saisieDureePanel.add(dureeHeureLabel);
+		
+		JLabel dureeMinuteLabel = new JLabel("Minutes");
+		saisieDureePanel.add(dureeMinuteLabel);
+		
+		heuresComboBox = new JComboBox<Integer>();
+		DefaultComboBoxModel<Integer> heuresModel = new DefaultComboBoxModel<Integer>();
+		for (int heure = 0; heure <= 10; heure++) {
+			heuresModel.addElement(heure);
+		}
+		heuresComboBox.setModel(heuresModel);
+		saisieDureePanel.add(heuresComboBox);
 
-		SaisieDuree = new JTextField();
-		ListeInfos.add(SaisieDuree, "2, 3, fill, fill");
-		SaisieDuree.setColumns(10);
+		minutesComboBox = new JComboBox<Integer>();
+		DefaultComboBoxModel<Integer> minutesModel = new DefaultComboBoxModel<Integer>();
+		for (int minute = 0; minute <= 45; minute+=15) {
+			minutesModel.addElement(minute);
+		}
+		minutesComboBox.setModel(minutesModel);
+		saisieDureePanel.add(minutesComboBox);
 
 		JLabel LabelImmatriculation = new JLabel("Choix véhicule :");
 		ListeInfos.add(LabelImmatriculation, "1, 4, fill, fill");
@@ -145,22 +167,26 @@ public class InfoSeGarerParking extends JPanel {
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
 
-
 	}
 
-	public String getSaisieHeureArrive() {
-		return SaisieHeureArrive.getText();
+	public LocalDateTime getHeureArrive() {
+		return heureArrive;
 	}
 
-	public String getSaisieDuree() {
-		return SaisieDuree.getText();
+	public JComboBox<Integer> getHeuresComboBox() {
+		return heuresComboBox;
 	}
 
-	public JComboBox<Vehicule> getSaisieImmatriculation() {
-		return this.choixVehicule;
+	public JComboBox<Integer> getMinutesComboBox() {
+		return minutesComboBox;
 	}
 
-	public String getParking(){
-		return (String) DeroulantSelectionParking.getSelectedItem();
+	public JComboBox<Vehicule> getChoixVehicule() {
+		return choixVehicule;
 	}
+
+	public JComboBox<Parking> getDeroulantSelectionParking() {
+		return DeroulantSelectionParking;
+	}
+
 }

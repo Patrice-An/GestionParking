@@ -3,6 +3,7 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.swing.table.*;
 
 import controleur.ControleurGestionVehicule;
 import modele.Vehicule;
+
 import modele.Zone;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoZone;
@@ -23,6 +25,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.border.LineBorder;
 import net.miginfocom.swing.MigLayout;
+
 
 public class GestionVehicule extends JPanel {
 

@@ -35,7 +35,8 @@ public class Tarif {
 
 	@Override
 	public String toString() {
-		return "Durée : " + durée + ", majoration : " + majoration;
+		String dureeAffichage = String.valueOf((int)Math.floor(durée)) + "H" + String.valueOf((int)((durée - Math.floor(durée))*60f)) + "M";
+		return "Durée : " + dureeAffichage + ", tarif : " + majoration + "€";
 	}
 	
 }

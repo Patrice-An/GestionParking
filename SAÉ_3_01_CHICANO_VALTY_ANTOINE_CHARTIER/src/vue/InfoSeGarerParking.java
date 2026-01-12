@@ -3,10 +3,9 @@ package vue;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controleur.ControleurInfosSeGarerParking;
+import controleur.ControleurInfoSeGarer;
 
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -24,7 +23,6 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 public class InfoSeGarerParking extends JPanel {
@@ -32,6 +30,8 @@ public class InfoSeGarerParking extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private LocalDateTime heureArrive;
 	private JLabel labelHeureArrive;
+	JComboBox<Integer> heuresComboBox;
+	JComboBox<Integer> minutesComboBox;
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Parking> DeroulantSelectionParking;
 	private FenetrePrincipal fenetrePrincipal;
@@ -49,7 +49,7 @@ public class InfoSeGarerParking extends JPanel {
 	 * @return 
 	 */
 	public void initialize() {
-		ControleurInfosSeGarerParking controleur = new ControleurInfosSeGarerParking(this, fenetrePrincipal);
+		ControleurInfoSeGarer controleur = new ControleurInfoSeGarer(this, fenetrePrincipal);
 
 
 		setBounds(100, 100, 450, 300);
@@ -102,7 +102,7 @@ public class InfoSeGarerParking extends JPanel {
 		JLabel dureeMinuteLabel = new JLabel("Minutes");
 		saisieDureePanel.add(dureeMinuteLabel);
 		
-		JComboBox<Integer> heuresComboBox = new JComboBox<Integer>();
+		heuresComboBox = new JComboBox<Integer>();
 		DefaultComboBoxModel<Integer> heuresModel = new DefaultComboBoxModel<Integer>();
 		for (int heure = 0; heure <= 10; heure++) {
 			heuresModel.addElement(heure);
@@ -110,7 +110,7 @@ public class InfoSeGarerParking extends JPanel {
 		heuresComboBox.setModel(heuresModel);
 		saisieDureePanel.add(heuresComboBox);
 
-		JComboBox<Integer> minutesComboBox = new JComboBox<Integer>();
+		minutesComboBox = new JComboBox<Integer>();
 		DefaultComboBoxModel<Integer> minutesModel = new DefaultComboBoxModel<Integer>();
 		for (int minute = 0; minute <= 45; minute+=15) {
 			minutesModel.addElement(minute);
@@ -167,18 +167,26 @@ public class InfoSeGarerParking extends JPanel {
 		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
 
-
 	}
 
-	public String getSaisieDuree() {
-		return SaisieDuree.getText();
+	public LocalDateTime getHeureArrive() {
+		return heureArrive;
 	}
 
-	public JComboBox<Vehicule> getSaisieImmatriculation() {
-		return this.choixVehicule;
+	public JComboBox<Integer> getHeuresComboBox() {
+		return heuresComboBox;
 	}
 
-	public String getParking(){
-		return (String) DeroulantSelectionParking.getSelectedItem();
+	public JComboBox<Integer> getMinutesComboBox() {
+		return minutesComboBox;
 	}
+
+	public JComboBox<Vehicule> getChoixVehicule() {
+		return choixVehicule;
+	}
+
+	public JComboBox<Parking> getDeroulantSelectionParking() {
+		return DeroulantSelectionParking;
+	}
+
 }

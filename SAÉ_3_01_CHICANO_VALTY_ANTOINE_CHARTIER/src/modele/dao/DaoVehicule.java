@@ -11,7 +11,9 @@ import java.util.Optional;
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
+import modele.dao.requetes.requeteUtilisateur.UpdateUtilisateur;
 import modele.dao.requetes.requeteVehicule.CreateVehicule;
+import modele.dao.requetes.requeteVehicule.UpdateVehicule;
 import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
 import modele.dao.requetes.requeteVehicule.VehiculeExistePourUser;
 import modele.dao.requetes.requeteVehicule.VehiculeFindByUser;
@@ -97,6 +99,16 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 
 	@Override
 	public void update(Vehicule vehicule) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Vehicule> req = new UpdateVehicule();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(
+			stUtil,
+			String.valueOf(vehicule.getHauteur()),
+			vehicule.getDésignation(),
+			vehicule.getType().name()
+		);
+		stUtil.executeUpdate();
 	}
 
 	@Override

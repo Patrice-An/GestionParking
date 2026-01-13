@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -82,12 +83,13 @@ public class DaoZone implements Dao<Zone, Integer> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Zone> req = new ZoneSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		req.parametres(
 			stUtil,
 			String.valueOf(id_zone),
 			immat,
-			"2025-12-15 14:30:00",
-			"2025-12-15 16:00:00",
+			heureArrivée.format(formatter),
+			heureSortie.format(formatter),
 			String.valueOf(place),
 			String.valueOf(borne)
 		);

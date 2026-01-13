@@ -6,6 +6,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,19 +62,22 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 			case "Valider":
 				if (fenetrePrincipal.getUtilisateur().getVehicules().size() < 1) {
 					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					Vehicule vehicule = (Vehicule) vue.getComboVehicule().getModel().getSelectedItem();
-					Zone zone = (Zone) vue.getComboZone().getModel().getSelectedItem();
-					LocalDateTime heureArrivée = LocalDateTime.now();
-					LocalDateTime heureSortie = LocalDateTime.now();
-					int place = 0;
-					byte borne = 0;
-					try {
-						new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivée, heureSortie, place, borne);
-						JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
-					} catch(SQLException exception) {
-						exception.printStackTrace();
-					}
+					return;
+				}
+				Vehicule vehicule = (Vehicule) vue.getComboVehicule().getModel().getSelectedItem();
+				Zone zone = (Zone) vue.getComboZone().getModel().getSelectedItem();
+				Tarif tarif = (Tarif) vue.getComboTarif().getSelectedItem();
+				LocalDateTime heureArrivée = LocalDateTime.now();
+				LocalDateTime heureSortie = LocalDateTime.now();
+				heureSortie = heureSortie.plusHours((long)Math.floor(tarif.getDurée()));
+				heureSortie = heureSortie.plusMinutes((long)((tarif.getDurée() - Math.floor(tarif.getDurée()))*60f));
+				int place = 0;
+				byte borne = 0;
+				try {
+					new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivée, heureSortie, place, borne);
+					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+				} catch(SQLException exception) {
+					exception.printStackTrace();
 				}
 				break;
 			case "Annuler":

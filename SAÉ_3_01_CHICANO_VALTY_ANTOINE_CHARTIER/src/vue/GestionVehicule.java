@@ -31,33 +31,22 @@ public class GestionVehicule extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private FenetrePrincipal fenetre;
-	private Set<Vehicule> listeVehicule = fenetre.getUtilisateur().getVehicules();
+	private Set<Vehicule> listeVehicule;
 	private JTextField searchField;
 	private int posX = 0;
 	private int posY = 0;
 	private int maxVehiculeParLigne = 3;
-	private List<JButton> boutonsModif = new ArrayList<JButton>();
-	private List<JButton> boutonsSuppr = new ArrayList<JButton>();
 	
 	public GestionVehicule(FenetrePrincipal fenetre) {
 		setMaximumSize(new Dimension(32767, 300));
 		this.fenetre = fenetre;
+		this.listeVehicule = fenetre.getUtilisateur().getVehicules();
 		initialize();
 	}
 	
 	
 	public Set<Vehicule> getListeVehicule() {
 		return listeVehicule;
-	}
-
-
-	public List<JButton> getBoutonsModif() {
-		return boutonsModif;
-	}
-
-
-	public List<JButton> getBoutonsSuppr() {
-		return boutonsSuppr;
 	}
 
 
@@ -149,15 +138,16 @@ public class GestionVehicule extends JPanel {
 			verticalBox.add(LabelHauteur);
 				
 			JButton btnModifier = new JButton("Modifier");
-			btnModifier.setName("btnModif"+posX+posY);
-			boutonsModif.add(btnModifier);
 			verticalBox.add(btnModifier);
+			btnModifier.putClientProperty("vehicule", vehiculeIt);
+			btnModifier.putClientProperty("désignation", LabelDésignation);
+			btnModifier.putClientProperty("type", LabelType);
+			btnModifier.putClientProperty("hauteur", LabelHauteur);
 			btnModifier.addActionListener(controleur);
 			
 			JButton btnSupprimer = new JButton("Supprimer");
-			btnSupprimer.setName("btnSuppr"+posX+posY);
-			boutonsSuppr.add(btnSupprimer);
 			verticalBox.add(btnSupprimer);
+			btnSupprimer.putClientProperty("vehicule", vehiculeIt);
 			btnSupprimer.addActionListener(controleur);
 			if (posX == maxVehiculeParLigne-1) {
 				posX = 0-1;

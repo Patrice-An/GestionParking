@@ -2,43 +2,64 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import modele.Vehicule;
+import modele.dao.DaoVehicule;
 import vue.FenetrePrincipal;
 import vue.FenetrePrincipal.VUE;
 import vue.GestionVehicule;
 
-public class ControleurGestionVehicule implements ActionListener{
+public class ControleurGestionVehicule implements ActionListener {
 
 	private FenetrePrincipal fenPrincipal;
 	private GestionVehicule vue;
-	
+
 	public ControleurGestionVehicule(GestionVehicule vue, FenetrePrincipal fenPrincipal) {
 		this.fenPrincipal = fenPrincipal;
 		this.vue = vue;
 	}
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
+		Vehicule vehicule = (Vehicule) b.getClientProperty("vehicule");
+		DaoVehicule dao = new DaoVehicule();
 		switch (b.getText()) {
-			case "Ajouter un véhicule" :
+		case "Ajouter un véhicule":
 			fenPrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
 			break;
-			case "Rechercher":
-				break;
-			case "Modifier":
-				System.out.println(vue.getBoutonsModif());
+		case "Rechercher":
 			break;
-			case "Supprimer":
-				System.out.println(vue.getBoutonsSuppr());
-				
+		case "Modifier":
+			System.out.println(vehicule);
+			JTextField designation = (JTextField) b.getClientProperty("désignation");
+			JTextField type = (JTextField) b.getClientProperty("type");
+			JTextField hauteur = (JTextField) b.getClientProperty("hauteur");
+
+			// Activation des champs
+			designation.setEnabled(true);
+			type.setEnabled(true);
+			hauteur.setEnabled(true);
+
+			break;
+		case "Supprimer":
+			System.out.println(vehicule);
+			try {
+				dao.deleteById(vehicule.getImmatriculation()); 
+				JOptionPane.showMessageDialog(null, "Le véhicule a bien été supprimé");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 			break;
 		}
-		
+
 	}
 
 }

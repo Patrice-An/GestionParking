@@ -25,7 +25,8 @@ import modele.dao.DaoZone;
 public class HistoriqueStationnement extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	private JTable parkingTable;
+	private JTable zoneTable;
     private FenetrePrincipal fenetreprincipal;
 
 	/**
@@ -56,39 +57,64 @@ public class HistoriqueStationnement extends JPanel {
 		JPanel paneCenter = new JPanel();
 		add(paneCenter, BorderLayout.CENTER);
 		
-		DefaultTableModel modele = new DefaultTableModel();
-		modele.addColumn("Zone");
-		modele.addColumn("Parking");
-		modele.addColumn("Véhicule");
-		modele.addColumn("Arrivée");
-		modele.addColumn("Sortie");
-		String[] titleRow = {"Zone", "Parking", "Véhicule", "Arrivée", "Sortie"};
-		modele.addRow(titleRow);
+		DefaultTableModel modeleTableParking = new DefaultTableModel();
+		modeleTableParking.addColumn("Zone");
+		modeleTableParking.addColumn("Parking");
+		modeleTableParking.addColumn("Véhicule");
+		modeleTableParking.addColumn("Arrivée");
+		modeleTableParking.addColumn("Sortie");
+		String[] titleRow = {"Parking", "Véhicule", "Arrivée", "Sortie"};
+		modeleTableParking.addRow(titleRow);
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
 			while (res.next()) {
-				Optional<Zone> zone = new DaoZone().findById(res.getInt(1));
 				Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
-				if (zone.isPresent()) {
-					String[] newRow = {zone.get().getCouleur(), "Parking", res.getString(3), res.getString(5), res.getString(6)};
-					modele.addRow(newRow);
-				} else if (parking.isPresent()) {
-					String[] newRow = {"Zone", parking.get().getNom(), res.getString(3), res.getString(5), res.getString(6)};
-					modele.addRow(newRow);
+				if (parking.isPresent()) {
+					String[] newRow = {parking.get().getNom(), res.getString(3), res.getString(5), res.getString(6)};
+					modeleTableParking.addRow(newRow);
 				}
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		table.setModel(modele);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setPreferredSize(new Dimension(800, 400));
-		table.setMinimumSize(new Dimension(400, 200));
-		table.setMaximumSize(new Dimension(1200, 600));
-		paneCenter.add(table);
+		parkingTable = new JTable();
+		parkingTable.setRowSelectionAllowed(false);
+		parkingTable.setModel(modeleTableParking);
+		parkingTable.setBorder(new LineBorder(new Color(0, 0, 0)));
+		parkingTable.setPreferredSize(new Dimension(800, 400));
+		parkingTable.setMinimumSize(new Dimension(400, 200));
+		parkingTable.setMaximumSize(new Dimension(1200, 600));
+		paneCenter.add(parkingTable);
 
+
+		DefaultTableModel modeleTableZone = new DefaultTableModel();
+		modeleTableZone.addColumn("Zone");
+		modeleTableZone.addColumn("Parking");
+		modeleTableZone.addColumn("Véhicule");
+		modeleTableZone.addColumn("Arrivée");
+		modeleTableZone.addColumn("Sortie");
+		titleRow = new String[] {"Zone", "Véhicule", "Arrivée", "Sortie"};
+		modeleTableZone.addRow(titleRow);
+		try {
+			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
+			while (res.next()) {
+				Optional<Zone> zone = new DaoZone().findById(res.getInt(1));
+				if (zone.isPresent()) {
+					String[] newRow = {zone.get().getCouleur(), res.getString(3), res.getString(5), res.getString(6)};
+					modeleTableZone.addRow(newRow);
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		zoneTable = new JTable();
+		zoneTable.setRowSelectionAllowed(false);
+		zoneTable.setModel(modeleTableZone);
+		zoneTable.setBorder(new LineBorder(new Color(0, 0, 0)));
+		zoneTable.setPreferredSize(new Dimension(800, 400));
+		zoneTable.setMinimumSize(new Dimension(400, 200));
+		zoneTable.setMaximumSize(new Dimension(1200, 600));
+		paneCenter.add(zoneTable);
 	}
 
 }

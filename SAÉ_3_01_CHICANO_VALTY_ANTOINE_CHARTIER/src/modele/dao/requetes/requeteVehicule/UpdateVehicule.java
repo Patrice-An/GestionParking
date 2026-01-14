@@ -21,7 +21,6 @@ public class UpdateVehicule extends Requete<Vehicule> {
 		prSt.setString(1, id[0]);
 		prSt.setString(2, id[1]);
 		prSt.setString(3, id[2]);
-        
     }
 
 }

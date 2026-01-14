@@ -1,5 +1,5 @@
 package modele.test;
 
-public class testTarif {
+public class TestTarif {
 
 }

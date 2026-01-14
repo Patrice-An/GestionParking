@@ -1,5 +1,5 @@
 package modele.test;
 
-public class testUtilisateur {
+public class TestUtilisateur {
 
 }

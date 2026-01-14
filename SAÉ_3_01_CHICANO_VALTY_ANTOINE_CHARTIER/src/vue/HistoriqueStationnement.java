@@ -16,7 +16,9 @@ import java.awt.Dimension;
 
 import javax.swing.table.DefaultTableModel;
 
+import modele.Parking;
 import modele.Zone;
+import modele.dao.DaoParking;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoZone;
 
@@ -65,9 +67,16 @@ public class HistoriqueStationnement extends JPanel {
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
 			while (res.next()) {
-				Optional<Zone> z = new DaoZone().findById(res.getInt(1));
-				String[] newRow = {z.get().getCouleur(), "Parking", res.getString(3), res.getString(5), res.getString(6)};
-				modele.addRow(newRow);
+				Optional<Zone> zone = new DaoZone().findById(res.getInt(1));
+				// Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
+				if (zone.isPresent()) {
+					String[] newRow = {zone.get().getCouleur(), "Parking", res.getString(3), res.getString(5), res.getString(6)};
+					modele.addRow(newRow);
+				}
+				// else if (parking.isPresent()) {
+				// 	String[] newRow = {"Zone", parking.get().getNom(), res.getString(3), res.getString(5), res.getString(6)};
+				// 	modele.addRow(newRow);
+				// }
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

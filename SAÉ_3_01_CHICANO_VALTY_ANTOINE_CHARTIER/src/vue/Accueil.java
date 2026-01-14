@@ -64,20 +64,13 @@ public class Accueil extends JPanel {
         JButton btnSeGarer = createBigButton("Se Garer");
         btnSeGarer.addActionListener(controleur);
 
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         centerPanel.add(btnSeGarer, gbc);
-
-        // ----- BOUTON : Partir -----
-        JButton btnPartir = createBigButton("Quitter l'application");
-        btnPartir.addActionListener(controleur);
-
-        gbc.gridy = 5;
-        centerPanel.add(btnPartir, gbc);
-
+        
         // ----- BOUTON : Historique Stationnement
         JButton btnHistorique = createBigButton("Historique des Stationnements");
         btnHistorique.addActionListener(controleur);
-
+        
         gbc.gridy = 2;
         centerPanel.add(btnHistorique, gbc);
         
@@ -86,12 +79,23 @@ public class Accueil extends JPanel {
         
         gbc.gridy = 3;
         centerPanel.add(btnGererVehicule,gbc);
-       
+        
         gbc.gridy = 4;
         JButton btnListeParking = createBigButton("Parkings disponibles");
         centerPanel.add(btnListeParking,gbc);
         btnListeParking.addActionListener(controleur);
-        
+
+        gbc.gridy = 5;
+        JButton btnGestionAbonnement = createBigButton("Gestion abonnement");
+        centerPanel.add(btnGestionAbonnement, gbc);
+        btnGestionAbonnement.addActionListener(controleur);
+
+        // ----- BOUTON : Partir -----
+        JButton btnPartir = createBigButton("Quitter l'application");
+        btnPartir.addActionListener(controleur);
+
+        gbc.gridy = 6;
+        centerPanel.add(btnPartir, gbc);
         
 
         // Ajouter le panneau central

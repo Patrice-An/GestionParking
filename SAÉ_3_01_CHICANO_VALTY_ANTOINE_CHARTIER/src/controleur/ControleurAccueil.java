@@ -31,11 +31,14 @@ public class ControleurAccueil implements ActionListener{
 			case "Gérer mes Véhicules":
 				fenetrePrincipal.ChangementVue(VUE.GESTIONVEHICULE);
 				break;
-			case "Quitter l'application":
-				fenetrePrincipal.dispose();
-				break;
 			case "Parkings disponibles":
 				fenetrePrincipal.ChangementVue(VUE.LISTEPARKING);
+				break;
+			case "Gestion abonnement":
+				fenetrePrincipal.ChangementVue(VUE.GESTION_ABONNEMENT);
+				break;
+			case "Quitter l'application":
+				fenetrePrincipal.dispose();
 				break;
 		}}
 	}

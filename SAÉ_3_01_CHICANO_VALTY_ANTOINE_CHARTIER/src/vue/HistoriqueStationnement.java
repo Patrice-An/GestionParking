@@ -68,15 +68,14 @@ public class HistoriqueStationnement extends JPanel {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
 			while (res.next()) {
 				Optional<Zone> zone = new DaoZone().findById(res.getInt(1));
-				// Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
+				Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
 				if (zone.isPresent()) {
 					String[] newRow = {zone.get().getCouleur(), "Parking", res.getString(3), res.getString(5), res.getString(6)};
 					modele.addRow(newRow);
+				} else if (parking.isPresent()) {
+					String[] newRow = {"Zone", parking.get().getNom(), res.getString(3), res.getString(5), res.getString(6)};
+					modele.addRow(newRow);
 				}
-				// else if (parking.isPresent()) {
-				// 	String[] newRow = {"Zone", parking.get().getNom(), res.getString(3), res.getString(5), res.getString(6)};
-				// 	modele.addRow(newRow);
-				// }
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

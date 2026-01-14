@@ -16,8 +16,8 @@ import modele.dao.requetes.Requete;
 import modele.dao.requetes.requeteParking.ParkingDeleteById;
 import modele.dao.requetes.requeteParking.ParkingSeGarer;
 import modele.dao.requetes.requeteParking.ParkingSelectAll;
+import modele.dao.requetes.requeteParking.ParkingSelectById;
 import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
-import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
 
 public class DaoParking implements Dao<Parking, Integer> {
 
@@ -53,14 +53,14 @@ public class DaoParking implements Dao<Parking, Integer> {
 	@Override
 	public Optional<Parking> findById(Integer id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
-		Requete<Parking> req = new SelectUtilisateurById();
+		Requete<Parking> req = new ParkingSelectById();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, id.toString());
 		ResultSet res = stUtil.executeQuery();
 		if (res.next()) {
 			return Optional.of(this.createInstance(res));
 		} else {
-			return Optional.of(null);
+			return Optional.empty();
 		}
 	}
 	

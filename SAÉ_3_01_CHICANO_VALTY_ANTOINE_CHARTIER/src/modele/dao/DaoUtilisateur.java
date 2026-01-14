@@ -64,7 +64,7 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		if (res.next()) {
 			return Optional.of(this.createInstance(res));
 		} else {
-			return Optional.of(null);
+			return Optional.empty();
 		}
 	}
 	

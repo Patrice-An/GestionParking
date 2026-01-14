@@ -56,7 +56,7 @@ public class DaoTransport implements Dao<Transport, Integer> {
 		if (res.next()) {
 			return Optional.of(this.createInstance(res));
 		} else {
-			return Optional.of(null);
+			return Optional.empty();
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class DaoTransport implements Dao<Transport, Integer> {
 		if (resSet.next()) {
 			return Optional.of(createInstance(resSet));
 		} else {
-			return Optional.of(null);
+			return Optional.empty();
 		}
 	}
 

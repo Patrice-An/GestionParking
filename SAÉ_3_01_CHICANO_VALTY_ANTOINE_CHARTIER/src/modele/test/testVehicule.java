@@ -8,7 +8,7 @@ import org.junit.Test;
 import modele.Type_vehicule;
 import modele.Vehicule;
 
-public class testVehicule {
+public class TestVehicule {
 
     private Vehicule vehicule;
 

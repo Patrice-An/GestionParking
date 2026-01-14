@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import modele.Tarif;
 
-public class testTarif {
+public class TestTarif {
 
     private Tarif tarif;
 

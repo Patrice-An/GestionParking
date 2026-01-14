@@ -58,7 +58,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		if (res.next()) {
 			return Optional.of(this.createInstance(res));
 		} else {
-			return Optional.of(null);
+			return Optional.empty();
 		}
 	}
 	

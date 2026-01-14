@@ -2,11 +2,15 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import modele.Parking;
+import modele.Vehicule;
+import modele.dao.DaoParking;
 import vue.FenetrePrincipal;
 import vue.FenetrePrincipal.VUE;
 import vue.InfoSeGarerParking;
@@ -33,8 +37,20 @@ public class ControleurInfoSeGarer implements ActionListener {
 					return;
 				}
 				Parking parking = (Parking) vue.getDeroulantSelectionParking().getModel().getSelectedItem();
-				int plane = 0;
+				Vehicule vehicule = (Vehicule) vue.getChoixVehicule().getModel().getSelectedItem();
+				int place = 0;
 				byte borne = 0;
+				LocalDateTime heureArrivée = LocalDateTime.now();
+				LocalDateTime heureSortie = heureArrivée;
+				heureSortie.plusMinutes(minute);
+				heureSortie.plusHours(heure);
+				try {
+					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivée, heureSortie, place, borne);
+					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+					fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
+				} catch(SQLException exception) {
+					exception.printStackTrace();
+				}
 				break;
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);

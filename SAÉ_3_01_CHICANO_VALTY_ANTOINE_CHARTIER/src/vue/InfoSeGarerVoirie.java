@@ -57,7 +57,7 @@ public class InfoSeGarerVoirie extends JPanel {
 		this.add(PanneauCentre, BorderLayout.CENTER);
 		PanneauCentre.setLayout(new BorderLayout(0, 0));
 
-		JLabel TitreDonnees = new JLabel("Renseignez les données pour la simulation");
+		JLabel TitreDonnees = new JLabel("Sélectionner un véhicule");
 		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
 		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
 		

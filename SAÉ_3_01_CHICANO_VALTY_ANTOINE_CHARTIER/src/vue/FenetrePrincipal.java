@@ -126,7 +126,6 @@ public class FenetrePrincipal extends JFrame {
 	}
 
 	private void chargerVueDependante() {
-		if (this.utilisateur != null) {
 			accueil = new Accueil(this);
 			gestionVehicule = new GestionVehicule(this);
 			infoSeGarerParking = new InfoSeGarerParking(this);
@@ -143,7 +142,7 @@ public class FenetrePrincipal extends JFrame {
 			contentPane.add(fenRecapitulatif, VUE.FENRECAPITULATIF.name());
 			contentPane.add(historiqueStationnement, VUE.HISTORIQUESTATIONNEMENT.name());
 			contentPane.add(gestionAbonnement, VUE.GESTION_ABONNEMENT.name());
-		}
+		
 	}
 
 	public void refresh() {

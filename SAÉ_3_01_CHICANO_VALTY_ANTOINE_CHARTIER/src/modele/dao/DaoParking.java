@@ -92,7 +92,7 @@ public class DaoParking implements Dao<Parking, Integer> {
 		return res > 0;
 	}
 
-	public void seGarerParking(int id_parking, String immat, LocalDateTime heureArrivée, LocalDateTime heureSortie, int place, byte borne) throws SQLException {
+	public void seGarerParking(int id_parking, String immat, LocalDateTime heureArrivée, int place, byte borne) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Parking> req = new ParkingSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
@@ -102,7 +102,7 @@ public class DaoParking implements Dao<Parking, Integer> {
 			String.valueOf(id_parking),
 			immat,
 			heureArrivée.format(formatter),
-			heureSortie.format(formatter),
+			null,
 			String.valueOf(place),
 			String.valueOf(borne)
 		);

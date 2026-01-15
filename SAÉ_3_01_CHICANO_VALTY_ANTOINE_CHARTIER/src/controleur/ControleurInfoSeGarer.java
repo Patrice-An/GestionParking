@@ -30,22 +30,13 @@ public class ControleurInfoSeGarer implements ActionListener {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 			case "Valider":
-				int heure = (Integer) vue.getHeuresComboBox().getModel().getSelectedItem();
-				int minute = (Integer) vue.getMinutesComboBox().getModel().getSelectedItem();
-				if (heure == 0 && minute == 0) {
-					JOptionPane.showMessageDialog(null, "Veuillez sélectionner une durée", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
 				Parking parking = (Parking) vue.getDeroulantSelectionParking().getModel().getSelectedItem();
 				Vehicule vehicule = (Vehicule) vue.getChoixVehicule().getModel().getSelectedItem();
 				int place = 0;
 				byte borne = 0;
 				LocalDateTime heureArrivée = LocalDateTime.now();
-				LocalDateTime heureSortie = heureArrivée;
-				heureSortie.plusMinutes(minute);
-				heureSortie.plusHours(heure);
 				try {
-					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivée, heureSortie, place, borne);
+					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivée, place, borne);
 					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 					fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 				} catch(SQLException exception) {

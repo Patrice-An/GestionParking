@@ -23,15 +23,12 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
-import java.awt.GridLayout;
 
 public class InfoSeGarerParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private LocalDateTime heureArrive;
 	private JLabel labelHeureArrive;
-	JComboBox<Integer> heuresComboBox;
-	JComboBox<Integer> minutesComboBox;
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Parking> DeroulantSelectionParking;
 	private FenetrePrincipal fenetrePrincipal;
@@ -76,11 +73,10 @@ public class InfoSeGarerParking extends JPanel {
 				ColumnSpec.decode("220px:grow"),},
 			new RowSpec[] {
 				FormSpecs.LABEL_COMPONENT_GAP_ROWSPEC,
-				RowSpec.decode("38px"),
-				RowSpec.decode("38px:grow"),
-				RowSpec.decode("38px"),
-				RowSpec.decode("38px"),
-				RowSpec.decode("38px"),}));
+				RowSpec.decode("125px"),
+				RowSpec.decode("125px"),
+				RowSpec.decode("125px"),
+				RowSpec.decode("125px"),}));
 
 		JLabel LabelHeureArrive = new JLabel("Heure d'arrivée :");
 		ListeInfos.add(LabelHeureArrive, "1, 2, fill, fill");
@@ -89,37 +85,8 @@ public class InfoSeGarerParking extends JPanel {
 		labelHeureArrive = new JLabel(heureArrive.getHour()+":"+heureArrive.getMinute());
 		ListeInfos.add(labelHeureArrive, "2, 2, fill, fill");
 
-		JLabel LabelDurée = new JLabel("Durée :");
-		ListeInfos.add(LabelDurée, "1, 3, left, fill");
-		
-		JPanel saisieDureePanel = new JPanel();
-		ListeInfos.add(saisieDureePanel, "2, 3, fill, fill");
-		saisieDureePanel.setLayout(new GridLayout(2, 2, 0, 0));
-		
-		JLabel dureeHeureLabel = new JLabel("Heures");
-		saisieDureePanel.add(dureeHeureLabel);
-		
-		JLabel dureeMinuteLabel = new JLabel("Minutes");
-		saisieDureePanel.add(dureeMinuteLabel);
-		
-		heuresComboBox = new JComboBox<Integer>();
-		DefaultComboBoxModel<Integer> heuresModel = new DefaultComboBoxModel<Integer>();
-		for (int heure = 0; heure <= 10; heure++) {
-			heuresModel.addElement(heure);
-		}
-		heuresComboBox.setModel(heuresModel);
-		saisieDureePanel.add(heuresComboBox);
-
-		minutesComboBox = new JComboBox<Integer>();
-		DefaultComboBoxModel<Integer> minutesModel = new DefaultComboBoxModel<Integer>();
-		for (int minute = 0; minute <= 45; minute+=15) {
-			minutesModel.addElement(minute);
-		}
-		minutesComboBox.setModel(minutesModel);
-		saisieDureePanel.add(minutesComboBox);
-
-		JLabel LabelImmatriculation = new JLabel("Choix véhicule :");
-		ListeInfos.add(LabelImmatriculation, "1, 4, fill, fill");
+		JLabel labelChoixVehicule = new JLabel("Choix véhicule :");
+		ListeInfos.add(labelChoixVehicule, "1, 3, fill, fill");
 
 		this.choixVehicule = new JComboBox<Vehicule>();
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
@@ -127,11 +94,11 @@ public class InfoSeGarerParking extends JPanel {
 			vehiculeModel.addElement(v);
 		}
 		this.choixVehicule.setModel(vehiculeModel);
-		ListeInfos.add(choixVehicule, "2, 4, fill, fill");
+		ListeInfos.add(choixVehicule, "2, 3, fill, fill");
 
-		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez le Parking utilisé :");
-		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ListeInfos.add(LabelSelectionVoirie, "1, 5, fill, fill");
+		JLabel LabelSelectionParking = new JLabel("Sélectionnez le Parking utilisé :");
+		LabelSelectionParking.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ListeInfos.add(LabelSelectionParking, "1, 4, fill, fill");
 
 		JLabel lblNewLabel = new JLabel(" ");
 		ListeInfos.add(lblNewLabel, "2, 5, fill, fill");
@@ -146,7 +113,7 @@ public class InfoSeGarerParking extends JPanel {
 			exception.printStackTrace();
 		}
 		DeroulantSelectionParking.setModel(parkingModel);
-		ListeInfos.add(DeroulantSelectionParking, "1, 6, 2, 1, fill, fill");
+		ListeInfos.add(DeroulantSelectionParking, "1, 5, 2, 1, fill, fill");
 
 		JPanel PanneauSud = new JPanel();
 		this.add(PanneauSud, BorderLayout.SOUTH);
@@ -171,14 +138,6 @@ public class InfoSeGarerParking extends JPanel {
 
 	public LocalDateTime getHeureArrive() {
 		return heureArrive;
-	}
-
-	public JComboBox<Integer> getHeuresComboBox() {
-		return heuresComboBox;
-	}
-
-	public JComboBox<Integer> getMinutesComboBox() {
-		return minutesComboBox;
 	}
 
 	public JComboBox<Vehicule> getChoixVehicule() {

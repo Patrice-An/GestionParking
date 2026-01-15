@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +35,8 @@ public class HistoriqueStationnement extends JPanel {
 	private static final long serialVersionUID = 1L;
     private FenetrePrincipal fenetreprincipal;
     private ControleurHistorique controleur;
+	private JPanel paneParking;
+	private JPanel paneZone;
 
 	/**
 	 * Create the panel.
@@ -69,7 +72,7 @@ public class HistoriqueStationnement extends JPanel {
 		paneCenter.add(paneParentParking);
 		paneParentParking.setLayout(new BorderLayout(0, 0));
 		
-		JPanel paneParking = new JPanel();
+		paneParking = new JPanel();
 		paneParentParking.add(paneParking);
 		
 		JLabel lblNewLabel_2 = new JLabel("Dans un parking :");
@@ -84,7 +87,7 @@ public class HistoriqueStationnement extends JPanel {
 		paneCenter.add(paneParentZone);
 		paneParentZone.setLayout(new BorderLayout(0, 0));
 		
-		JPanel paneZone = new JPanel();
+		paneZone = new JPanel();
 		paneParentZone.add(paneZone);
 		
 		JLabel label = new JLabel("New label");
@@ -93,6 +96,10 @@ public class HistoriqueStationnement extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("En voirie :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		paneParentZone.add(lblNewLabel_1, BorderLayout.NORTH);
+		this.build();
+	}
+
+	public void build() {
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
 			while (res.next()) {
@@ -174,10 +181,11 @@ public class HistoriqueStationnement extends JPanel {
 			e.printStackTrace();
 		}
 	}
-
-	public void refresh() {
-		System.out.println("Tu as pas terminé le refresh de Historique stationnemment");
 	
+	public void refresh() {
+		paneZone.removeAll();
+		paneParking.removeAll();
+		build();
 	}
 
 }

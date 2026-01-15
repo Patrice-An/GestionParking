@@ -78,7 +78,6 @@ public class ControleurInscription implements ActionListener{
 					utilisateur.addVehicule(v);
 				}
 				fenetrePrincipal.setUtilisateur(utilisateur);
-				fenetrePrincipal.ChargerVueDependante();
 				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 			} else {

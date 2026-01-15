@@ -36,7 +36,8 @@ public class GestionVehicule extends JPanel {
 	private int posX = 0;
 	private int posY = 0;
 	private int maxVehiculeParLigne = 3;
-	
+	private JPanel Listevéhicules;
+	private Box verticalBox;
 	public GestionVehicule(FenetrePrincipal fenetre) {
 		setMaximumSize(new Dimension(32767, 300));
 		this.fenetre = fenetre;
@@ -107,13 +108,26 @@ public class GestionVehicule extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		JPanel Listevéhicules = new JPanel();
+		Listevéhicules = new JPanel();
 		scrollPane.setViewportView(Listevéhicules);
 		Listevéhicules.setLayout(new MigLayout("", "[85px,grow][][][]", "[21px]"));
 		
+		BuildBox();
 		
+	}
+	
+	
+	public void refresh() {
+		verticalBox.removeAll();
+		BuildBox();
+		revalidate();
+		repaint();
+	}
+	
+	private void BuildBox() {
+		ControleurGestionVehicule controleur = new ControleurGestionVehicule(this, fenetre);
 		for (Vehicule vehiculeIt:listeVehicule) {
-			Box verticalBox = Box.createVerticalBox();
+			verticalBox = Box.createVerticalBox();
 			verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
 			Listevéhicules.add(verticalBox, "cell "+posX+" "+posY);
 				

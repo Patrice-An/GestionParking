@@ -175,4 +175,9 @@ public class HistoriqueStationnement extends JPanel {
 		}
 	}
 
+	public void refresh() {
+		System.out.println("Tu as pas terminé le refresh de Historique stationnemment");
+	
+	}
+
 }

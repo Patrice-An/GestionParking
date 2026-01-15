@@ -39,6 +39,7 @@ public class ControleurAjouterVehicule implements ActionListener{
 					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
 					fenetrePrincipal.getUtilisateur().getVehicules();
 					JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
+					fenetrePrincipal.refresh();;
 					fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				} catch(SQLException exception) {
 					exception.printStackTrace();

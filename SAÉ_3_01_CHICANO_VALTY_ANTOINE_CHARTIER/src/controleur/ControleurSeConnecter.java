@@ -42,7 +42,6 @@ public class ControleurSeConnecter implements ActionListener{
 						utilisateur.addVehicule(v);
 					}
 					fenetrePrincipal.setUtilisateur(utilisateur);
-					fenetrePrincipal.ChargerVueDependante();
 					fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				} else {
 					JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect", "Formulaire erroné", JOptionPane.INFORMATION_MESSAGE);

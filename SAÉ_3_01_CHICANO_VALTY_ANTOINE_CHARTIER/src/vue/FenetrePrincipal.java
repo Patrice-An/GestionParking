@@ -22,23 +22,24 @@ public class FenetrePrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout layout;
-	private JButton btnPrecedent ;
+	private JButton btnPrecedent;
 	private Utilisateur utilisateur;
+	private Accueil accueil;
+	private GestionVehicule gestionVehicule;
+	private InfoSeGarerParking infoSeGarerParking;
+	private InfoSeGarerVoirie infoSeGarerVoirie;
+	private AjouterVehicule ajouterVehicule;
+	private FenRecapitulatif fenRecapitulatif;
+	private HistoriqueStationnement historiqueStationnement;
+	private GestionAbonnement gestionAbonnement;
 
 	public enum VUE {
 
-		ACCUEIL("accueil"),
-		SECONNECTER("seConnecter"),
-		INSCRIPTION("incription"),
-		CHOIXSEGARER("choixSeGarer"),
-		AJOUTERVEHICULE("AjouterVehicule"),
-		FENRECAPITULATIF("fenRecapitulatif"),
-		INFOSEGARERPARKING("infoSeGarerParking"),
-		GESTIONVEHICULE("gestionVehicule"),
-		INFOSEGARERVOIRIE("infoSeGarerVoirie"),
-		HISTORIQUESTATIONNEMENT("HistoriqueStationnement"),
-		LISTEPARKING("ListeParking"),
-		GESTION_ABONNEMENT("GestionAbonnement");
+		ACCUEIL("accueil"), SECONNECTER("seConnecter"), INSCRIPTION("incription"), CHOIXSEGARER("choixSeGarer"),
+		AJOUTERVEHICULE("AjouterVehicule"), FENRECAPITULATIF("fenRecapitulatif"),
+		INFOSEGARERPARKING("infoSeGarerParking"), GESTIONVEHICULE("gestionVehicule"),
+		INFOSEGARERVOIRIE("infoSeGarerVoirie"), HISTORIQUESTATIONNEMENT("HistoriqueStationnement"),
+		LISTEPARKING("ListeParking"), GESTION_ABONNEMENT("GestionAbonnement");
 
 		VUE(String designation) {
 		}
@@ -83,7 +84,6 @@ public class FenetrePrincipal extends JFrame {
 		// -------- PANEL NORD --------
 		JPanel panelNord = new JPanel();
 
-
 		btnPrecedent = new JButton("← Précédent");
 		panelNord.add(btnPrecedent);
 		add(panelNord, BorderLayout.NORTH);
@@ -94,21 +94,18 @@ public class FenetrePrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		add(contentPane, BorderLayout.CENTER);
 
-
 		contentPane.add(new SeConnecter(this), VUE.SECONNECTER.name());
 		contentPane.add(new Inscription(this), VUE.INSCRIPTION.name());
 		contentPane.add(new ListeParking(), VUE.LISTEPARKING.name());
-
-
+		contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
 
 		ChangementVue(VUE.SECONNECTER);
 		btnPrecedent.addActionListener(controleur);
 	}
 
 	public void ChangementVue(VUE fen) {
-		if(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
+		if (fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
 			this.setVisiblePrecedent(true);
-			ChargerVueDependante();
 		} else {
 			this.setVisiblePrecedent(false);
 		}
@@ -121,26 +118,37 @@ public class FenetrePrincipal extends JFrame {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+		chargerVueDependante();
 	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
 
-	public void ChargerVueDependante() {
+	private void chargerVueDependante() {
 		if (this.utilisateur != null) {
-			contentPane.add(new Accueil(this), VUE.ACCUEIL.name());
-			contentPane.add(new GestionVehicule(this), VUE.GESTIONVEHICULE.name());
-			contentPane.add(new InfoSeGarerParking(this), VUE.INFOSEGARERPARKING.name());
-			contentPane.add(new InfoSeGarerVoirie(this), VUE.INFOSEGARERVOIRIE.name());
-			contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
-			contentPane.add(new AjouterVehicule(this), VUE.AJOUTERVEHICULE.name());
-			contentPane.add(new FenRecapitulatif(this), VUE.FENRECAPITULATIF.name());
-			contentPane.add(new HistoriqueStationnement(this), VUE.HISTORIQUESTATIONNEMENT.name());
-			contentPane.add(new GestionAbonnement(this), VUE.GESTION_ABONNEMENT.name());
+			accueil = new Accueil(this);
+			gestionVehicule = new GestionVehicule(this);
+			infoSeGarerParking = new InfoSeGarerParking(this);
+			infoSeGarerVoirie = new InfoSeGarerVoirie(this);
+			ajouterVehicule = new AjouterVehicule(this);
+			fenRecapitulatif = new FenRecapitulatif(this);
+			historiqueStationnement = new HistoriqueStationnement(this);
+			gestionAbonnement = new GestionAbonnement(this);
+			contentPane.add(accueil, VUE.ACCUEIL.name());
+			contentPane.add(gestionVehicule, VUE.GESTIONVEHICULE.name());
+			contentPane.add(infoSeGarerParking, VUE.INFOSEGARERPARKING.name());
+			contentPane.add(infoSeGarerVoirie, VUE.INFOSEGARERVOIRIE.name());
+			contentPane.add(ajouterVehicule, VUE.AJOUTERVEHICULE.name());
+			contentPane.add(fenRecapitulatif, VUE.FENRECAPITULATIF.name());
+			contentPane.add(historiqueStationnement, VUE.HISTORIQUESTATIONNEMENT.name());
+			contentPane.add(gestionAbonnement, VUE.GESTION_ABONNEMENT.name());
 		}
 	}
 
-
+	public void refresh() {
+		gestionVehicule.refresh();
+		historiqueStationnement.refresh();
+	}
 
 }

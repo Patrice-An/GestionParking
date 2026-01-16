@@ -16,7 +16,7 @@ import modele.dao.DaoVehicule;
 public class ControleurAjouterVehicule implements ActionListener{
 	
 	private FenetrePrincipal fenetrePrincipal;
-	private static AjouterVehicule vue;
+	private AjouterVehicule vue;
 
 	public ControleurAjouterVehicule(AjouterVehicule vue, FenetrePrincipal fenetrePrincipal) {
 		this.fenetrePrincipal = fenetrePrincipal;

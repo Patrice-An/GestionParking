@@ -51,6 +51,7 @@ public class ControleurGestionVehicule implements ActionListener {
 			try {
 				dao.deleteById(vehicule.getImmatriculation()); 
 				JOptionPane.showMessageDialog(null, "Le véhicule a bien été supprimé");
+				fenPrincipal.getUtilisateur().removeVehicule(vehicule);
 				vue.refresh();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

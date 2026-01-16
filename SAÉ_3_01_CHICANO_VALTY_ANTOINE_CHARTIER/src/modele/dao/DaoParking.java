@@ -110,15 +110,16 @@ public class DaoParking implements Dao<Parking, Integer> {
 		stUtil.executeUpdate();
 	}
 
-	public void quitterParking(int idParking, LocalDateTime heureSortie) throws SQLException {
+	public void quitterParking(int idParking, String heureArrivee) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Parking> req = new QuitterParking();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		req.parametres(
 			stUtil,
-			heureSortie.format(formatter),
-			String.valueOf(idParking)
+			LocalDateTime.now().format(formatter),
+			String.valueOf(idParking),
+			heureArrivee
 		);
 		stUtil.executeUpdate();
 	}

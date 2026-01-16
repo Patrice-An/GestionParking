@@ -93,7 +93,7 @@ public class Accueil extends JPanel {
         centerPanel.add(btnGestionAbonnement, gbc);
         btnGestionAbonnement.addActionListener(controleur);
 
-        // ------- Bouton : 
+        // ------- Bouton : Se déconnecter
         JButton btnDeconnexion = createBigButton("Se déconnecter");
         btnDeconnexion.addActionListener(controleur);
         gbc.gridy = 6;

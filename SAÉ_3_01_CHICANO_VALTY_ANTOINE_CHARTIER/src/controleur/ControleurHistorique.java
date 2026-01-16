@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import modele.Vehicule;
 import vue.FenetrePrincipal;
-import vue.GestionVehicule;
 import vue.HistoriqueStationnement;
 
 public class ControleurHistorique implements ActionListener {

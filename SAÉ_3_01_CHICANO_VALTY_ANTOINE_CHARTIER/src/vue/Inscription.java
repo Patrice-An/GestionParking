@@ -23,7 +23,6 @@ public class Inscription extends JPanel {
 	private JTextField prenomField;
 	private JLabel mailLabel;
 	private JTextField mailField;
-	private JLabel naissanceLabel;
 	private JDatePickerImpl naissancePicker;
 	private JLabel telLabel;
 	private JTextField telField;
@@ -61,6 +60,7 @@ public class Inscription extends JPanel {
 		this.setLayout(new BorderLayout(0, 0));
 
 		title = new JLabel("Inscription");
+		title.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(title, BorderLayout.NORTH);
 

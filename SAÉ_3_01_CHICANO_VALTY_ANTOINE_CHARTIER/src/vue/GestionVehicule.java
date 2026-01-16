@@ -4,25 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
 
 import controleur.ControleurGestionVehicule;
 import modele.Vehicule;
 
-import modele.Zone;
-import modele.dao.DaoUtilisateur;
-import modele.dao.DaoZone;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.border.LineBorder;
 import net.miginfocom.swing.MigLayout;
 import java.awt.FlowLayout;

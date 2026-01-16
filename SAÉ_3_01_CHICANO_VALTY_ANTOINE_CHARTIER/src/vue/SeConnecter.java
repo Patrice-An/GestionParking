@@ -32,7 +32,7 @@ public class SeConnecter extends JPanel {
 		ControleurSeConnecter controler = new ControleurSeConnecter(this, fenetrePrincipal);
 		setLayout(new MigLayout("", "[84px][331px][]", "[13px][19px][19px][23px][][][][][][][]"));
 
-		lblNewLabel = new JLabel("Connection");
+		lblNewLabel = new JLabel("Connexion");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
 		this.add(lblNewLabel, "cell 1 0,alignx center,aligny center");
 

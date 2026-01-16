@@ -37,6 +37,10 @@ public class ControleurAccueil implements ActionListener{
 			case "Gestion abonnement":
 				fenetrePrincipal.ChangementVue(VUE.GESTION_ABONNEMENT);
 				break;
+			case "Se déconnecter":
+				fenetrePrincipal.ChangementVue(VUE.SECONNECTER);
+				this.fenetrePrincipal.setUtilisateur(null);
+				break;
 			case "Quitter l'application":
 				fenetrePrincipal.dispose();
 				break;

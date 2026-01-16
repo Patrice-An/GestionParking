@@ -118,7 +118,9 @@ public class FenetrePrincipal extends JFrame {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
-		chargerVueDependante();
+		if(utilisateur != null) {
+			chargerVueDependante();
+		}
 	}
 
 	public Utilisateur getUtilisateur() {

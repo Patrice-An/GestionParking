@@ -88,6 +88,9 @@ public class Utilisateur {
 		return prenom + " " + nom;
 	}
 	
+	public void removeVehicule(Vehicule v) {
+		this.vehicules.remove(v);
+	}
 	
 	
 }

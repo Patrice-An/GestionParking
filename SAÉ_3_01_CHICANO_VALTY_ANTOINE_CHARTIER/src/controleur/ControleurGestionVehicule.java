@@ -28,7 +28,6 @@ public class ControleurGestionVehicule implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		Vehicule vehicule = (Vehicule) b.getClientProperty("vehicule");
-		DaoVehicule dao = new DaoVehicule();
 		switch (b.getText()) {
 		case "Ajouter un véhicule":
 			fenPrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
@@ -48,16 +47,7 @@ public class ControleurGestionVehicule implements ActionListener {
 
 			break;
 		case "Supprimer" :
-			try {
-				dao.deleteById(vehicule.getImmatriculation()); 
-				JOptionPane.showMessageDialog(null, "Le véhicule a bien été supprimé");
-				fenPrincipal.getUtilisateur().removeVehicule(vehicule);
-				vue.refresh();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
+			JOptionPane.showMessageDialog(null, "Le véhicule est garé et ne peut pas être supprimé");
 			break;
 		}
 

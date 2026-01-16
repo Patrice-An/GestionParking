@@ -14,7 +14,8 @@ public class Utilisateur {
 	private String mail;
 	protected String password;
 	private Set<Vehicule> vehicules;
-	
+	private Abonnement abonnement;
+
 	public Utilisateur(int id, String nom, String prenom, String tel, LocalDate naissance, String mail, String password) {
 		super();
 		this.id = id;
@@ -25,6 +26,7 @@ public class Utilisateur {
 		this.mail = mail;
 		this.password = password;
 		this.vehicules = new HashSet<>();
+		this.abonnement = Abonnement.AUCUN;
 	}
 
 	public int getid() {
@@ -81,6 +83,14 @@ public class Utilisateur {
 
 	public Set<Vehicule> getVehicules() {
 		return vehicules;
+	}
+
+	public Abonnement getAbonnement() {
+		return abonnement;
+	}
+
+	public void setAbonnement(Abonnement abonnement) {
+		this.abonnement = abonnement;
 	}
 
 	@Override

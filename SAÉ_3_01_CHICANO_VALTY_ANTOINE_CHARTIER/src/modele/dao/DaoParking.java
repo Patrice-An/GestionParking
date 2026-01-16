@@ -17,6 +17,7 @@ import modele.dao.requetes.requeteParking.ParkingDeleteById;
 import modele.dao.requetes.requeteParking.ParkingSeGarer;
 import modele.dao.requetes.requeteParking.ParkingSelectAll;
 import modele.dao.requetes.requeteParking.ParkingSelectById;
+import modele.dao.requetes.requeteParking.QuitterParking;
 import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
 
 public class DaoParking implements Dao<Parking, Integer> {
@@ -92,19 +93,32 @@ public class DaoParking implements Dao<Parking, Integer> {
 		return res > 0;
 	}
 
-	public void seGarerParking(int id_parking, String immat, LocalDateTime heureArrivée, int place, byte borne) throws SQLException {
+	public void seGarerParking(int idParking, String immat, LocalDateTime heureArrivée, int place, byte borne) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Parking> req = new ParkingSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		req.parametres(
 			stUtil,
-			String.valueOf(id_parking),
+			String.valueOf(idParking),
 			immat,
 			heureArrivée.format(formatter),
 			null,
 			String.valueOf(place),
 			String.valueOf(borne)
+		);
+		stUtil.executeUpdate();
+	}
+
+	public void quitterParking(int idParking, LocalDateTime heureSortie) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Parking> req = new QuitterParking();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		req.parametres(
+			stUtil,
+			heureSortie.format(formatter),
+			String.valueOf(idParking)
 		);
 		stUtil.executeUpdate();
 	}

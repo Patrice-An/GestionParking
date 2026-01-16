@@ -21,6 +21,7 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import modele.Type_vehicule;
+import java.awt.Font;
 
 public class AjouterVehicule extends JPanel{
 
@@ -83,6 +84,7 @@ public class AjouterVehicule extends JPanel{
 				RowSpec.decode("default:grow"),}));
 		
 		JLabel labelTitre = new JLabel("Enregistrer un nouveau véhicule");
+		labelTitre.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
 		PanneauCentre.add(labelTitre, "1, 2, 10, 1, center, default");
 		
 		JLabel lblNewLabel = new JLabel("Hauteur :");

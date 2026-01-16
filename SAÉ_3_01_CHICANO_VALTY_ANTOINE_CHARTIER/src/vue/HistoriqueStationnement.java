@@ -9,16 +9,11 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-
-import javax.swing.table.DefaultTableModel;
 
 import controleur.ControleurHistorique;
+
 import modele.Parking;
 import modele.Zone;
 import modele.dao.DaoParking;
@@ -27,7 +22,6 @@ import modele.dao.DaoZone;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
 import javax.swing.JSeparator;
 
 public class HistoriqueStationnement extends JPanel {

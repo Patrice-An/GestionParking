@@ -19,6 +19,7 @@ import modele.dao.DaoParking;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class ListeParking extends JPanel {
 
@@ -54,6 +55,7 @@ public class ListeParking extends JPanel {
 		paneSearch.add(btnSearch, BorderLayout.EAST);
 		
 		JLabel LabelTitre = new JLabel("Parking disponibles");
+		LabelTitre.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
 		LabelTitre.setHorizontalAlignment(SwingConstants.CENTER);
 		add(LabelTitre, BorderLayout.NORTH);
 		

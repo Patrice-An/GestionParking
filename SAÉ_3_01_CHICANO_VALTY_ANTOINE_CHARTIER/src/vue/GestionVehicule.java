@@ -4,27 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
 
 import controleur.ControleurGestionVehicule;
 import modele.Vehicule;
 
-import modele.Zone;
-import modele.dao.DaoUtilisateur;
-import modele.dao.DaoZone;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.border.LineBorder;
 import net.miginfocom.swing.MigLayout;
+import java.awt.FlowLayout;
 
 
 public class GestionVehicule extends JPanel {
@@ -36,8 +24,10 @@ public class GestionVehicule extends JPanel {
 	private int posY = 0;
 	private int maxVehiculeParLigne = 3;
 	private JPanel listevehicules;
+	private JPanel Listevéhicules;
 	private Box verticalBox;
 	public GestionVehicule(FenetrePrincipal fenetre) {
+		setSize(new Dimension(500, 720));
 		setMaximumSize(new Dimension(32767, 300));
 		this.fenetre = fenetre;
 		initialize();
@@ -104,6 +94,7 @@ public class GestionVehicule extends JPanel {
 		listevehicules = new JPanel();
 		scrollPane.setViewportView(listevehicules);
 		listevehicules.setLayout(new MigLayout("", "[85px,grow][][][]", "[21px]"));
+		Listevéhicules.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		BuildBox();
 		
@@ -157,11 +148,7 @@ public class GestionVehicule extends JPanel {
 			verticalBox.add(btnSupprimer);
 			btnSupprimer.putClientProperty("vehicule", vehiculeIt);
 			btnSupprimer.addActionListener(controleur);
-			if (posX == maxVehiculeParLigne-1) {
-				posX = 0-1;
-				posY += 1;
-			}
-			posX += 1;
+			Listevéhicules.add(verticalBox);
 		}
 	}
 

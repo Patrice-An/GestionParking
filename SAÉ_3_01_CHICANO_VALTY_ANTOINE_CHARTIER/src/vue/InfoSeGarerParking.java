@@ -63,7 +63,8 @@ public class InfoSeGarerParking extends JPanel {
 		PanneauCentre.setLayout(new BorderLayout(0, 0));
 
 		JLabel TitreDonnees = new JLabel("Sélectionner un véhicule");
-		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
+		TitreDonnees.setHorizontalAlignment(SwingConstants.CENTER);
+		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 21));
 		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
 
 		JPanel ListeInfos = new JPanel();

@@ -52,6 +52,10 @@ public class InfoSeGarerVoirie extends JPanel {
 
 		JPanel PanneauNord = new JPanel();
 		this.add(PanneauNord, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel = new JLabel("Garer en voirie");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+		PanneauNord.add(lblNewLabel);
 
 		JPanel PanneauCentre = new JPanel();
 		this.add(PanneauCentre, BorderLayout.CENTER);

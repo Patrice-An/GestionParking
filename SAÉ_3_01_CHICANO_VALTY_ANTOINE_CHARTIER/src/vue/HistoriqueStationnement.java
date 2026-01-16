@@ -9,16 +9,11 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-
-import javax.swing.table.DefaultTableModel;
 
 import controleur.ControleurHistorique;
+
 import modele.Parking;
 import modele.Zone;
 import modele.dao.DaoParking;
@@ -27,8 +22,9 @@ import modele.dao.DaoZone;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
 import javax.swing.JSeparator;
+import java.awt.Font;
+import java.awt.Rectangle;
 
 public class HistoriqueStationnement extends JPanel {
 
@@ -76,6 +72,7 @@ public class HistoriqueStationnement extends JPanel {
 		paneParentParking.add(paneParking);
 		
 		JLabel lblNewLabel_2 = new JLabel("Dans un parking :");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		paneParentParking.add(lblNewLabel_2, BorderLayout.NORTH);
 		
@@ -90,10 +87,8 @@ public class HistoriqueStationnement extends JPanel {
 		paneZone = new JPanel();
 		paneParentZone.add(paneZone);
 		
-		JLabel label = new JLabel("New label");
-		paneParentZone.add(label, BorderLayout.SOUTH);
-		
 		JLabel lblNewLabel_1 = new JLabel("En voirie :");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		paneParentZone.add(lblNewLabel_1, BorderLayout.NORTH);
 		this.build();
@@ -106,8 +101,8 @@ public class HistoriqueStationnement extends JPanel {
 				Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
 				if (parking.isPresent()) {
 					Box verticalBox = Box.createVerticalBox();
-					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-					paneParking.add(verticalBox);
+					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					
 						
 					JLabel LabelNom = new JLabel("Parking : " +parking.get().getNom());
 					LabelNom.setHorizontalAlignment(SwingConstants.CENTER);
@@ -135,6 +130,7 @@ public class HistoriqueStationnement extends JPanel {
 						btnPartir.putClientProperty("vehicule", res.getString(3));
 						btnPartir.addActionListener(controleur);
 					}
+					paneParking.add(verticalBox);
 				}
 			}
 		} catch(SQLException e) {
@@ -146,8 +142,8 @@ public class HistoriqueStationnement extends JPanel {
 				Optional<Zone> zone = new DaoZone().findById(res.getInt(1));
 				if (zone.isPresent()) {
 					Box verticalBox = Box.createVerticalBox();
-					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-					paneZone.add(verticalBox);
+					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					
 						
 					JLabel LabelNom = new JLabel("Zone : " +zone.get().getCouleur());
 					LabelNom.setHorizontalAlignment(SwingConstants.CENTER);
@@ -175,6 +171,7 @@ public class HistoriqueStationnement extends JPanel {
 						btnPartir.putClientProperty("vehicule", res.getString(3));
 						btnPartir.addActionListener(controleur);
 					}
+					paneZone.add(verticalBox);
 				}
 			}
 		} catch(SQLException e) {

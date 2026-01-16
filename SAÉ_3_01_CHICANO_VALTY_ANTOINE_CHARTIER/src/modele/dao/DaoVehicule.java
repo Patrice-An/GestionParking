@@ -19,6 +19,7 @@ import modele.dao.requetes.requeteVehicule.VehiculeExistePourUser;
 import modele.dao.requetes.requeteVehicule.VehiculeFindByUser;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
 import modele.dao.requetes.requeteVehicule.VehiculeSelectById;
+import modele.dao.requetes.requeteVehicule.VehiculeStationnement;
 
 public class DaoVehicule implements Dao<Vehicule, String> {
 
@@ -119,5 +120,14 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		req.parametres(stUtil, String.valueOf(id));
 		int res = stUtil.executeUpdate();
 		return res > 0;
+	}
+
+	public boolean vehiculeEstGaré(String id) throws SQLException {
+		Connection cn = AzureSQLDataSource.getConnexion();
+		Requete<Vehicule> req = new VehiculeStationnement();
+		PreparedStatement stUtil = cn.prepareStatement(req.requete());
+		req.parametres(stUtil, id);
+		ResultSet res = stUtil.executeQuery();
+		return res.next();
 	}
 }

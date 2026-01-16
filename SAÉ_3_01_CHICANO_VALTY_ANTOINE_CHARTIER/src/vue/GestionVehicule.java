@@ -94,7 +94,6 @@ public class GestionVehicule extends JPanel {
 		
 	}
 	
-	
 	public void refresh() {
 		listevehicules.removeAll();
 		BuildBox();

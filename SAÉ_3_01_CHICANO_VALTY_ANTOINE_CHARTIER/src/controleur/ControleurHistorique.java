@@ -10,8 +10,10 @@ import java.util.Optional;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import modele.Parking;
 import modele.Utilisateur;
 import modele.Vehicule;
+import modele.dao.DaoParking;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
 import vue.Facture;
@@ -34,21 +36,27 @@ public class ControleurHistorique implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		String vehiculeId = (String) b.getClientProperty("vehicule");
+		int ParkingId = (int) b.getClientProperty("parking");
 		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
+		DaoParking daoP = new DaoParking();
 		Optional<Vehicule> vehicule = java.util.Optional.empty();
+		Optional<Utilisateur> user = java.util.Optional.empty();
+		Optional<Parking> parking = java.util.Optional.empty();
 		try {
 			vehicule = daoV.findById(vehiculeId);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		parking = daoP.findById(ParkingId);
 		if (b.getText() == "Partir") {
 			
 			JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" doit partir");
+			daoP.quitterParking(ParkingId, b.getClientProperty("arrivee").toString());
 		}
 		if (b.getText() == "Facture") {
-			Optional<Utilisateur> user = java.util.Optional.empty();
+
 			int userID = vehicule.get().getId_utilisateur();
 			try {
 				user = daoU.findById(userID);

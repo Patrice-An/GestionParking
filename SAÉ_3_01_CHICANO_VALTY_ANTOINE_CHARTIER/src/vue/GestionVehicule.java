@@ -11,7 +11,6 @@ import controleur.ControleurGestionVehicule;
 import modele.Vehicule;
 
 import javax.swing.border.LineBorder;
-import net.miginfocom.swing.MigLayout;
 import java.awt.FlowLayout;
 
 
@@ -20,9 +19,6 @@ public class GestionVehicule extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private FenetrePrincipal fenetre;
 	private JTextField searchField;
-	private int posX = 0;
-	private int posY = 0;
-	private int maxVehiculeParLigne = 3;
 	private JPanel listevehicules;
 	private JPanel Listevéhicules;
 	private Box verticalBox;
@@ -93,9 +89,7 @@ public class GestionVehicule extends JPanel {
 		
 		listevehicules = new JPanel();
 		scrollPane.setViewportView(listevehicules);
-		listevehicules.setLayout(new MigLayout("", "[85px,grow][][][]", "[21px]"));
-		Listevéhicules.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+		listevehicules.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		BuildBox();
 		
 	}
@@ -114,7 +108,7 @@ public class GestionVehicule extends JPanel {
 		for (Vehicule vehiculeIt:listeVehicule) {
 			verticalBox = Box.createVerticalBox();
 			verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-			listevehicules.add(verticalBox, "cell "+posX+" "+posY);
+			listevehicules.add(verticalBox);
 				
 			JTextField LabelDésignation = new JTextField(vehiculeIt.getDésignation());
 			LabelDésignation.setHorizontalAlignment(SwingConstants.CENTER);

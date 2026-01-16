@@ -142,6 +142,7 @@ public class HistoriqueStationnement extends JPanel {
 						verticalBox.add(btnPartir);
 						btnPartir.setBackground(new Color(255, 128, 128));
 						btnPartir.putClientProperty("vehicule", res.getString(3));
+						btnPartir.putClientProperty("arrivee", res.getString(5));
 						btnPartir.putClientProperty("parkingID", parking.get().getId_parking());
 						btnPartir.addActionListener(controleur);
 					}

@@ -58,10 +58,12 @@ public class ControleurHistorique implements ActionListener {
 		}
 		if (b.getText() == "Partir") {
 			String arrivee = b.getClientProperty("arrivee").toString();
+			System.out.println(arrivee);
 			JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" doit partir");
 			try {
 				daoP.quitterParking(parkingId, arrivee);
 				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie");
+				vue.refresh();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

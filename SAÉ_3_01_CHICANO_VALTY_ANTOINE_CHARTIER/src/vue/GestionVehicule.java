@@ -142,7 +142,7 @@ public class GestionVehicule extends JPanel {
 			verticalBox.add(btnSupprimer);
 			btnSupprimer.putClientProperty("vehicule", vehiculeIt);
 			btnSupprimer.addActionListener(controleur);
-			Listevéhicules.add(verticalBox);
+			listevehicules.add(verticalBox);
 		}
 	}
 

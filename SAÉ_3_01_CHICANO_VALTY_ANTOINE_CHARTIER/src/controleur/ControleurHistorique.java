@@ -3,6 +3,7 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,7 @@ public class ControleurHistorique implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		String vehiculeId = (String) b.getClientProperty("vehicule");
-		int ParkingId = (int) b.getClientProperty("parking");
+		int parkingId = (int) b.getClientProperty("parkingID");
 		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
 		DaoParking daoP = new DaoParking();
@@ -49,11 +50,22 @@ public class ControleurHistorique implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		parking = daoP.findById(ParkingId);
+		try {
+			parking = daoP.findById(1);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (b.getText() == "Partir") {
-			
+			String arrivee = b.getClientProperty("arrivee").toString();
 			JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" doit partir");
-			daoP.quitterParking(ParkingId, b.getClientProperty("arrivee").toString());
+			try {
+				daoP.quitterParking(parkingId, arrivee);
+				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		if (b.getText() == "Facture") {
 

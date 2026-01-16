@@ -40,7 +40,7 @@ public class FenetrePrincipal extends JFrame {
 		AJOUTERVEHICULE("AjouterVehicule"), FENRECAPITULATIF("fenRecapitulatif"),
 		INFOSEGARERPARKING("infoSeGarerParking"), GESTIONVEHICULE("gestionVehicule"),
 		INFOSEGARERVOIRIE("infoSeGarerVoirie"), HISTORIQUESTATIONNEMENT("HistoriqueStationnement"),
-		LISTEPARKING("ListeParking"), FACTURE("Facture"), GESTION_ABONNEMENT("GestionAbonnement");
+		LISTEPARKING("ListeParking"), GESTION_ABONNEMENT("GestionAbonnement");
 
 		VUE(String designation) {
 		}
@@ -136,7 +136,6 @@ public class FenetrePrincipal extends JFrame {
 			fenRecapitulatif = new FenRecapitulatif(this);
 			historiqueStationnement = new HistoriqueStationnement(this);
 			gestionAbonnement = new GestionAbonnement(this);
-			facture = new Facture(this);
 			contentPane.add(accueil, VUE.ACCUEIL.name());
 			contentPane.add(gestionVehicule, VUE.GESTIONVEHICULE.name());
 			contentPane.add(infoSeGarerParking, VUE.INFOSEGARERPARKING.name());
@@ -145,7 +144,6 @@ public class FenetrePrincipal extends JFrame {
 			contentPane.add(fenRecapitulatif, VUE.FENRECAPITULATIF.name());
 			contentPane.add(historiqueStationnement, VUE.HISTORIQUESTATIONNEMENT.name());
 			contentPane.add(gestionAbonnement, VUE.GESTION_ABONNEMENT.name());
-			contentPane.add(facture,VUE.FACTURE.name());
 		}
 	}
 

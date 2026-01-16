@@ -14,6 +14,7 @@ import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
+import vue.Facture;
 import vue.FenetrePrincipal;
 import vue.HistoriqueStationnement;
 import vue.FenetrePrincipal.VUE;
@@ -62,9 +63,14 @@ public class ControleurHistorique implements ActionListener {
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
 			donneesFacture.add(b.getClientProperty("depart").toString());
 			
-			System.out.println(donneesFacture);
-			fenPrincipal.ChangementVue(VUE.FACTURE);
+			Facture facture = new Facture(this.fenPrincipal, this);
+			JOptionPane.showMessageDialog(null, facture);
+			donneesFacture = new ArrayList<>();
 		}
+	}
+	
+	public List<String> getDonneesFacture() {
+		return this.donneesFacture;
 	}
 
 }

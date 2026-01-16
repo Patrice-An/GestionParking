@@ -11,6 +11,7 @@ import java.awt.Font;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import net.miginfocom.swing.MigLayout;
 
 public class GestionAbonnement extends JPanel {
 
@@ -25,15 +26,18 @@ public class GestionAbonnement extends JPanel {
         add(title, BorderLayout.NORTH);
         title.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        comboAbonnement = new JComboBox<Abonnement>();
         DefaultComboBoxModel<Abonnement> abonnementModel = new DefaultComboBoxModel<Abonnement>();
         for (Abonnement abonnement : Abonnement.values()) {
             abonnementModel.addElement(abonnement);
         }
+        
+        JPanel panel = new JPanel();
+        add(panel, BorderLayout.CENTER);
+        panel.setLayout(new MigLayout("", "[52px][][][][][][]", "[27px][][][][]"));
+        
+        comboAbonnement = new JComboBox<Abonnement>();
+        panel.add(comboAbonnement, "cell 1 4 6 1,alignx left,aligny top");
         comboAbonnement.setModel(abonnementModel);
-
-        add(comboAbonnement, BorderLayout.CENTER);
     }
     
 

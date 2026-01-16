@@ -47,7 +47,14 @@ public class ControleurGestionVehicule implements ActionListener {
 
 			break;
 		case "Supprimer" :
-			JOptionPane.showMessageDialog(null, "Le véhicule est garé et ne peut pas être supprimé");
+			try {
+				new DaoVehicule().deleteById(vehicule.getImmatriculation()); 
+				JOptionPane.showMessageDialog(null, "Le véhicule a bien été supprimé");
+				fenPrincipal.getUtilisateur().removeVehicule(vehicule);
+				vue.refresh();
+			} catch (SQLException e1) {
+				JOptionPane.showMessageDialog(null, "Le véhicule est stationné et ne peux pas être supprimé");
+			}
 			break;
 		}
 

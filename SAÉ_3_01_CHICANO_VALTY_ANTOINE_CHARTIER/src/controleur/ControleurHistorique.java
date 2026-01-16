@@ -58,12 +58,12 @@ public class ControleurHistorique implements ActionListener {
 		}
 		if (b.getText() == "Partir") {
 			String arrivee = b.getClientProperty("arrivee").toString();
-			System.out.println(arrivee);
 			JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" doit partir");
 			try {
 				daoP.quitterParking(parkingId, arrivee);
 				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie");
 				vue.refresh();
+				vue.repaint();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -81,7 +81,12 @@ public class ControleurHistorique implements ActionListener {
 			donneesFacture.add(user.get().getNom());
 			donneesFacture.add(user.get().getPrenom());
 			donneesFacture.add(vehicule.get().toString());
-			donneesFacture.add(b.getClientProperty("parking").toString());
+			try {
+				donneesFacture.add(daoP.findById(parkingId).get().getNom());
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
 			donneesFacture.add(b.getClientProperty("depart").toString());
 			

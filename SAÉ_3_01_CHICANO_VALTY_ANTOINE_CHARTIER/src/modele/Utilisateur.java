@@ -12,7 +12,7 @@ public class Utilisateur {
 	private String tel;
 	private LocalDate naissance;
 	private String mail;
-	protected String password;
+	private String password;
 	private Set<Vehicule> vehicules;
 	private Set<Abonnement> abonnements;
 

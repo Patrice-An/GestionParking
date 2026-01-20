@@ -145,7 +145,6 @@ public class FenetrePrincipal extends JFrame {
 			contentPane.add(fenRecapitulatif, VUE.FENRECAPITULATIF.name());
 			contentPane.add(historiqueStationnement, VUE.HISTORIQUESTATIONNEMENT.name());
 			contentPane.add(gestionAbonnement, VUE.GESTION_ABONNEMENT.name());
-		
 	}
 
 	public void refresh() {

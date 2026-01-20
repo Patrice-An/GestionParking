@@ -48,29 +48,24 @@ public class ControleurHistorique implements ActionListener {
 			vehicule = daoV.findById(vehiculeImmat);
 			parking = daoP.findById(1);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (b.getText() == "Partir") {
 			String arrivee = b.getClientProperty("arrivee").toString();
-			JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" doit partir");
 			try {
 				daoP.quitterParking(parkingId, arrivee);
 				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie");
 				vue.refresh();
 				vue.repaint();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 		if (b.getText() == "Facture") {
-
 			int userID = vehicule.get().getId_utilisateur();
 			try {
 				user = daoU.findById(userID);
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			donneesFacture.add(user.get().getNom());
@@ -79,7 +74,6 @@ public class ControleurHistorique implements ActionListener {
 			try {
 				donneesFacture.add(daoP.findById(parkingId).get().getNom());
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
@@ -89,6 +83,7 @@ public class ControleurHistorique implements ActionListener {
 			JOptionPane.showMessageDialog(null, facture);
 			donneesFacture = new ArrayList<>();
 		}
+		fenPrincipal.ChangementVue(VUE.ACCUEIL);
 	}
 	
 	public List<String> getDonneesFacture() {

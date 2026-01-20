@@ -77,7 +77,7 @@ public class Facture extends JPanel {
 		gbc_LabelVehicule.gridy = 2;
 		paneCenter.add(LabelVehicule, gbc_LabelVehicule);
 		
-		JLabel LabelVehiculeAffiche = new JLabel("Vehicuel");
+		JLabel LabelVehiculeAffiche = new JLabel("Vehicule");
 		LabelVehiculeAffiche.setText(listeDonnees.get(2));
 		LabelVehiculeAffiche.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_LabelVehiculeAffiche = new GridBagConstraints();
@@ -131,7 +131,7 @@ public class Facture extends JPanel {
 		horizontalBox.add(LabelPrix);
 		
 		JLabel LabelPrixNombre = new JLabel("Nombre");
-		LabelPrixNombre.setText("calcul tarf");
+		LabelPrixNombre.setText("10€");
 		LabelPrixNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		horizontalBox.add(LabelPrixNombre);
 		

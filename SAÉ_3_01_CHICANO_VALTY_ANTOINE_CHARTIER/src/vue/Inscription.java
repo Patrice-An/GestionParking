@@ -34,7 +34,7 @@ public class Inscription extends JPanel {
 	private JPanel panel;
 	private JPanel panel_1;
 	private FenetrePrincipal fenetrePrincipal;
-	private JLabel label;
+	private JLabel naissanceLabel;
 
 	/**
 	 * Launch the application.
@@ -94,8 +94,11 @@ public class Inscription extends JPanel {
 		JDatePanelImpl datePanel = new JDatePanelImpl(modelDate, p);
 		naissancePicker = new JDatePickerImpl(datePanel, null);
 		modelDate.setSelected(true);
+		
+		naissanceLabel = new JLabel("Date naissance :");
+		PanneauCentre.add(naissanceLabel, "cell 0 3");
 
-		PanneauCentre.add(naissancePicker);
+		PanneauCentre.add(naissancePicker, "cell 2 3");
 		
 
 		telLabel = new JLabel("Numéro de téléphone :");
@@ -114,9 +117,6 @@ public class Inscription extends JPanel {
 		PanneauSud = new JPanel();
 		this.add(PanneauSud, BorderLayout.SOUTH);
 		PanneauSud.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		label = new JLabel("");
-		PanneauSud.add(label);
 
 		btnConnection = new JButton("Connectez-vous");
 		btnConnection.setPreferredSize(new Dimension(200, 50));

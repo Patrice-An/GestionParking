@@ -20,11 +20,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import javax.swing.JList;
 
 public class ListeParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable table;
 	private JTable table_1;
 	private JTextField textField;
 	private FenetrePrincipal fenetreprincipal;
@@ -39,9 +39,6 @@ public class ListeParking extends JPanel {
 		JPanel paneCenter = new JPanel();
 		add(paneCenter, BorderLayout.CENTER);
 		paneCenter.setLayout(new BorderLayout(0, 0));
-		
-		table = new JTable();
-		paneCenter.add(table, BorderLayout.CENTER);
 		
 		JPanel paneSearch = new JPanel();
 		paneCenter.add(paneSearch, BorderLayout.NORTH);

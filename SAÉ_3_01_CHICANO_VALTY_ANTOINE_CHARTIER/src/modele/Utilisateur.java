@@ -68,6 +68,10 @@ public class Utilisateur {
 	public LocalDate getNaissance() {
 		return naissance;
 	}
+	
+	public Set<Abonnement> getAbonnement() {
+		return abonnements;
+	}
 
 	public void setNaissance(LocalDate naissance) {
 		this.naissance = naissance;

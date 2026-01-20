@@ -5,9 +5,12 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import controleur.ControleurAbonnement;
 import modele.Abonnement;
 
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -19,10 +22,12 @@ import java.awt.Dimension;
 public class GestionAbonnement extends JPanel {
 
     private FenetrePrincipal fenetrePrincipal;
+    private ControleurAbonnement controleur;
 
     public GestionAbonnement(FenetrePrincipal fenetrePrincipal) {
     	setPreferredSize(new Dimension(500, 720));
         this.fenetrePrincipal = fenetrePrincipal;
+        this.controleur = new ControleurAbonnement(this.fenetrePrincipal, this);
         setLayout(new BorderLayout(0, 0));
         
         JLabel title = new JLabel("Gestion abonnement");
@@ -59,6 +64,7 @@ public class GestionAbonnement extends JPanel {
         JButton btnEnregistrer = new JButton("Enregistrer");
         btnEnregistrer.setFont(new Font("Tahoma", Font.PLAIN, 21));
         panel.add(btnEnregistrer, "cell 9 8");
+        btnEnregistrer.addActionListener(controleur);
         
         JLabel lblNewLabel = new JLabel("Sélectionnez vos abonnements");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 21));

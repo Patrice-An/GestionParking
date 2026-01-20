@@ -36,7 +36,7 @@ public class ControleurHistorique implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		String vehiculeId = (String) b.getClientProperty("vehicule");
+		String vehiculeImmat = (String) b.getClientProperty("vehiculeImmat");
 		int parkingId = (int) b.getClientProperty("parkingID");
 		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
@@ -45,12 +45,7 @@ public class ControleurHistorique implements ActionListener {
 		Optional<Utilisateur> user = java.util.Optional.empty();
 		Optional<Parking> parking = java.util.Optional.empty();
 		try {
-			vehicule = daoV.findById(vehiculeId);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
+			vehicule = daoV.findById(vehiculeImmat);
 			parking = daoP.findById(1);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block

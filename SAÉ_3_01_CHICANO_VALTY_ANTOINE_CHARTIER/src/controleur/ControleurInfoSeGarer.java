@@ -38,6 +38,7 @@ public class ControleurInfoSeGarer implements ActionListener {
 				try {
 					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivée, place, borne);
 					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+					fenetrePrincipal.refresh();
 					fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
 				} catch(SQLException exception) {
 					exception.printStackTrace();

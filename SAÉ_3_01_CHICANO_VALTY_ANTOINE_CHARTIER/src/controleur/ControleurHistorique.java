@@ -55,8 +55,6 @@ public class ControleurHistorique implements ActionListener {
 			try {
 				daoP.quitterParking(parkingId, arrivee);
 				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie");
-				vue.refresh();
-				vue.repaint();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

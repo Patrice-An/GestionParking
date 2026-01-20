@@ -25,6 +25,7 @@ public class ListeParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
+	private JTable table_1;
 	private JTextField textField;
 	private FenetrePrincipal fenetreprincipal;
 
@@ -86,14 +87,15 @@ public class ListeParking extends JPanel {
 			e.printStackTrace();
 		}
 		
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		table.setModel(modele);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setPreferredSize(new Dimension(800, 400));
-		table.setMinimumSize(new Dimension(400, 200));
-		table.setMaximumSize(new Dimension(1200, 600));
-		paneCenter.add(table);
+		table_1 = new JTable();
+		table_1.setEnabled(false);
+		table_1.setRowSelectionAllowed(false);
+		table_1.setModel(modele);
+		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table_1.setPreferredSize(new Dimension(800, 400));
+		table_1.setMinimumSize(new Dimension(400, 200));
+		table_1.setMaximumSize(new Dimension(1200, 600));
+		paneCenter.add(table_1);
 
 	}
 

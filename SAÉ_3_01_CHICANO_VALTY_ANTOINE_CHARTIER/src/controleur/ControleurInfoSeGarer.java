@@ -30,6 +30,10 @@ public class ControleurInfoSeGarer implements ActionListener {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 			case "Valider":
+				if (fenetrePrincipal.getUtilisateur().getVehicules().size() < 1) {
+					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
 				Parking parking = (Parking) vue.getDeroulantSelectionParking().getModel().getSelectedItem();
 				Vehicule vehicule = (Vehicule) vue.getChoixVehicule().getModel().getSelectedItem();
 				int place = 0;

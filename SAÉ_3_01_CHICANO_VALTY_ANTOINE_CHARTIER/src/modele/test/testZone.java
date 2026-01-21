@@ -3,24 +3,28 @@ package modele.test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import modele.Zone;
 import modele.Tarif;
 
-public class testZone {
+public class TestZone {
 
     private Zone zone;
 
     @Before
     public void setUp() throws SQLException {
-
         zone = new Zone(1, "Rouge");
+    }
+
+    @After
+    public void tearDown() {
+        zone = null;
     }
 
     @Test

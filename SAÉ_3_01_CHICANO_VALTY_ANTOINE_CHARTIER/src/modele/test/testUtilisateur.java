@@ -12,7 +12,7 @@ import modele.Type_vehicule;
 import modele.Utilisateur;
 import modele.Vehicule;
 
-public class testUtilisateur {
+public class TestUtilisateur {
 
 
     private Utilisateur utilisateur;

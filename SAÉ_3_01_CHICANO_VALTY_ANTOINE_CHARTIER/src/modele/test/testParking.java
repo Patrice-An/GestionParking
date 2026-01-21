@@ -15,7 +15,7 @@ import modele.Transport;
 import modele.Type_Transport;
 import modele.Tarif;
 
-public class testParking {
+public class TestParking {
 
     private Parking parking;
     private Vehicule vThermique;

@@ -8,7 +8,7 @@ import org.junit.Test;
 import modele.Transport;
 import modele.Type_Transport; // Assurez-vous que cet enum existe
 
-public class testTransport {
+public class TestTransport {
 
     private Transport transport;
 

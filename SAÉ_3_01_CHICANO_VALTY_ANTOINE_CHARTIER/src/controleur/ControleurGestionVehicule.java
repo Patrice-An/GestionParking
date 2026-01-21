@@ -31,6 +31,7 @@ public class ControleurGestionVehicule implements ActionListener {
 		switch (b.getText()) {
 		case "Ajouter un véhicule":
 			fenPrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
+			fenPrincipal.refresh();
 			break;
 		case "Rechercher":
 			break;

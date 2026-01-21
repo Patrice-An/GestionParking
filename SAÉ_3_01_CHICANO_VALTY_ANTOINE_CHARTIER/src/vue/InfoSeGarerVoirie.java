@@ -69,12 +69,14 @@ public class InfoSeGarerVoirie extends JPanel {
 		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
 		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
 		
-		this.choixVehicule = new JComboBox<Vehicule>();
+		/*this.choixVehicule = new JComboBox<Vehicule>();
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
 		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
 			vehiculeModel.addElement(v);
 		}
-		this.choixVehicule.setModel(vehiculeModel);
+		this.choixVehicule.setModel(vehiculeModel);*/
+		this.choixVehicule = new JComboBox<Vehicule>();
+		build();
 		ListeInfos.add(choixVehicule);
 		
 		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez la zone utilisé :");
@@ -126,5 +128,17 @@ public class InfoSeGarerVoirie extends JPanel {
 	public JComboBox<Tarif> getComboTarif() {
 		return comboTarif;
 	}
-
+	
+	private void build() {
+		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
+		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
+			vehiculeModel.addElement(v);
+		}
+		this.choixVehicule.setModel(vehiculeModel);
+	}
+	
+	public void refresh() {
+		choixVehicule.removeAllItems();
+		build();
+	}
 }

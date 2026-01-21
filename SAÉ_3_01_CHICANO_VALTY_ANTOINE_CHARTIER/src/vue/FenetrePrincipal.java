@@ -150,6 +150,8 @@ public class FenetrePrincipal extends JFrame {
 	public void refresh() {
 		gestionVehicule.refresh();
 		historiqueStationnement.refresh();
+		infoSeGarerParking.refresh();
+		infoSeGarerVoirie.refresh();
 	}
 
 }

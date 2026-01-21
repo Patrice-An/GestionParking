@@ -90,11 +90,8 @@ public class InfoSeGarerParking extends JPanel {
 		ListeInfos.add(labelChoixVehicule, "1, 3, fill, fill");
 
 		this.choixVehicule = new JComboBox<Vehicule>();
-		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
-		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
-			vehiculeModel.addElement(v);
-		}
-		this.choixVehicule.setModel(vehiculeModel);
+		build();
+		
 		ListeInfos.add(choixVehicule, "2, 3, fill, fill");
 
 		JLabel LabelSelectionParking = new JLabel("Sélectionnez le Parking utilisé :");
@@ -148,5 +145,17 @@ public class InfoSeGarerParking extends JPanel {
 	public JComboBox<Parking> getDeroulantSelectionParking() {
 		return DeroulantSelectionParking;
 	}
-
+	
+	private void build() {
+		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
+		for (Vehicule v : fenetrePrincipal.getUtilisateur().getVehicules()) {
+			vehiculeModel.addElement(v);
+		}
+		this.choixVehicule.setModel(vehiculeModel);
+	}
+	
+	public void refresh() {
+		choixVehicule.removeAllItems();
+		build();
+	}
 }

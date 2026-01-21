@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.security.auth.Refreshable;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -55,6 +56,7 @@ public class ControleurHistorique implements ActionListener {
 			try {
 				daoP.quitterParking(parkingId, arrivee);
 				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+				vue.refresh();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

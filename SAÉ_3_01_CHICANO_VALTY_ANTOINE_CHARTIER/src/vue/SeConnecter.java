@@ -50,15 +50,15 @@ public class SeConnecter extends JPanel {
 		passwordField = new JPasswordField();
 		this.add(passwordField, "cell 1 2 2 1,growx,aligny center");
 						
-								btnInscrire = new JButton("S'inscrire");
-								btnInscrire.setPreferredSize(new Dimension(200, 50));
-								add(btnInscrire, "flowx,cell 0 10,alignx left");
-								btnInscrire.addActionListener(controler);
+		btnInscrire = new JButton("S'inscrire");
+		btnInscrire.setPreferredSize(new Dimension(200, 50));
+		add(btnInscrire, "flowx,cell 0 10,alignx left");
+		btnInscrire.addActionListener(controler);
 				
-						JButton boutonConnexion = new JButton("Se connecter");
-						boutonConnexion.setPreferredSize(new Dimension(200, 50));
-						add(boutonConnexion, "cell 2 10,alignx right");
-				boutonConnexion.addActionListener(controler);
+		JButton boutonConnexion = new JButton("Se connecter");
+		boutonConnexion.setPreferredSize(new Dimension(200, 50));
+		add(boutonConnexion, "cell 2 10,alignx right");
+		boutonConnexion.addActionListener(controler);
 
 	}
 	

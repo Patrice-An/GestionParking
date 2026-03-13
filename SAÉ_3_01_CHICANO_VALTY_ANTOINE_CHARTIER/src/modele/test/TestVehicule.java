@@ -48,7 +48,6 @@ public class TestVehicule {
         assertEquals(Type_vehicule.THERMIQUE, vehicule.getType());
     }
 
-
     @Test
     public void testSetHauteur() {
         vehicule.setHauteur(2.10f);
@@ -66,8 +65,6 @@ public class TestVehicule {
         vehicule.setType(Type_vehicule.MOTO);
         assertEquals(Type_vehicule.MOTO, vehicule.getType());
     }
-
-   
 
     @Test
     public void testToString() {

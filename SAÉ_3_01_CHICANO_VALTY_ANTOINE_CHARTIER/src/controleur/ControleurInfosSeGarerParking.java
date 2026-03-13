@@ -11,11 +11,9 @@ import vue.FenetrePrincipal.VUE;
 
 public class ControleurInfosSeGarerParking implements ActionListener{
 	
-	private InfoSeGarerParking vue;
 	private FenetrePrincipal fenetrePrincipal;
 	
 	public ControleurInfosSeGarerParking (InfoSeGarerParking vue, FenetrePrincipal fenetrePrincipal) {
-		this.vue = vue;
 		this.fenetrePrincipal = fenetrePrincipal;
 	}
 	

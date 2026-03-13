@@ -12,11 +12,8 @@ import vue.FenetrePrincipal.VUE;
 public class ControleurSeGarer implements ActionListener{
 	
 	private FenetrePrincipal fenetrePrincipal;
-	private ChoixSeGarer vue;
-	
 	public ControleurSeGarer(ChoixSeGarer vue, FenetrePrincipal fenetrePrincipal) {
 		this.fenetrePrincipal = fenetrePrincipal;
-		this.vue = vue;
 	}
 	
 	@Override

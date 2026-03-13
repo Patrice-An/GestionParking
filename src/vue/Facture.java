@@ -108,7 +108,7 @@ public class Facture extends JPanel {
 		paneCenter.add(LabelArrivee, gbc_LabelArrivee);
 		
 		JLabel LabelDepart = new JLabel("A : depart");
-		LabelDepart.setText("A : "+listeDonnees.get(5));
+		LabelDepart.setText("A : "+listeDonnees.get(4));
 		LabelDepart.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_LabelDepart = new GridBagConstraints();
 		gbc_LabelDepart.anchor = GridBagConstraints.NORTHWEST;

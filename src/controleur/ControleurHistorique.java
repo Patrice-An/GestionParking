@@ -3,12 +3,10 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.security.auth.Refreshable;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -18,7 +16,6 @@ import modele.Vehicule;
 import modele.dao.DaoParking;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
-import modele.dao.DaoZone;
 import vue.Facture;
 import vue.FenetrePrincipal;
 import vue.HistoriqueStationnement;
@@ -38,16 +35,13 @@ public class ControleurHistorique implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		String vehiculeImmat = (String) b.getClientProperty("vehiculeImmat");
-		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
 		DaoParking daoP = new DaoParking();
 		Optional<Vehicule> vehicule = java.util.Optional.empty();
 		Optional<Utilisateur> user = java.util.Optional.empty();
-		Optional<Parking> parking = java.util.Optional.empty();
 		Integer parkingId = (Integer) b.getClientProperty("parkingID");
 		String couleurZone = (String) b.getClientProperty("zone");
-		if (b.getText() == "Partir") {
+		if (b.getText().equals("Partir")) {
 			String arrivee = b.getClientProperty("arrivee").toString();
 			try {
 				daoP.quitterParking(parkingId, arrivee);
@@ -57,7 +51,7 @@ public class ControleurHistorique implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		if (b.getText() == "Facture") {
+		if (b.getText().equals("Facture")) {
 			int userID = fenPrincipal.getUtilisateur().getid();
 			try {
 				user = daoU.findById(userID);

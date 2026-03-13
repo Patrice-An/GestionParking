@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import modele.Abonnement;
 import vue.FenetrePrincipal;
 import vue.FenetrePrincipal.VUE;
 import vue.GestionAbonnement;
@@ -22,7 +21,7 @@ public class ControleurAbonnement implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText() == "Enregistrer") {
+		if (b.getText().equals("Enregistrer")) {
 			JOptionPane.showMessageDialog(null, "Vos abonnements ont bien été enregistrés !");
 			fenPrincipal.ChangementVue(VUE.ACCUEIL);
 		}	

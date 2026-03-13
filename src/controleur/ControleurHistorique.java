@@ -18,6 +18,7 @@ import modele.Vehicule;
 import modele.dao.DaoParking;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
+import modele.dao.DaoZone;
 import vue.Facture;
 import vue.FenetrePrincipal;
 import vue.HistoriqueStationnement;
@@ -38,19 +39,14 @@ public class ControleurHistorique implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		String vehiculeImmat = (String) b.getClientProperty("vehiculeImmat");
-		int parkingId = (int) b.getClientProperty("parkingID");
 		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
 		DaoParking daoP = new DaoParking();
 		Optional<Vehicule> vehicule = java.util.Optional.empty();
 		Optional<Utilisateur> user = java.util.Optional.empty();
 		Optional<Parking> parking = java.util.Optional.empty();
-		try {
-			vehicule = daoV.findById(vehiculeImmat);
-			parking = daoP.findById(1);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		Integer parkingId = (Integer) b.getClientProperty("parkingID");
+		String couleurZone = (String) b.getClientProperty("zone");
 		if (b.getText() == "Partir") {
 			String arrivee = b.getClientProperty("arrivee").toString();
 			try {
@@ -62,7 +58,7 @@ public class ControleurHistorique implements ActionListener {
 			}
 		}
 		if (b.getText() == "Facture") {
-			int userID = vehicule.get().getId_utilisateur();
+			int userID = fenPrincipal.getUtilisateur().getid();
 			try {
 				user = daoU.findById(userID);
 			} catch (SQLException e1) {
@@ -70,11 +66,16 @@ public class ControleurHistorique implements ActionListener {
 			}
 			donneesFacture.add(user.get().getNom());
 			donneesFacture.add(user.get().getPrenom());
-			donneesFacture.add(vehicule.get().toString());
-			try {
-				donneesFacture.add(daoP.findById(parkingId).get().getNom());
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			donneesFacture.add("hardcoded");
+			if (parkingId != null) {
+				try {
+					donneesFacture.add(daoP.findById(parkingId).get().getNom());
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			if (couleurZone != null) {
+				donneesFacture.add(couleurZone);
 			}
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
 			donneesFacture.add(b.getClientProperty("depart").toString());

@@ -17,11 +17,8 @@ import vue.GestionVehicule;
 public class ControleurGestionVehicule implements ActionListener {
 
 	private FenetrePrincipal fenPrincipal;
-	private GestionVehicule vue;
-
 	public ControleurGestionVehicule(GestionVehicule vue, FenetrePrincipal fenPrincipal) {
 		this.fenPrincipal = fenPrincipal;
-		this.vue = vue;
 	}
 
 	@Override

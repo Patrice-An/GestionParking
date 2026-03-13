@@ -11,7 +11,6 @@ import java.util.Optional;
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteUtilisateur.UpdateUtilisateur;
 import modele.dao.requetes.requeteVehicule.CreateVehicule;
 import modele.dao.requetes.requeteVehicule.UpdateVehicule;
 import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;

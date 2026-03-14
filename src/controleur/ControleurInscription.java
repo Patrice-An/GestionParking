@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -55,8 +57,20 @@ public class ControleurInscription implements ActionListener{
 				return;
 			}
 		String nom = vue.getNomField().getText();
+		if(contientNombre(nom)){
+			JOptionPane.showMessageDialog(null, "Nom invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		String prenom = vue.getPrenomField().getText();
+		if(contientNombre(prenom)){
+			JOptionPane.showMessageDialog(null, "Prenom invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		String mail = vue.getMailField().getText();
+		if (!bonFormattageMail(mail)) {
+			JOptionPane.showMessageDialog(null, "Mail invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		JDatePickerImpl naissancePicker = vue.getNaissancePicker();
 		UtilDateModel dateModel = (UtilDateModel) naissancePicker.getModel();
 		if (dateModel.getYear() > 2010) {
@@ -65,6 +79,10 @@ public class ControleurInscription implements ActionListener{
 		}
 		LocalDate naissance = LocalDate.of(dateModel.getYear(), dateModel.getMonth()+1, dateModel.getDay());
 		String tel = vue.getTelField().getText();
+		if(!bonFormattageTelephone(tel)) {
+			JOptionPane.showMessageDialog(null, "Numéro de téléphone invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		String password = String.valueOf(vue.getPasswordField().getPassword());
 		Utilisateur utilisateur = new Utilisateur(0, nom, prenom, tel, naissance, mail, password);
 		try {
@@ -78,6 +96,7 @@ public class ControleurInscription implements ActionListener{
 					utilisateur.addVehicule(v);
 				}
 				fenetrePrincipal.setUtilisateur(utilisateur);
+				//fenetrePrincipal.ChargerVueDependante();
 				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 			} else {
@@ -87,5 +106,23 @@ public class ControleurInscription implements ActionListener{
 			exception.printStackTrace();
 		}
 	}
-
+	
+	private boolean bonFormattageTelephone(String mot) {
+		Pattern pattern = Pattern.compile("^(\\+|00|0)[1-9][0-9]{6,14}$", Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(mot);
+	    return matcher.find();
+	}
+	
+	private boolean contientNombre(String mot) {
+		Pattern pattern = Pattern.compile("[0-9]", Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(mot);
+	    return matcher.find();
+	}
+	
+	private boolean bonFormattageMail(String mail) {
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+.[a-zA-Z]{2,}$", Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(mail);
+	    return matcher.find();
+	}
+	
 }

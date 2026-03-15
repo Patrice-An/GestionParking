@@ -40,35 +40,51 @@ public class ControleurHistorique implements ActionListener {
 		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
 		DaoParking daoP = new DaoParking();
-		Optional<Vehicule> vehicule = java.util.Optional.empty();
-		Optional<Utilisateur> user = java.util.Optional.empty();
-		Optional<Parking> parking = java.util.Optional.empty();
+		Optional<Vehicule> vehiculeOptional = Optional.empty();
 		try {
-			vehicule = daoV.findById(vehiculeImmat);
-			parking = daoP.findById(1);
+			vehiculeOptional = daoV.findById(vehiculeImmat);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		if (b.getText() == "Partir") {
+		
+		Vehicule vehicule;
+		Utilisateur user;
+		
+		if (!vehiculeOptional.isEmpty()) {
+			vehicule = vehiculeOptional.get();
+		} else {
+			return;
+		}
+
+		Optional<Utilisateur> userOptional = Optional.empty();
+		
+		try {
+			userOptional = daoU.findById(vehicule.getId_utilisateur());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		
+		if (!userOptional.isEmpty()) {
+			user = userOptional.get();
+		} else {
+			return;
+		}
+
+		if (b.getText().equals("Partir")) {
 			String arrivee = b.getClientProperty("arrivee").toString();
 			try {
 				daoP.quitterParking(parkingId, arrivee);
-				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.get().getImmatriculation()+" est partie", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.getImmatriculation()+" est partie", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 				vue.refresh();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
-		if (b.getText() == "Facture") {
-			int userID = vehicule.get().getId_utilisateur();
-			try {
-				user = daoU.findById(userID);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			donneesFacture.add(user.get().getNom());
-			donneesFacture.add(user.get().getPrenom());
-			donneesFacture.add(vehicule.get().toString());
+		if (b.getText().equals("Facture")) {
+			donneesFacture.add(user.getNom());
+			donneesFacture.add(user.getPrenom());
+			donneesFacture.add(vehicule.toString());
 			try {
 				donneesFacture.add(daoP.findById(parkingId).get().getNom());
 			} catch (SQLException e1) {

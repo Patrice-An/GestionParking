@@ -73,12 +73,16 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Utilisateur> req = new SelectAllUtilisateur();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		ResultSet resSet = stUtil.executeQuery();
-		ArrayList<Utilisateur> resList = new ArrayList<Utilisateur>();
-		while (resSet.next()) {
-			resList.add(this.createInstance(resSet));
+		try {
+			ResultSet resSet = stUtil.executeQuery();
+			ArrayList<Utilisateur> resList = new ArrayList<>();
+			while (resSet.next()) {
+				resList.add(this.createInstance(resSet));
+			}
+			return resList;
+		} finally {
+			stUtil.close();
 		}
-		return resList;
 	}
 
 	public Optional<Utilisateur> utilisateurCanConnect(String email, String password) throws SQLException {
@@ -105,7 +109,7 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 
 	@Override
 	public void update(Utilisateur utilisateur) throws SQLException {
-		//todo
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -123,7 +127,6 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		Requete<Utilisateur> req = new UtilisateurSelectSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(stUtil, id.toString());
-		ResultSet resSet = stUtil.executeQuery();
-		return resSet;
+		return stUtil.executeQuery();
 	}
 }

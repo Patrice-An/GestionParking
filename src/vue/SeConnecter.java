@@ -17,9 +17,7 @@ import java.awt.Font;
 public class SeConnecter extends JPanel {
 	
 	private JTextField champNomUtilisateur;
-	private JLabel lblNewLabel;
 	private JPasswordField passwordField;
-	private JButton btnInscrire;
 	private FenetrePrincipal fenetrePrincipal;
 		
 	public SeConnecter(FenetrePrincipal fenetrePrincipal) {
@@ -32,7 +30,7 @@ public class SeConnecter extends JPanel {
 		ControleurSeConnecter controler = new ControleurSeConnecter(this, fenetrePrincipal);
 		setLayout(new MigLayout("", "[84px][331px][]", "[13px][19px][19px][23px][][][][][][][]"));
 
-		lblNewLabel = new JLabel("Connexion");
+		JLabel lblNewLabel = new JLabel("Connexion");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
 		this.add(lblNewLabel, "cell 1 0,alignx center,aligny center");
 
@@ -50,7 +48,7 @@ public class SeConnecter extends JPanel {
 		passwordField = new JPasswordField();
 		this.add(passwordField, "cell 1 2 2 1,growx,aligny center");
 						
-		btnInscrire = new JButton("S'inscrire");
+		JButton btnInscrire = new JButton("S'inscrire");
 		btnInscrire.setPreferredSize(new Dimension(200, 50));
 		add(btnInscrire, "flowx,cell 0 10,alignx left");
 		btnInscrire.addActionListener(controler);

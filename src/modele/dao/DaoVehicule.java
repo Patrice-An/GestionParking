@@ -67,32 +67,36 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Vehicule> req = new VehiculeSelectAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		ResultSet resSet = stUtil.executeQuery();
-		ArrayList<Vehicule> resList = new ArrayList<Vehicule>();
-		while (resSet.next()) {
-			resList.add(this.createInstance(resSet));
+		try {
+			ResultSet resSet = stUtil.executeQuery();
+			ArrayList<Vehicule> resList = new ArrayList<>();
+			while (resSet.next()) {
+				resList.add(this.createInstance(resSet));
+			}
+			return resList;
+		} finally {
+			stUtil.close();
 		}
-		return resList;
 	}
 
-	public List<Vehicule> findVehiculeByUser(Integer id_user) throws SQLException {
+	public List<Vehicule> findVehiculeByUser(Integer idUser) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Vehicule> req = new VehiculeFindByUser();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		req.parametres(stUtil, id_user.toString());
+		req.parametres(stUtil, idUser.toString());
 		ResultSet resSet = stUtil.executeQuery();
-		List<Vehicule> resList = new ArrayList<Vehicule>();
+		List<Vehicule> resList = new ArrayList<>();
 		while (resSet.next()) {
 			resList.add(this.createInstance(resSet));
 		}
 		return resList;
 	}
 
-	public boolean vehiculeExistePourUser(String immat, Integer id_user) throws SQLException {
+	public boolean vehiculeExistePourUser(String immat, Integer idUser) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Vehicule> req = new VehiculeExistePourUser();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		req.parametres(stUtil, immat, id_user.toString());
+		req.parametres(stUtil, immat, idUser.toString());
 		ResultSet resSet = stUtil.executeQuery();
 		return resSet.next();
 	}
@@ -121,7 +125,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		return res > 0;
 	}
 
-	public boolean vehiculeEstGaré(String id) throws SQLException {
+	public boolean vehiculeEstGare(String id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Vehicule> req = new VehiculeStationnement();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());

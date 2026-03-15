@@ -57,16 +57,23 @@ public class DaoZone implements Dao<Zone, Integer> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Zone> req = new ZoneSelectAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		ResultSet resSet = stUtil.executeQuery();
-		List<Zone> resList = new ArrayList<Zone>();
-		while (resSet.next()) {
-			resList.add(this.createInstance(resSet));
+
+		try {
+			ResultSet resSet = stUtil.executeQuery();
+			List<Zone> resList = new ArrayList<>();
+			while (resSet.next()) {
+				resList.add(this.createInstance(resSet));
+			}
+			return resList;
+		} finally {
+			stUtil.close();
 		}
-		return resList;
+
 	}
 
 	@Override
 	public void update(Zone zone) throws SQLException {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -79,16 +86,16 @@ public class DaoZone implements Dao<Zone, Integer> {
 		return res > 0;
 	}
 
-	public void seGarerZone(int id_zone, String immat, LocalDateTime heureArrivée, LocalDateTime heureSortie, int place, byte borne) throws SQLException {
+	public void seGarerZone(int idZone, String immat, LocalDateTime heureArrivee, LocalDateTime heureSortie, int place, byte borne) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Zone> req = new ZoneSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		req.parametres(
 			stUtil,
-			String.valueOf(id_zone),
+			String.valueOf(idZone),
 			immat,
-			heureArrivée.format(formatter),
+			heureArrivee.format(formatter),
 			heureSortie.format(formatter),
 			String.valueOf(place),
 			String.valueOf(borne)

@@ -35,13 +35,21 @@ public class ControleurHistorique implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
+		String vehiculeImmat = (String) b.getClientProperty("vehiculeImmat");
+		int parkingId = (int) b.getClientProperty("parkingID");
+		DaoVehicule daoV = new DaoVehicule();
 		DaoUtilisateur daoU = new DaoUtilisateur();
 		DaoParking daoP = new DaoParking();
 		Optional<Vehicule> vehicule = java.util.Optional.empty();
 		Optional<Utilisateur> user = java.util.Optional.empty();
-		Integer parkingId = (Integer) b.getClientProperty("parkingID");
-		String couleurZone = (String) b.getClientProperty("zone");
-		if (b.getText().equals("Partir")) {
+		Optional<Parking> parking = java.util.Optional.empty();
+		try {
+			vehicule = daoV.findById(vehiculeImmat);
+			parking = daoP.findById(1);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		if (b.getText() == "Partir") {
 			String arrivee = b.getClientProperty("arrivee").toString();
 			try {
 				daoP.quitterParking(parkingId, arrivee);
@@ -51,8 +59,8 @@ public class ControleurHistorique implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		if (b.getText().equals("Facture")) {
-			int userID = fenPrincipal.getUtilisateur().getid();
+		if (b.getText() == "Facture") {
+			int userID = vehicule.get().getId_utilisateur();
 			try {
 				user = daoU.findById(userID);
 			} catch (SQLException e1) {
@@ -60,16 +68,11 @@ public class ControleurHistorique implements ActionListener {
 			}
 			donneesFacture.add(user.get().getNom());
 			donneesFacture.add(user.get().getPrenom());
-			donneesFacture.add("hardcoded");
-			if (parkingId != null) {
-				try {
-					donneesFacture.add(daoP.findById(parkingId).get().getNom());
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (couleurZone != null) {
-				donneesFacture.add(couleurZone);
+			donneesFacture.add(vehicule.get().toString());
+			try {
+				donneesFacture.add(daoP.findById(parkingId).get().getNom());
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
 			donneesFacture.add(b.getClientProperty("depart").toString());
@@ -80,6 +83,7 @@ public class ControleurHistorique implements ActionListener {
 		}
 		fenPrincipal.ChangementVue(VUE.ACCUEIL);
 	}
+
 	
 	public List<String> getDonneesFacture() {
 		return this.donneesFacture;

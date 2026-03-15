@@ -30,10 +30,10 @@ public class ControleurAjouterVehicule implements ActionListener{
 			case "Enregistrer":
 				String immat = vue.getImmatriculation();
 				float hauteur = vue.getHauteur();
-				int id_user = fenetrePrincipal.getUtilisateur().getid();
+				int idUser = fenetrePrincipal.getUtilisateur().getid();
 				String designation = vue.getDésignation();
 				Type_vehicule type = vue.getTypeVehicule();
-				Vehicule vehicule = new Vehicule(immat, hauteur, id_user, designation, type);
+				Vehicule vehicule = new Vehicule(immat, hauteur, idUser, designation, type);
 				try {
 					new DaoVehicule().create(vehicule);
 					fenetrePrincipal.getUtilisateur().addVehicule(vehicule);
@@ -48,7 +48,8 @@ public class ControleurAjouterVehicule implements ActionListener{
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.GESTIONVEHICULE);
 				break;
-				
+			default:
+				break;
 		}
 	}
 }

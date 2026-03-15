@@ -70,17 +70,21 @@ public class DaoParking implements Dao<Parking, Integer> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Parking> req = new ParkingSelectAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		ResultSet resSet = stUtil.executeQuery();
-		ArrayList<Parking> resList = new ArrayList<Parking>();
-		while (resSet.next()) {
-			resList.add(this.createInstance(resSet));
+		try {
+			ResultSet resSet = stUtil.executeQuery();
+			ArrayList<Parking> resList = new ArrayList<>();
+			while (resSet.next()) {
+				resList.add(this.createInstance(resSet));
+			}
+			return resList;
+		} finally {
+			stUtil.close();
 		}
-		return resList;
 	}
 
 	@Override
 	public void update(Parking parking) throws SQLException {
-		//todo
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -93,7 +97,7 @@ public class DaoParking implements Dao<Parking, Integer> {
 		return res > 0;
 	}
 
-	public void seGarerParking(int idParking, String immat, LocalDateTime heureArrivée, int place, byte borne) throws SQLException {
+	public void seGarerParking(int idParking, String immat, LocalDateTime heureArrivee, int place, byte borne) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Parking> req = new ParkingSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
@@ -102,7 +106,7 @@ public class DaoParking implements Dao<Parking, Integer> {
 			stUtil,
 			String.valueOf(idParking),
 			immat,
-			heureArrivée.format(formatter),
+			heureArrivee.format(formatter),
 			null,
 			String.valueOf(place),
 			String.valueOf(borne)

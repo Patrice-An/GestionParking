@@ -65,12 +65,16 @@ public class DaoTransport implements Dao<Transport, Integer> {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Transport> req = new TransportFindAll();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
-		ResultSet resSet = stUtil.executeQuery();
-		List<Transport> resList = new ArrayList<Transport>();
-		while (resSet.next()) {
-			resList.add(this.createInstance(resSet));
+		try {
+			ResultSet resSet = stUtil.executeQuery();
+			List<Transport> resList = new ArrayList<>();
+			while (resSet.next()) {
+				resList.add(this.createInstance(resSet));
+			}
+			return resList;
+		} finally {
+			stUtil.close();
 		}
-		return resList;
 	}
 
 	public Optional<Transport> utilisateurCanConnect(String email, String password) throws SQLException {
@@ -97,7 +101,7 @@ public class DaoTransport implements Dao<Transport, Integer> {
 
 	@Override
 	public void update(Transport transport) throws SQLException {
-		//todo
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

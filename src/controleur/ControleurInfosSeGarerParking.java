@@ -20,9 +20,9 @@ public class ControleurInfosSeGarerParking implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText() == "Annuler") {
+		if (b.getText().equals("Annuler")) {
 			fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
-		}else if(b.getText() == "Valider") {
+		}else if(b.getText().equals("Valider")) {
 			fenetrePrincipal.ChangementVue(VUE.FENRECAPITULATIF);
 		}
 	}

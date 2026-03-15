@@ -120,7 +120,7 @@ public class ControleurInscription implements ActionListener{
 	}
 	
 	private boolean bonFormattageMail(String mail) {
-		Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+.[a-zA-Z]{2,}$", Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\\.[a-zA-Z]{2,}$", Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(mail);
 	    return matcher.find();
 	}

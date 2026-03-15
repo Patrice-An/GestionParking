@@ -44,43 +44,48 @@ public class ControleurInscription implements ActionListener{
 			case "Connectez-vous":
 				fenetrePrincipal.ChangementVue(VUE.SECONNECTER);
 				break;
+			default:
+				break;
 		}
 	}
 
 	public void validerInscription() {
+
+		final String FORMULAIRE_INVALIDE_MESSAGE = "Formulaire invalide";
+
 		if (vue.getNomField().getText().isEmpty()
 			|| vue.getPrenomField().getText().isEmpty()
 			|| vue.getMailField().getText().isEmpty()
 			|| vue.getTelField().getText().isEmpty()
 			|| vue.getPasswordField().getPassword().length == 0) {
-				JOptionPane.showMessageDialog(null, "Champs non remplis", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Champs non remplis", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
 		String nom = vue.getNomField().getText();
 		if(contientNombre(nom)){
-			JOptionPane.showMessageDialog(null, "Nom invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Nom invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String prenom = vue.getPrenomField().getText();
 		if(contientNombre(prenom)){
-			JOptionPane.showMessageDialog(null, "Prenom invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Prenom invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String mail = vue.getMailField().getText();
 		if (!bonFormattageMail(mail)) {
-			JOptionPane.showMessageDialog(null, "Mail invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Mail invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		JDatePickerImpl naissancePicker = vue.getNaissancePicker();
 		UtilDateModel dateModel = (UtilDateModel) naissancePicker.getModel();
 		if (dateModel.getYear() > 2010) {
-			JOptionPane.showMessageDialog(null, "Date de naissance invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Date de naissance invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		LocalDate naissance = LocalDate.of(dateModel.getYear(), dateModel.getMonth()+1, dateModel.getDay());
 		String tel = vue.getTelField().getText();
 		if(!bonFormattageTelephone(tel)) {
-			JOptionPane.showMessageDialog(null, "Numéro de téléphone invalide", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Numéro de téléphone invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String password = String.valueOf(vue.getPasswordField().getPassword());
@@ -89,18 +94,20 @@ public class ControleurInscription implements ActionListener{
 			DaoUtilisateur dao = new DaoUtilisateur();
 			if (dao.emailUnique(mail)) {
 				dao.create(utilisateur);
-				Optional<Utilisateur> trueUser = new DaoUtilisateur().utilisateurCanConnect(mail, password);
-				utilisateur = trueUser.get();
+				Optional<Utilisateur> optionalUser = new DaoUtilisateur().utilisateurCanConnect(mail, password);
+				if (optionalUser.isEmpty()) {
+					return;
+				}
+				utilisateur = optionalUser.get();
 				List<Vehicule> vehiculeUtilisateur = new DaoVehicule().findVehiculeByUser(utilisateur.getid());
 				for (Vehicule v : vehiculeUtilisateur) {
 					utilisateur.addVehicule(v);
 				}
 				fenetrePrincipal.setUtilisateur(utilisateur);
-				//fenetrePrincipal.ChargerVueDependante();
 				fenetrePrincipal.ChangementVue(VUE.ACCUEIL);
 				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "Email déjà utilisé", "Formulaire invalide", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			}
 		} catch (SQLException exception) {
 			exception.printStackTrace();

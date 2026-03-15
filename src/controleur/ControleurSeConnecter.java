@@ -30,7 +30,7 @@ public class ControleurSeConnecter implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		if (b.getText() == "Se connecter") {
+		if (b.getText().equals("Se connecter")) {
 			String email = vue.getEmail();
 			String password = vue.getPassword();
 			try {
@@ -49,7 +49,7 @@ public class ControleurSeConnecter implements ActionListener{
 			} catch (SQLException exception) {
 				exception.printStackTrace();
 			}
-		} else if (b.getText() == "S'inscrire") {
+		} else if (b.getText().equals("S'inscrire")) {
 			fenetrePrincipal.ChangementVue(VUE.INSCRIPTION);
 		}
 	}

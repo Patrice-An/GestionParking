@@ -10,7 +10,6 @@ import java.util.Optional;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import modele.Parking;
 import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.DaoParking;
@@ -85,10 +84,11 @@ public class ControleurHistorique implements ActionListener {
 			donneesFacture.add(user.getNom());
 			donneesFacture.add(user.getPrenom());
 			donneesFacture.add(vehicule.toString());
+
 			try {
 				donneesFacture.add(daoP.findById(parkingId).get().getNom());
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			} catch (SQLException _) {
+				return;
 			}
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
 			donneesFacture.add(b.getClientProperty("depart").toString());

@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class AzureSQLDataSource {
+
+    private AzureSQLDataSource() {
+        
+    }
 	
 	private static final String USER = "parking-user@parkings";
 	private static final String PASSWORD = "v%f1R(zrC.tK%hej";

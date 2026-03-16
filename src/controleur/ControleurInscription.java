@@ -95,10 +95,11 @@ public class ControleurInscription implements ActionListener{
 			if (dao.emailUnique(mail)) {
 				dao.create(utilisateur);
 				Optional<Utilisateur> optionalUser = new DaoUtilisateur().utilisateurCanConnect(mail, password);
-				if (optionalUser.isEmpty()) {
+				if (optionalUser.isPresent()) {
+					utilisateur = optionalUser.get();
+				} else {
 					return;
 				}
-				utilisateur = optionalUser.get();
 				List<Vehicule> vehiculeUtilisateur = new DaoVehicule().findVehiculeByUser(utilisateur.getid());
 				for (Vehicule v : vehiculeUtilisateur) {
 					utilisateur.addVehicule(v);

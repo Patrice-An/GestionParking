@@ -35,9 +35,8 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 		this.controleurVoirieTarif = new ControleurVoirieTarif(this);
 		try {
 			this.zones = new DaoZone().findAll();
-		} catch (SQLException e) {
-			this.zones = new ArrayList<Zone>();
-			e.printStackTrace();
+		} catch (SQLException _) {
+			this.zones = new ArrayList<>();
 		}
 	}
 
@@ -59,30 +58,32 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 			case "Valider":
-				if (fenetrePrincipal.getUtilisateur().getVehicules().size() < 1) {
+				if (fenetrePrincipal.getUtilisateur().getVehicules().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 				Vehicule vehicule = (Vehicule) vue.getComboVehicule().getModel().getSelectedItem();
 				Zone zone = (Zone) vue.getComboZone().getModel().getSelectedItem();
 				Tarif tarif = (Tarif) vue.getComboTarif().getSelectedItem();
-				LocalDateTime heureArrivée = LocalDateTime.now();
+				LocalDateTime heureArrivee = LocalDateTime.now();
 				LocalDateTime heureSortie = LocalDateTime.now();
 				heureSortie = heureSortie.plusHours((long)Math.floor(tarif.getDurée()));
 				heureSortie = heureSortie.plusMinutes((long)((tarif.getDurée() - Math.floor(tarif.getDurée()))*60f));
 				int place = 0;
 				byte borne = 0;
 				try {
-					new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivée, heureSortie, place, borne);
+					new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivee, heureSortie, place, borne);
 					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 					fenetrePrincipal.refresh();
 					fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
-				} catch(SQLException exception) {
-					exception.printStackTrace();
+				} catch(SQLException _) {
+					//empty
 				}
 				break;
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
+				break;
+			default:
 				break;
 		}
 	}
@@ -90,7 +91,7 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 	public void updateComboTarif() {
 		JComboBox<Zone> comboZone = vue.getComboZone();
 		Zone zone = (Zone) comboZone.getModel().getSelectedItem();
-		DefaultComboBoxModel<Tarif> tarifModel = new DefaultComboBoxModel<Tarif>();
+		DefaultComboBoxModel<Tarif> tarifModel = new DefaultComboBoxModel<>();
 		for (Tarif t : zone.getTarifs()) {
 			tarifModel.addElement(t);
 		}

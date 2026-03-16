@@ -110,8 +110,8 @@ public class ControleurInscription implements ActionListener{
 			} else {
 				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			}
-		} catch (SQLException exception) {
-			exception.printStackTrace();
+		} catch (SQLException _) {
+			//empty
 		}
 	}
 	

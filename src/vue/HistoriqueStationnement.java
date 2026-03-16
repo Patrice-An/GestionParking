@@ -160,23 +160,22 @@ public class HistoriqueStationnement extends JPanel {
 					Box verticalBox = Box.createVerticalBox();
 					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 					
+					JLabel labelNom = new JLabel("Zone : " +zone.get().getCouleur());
+					labelNom.setHorizontalAlignment(SwingConstants.CENTER);
+					verticalBox.add(labelNom);
 						
-					JLabel LabelNom = new JLabel("Zone : " +zone.get().getCouleur());
-					LabelNom.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(LabelNom);
-						
-					JLabel LabelVehicule = new JLabel("Vehicule : "+res.getString(3));
-					LabelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(LabelVehicule);
+					JLabel labelVehicule = new JLabel("Vehicule : "+res.getString(3));
+					labelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
+					verticalBox.add(labelVehicule);
 					
-					JLabel LabelArrivee = new JLabel("De : "+res.getString(5));
-					LabelArrivee.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(LabelArrivee);
+					JLabel labelArrivee = new JLabel("De : "+res.getString(5));
+					labelArrivee.setHorizontalAlignment(SwingConstants.CENTER);
+					verticalBox.add(labelArrivee);
 					
 					if (res.getString(6) != null) {
-						JLabel LabelSortie = new JLabel("A :"+res.getString(6));
-						LabelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(LabelSortie);
+						JLabel labelSortie = new JLabel("A :"+res.getString(6));
+						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
+						verticalBox.add(labelSortie);
 						
 						JButton btnFacture = new JButton("Facture");
 						verticalBox.add(btnFacture);
@@ -188,11 +187,11 @@ public class HistoriqueStationnement extends JPanel {
 						btnFacture.putClientProperty("depart", res.getString(6));
 						btnFacture.addActionListener(controleur);
 					} else {
-						JLabel LabelSortie = new JLabel("A : Maintenant");
-						LabelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(LabelSortie);
+						JLabel labelSortie = new JLabel("A : Maintenant");
+						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
+						verticalBox.add(labelSortie);
 						
-						JButton btnPartir = new JButton("Partir");
+						btnPartir = new JButton("Partir");
 						verticalBox.add(btnPartir);
 						btnPartir.setBackground(new Color(255, 128, 128));
 						btnPartir.putClientProperty("vehicule", res.getString(3));

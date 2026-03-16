@@ -30,7 +30,7 @@ public class ControleurInfoSeGarer implements ActionListener {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 			case "Valider":
-				if (fenetrePrincipal.getUtilisateur().getVehicules().size() < 1) {
+				if (fenetrePrincipal.getUtilisateur().getVehicules().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
@@ -38,9 +38,9 @@ public class ControleurInfoSeGarer implements ActionListener {
 				Vehicule vehicule = (Vehicule) vue.getChoixVehicule().getModel().getSelectedItem();
 				int place = 0;
 				byte borne = 0;
-				LocalDateTime heureArrivée = LocalDateTime.now();
+				LocalDateTime heureArrivee = LocalDateTime.now();
 				try {
-					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivée, place, borne);
+					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivee, place, borne);
 					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 					fenetrePrincipal.refresh();
 					fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
@@ -50,6 +50,8 @@ public class ControleurInfoSeGarer implements ActionListener {
 				break;
 			case "Annuler":
 				fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
+				break;
+			default:
 				break;
 		}
 	}

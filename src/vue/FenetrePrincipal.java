@@ -53,8 +53,8 @@ public class FenetrePrincipal extends JFrame {
 				try {
 					FenetrePrincipal frame = new FenetrePrincipal();
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception _) {
+					//empty
 				}
 			}
 		});
@@ -69,8 +69,8 @@ public class FenetrePrincipal extends JFrame {
 				BufferedImage img = ImageIO.read(imgStream);
 				setIconImage(img);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException _) {
+			//empty
 		}
 
 		// --- Paramètres fenêtre ---

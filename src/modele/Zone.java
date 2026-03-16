@@ -17,9 +17,8 @@ public class Zone {
         this.couleur = couleur;
         try {
             this.tarifs = new DaoTarif().findByZone(id);
-        } catch (SQLException e) {
-            this.tarifs = new ArrayList<Tarif>();
-            e.printStackTrace();
+        } catch (SQLException _) {
+            this.tarifs = new ArrayList<>();
         }
     }
 

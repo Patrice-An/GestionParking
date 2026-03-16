@@ -46,8 +46,8 @@ public class ControleurSeConnecter implements ActionListener{
 				} else {
 					JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect", "Formulaire erroné", JOptionPane.INFORMATION_MESSAGE);
 				}
-			} catch (SQLException exception) {
-				exception.printStackTrace();
+			} catch (SQLException _) {
+				//empty
 			}
 		} else if (b.getText().equals("S'inscrire")) {
 			fenetrePrincipal.ChangementVue(VUE.INSCRIPTION);

@@ -116,13 +116,13 @@ public class ControleurInscription implements ActionListener{
 	}
 	
 	private boolean bonFormattageTelephone(String mot) {
-		Pattern pattern = Pattern.compile("^(\\+|00|0)[1-9][0-9]{6,14}$", Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile("^(\\+|00|0)[1-9]\\d{6,14}$", Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(mot);
 	    return matcher.find();
 	}
 	
 	private boolean contientNombre(String mot) {
-		Pattern pattern = Pattern.compile("[0-9]", Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile("\\d", Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(mot);
 	    return matcher.find();
 	}

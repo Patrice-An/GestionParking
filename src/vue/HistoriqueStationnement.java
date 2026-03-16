@@ -24,7 +24,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JSeparator;
 import java.awt.Font;
-import java.awt.Rectangle;
 
 public class HistoriqueStationnement extends JPanel {
 
@@ -129,21 +128,21 @@ public class HistoriqueStationnement extends JPanel {
 						btnFacture.setBackground(new Color(0, 128, 192));
 						btnFacture.putClientProperty("vehiculeImmat", res.getString(3));
 						btnFacture.putClientProperty("utilisateur", null);
-						btnFacture.putClientProperty("parkingID", parking.get().getId_parking());
+						btnFacture.putClientProperty("parkingID", parking.get().getidParking());
 						btnFacture.putClientProperty("arrivee", res.getString(5));
 						btnFacture.putClientProperty("depart", res.getString(6));
 						btnFacture.addActionListener(controleur);
 					} else {
-						JLabel LabelSortie = new JLabel("A : Maintenant");
-						LabelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(LabelSortie);
+						JLabel labelSortie = new JLabel("A : Maintenant");
+						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
+						verticalBox.add(labelSortie);
 						
-						JButton btnPartir = new JButton("Partir");
+						btnPartir = new JButton("Partir");
 						verticalBox.add(btnPartir);
 						btnPartir.setBackground(new Color(255, 128, 128));
 						btnPartir.putClientProperty("vehiculeImmat", res.getString(3));
 						btnPartir.putClientProperty("arrivee", res.getString(5));
-						btnPartir.putClientProperty("parkingID", parking.get().getId_parking());
+						btnPartir.putClientProperty("parkingID", parking.get().getidParking());
 						btnPartir.addActionListener(controleur);
 					}
 					paneParking.add(verticalBox);

@@ -1,3 +1,6 @@
 /.metadata/
 /bin/
 /bin
+/bin/controleur
+/bin
+*.class

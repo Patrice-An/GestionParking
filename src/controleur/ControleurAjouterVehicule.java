@@ -41,8 +41,8 @@ public class ControleurAjouterVehicule implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
 					fenetrePrincipal.refresh();
 					fenetrePrincipal.ChangementVue(VUE.GESTIONVEHICULE);
-				} catch(SQLException exception) {
-					exception.printStackTrace();
+				} catch(SQLException _) {
+					//empty
 				}
 				break;
 			case "Annuler":

@@ -20,7 +20,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
-import javax.swing.JList;
 
 public class ListeParking extends JPanel {
 
@@ -80,8 +79,8 @@ public class ListeParking extends JPanel {
 						Integer.toString(i.getPlaces_max()), Integer.toString(i.getPlace_max_moto()), Integer.toString(i.getPlace_max_electrique())};
 				modele.addRow(newRow);
 			}
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} catch(SQLException _) {
+			//empty
 		}
 		
 		table_1 = new JTable();

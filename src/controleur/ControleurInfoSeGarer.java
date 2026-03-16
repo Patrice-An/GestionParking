@@ -44,8 +44,8 @@ public class ControleurInfoSeGarer implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 					fenetrePrincipal.refresh();
 					fenetrePrincipal.ChangementVue(VUE.CHOIXSEGARER);
-				} catch(SQLException exception) {
-					exception.printStackTrace();
+				} catch(SQLException _) {
+					//empty
 				}
 				break;
 			case "Annuler":

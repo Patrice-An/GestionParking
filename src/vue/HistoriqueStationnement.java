@@ -149,8 +149,8 @@ public class HistoriqueStationnement extends JPanel {
 					paneParking.add(verticalBox);
 				}
 			}
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} catch(SQLException _) {
+			//empty
 		}
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
@@ -201,8 +201,8 @@ public class HistoriqueStationnement extends JPanel {
 					paneZone.add(verticalBox);
 				}
 			}
-		} catch(SQLException e) {
-			e.printStackTrace();
+		} catch(SQLException _) {
+			//empty
 		}
 	}
 	

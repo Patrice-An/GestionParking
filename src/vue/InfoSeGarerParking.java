@@ -109,8 +109,8 @@ public class InfoSeGarerParking extends JPanel {
 			for (Parking p : new DaoParking().findAll()) {
 				parkingModel.addElement(p);
 			}
-		} catch (SQLException exception) {
-			exception.printStackTrace();
+		} catch (SQLException _) {
+			//empty
 		}
 		deroulantSelectionParking.setModel(parkingModel);
 		listeInfos.add(deroulantSelectionParking, "1, 5, 2, 1, fill, fill");

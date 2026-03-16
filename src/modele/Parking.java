@@ -5,32 +5,32 @@ import java.util.Set;
 
 public class Parking {
 	
-	private int idParking;
+	private int id_parking;
 	private String adresse;
 	private String nom;
 	private float hauteur;
-	private int placeMax;
-	private int placeMaxMoto;
-	private int placeMaxElectrique;
+	private int places_max;
+	private int place_max_moto;
+	private int place_max_electrique;
 	private Set<Transport> transports;
 	private Set<Vehicule> vehicules;
 	private Set<Tarif> tarifs;
 	
-	public Parking(int idParking, String adresse, String nom, float hauteur, int placeMax, int placeMaxMoto, int placeMaxElectrique) {
-		this.idParking = idParking;
+	public Parking(int id_parking, String adresse, String nom, float hauteur, int places_max, int place_max_moto, int place_max_electrique) {
+		this.id_parking = id_parking;
 		this.adresse = adresse;
 		this.nom = nom;
 		this.hauteur = hauteur;
-		this.placeMax = placeMax;
-		this.placeMaxMoto = placeMaxMoto;
-		this.placeMaxElectrique = placeMaxElectrique;
-		this.transports = new HashSet<>();
-		this.vehicules = new HashSet<>();
-		this.tarifs = new HashSet<>();
+		this.places_max = places_max;
+		this.place_max_moto = place_max_moto;
+		this.place_max_electrique = place_max_electrique;
+		this.transports = new HashSet<Transport>();
+		this.vehicules = new HashSet<Vehicule>();
+		this.tarifs = new HashSet<Tarif>();
 	}
 
-	public int getidParking() {
-		return idParking;
+	public int getId_parking() {
+		return id_parking;
 	}
 
 	public String getNom() {
@@ -87,40 +87,40 @@ public class Parking {
 		this.adresse = adresse;
 	}
 
-	public int getplaceMax() {
-		return placeMax;
+	public int getPlaces_max() {
+		return places_max;
 	}
 
-	public void setplaceMax(int placeMax) {
-		this.placeMax = placeMax;
+	public void setPlaces_max(int places_max) {
+		this.places_max = places_max;
 	}
 
-	public int getplaceMaxMoto() {
-		return placeMaxMoto;
+	public int getPlace_max_moto() {
+		return place_max_moto;
 	}
 
-	public void setplaceMaxMoto(int placeMaxMoto) throws IllegalArgumentException {
-		if (this.getplaceMax() > placeMaxMoto + this.getplaceMaxElectrique() + this.getPlace_max_thermique()) {
+	public void setPlace_max_moto(int place_max_moto) throws IllegalArgumentException {
+		if (this.getPlaces_max() > place_max_moto + this.getPlace_max_electrique() + this.getPlace_max_thermique()) {
 			throw new IllegalArgumentException("Le nombre de place incorrect disponible ne peut pas dépassé le nombre de place maximum");
 		}
 		else {
-			this.placeMaxMoto = placeMaxMoto;
+			this.place_max_moto = place_max_moto;
 		}
 	}
 
-	public int getplaceMaxElectrique() {
-		return placeMaxElectrique;
+	public int getPlace_max_electrique() {
+		return place_max_electrique;
 	}
 	
 	public int getPlace_max_thermique() {
-		return this.getplaceMax() - this.getplaceMaxElectrique() - this.getplaceMaxMoto();
+		return this.getPlaces_max() - this.getPlace_max_electrique() - this.getPlace_max_moto();
 	}
 
-	public void setplaceMaxElectrique(int placeMaxElectrique) throws IllegalArgumentException{
-		if (this.getplaceMax() < placeMaxElectrique + this.getplaceMaxMoto() + this.getPlace_max_thermique()) {
+	public void setPlace_max_electrique(int place_max_electrique) throws IllegalArgumentException{
+		if (this.getPlaces_max() < place_max_electrique + this.getPlace_max_moto() + this.getPlace_max_thermique()) {
 			throw new IllegalArgumentException("Le nombre de place incorrect disponible ne peut pas dépassé le nombre de place maximum");
 		} else {
-			this.placeMaxElectrique = placeMaxElectrique;
+			this.place_max_electrique = place_max_electrique;
 		}
 	}
 
@@ -137,7 +137,7 @@ public class Parking {
 	}
 	
 	public int nb_place_libres() {
-		return this.placeMax - (this.getVoituresElectriques().size() + this.getMotos().size() + this.getVoituresThermiques().size());
+		return this.places_max - (this.getVoituresElectriques().size() + this.getMotos().size() + this.getVoituresThermiques().size());
 	}
 	
 	public Set<Vehicule> getVehicules() {

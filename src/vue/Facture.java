@@ -30,6 +30,7 @@ public class Facture extends JPanel {
 	 * Create the panel.
 	 */
 	public Facture(FenetrePrincipal fenPrincipal, ControleurHistorique accesDonnees) {
+		boolean isParking = accesDonnees.isParking();
 		this.listeDonnees = accesDonnees.getDonneesFacture();
 		this.fenPrincipal = fenPrincipal;
 		setLayout(new BorderLayout(0, 0));
@@ -86,16 +87,20 @@ public class Facture extends JPanel {
 		gbc_LabelVehiculeAffiche.gridx = 2;
 		gbc_LabelVehiculeAffiche.gridy = 2;
 		paneCenter.add(LabelVehiculeAffiche, gbc_LabelVehiculeAffiche);
+		JLabel LabelPZ;
+		if(isParking) {
+			LabelPZ = new JLabel("Parking "+listeDonnees.get(3));
+		}else {
+			LabelPZ = new JLabel("Zone "+listeDonnees.get(3));
+		}
+		LabelPZ.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_LabelPZ = new GridBagConstraints();
+		gbc_LabelPZ.anchor = GridBagConstraints.NORTHWEST;
+		gbc_LabelPZ.insets = new Insets(0, 0, 5, 5);
+		gbc_LabelPZ.gridx = 1;
+		gbc_LabelPZ.gridy = 3;
+		paneCenter.add(LabelPZ, gbc_LabelPZ);
 		
-		JLabel LabelParking = new JLabel("Parking ");
-		LabelParking.setText("Parking "+listeDonnees.get(3));
-		LabelParking.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelParking = new GridBagConstraints();
-		gbc_LabelParking.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelParking.insets = new Insets(0, 0, 5, 5);
-		gbc_LabelParking.gridx = 1;
-		gbc_LabelParking.gridy = 3;
-		paneCenter.add(LabelParking, gbc_LabelParking);
 		
 		JLabel LabelArrivee = new JLabel("De : arrivee");
 		LabelArrivee.setText("De : "+listeDonnees.get(4));

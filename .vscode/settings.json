@@ -7,5 +7,6 @@
         "libraries/mssql-jdbc-13.2.1.jre8-javadoc.jar",
         "libraries/mssql-jdbc-13.2.1.jre8-sources.jar",
         "libraries/mssql-jdbc-13.2.1.jre8.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

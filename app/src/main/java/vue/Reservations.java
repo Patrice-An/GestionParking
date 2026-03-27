@@ -6,8 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Reservations extends JPanel {
 
@@ -19,9 +17,9 @@ public class Reservations extends JPanel {
 	public Reservations() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel LabelTitre = new JLabel("Réserver");
-		LabelTitre.setHorizontalAlignment(SwingConstants.CENTER);
-		add(LabelTitre, BorderLayout.NORTH);
+		JLabel labelTitre = new JLabel("Réserver");
+		labelTitre.setHorizontalAlignment(SwingConstants.CENTER);
+		add(labelTitre, BorderLayout.NORTH);
 		
 		JPanel marginLeft = new JPanel();
 		add(marginLeft, BorderLayout.WEST);
@@ -36,24 +34,20 @@ public class Reservations extends JPanel {
 		add(paneCentre, BorderLayout.CENTER);
 		
 		JButton btnNewButton = new JButton("Place avec borne de recharge");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnNewButton.setPreferredSize(new Dimension(250, 50));
 		paneCentre.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Place moto");
-		btnNewButton_1.setPreferredSize(new Dimension(250, 50));
-		paneCentre.add(btnNewButton_1);
+		JButton btnNewButton1 = new JButton("Place moto");
+		btnNewButton1.setPreferredSize(new Dimension(250, 50));
+		paneCentre.add(btnNewButton1);
 		
-		JButton btnNewButton_2 = new JButton("Place normale");
-		btnNewButton_2.setPreferredSize(new Dimension(250, 50));
-		paneCentre.add(btnNewButton_2);
+		JButton btnNewButton2 = new JButton("Place normale");
+		btnNewButton2.setPreferredSize(new Dimension(250, 50));
+		paneCentre.add(btnNewButton2);
 		
-		JButton btnNewButton_3 = new JButton("Place pour personne en situation de handicap");
-		btnNewButton_3.setPreferredSize(new Dimension(250, 50));
-		paneCentre.add(btnNewButton_3);
+		JButton btnNewButton3 = new JButton("Place pour personne en situation de handicap");
+		btnNewButton3.setPreferredSize(new Dimension(250, 50));
+		paneCentre.add(btnNewButton3);
 
 	}
 

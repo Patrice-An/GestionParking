@@ -39,7 +39,7 @@ public class ControleurInscription implements ActionListener{
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 			case "Valider" -> validerInscription();
-			case "Connectez-vous" -> app.ChangementVue(VUE.SECONNECTER);
+			case "Connectez-vous" -> app.changementVue(VUE.SECONNECTER);
 			default -> { //aucun autre cas
 			}
 		}
@@ -101,7 +101,7 @@ public class ControleurInscription implements ActionListener{
 					utilisateur.addVehicule(v);
 				}
 				app.setUtilisateur(utilisateur);
-				app.ChangementVue(VUE.ACCUEIL);
+				app.changementVue(VUE.ACCUEIL);
 				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);

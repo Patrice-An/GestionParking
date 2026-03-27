@@ -19,8 +19,8 @@ public class ControleurSeGarer implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Parking" -> app.ChangementVue(VUE.INFOSEGARERPARKING);
-			case "Voirie" -> app.ChangementVue(VUE.INFOSEGARERVOIRIE);
+			case "Parking" -> app.changementVue(VUE.INFOSEGARERPARKING);
+			case "Voirie" -> app.changementVue(VUE.INFOSEGARERVOIRIE);
 			default -> {
 				//aucun autre cas
 			}

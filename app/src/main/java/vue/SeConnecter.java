@@ -18,16 +18,16 @@ public class SeConnecter extends JPanel {
 	
 	private JTextField champNomUtilisateur;
 	private JPasswordField passwordField;
-	private App App;
+	private App app;
 		
-	public SeConnecter(App App) {
-		this.App = App;
+	public SeConnecter(App app) {
+		this.app = app;
 		FlatDarculaLaf.setup();
 		initialize();
 	}
 
 	private void initialize() {
-		ControleurSeConnecter controler = new ControleurSeConnecter(this, App);
+		ControleurSeConnecter controler = new ControleurSeConnecter(this, app);
 		setLayout(new MigLayout("", "[84px][331px][]", "[13px][19px][19px][23px][][][][][][][]"));
 
 		JLabel lblNewLabel = new JLabel("Connexion");

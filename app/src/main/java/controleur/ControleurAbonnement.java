@@ -21,7 +21,7 @@ public class ControleurAbonnement implements ActionListener{
 		JButton b = (JButton) e.getSource();
 		if (b.getText().equals("Enregistrer")) {
 			JOptionPane.showMessageDialog(null, "Vos abonnements ont bien été enregistrés !");
-			fenPrincipal.ChangementVue(VUE.ACCUEIL);
+			fenPrincipal.changementVue(VUE.ACCUEIL);
 		}	
 	}
 }

@@ -17,7 +17,7 @@ public class ControleurRecapitulatif implements ActionListener {
 		JButton btn = (JButton) e.getSource();
 		if(btn.getText().equals("Confirmer")) {
 			
-			app.ChangementVue(VUE.ACCUEIL);
+			app.changementVue(VUE.ACCUEIL);
 		}
 	}
 	

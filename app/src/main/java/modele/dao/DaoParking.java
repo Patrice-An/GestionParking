@@ -45,9 +45,9 @@ public class DaoParking implements Dao<Parking, Integer> {
 			parking.getAdresse(),
             parking.getNom(),
             String.valueOf(parking.getHauteur()),
-            String.valueOf(parking.getPlaces_max()),
-            String.valueOf(parking.getPlace_max_moto()),
-            String.valueOf(parking.getPlace_max_electrique()));
+            String.valueOf(parking.getplacesMax()),
+            String.valueOf(parking.getplacesMaxMoto()),
+            String.valueOf(parking.getplacesMaxElectrique()));
 		stUtil.executeUpdate();
 	}
 	

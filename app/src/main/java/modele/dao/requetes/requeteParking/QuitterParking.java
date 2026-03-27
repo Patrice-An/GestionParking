@@ -10,7 +10,7 @@ public class QuitterParking extends Requete<Parking> {
 
     @Override
 	public String requete()  {
-		return "update garer set heureSortie = ? where id_parking = ? and heureArrivée = ?";
+		return "update garer set heureSortie = ? where idParking = ? and heureArrivee = ?";
 	}
 	
 	@Override

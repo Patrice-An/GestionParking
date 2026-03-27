@@ -42,7 +42,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 			vehicule.getImmatriculation(),
 			String.valueOf(vehicule.getHauteur()),
 			String.valueOf(vehicule.getId_utilisateur()),
-			vehicule.getDésignation(),
+			vehicule.getDesignation(),
 			vehicule.getType().name()
 		);
 		stUtil.executeUpdate();
@@ -109,7 +109,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		req.parametres(
 			stUtil,
 			String.valueOf(vehicule.getHauteur()),
-			vehicule.getDésignation(),
+			vehicule.getDesignation(),
 			vehicule.getType().name()
 		);
 		stUtil.executeUpdate();

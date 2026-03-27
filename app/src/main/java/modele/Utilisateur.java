@@ -6,15 +6,15 @@ import java.util.Set;
 
 public class Utilisateur {
 
-	private int id;
+	private final int id;
 	private String nom;
 	private String prenom;
 	private String tel;
 	private LocalDate naissance;
 	private String mail;
-	private String password;
-	private Set<Vehicule> vehicules;
-	private Set<Abonnement> abonnements;
+	private final String password;
+	private final Set<Vehicule> vehicules;
+	private final Set<Abonnement> abonnements;
 
 	public Utilisateur(int id, String nom, String prenom, String tel, LocalDate naissance, String mail, String password) {
 		super();
@@ -26,7 +26,7 @@ public class Utilisateur {
 		this.mail = mail;
 		this.password = password;
 		this.vehicules = new HashSet<>();
-		this.abonnements = new HashSet<Abonnement>();
+		this.abonnements = new HashSet<>();
 	}
 
 	public int getid() {

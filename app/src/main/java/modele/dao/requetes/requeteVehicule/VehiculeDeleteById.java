@@ -12,7 +12,7 @@ public class VehiculeDeleteById extends Requete<Vehicule> {
 
 	@Override
 	public String requete() {
-		return "delete from véhicule where immat = ?";
+		return "delete from vehicule where immat = ?";
 		
 	}
 	

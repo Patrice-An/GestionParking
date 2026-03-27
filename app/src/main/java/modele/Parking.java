@@ -5,32 +5,32 @@ import java.util.Set;
 
 public class Parking {
 	
-	private int id_parking;
+	private final int idParking;
 	private String adresse;
 	private String nom;
 	private float hauteur;
-	private int places_max;
-	private int place_max_moto;
-	private int place_max_electrique;
-	private Set<Transport> transports;
-	private Set<Vehicule> vehicules;
-	private Set<Tarif> tarifs;
+	private int placesMax;
+	private int placesMaxMoto;
+	private int placesMaxElectrique;
+	private final Set<Transport> transports;
+	private final Set<Vehicule> vehicules;
+	private final Set<Tarif> tarifs;
 	
-	public Parking(int id_parking, String adresse, String nom, float hauteur, int places_max, int place_max_moto, int place_max_electrique) {
-		this.id_parking = id_parking;
+	public Parking(int idParking, String adresse, String nom, float hauteur, int placesMax, int placesMaxMoto, int placesMaxElectrique) {
+		this.idParking = idParking;
 		this.adresse = adresse;
 		this.nom = nom;
 		this.hauteur = hauteur;
-		this.places_max = places_max;
-		this.place_max_moto = place_max_moto;
-		this.place_max_electrique = place_max_electrique;
-		this.transports = new HashSet<Transport>();
-		this.vehicules = new HashSet<Vehicule>();
-		this.tarifs = new HashSet<Tarif>();
+		this.placesMax = placesMax;
+		this.placesMaxMoto = placesMaxMoto;
+		this.placesMaxElectrique = placesMaxElectrique;
+		this.transports = new HashSet<>();
+		this.vehicules = new HashSet<>();
+		this.tarifs = new HashSet<>();
 	}
 
-	public int getId_parking() {
-		return id_parking;
+	public int getidParking() {
+		return idParking;
 	}
 
 	public String getNom() {
@@ -87,40 +87,40 @@ public class Parking {
 		this.adresse = adresse;
 	}
 
-	public int getPlaces_max() {
-		return places_max;
+	public int getplacesMax() {
+		return placesMax;
 	}
 
-	public void setPlaces_max(int places_max) {
-		this.places_max = places_max;
+	public void setplacesMax(int placesMax) {
+		this.placesMax = placesMax;
 	}
 
-	public int getPlace_max_moto() {
-		return place_max_moto;
+	public int getplacesMaxMoto() {
+		return placesMaxMoto;
 	}
 
-	public void setPlace_max_moto(int place_max_moto) throws IllegalArgumentException {
-		if (this.getPlaces_max() > place_max_moto + this.getPlace_max_electrique() + this.getPlace_max_thermique()) {
+	public void setplacesMaxMoto(int placesMaxMoto) throws IllegalArgumentException {
+		if (this.getplacesMax() > placesMaxMoto + this.getplacesMaxElectrique() + this.getPlaceMaxThermique()) {
 			throw new IllegalArgumentException("Le nombre de place incorrect disponible ne peut pas dépassé le nombre de place maximum");
 		}
 		else {
-			this.place_max_moto = place_max_moto;
+			this.placesMaxMoto = placesMaxMoto;
 		}
 	}
 
-	public int getPlace_max_electrique() {
-		return place_max_electrique;
+	public int getplacesMaxElectrique() {
+		return placesMaxElectrique;
 	}
 	
-	public int getPlace_max_thermique() {
-		return this.getPlaces_max() - this.getPlace_max_electrique() - this.getPlace_max_moto();
+	public int getPlaceMaxThermique() {
+		return this.getplacesMax() - this.getplacesMaxElectrique() - this.getplacesMaxMoto();
 	}
 
-	public void setPlace_max_electrique(int place_max_electrique) throws IllegalArgumentException{
-		if (this.getPlaces_max() < place_max_electrique + this.getPlace_max_moto() + this.getPlace_max_thermique()) {
+	public void setplacesMaxElectrique(int placesMaxElectrique) throws IllegalArgumentException{
+		if (this.getplacesMax() < placesMaxElectrique + this.getplacesMaxMoto() + this.getPlaceMaxThermique()) {
 			throw new IllegalArgumentException("Le nombre de place incorrect disponible ne peut pas dépassé le nombre de place maximum");
 		} else {
-			this.place_max_electrique = place_max_electrique;
+			this.placesMaxElectrique = placesMaxElectrique;
 		}
 	}
 
@@ -136,8 +136,8 @@ public class Parking {
 		return !this.transports.isEmpty();
 	}
 	
-	public int nb_place_libres() {
-		return this.places_max - (this.getVoituresElectriques().size() + this.getMotos().size() + this.getVoituresThermiques().size());
+	public int nbPlaceLibres() {
+		return this.placesMax - (this.getVoituresElectriques().size() + this.getMotos().size() + this.getVoituresThermiques().size());
 	}
 	
 	public Set<Vehicule> getVehicules() {

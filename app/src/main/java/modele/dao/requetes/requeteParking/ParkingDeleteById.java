@@ -11,7 +11,7 @@ public class ParkingDeleteById extends Requete<Parking> {
 
 	@Override
 	public String requete() {
-		return "delete from parking where id_parking = ?";
+		return "delete from parking where idParking = ?";
 	}
 	
 	@Override

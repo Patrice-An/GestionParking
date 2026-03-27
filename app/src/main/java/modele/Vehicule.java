@@ -2,17 +2,17 @@ package modele;
 
 public class Vehicule{
 	
-	private String immatriculation;
+	private final String immatriculation;
 	private float hauteur;
-	private int id_utilisateur;
-	private String désignation;
+	private final int idUtilisateur;
+	private String designation;
 	private Type_vehicule type;
 
-	public Vehicule(String immatriculation, float hauteur, int id_utilisateur, String désignation, Type_vehicule type) {
+	public Vehicule(String immatriculation, float hauteur, int idUtilisateur, String designation, Type_vehicule type) {
 		this.immatriculation = immatriculation;
 		this.hauteur = hauteur;
-		this.id_utilisateur = id_utilisateur;
-		this.désignation = désignation;
+		this.idUtilisateur = idUtilisateur;
+		this.designation = designation;
 		this.type = type;
 	}
 
@@ -24,12 +24,12 @@ public class Vehicule{
 		return hauteur;
 	}
 
-	public int getId_utilisateur() {
-		return id_utilisateur;
+	public int getidUtilisateur() {
+		return idUtilisateur;
 	}
 
-	public String getDésignation() {
-		return désignation;
+	public String getDesignation() {
+		return designation;
 	}
 
 	public Type_vehicule getType() {
@@ -40,8 +40,8 @@ public class Vehicule{
 		this.hauteur = hauteur;
 	}
 
-	public void setDésignation(String désignation) {
-		this.désignation = désignation;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 
 	public void setType(Type_vehicule type) {
@@ -50,7 +50,7 @@ public class Vehicule{
 
 	@Override
 	public String toString() {
-		return this.désignation + " - " + this.immatriculation;
+		return this.designation + " - " + this.immatriculation;
 	}
 
 }

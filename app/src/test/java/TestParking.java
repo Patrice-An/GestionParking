@@ -47,7 +47,7 @@ public class TestParking {
 
     @Test
     public void testGettersAndSetters() {
-        assertEquals(1, parking.getId_parking());
+        assertEquals(1, parking.getidParking());
         assertEquals("Parking Central", parking.getNom());
         parking.setNom("Parking Nord");
         assertEquals("Parking Nord", parking.getNom());
@@ -60,9 +60,9 @@ public class TestParking {
         parking.setHauteur(3.0f);
         assertEquals(3.0f, parking.getHauteur(), 0.001f);
 
-        assertEquals(10, parking.getPlaces_max());
-        parking.setPlaces_max(12);
-        assertEquals(12, parking.getPlaces_max());
+        assertEquals(10, parking.getplacesMax());
+        parking.setplacesMax(12);
+        assertEquals(12, parking.getplacesMax());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class TestParking {
         parking.addVehicule(vElectrique);
         parking.addVehicule(vMoto);
 
-        int expected = parking.getPlaces_max() - 3;
+        int expected = parking.getplacesMax() - 3;
         assertEquals(expected, parking.nb_place_libres());
     }
 
@@ -132,13 +132,13 @@ public class TestParking {
     @Test
     public void testPlaceMaxExceptions() {
         try {
-            parking.setPlace_max_moto(20);
+            parking.setplacesMaxMoto(20);
         } catch (IllegalArgumentException e) {
             assertTrue(e.getMessage().contains("Le nombre de place incorrect"));
         }
 
         try {
-            parking.setPlace_max_electrique(20);
+            parking.setplacesMaxElectrique(20);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
             assertTrue(e.getMessage().contains("Le nombre de place incorrect"));

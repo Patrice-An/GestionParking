@@ -129,7 +129,7 @@ public class HistoriqueStationnement extends JPanel {
 						btnFacture.setBackground(new Color(0, 128, 192));
 						btnFacture.putClientProperty("vehiculeImmat", res.getString(3));
 						btnFacture.putClientProperty("utilisateur", null);
-						btnFacture.putClientProperty("parkingID", parking.get().getId_parking());
+						btnFacture.putClientProperty("parkingID", parking.get().getidParking());
 						btnFacture.putClientProperty("arrivee", res.getString(5));
 						btnFacture.putClientProperty("depart", res.getString(6));
 						btnFacture.addActionListener(controleur);
@@ -143,7 +143,7 @@ public class HistoriqueStationnement extends JPanel {
 						btnPartir.setBackground(new Color(255, 128, 128));
 						btnPartir.putClientProperty("vehiculeImmat", res.getString(3));
 						btnPartir.putClientProperty("arrivee", res.getString(5));
-						btnPartir.putClientProperty("parkingID", parking.get().getId_parking());
+						btnPartir.putClientProperty("parkingID", parking.get().getidParking());
 						btnPartir.addActionListener(controleur);
 					}
 					paneParking.add(verticalBox);

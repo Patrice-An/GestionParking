@@ -12,7 +12,7 @@ public class UpdateVehicule extends Requete<Vehicule> {
 
 	@Override
 	public String requete() {
-		return "update véhicule set hauteur = ?, designation = ?, type = ?";
+		return "update vehicule set hauteur = ?, designation = ?, type = ?";
 		
 	}
 	

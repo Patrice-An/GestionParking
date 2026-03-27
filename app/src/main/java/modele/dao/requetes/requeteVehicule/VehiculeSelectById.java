@@ -12,7 +12,7 @@ public class VehiculeSelectById extends Requete<Vehicule> {
 
     @Override
 	public String requete()  {
-		return "select * from véhicule where immat = ?";
+		return "select * from vehicule where immat = ?";
 		
 	}
 	

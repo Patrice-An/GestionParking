@@ -2,7 +2,7 @@ package modele;
 
 public class Transport {
 
-	private int id;
+	private final int id;
 	private String adresse;
 	private String ligne;
 	private Type_Transport type;

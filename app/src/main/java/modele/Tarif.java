@@ -2,14 +2,14 @@ package modele;
 
 public class Tarif {
 
-	private int id;
-	private float durée;
+	private final int id;
+	private float duree;
 	private int majoration;
 	
-	public Tarif(int id, float durée, int majoration) {
+	public Tarif(int id, float duree, int majoration) {
 		super();
 		this.id = id;
-		this.durée = durée;
+		this.duree = duree;
 		this.majoration = majoration;
 	}
 
@@ -17,12 +17,12 @@ public class Tarif {
 		return id;
 	}
 
-	public float getDurée() {
-		return durée;
+	public float getDuree() {
+		return duree;
 	}
 
-	public void setDurée(float durée) {
-		this.durée = durée;
+	public void setDuree(float duree) {
+		this.duree = duree;
 	}
 
 	public float getMajoration() {
@@ -35,8 +35,8 @@ public class Tarif {
 
 	@Override
 	public String toString() {
-		String dureeAffichage = String.valueOf((int)Math.floor(durée)) + "H" + String.valueOf((int)((durée - Math.floor(durée))*60f)) + "M";
-		return "Durée : " + dureeAffichage + ", tarif : " + majoration + "€";
+		String dureeAffichage = String.valueOf((int)Math.floor(duree)) + "H" + String.valueOf((int)((duree - Math.floor(duree))*60f)) + "M";
+		return "Duree : " + dureeAffichage + ", tarif : " + majoration + "€";
 	}
 	
 }

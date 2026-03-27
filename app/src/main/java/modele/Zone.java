@@ -8,7 +8,7 @@ import modele.dao.DaoTarif;
 
 public class Zone {
 
-    private int id;
+    private final int id;
     private String couleur;
     private List<Tarif> tarifs;
 

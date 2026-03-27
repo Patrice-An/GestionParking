@@ -9,7 +9,7 @@ public class VehiculeSelectAll extends Requete<Vehicule> {
 
     @Override
 	public String requete()  {
-		return "select * from véhicule";
+		return "select * from vehicule";
 		
 	}
 }

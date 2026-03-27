@@ -11,7 +11,7 @@ public class CreateVehicule extends Requete<Vehicule> {
 
 	@Override
 	public String requete()  {
-		return "insert into véhicule values(?, ?, ?, ?, ?)";
+		return "insert into vehicule values(?, ?, ?, ?, ?)";
 	}
 	
 	@Override

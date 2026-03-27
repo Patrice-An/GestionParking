@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteZone;
+package modele.dao.requetes.requetezone;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,12 @@ import modele.dao.requetes.Requete;
 
 public class ZoneSeGarer extends Requete<Zone> {
 
-    private String requete;
+    
 
     @Override
 	public String requete()  {
-		this.requete = "insert into garer values(?, 0, ?, ?, ?, ?, ?);";
-		return this.requete;
+		return "insert into garer values(?, 0, ?, ?, ?, ?, ?);";
+		
 	}
 	
 	@Override

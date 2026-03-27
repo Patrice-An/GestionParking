@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteUtilisateur;
+package modele.dao.requetes.requeteutilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class UtilisateurConnection extends Requete<Utilisateur> {
 
-    private String requete;
-
 	@Override
 	public String requete() {
-		this.requete = "select * from utilisateur where mail = ? and password = ?";
-		return this.requete;
+		return "select * from utilisateur where mail = ? and password = ?";
 	}
 	
 	@Override

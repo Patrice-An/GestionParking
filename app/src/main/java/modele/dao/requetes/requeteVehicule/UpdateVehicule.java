@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteVehicule;
+package modele.dao.requetes.requetevehicule;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,12 @@ import modele.dao.requetes.Requete;
 
 public class UpdateVehicule extends Requete<Vehicule> {
 
-    private String requete;
+    
 
 	@Override
 	public String requete() {
-		this.requete = "update véhicule set hauteur = ?, designation = ?, type = ?";
-		return this.requete;
+		return "update véhicule set hauteur = ?, designation = ?, type = ?";
+		
 	}
 	
 	@Override

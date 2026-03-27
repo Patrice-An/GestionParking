@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteVehicule;
+package modele.dao.requetes.requetevehicule;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,10 @@ import modele.dao.requetes.Requete;
 
 public class CreateVehicule extends Requete<Vehicule> {
 
-    private String requete;
 
 	@Override
 	public String requete()  {
-		this.requete = "insert into véhicule values(?, ?, ?, ?, ?)";
-		return this.requete;
+		return "insert into véhicule values(?, ?, ?, ?, ?)";
 	}
 	
 	@Override

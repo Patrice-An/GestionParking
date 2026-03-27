@@ -11,14 +11,14 @@ import java.util.Optional;
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteVehicule.CreateVehicule;
-import modele.dao.requetes.requeteVehicule.UpdateVehicule;
-import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
-import modele.dao.requetes.requeteVehicule.VehiculeExistePourUser;
-import modele.dao.requetes.requeteVehicule.VehiculeFindByUser;
-import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
-import modele.dao.requetes.requeteVehicule.VehiculeSelectById;
-import modele.dao.requetes.requeteVehicule.VehiculeStationnement;
+import modele.dao.requetes.requetevehicule.CreateVehicule;
+import modele.dao.requetes.requetevehicule.UpdateVehicule;
+import modele.dao.requetes.requetevehicule.VehiculeDeleteById;
+import modele.dao.requetes.requetevehicule.VehiculeExistePourUser;
+import modele.dao.requetes.requetevehicule.VehiculeFindByUser;
+import modele.dao.requetes.requetevehicule.VehiculeSelectAll;
+import modele.dao.requetes.requetevehicule.VehiculeSelectById;
+import modele.dao.requetes.requetevehicule.VehiculeStationnement;
 
 public class DaoVehicule implements Dao<Vehicule, String> {
 

@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteUtilisateur;
+package modele.dao.requetes.requeteutilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,14 +8,12 @@ import modele.dao.requetes.Requete;
 
 public class UtilisateurSelectSeGarer extends Requete<Utilisateur> {
 
-    private String requete;
 
 	@Override
 	public String requete() {
-		this.requete = "select * from garer " +
+		return "select * from garer " +
 		"join véhicule on véhicule.immat = garer.immat " +
 		"where véhicule.id_utilisateur = ?";
-		return this.requete;
 	}
 	
 	@Override

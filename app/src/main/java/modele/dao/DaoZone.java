@@ -12,11 +12,11 @@ import java.util.Optional;
 
 import modele.Zone;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteZone.CreateZone;
-import modele.dao.requetes.requeteZone.ZoneDeleteById;
-import modele.dao.requetes.requeteZone.ZoneSeGarer;
-import modele.dao.requetes.requeteZone.ZoneSelectAll;
-import modele.dao.requetes.requeteZone.ZoneSelectById;
+import modele.dao.requetes.requetezone.CreateZone;
+import modele.dao.requetes.requetezone.ZoneDeleteById;
+import modele.dao.requetes.requetezone.ZoneSeGarer;
+import modele.dao.requetes.requetezone.ZoneSelectAll;
+import modele.dao.requetes.requetezone.ZoneSelectById;
 
 public class DaoZone implements Dao<Zone, Integer> {
 

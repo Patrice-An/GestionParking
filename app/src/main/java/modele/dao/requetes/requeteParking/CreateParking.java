@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteParking;
+package modele.dao.requetes.requeteparking;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,11 @@ import modele.dao.requetes.Requete;
 
 public class CreateParking extends Requete<Parking> {
 
-    private String requete;
+
 
 	@Override
 	public String requete()  {
-		this.requete = "insert into parking values(?, ?, ?, ?, ?, ?)";
-		return this.requete;
+		return "insert into parking values(?, ?, ?, ?, ?, ?)";
 	}
 	
 	@Override

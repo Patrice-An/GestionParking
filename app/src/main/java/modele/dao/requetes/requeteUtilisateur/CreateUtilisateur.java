@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteUtilisateur;
+package modele.dao.requetes.requeteutilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class CreateUtilisateur extends Requete<Utilisateur> {
 
-    private String requete;
-
 	@Override
 	public String requete() {
-		this.requete = "insert into utilisateur values(?, ?, ?, ?, ?, ?)";
-		return this.requete;
+		return "insert into utilisateur values(?, ?, ?, ?, ?, ?)";
 	}
 	
 	@Override

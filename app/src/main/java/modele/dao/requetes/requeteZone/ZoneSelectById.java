@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteZone;
+package modele.dao.requetes.requetezone;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,12 @@ import modele.dao.requetes.Requete;
 
 public class ZoneSelectById extends Requete<Zone> {
 
-    private String requete;
+    
 
     @Override
 	public String requete()  {
-		this.requete = "select * from zone where id_zone = ?";
-		return this.requete;
+		return "select * from zone where id_zone = ?";
+		
 	}
 	
 	@Override

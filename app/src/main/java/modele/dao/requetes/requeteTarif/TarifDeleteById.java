@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteTarif;
+package modele.dao.requetes.requetetarif;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class TarifDeleteById extends Requete<Tarif> {
 
-    private String requete;
-
     @Override
 	public String requete()  {
-		this.requete = "delete from tarif where id_tarif = ?";
-		return this.requete;
+		return "delete from tarif where id_tarif = ?";
 	}
 	
 	@Override

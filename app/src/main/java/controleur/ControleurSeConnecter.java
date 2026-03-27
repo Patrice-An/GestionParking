@@ -9,21 +9,20 @@ import java.util.Optional;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import vue.App;
-import vue.SeConnecter;
-import vue.App.VUE;
 import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
+import vue.App;
+import vue.App.VUE;
+import vue.SeConnecter;
 
 public class ControleurSeConnecter implements ActionListener{
 
-	private SeConnecter vue;
-	private App App;
+	private final SeConnecter vue;
+	private App app;
 			
-	public ControleurSeConnecter(SeConnecter vue, App App) {
-		this.App = App;
+	public ControleurSeConnecter(SeConnecter vue) {
 		this.vue = vue;
 	}
 
@@ -41,8 +40,8 @@ public class ControleurSeConnecter implements ActionListener{
 					for (Vehicule v : vehiculeUtilisateur) {
 						utilisateur.addVehicule(v);
 					}
-					App.setUtilisateur(utilisateur);
-					App.ChangementVue(VUE.ACCUEIL);
+					app.setUtilisateur(utilisateur);
+					app.ChangementVue(VUE.ACCUEIL);
 				} else {
 					JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect", "Formulaire erroné", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -50,7 +49,7 @@ public class ControleurSeConnecter implements ActionListener{
 				//empty
 			}
 		} else if (b.getText().equals("S'inscrire")) {
-			App.ChangementVue(VUE.INSCRIPTION);
+			app.ChangementVue(VUE.INSCRIPTION);
 		}
 	}
 }

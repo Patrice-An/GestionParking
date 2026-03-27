@@ -15,15 +15,15 @@ import modele.Vehicule;
 import modele.dao.DaoParking;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
-import vue.Facture;
 import vue.App;
-import vue.HistoriqueStationnement;
 import vue.App.VUE;
+import vue.Facture;
+import vue.HistoriqueStationnement;
 
 public class ControleurHistorique implements ActionListener {
 	
-	private App fenPrincipal;
-	private HistoriqueStationnement vue;
+	private final App fenPrincipal;
+	private final HistoriqueStationnement vue;
 	private List<String> donneesFacture = new ArrayList<>();
 
 	public ControleurHistorique(HistoriqueStationnement vue, App fenPrincipal) {
@@ -43,7 +43,7 @@ public class ControleurHistorique implements ActionListener {
 		try {
 			vehiculeOptional = daoV.findById(vehiculeImmat);
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			//
 		}
 		
 		Vehicule vehicule;
@@ -60,7 +60,7 @@ public class ControleurHistorique implements ActionListener {
 		try {
 			userOptional = daoU.findById(vehicule.getId_utilisateur());
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			//
 		}
 
 		
@@ -77,7 +77,7 @@ public class ControleurHistorique implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Le véhicule : "+vehicule.getImmatriculation()+" est partie", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 				vue.refresh();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				//
 			}
 		}
 		if (b.getText().equals("Facture")) {

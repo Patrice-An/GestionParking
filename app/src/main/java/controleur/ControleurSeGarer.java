@@ -5,27 +5,25 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import vue.ChoixSeGarer;
 import vue.App;
 import vue.App.VUE;
 
 public class ControleurSeGarer implements ActionListener{
 	
-	private App App;
-	public ControleurSeGarer(ChoixSeGarer vue, App App) {
-		this.App = App;
+	private final App app;
+	public ControleurSeGarer(App app) {
+		this.app = app;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Parking":
-				App.ChangementVue(VUE.INFOSEGARERPARKING);
-				break;
-			case "Voirie":
-				App.ChangementVue(VUE.INFOSEGARERVOIRIE);
-				break;
+			case "Parking" -> app.ChangementVue(VUE.INFOSEGARERPARKING);
+			case "Voirie" -> app.ChangementVue(VUE.INFOSEGARERVOIRIE);
+			default -> {
+				//aucun autre cas
+			}
 		}
 	}
 

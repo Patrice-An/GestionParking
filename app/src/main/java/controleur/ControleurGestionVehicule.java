@@ -12,13 +12,11 @@ import modele.Vehicule;
 import modele.dao.DaoVehicule;
 import vue.App;
 import vue.App.VUE;
-import vue.GestionVehicule;
-
 public class ControleurGestionVehicule implements ActionListener {
 
-	private App fenPrincipal;
-	public ControleurGestionVehicule(GestionVehicule vue, App fenPrincipal) {
-		this.fenPrincipal = fenPrincipal;
+	private final App app;
+	public ControleurGestionVehicule(App app) {
+		this.app = app;
 	}
 
 	@Override
@@ -26,35 +24,32 @@ public class ControleurGestionVehicule implements ActionListener {
 		JButton b = (JButton) e.getSource();
 		Vehicule vehicule = (Vehicule) b.getClientProperty("vehicule");
 		switch (b.getText()) {
-			case "Ajouter un véhicule":
-				fenPrincipal.ChangementVue(VUE.AJOUTERVEHICULE);
-				fenPrincipal.refresh();
-				break;
-			case "Rechercher":
-				break;
-			case "Modifier":
-				JTextField designation = (JTextField) b.getClientProperty("désignation");
-				JTextField type = (JTextField) b.getClientProperty("type");
-				JTextField hauteur = (JTextField) b.getClientProperty("hauteur");
-
-				// Activation des champs
-				designation.setEnabled(true);
-				type.setEnabled(true);
-				hauteur.setEnabled(true);
-
-				break;
-			case "Supprimer" :
-				try {
-					new DaoVehicule().deleteById(vehicule.getImmatriculation()); 
-					JOptionPane.showMessageDialog(null, "Le véhicule a bien été supprimé");
-					fenPrincipal.getUtilisateur().removeVehicule(vehicule);
-					fenPrincipal.refresh();
-				} catch (SQLException eee) {
-					JOptionPane.showMessageDialog(null, "Le véhicule est stationné et ne peux pas être supprimé");
-				}
-				break;
-			default:
-				break;
+			case "Ajouter un véhicule" -> {
+                            app.ChangementVue(VUE.AJOUTERVEHICULE);
+                            app.refresh();
+                }
+			case "Modifier" -> {
+                            JTextField designation = (JTextField) b.getClientProperty("désignation");
+                            JTextField type = (JTextField) b.getClientProperty("type");
+                            JTextField hauteur = (JTextField) b.getClientProperty("hauteur");
+                            
+                            // Activation des champs
+                            designation.setEnabled(true);
+                            type.setEnabled(true);
+                            hauteur.setEnabled(true);
+                }
+			case "Supprimer" -> {
+                            try {
+                                new DaoVehicule().deleteById(vehicule.getImmatriculation());
+                                JOptionPane.showMessageDialog(null, "Le véhicule a bien été supprimé");
+                                app.getUtilisateur().removeVehicule(vehicule);
+                                app.refresh();
+                            } catch (SQLException eee) {
+                                JOptionPane.showMessageDialog(null, "Le véhicule est stationné et ne peux pas être supprimé");
+                            }
+                }
+			default -> {//aucapp
+                }
 		}
 
 	}

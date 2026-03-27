@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteTarif;
+package modele.dao.requetes.requetetarif;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class CreateTarif extends Requete<Tarif> {
 
-    private String requete;
-
     @Override
 	public String requete()  {
-		this.requete = "insert into tarif values(?, ?)";
-		return this.requete;
+		return "insert into tarif values(?, ?)";
 	}
 	
 	@Override

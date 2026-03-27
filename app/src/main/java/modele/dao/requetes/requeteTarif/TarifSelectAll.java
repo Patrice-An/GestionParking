@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteTarif;
+package modele.dao.requetes.requetetarif;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class TarifSelectAll extends Requete<Tarif> {
 
-    private String requete;
-
     @Override
 	public String requete()  {
-		this.requete = "select * from tarif;";
-		return this.requete;
+		return "select * from tarif;";
 	}
 	
 	@Override

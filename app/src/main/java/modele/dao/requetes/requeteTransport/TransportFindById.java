@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteTransport;
+package modele.dao.requetes.requetetransport;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class TransportFindById extends Requete<Transport> {
 
-    private String requete;
-
     @Override
 	public String requete()  {
-		this.requete = "select * from transport where id_transport = ?";
-		return this.requete;
+		return "select * from transport where id_transport = ?";
 	}
 	
 	@Override

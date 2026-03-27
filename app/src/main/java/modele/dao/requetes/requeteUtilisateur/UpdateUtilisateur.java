@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteUtilisateur;
+package modele.dao.requetes.requeteutilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class UpdateUtilisateur extends Requete<Utilisateur> {
 
-    private String requete;
-
     @Override
 	public String requete() {
-		this.requete = "";
-		return this.requete;
+		return "";
 	}
 	
 	@Override

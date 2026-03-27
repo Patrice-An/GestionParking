@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteVehicule;
+package modele.dao.requetes.requetevehicule;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,12 @@ import modele.dao.requetes.Requete;
 
 public class VehiculeDeleteById extends Requete<Vehicule> {
 
-    private String requete;
+    
 
 	@Override
 	public String requete() {
-		this.requete = "delete from véhicule where immat = ?";
-		return this.requete;
+		return "delete from vehicule where immat = ?";
+		
 	}
 	
 	@Override

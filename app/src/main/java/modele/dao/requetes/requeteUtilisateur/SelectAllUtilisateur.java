@@ -1,23 +1,12 @@
-package modele.dao.requetes.requeteUtilisateur;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+package modele.dao.requetes.requeteutilisateur;
 
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
 
 public class SelectAllUtilisateur extends Requete<Utilisateur> {
 
-    private String requete;
-
 	@Override
 	public String requete() {
-		this.requete = "select * from utilisateur";
-		return this.requete;
+		return "select * from utilisateur";
 	}
-	
-	@Override
-	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
-	}
-
 }

@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteTransport;
+package modele.dao.requetes.requetetransport;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class CreateTransport extends Requete<Transport> {
 
-    private String requete;
-
     @Override
 	public String requete()  {
-		this.requete = "insert into transport values(?, ?, ?)";
-		return this.requete;
+		return "insert into transport values(?, ?, ?)";
 	}
 	
 	@Override

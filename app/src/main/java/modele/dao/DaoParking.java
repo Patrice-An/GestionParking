@@ -13,12 +13,12 @@ import java.util.Optional;
 import modele.Parking;
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteParking.ParkingDeleteById;
-import modele.dao.requetes.requeteParking.ParkingSeGarer;
-import modele.dao.requetes.requeteParking.ParkingSelectAll;
-import modele.dao.requetes.requeteParking.ParkingSelectById;
-import modele.dao.requetes.requeteParking.QuitterParking;
-import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteparking.ParkingDeleteById;
+import modele.dao.requetes.requeteparking.ParkingSeGarer;
+import modele.dao.requetes.requeteparking.ParkingSelectAll;
+import modele.dao.requetes.requeteparking.ParkingSelectById;
+import modele.dao.requetes.requeteparking.QuitterParking;
+import modele.dao.requetes.requeteutilisateur.CreateUtilisateur;
 
 public class DaoParking implements Dao<Parking, Integer> {
 
@@ -45,9 +45,9 @@ public class DaoParking implements Dao<Parking, Integer> {
 			parking.getAdresse(),
             parking.getNom(),
             String.valueOf(parking.getHauteur()),
-            String.valueOf(parking.getPlaces_max()),
-            String.valueOf(parking.getPlace_max_moto()),
-            String.valueOf(parking.getPlace_max_electrique()));
+            String.valueOf(parking.getplacesMax()),
+            String.valueOf(parking.getplacesMaxMoto()),
+            String.valueOf(parking.getplacesMaxElectrique()));
 		stUtil.executeUpdate();
 	}
 	

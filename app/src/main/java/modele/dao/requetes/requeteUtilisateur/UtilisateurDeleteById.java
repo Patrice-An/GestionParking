@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteUtilisateur;
+package modele.dao.requetes.requeteutilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,10 @@ import modele.dao.requetes.Requete;
 
 public class UtilisateurDeleteById extends Requete<Utilisateur> {
 
-    private String requete;
 
     @Override
 	public String requete() {
-		this.requete = "delete from utilisateur where id_utilisateur = ?";
-		return this.requete;
+		return "delete from utilisateur where id_utilisateur = ?";
 	}
 	
 	@Override

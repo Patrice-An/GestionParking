@@ -10,11 +10,11 @@ import java.util.Optional;
 
 import modele.Tarif;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteTarif.CreateTarif;
-import modele.dao.requetes.requeteTarif.TarifDeleteById;
-import modele.dao.requetes.requeteTarif.TarifSelectAll;
-import modele.dao.requetes.requeteTarif.TarifSelectById;
-import modele.dao.requetes.requeteTarif.TarifSelectByZone;
+import modele.dao.requetes.requetetarif.CreateTarif;
+import modele.dao.requetes.requetetarif.TarifDeleteById;
+import modele.dao.requetes.requetetarif.TarifSelectAll;
+import modele.dao.requetes.requetetarif.TarifSelectById;
+import modele.dao.requetes.requetetarif.TarifSelectByZone;
 
 public class DaoTarif implements Dao<Tarif, Integer> {
 
@@ -30,7 +30,7 @@ public class DaoTarif implements Dao<Tarif, Integer> {
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(
 			stUtil,
-            String.valueOf(tarif.getDurée()),
+            String.valueOf(tarif.getDuree()),
             String.valueOf(tarif.getMajoration())
 		);
 		stUtil.executeUpdate();

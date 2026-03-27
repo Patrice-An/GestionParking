@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteVehicule;
+package modele.dao.requetes.requetevehicule;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,12 @@ import modele.dao.requetes.Requete;
 
 public class VehiculeStationnement extends Requete<Vehicule> {
 
-    private String requete;
+    
 
 	@Override
 	public String requete() {
-		this.requete = "select * from garer where immat = ?";
-		return this.requete;
+		return "select * from garer where immat = ?";
+		
 	}
 	
 	@Override

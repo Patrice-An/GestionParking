@@ -11,14 +11,14 @@ import java.util.Optional;
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteVehicule.CreateVehicule;
-import modele.dao.requetes.requeteVehicule.UpdateVehicule;
-import modele.dao.requetes.requeteVehicule.VehiculeDeleteById;
-import modele.dao.requetes.requeteVehicule.VehiculeExistePourUser;
-import modele.dao.requetes.requeteVehicule.VehiculeFindByUser;
-import modele.dao.requetes.requeteVehicule.VehiculeSelectAll;
-import modele.dao.requetes.requeteVehicule.VehiculeSelectById;
-import modele.dao.requetes.requeteVehicule.VehiculeStationnement;
+import modele.dao.requetes.requetevehicule.CreateVehicule;
+import modele.dao.requetes.requetevehicule.UpdateVehicule;
+import modele.dao.requetes.requetevehicule.VehiculeDeleteById;
+import modele.dao.requetes.requetevehicule.VehiculeExistePourUser;
+import modele.dao.requetes.requetevehicule.VehiculeFindByUser;
+import modele.dao.requetes.requetevehicule.VehiculeSelectAll;
+import modele.dao.requetes.requetevehicule.VehiculeSelectById;
+import modele.dao.requetes.requetevehicule.VehiculeStationnement;
 
 public class DaoVehicule implements Dao<Vehicule, String> {
 
@@ -42,7 +42,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 			vehicule.getImmatriculation(),
 			String.valueOf(vehicule.getHauteur()),
 			String.valueOf(vehicule.getId_utilisateur()),
-			vehicule.getDésignation(),
+			vehicule.getDesignation(),
 			vehicule.getType().name()
 		);
 		stUtil.executeUpdate();
@@ -109,7 +109,7 @@ public class DaoVehicule implements Dao<Vehicule, String> {
 		req.parametres(
 			stUtil,
 			String.valueOf(vehicule.getHauteur()),
-			vehicule.getDésignation(),
+			vehicule.getDesignation(),
 			vehicule.getType().name()
 		);
 		stUtil.executeUpdate();

@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteParking;
+package modele.dao.requetes.requeteparking;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,12 +8,9 @@ import modele.dao.requetes.Requete;
 
 public class QuitterParking extends Requete<Parking> {
 
-    private String requete;
-
     @Override
 	public String requete()  {
-		this.requete = "update garer set heureSortie = ? where id_parking = ? and heureArrivée = ?";
-		return this.requete;
+		return "update garer set heureSortie = ? where idParking = ? and heureArrivee = ?";
 	}
 	
 	@Override

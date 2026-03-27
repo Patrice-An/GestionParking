@@ -75,7 +75,7 @@ public class ListeParking extends JPanel {
 			List<Parking> res = new DaoParking().findAll();
 			for (Parking i:res) {
 				String[] newRow = {i.getNom(), i.getAdresse(), Float.toString(i.getHauteur()), 
-						Integer.toString(i.getPlaces_max()), Integer.toString(i.getPlace_max_moto()), Integer.toString(i.getPlace_max_electrique())};
+						Integer.toString(i.getplacesMax()), Integer.toString(i.getplacesMaxMoto()), Integer.toString(i.getplacesMaxElectrique())};
 				modele.addRow(newRow);
 			}
 		} catch(SQLException eee) {

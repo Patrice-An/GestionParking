@@ -10,7 +10,7 @@ import vue.App.VUE;
 
 public class ControleurApp implements ActionListener{
 
-	private App vue;
+	private final App vue;
 	
 	public ControleurApp(App vue) {
 		this.vue = vue;

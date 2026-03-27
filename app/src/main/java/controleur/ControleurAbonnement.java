@@ -8,15 +8,13 @@ import javax.swing.JOptionPane;
 
 import vue.App;
 import vue.App.VUE;
-import vue.GestionAbonnement;
 
 public class ControleurAbonnement implements ActionListener{
 	
-	private App fenPrincipal;
-	private GestionAbonnement vue;
-	public ControleurAbonnement(App fenPrincipal, GestionAbonnement vue) {
+	private final App fenPrincipal;
+
+	public ControleurAbonnement(App fenPrincipal) {
 		this.fenPrincipal = fenPrincipal;
-		this.vue = vue;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -14,24 +14,24 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import vue.App;
-import vue.App.VUE;
-import vue.InfoSeGarerVoirie;
 import modele.Tarif;
 import modele.Vehicule;
 import modele.Zone;
 import modele.dao.DaoZone;
+import vue.App;
+import vue.App.VUE;
+import vue.InfoSeGarerVoirie;
 
 public class ControleurInfoSeGarerVoirie implements ActionListener {
 
 	private InfoSeGarerVoirie vue;
-	private App App;
+	private final App app;
 	private List<Zone> zones;
-	public ControleurVoirieTarif controleurVoirieTarif;
+	public final ControleurVoirieTarif controleurVoirieTarif;
 
-	public ControleurInfoSeGarerVoirie(InfoSeGarerVoirie vue, App App) {
+	public ControleurInfoSeGarerVoirie(InfoSeGarerVoirie vue, App app) {
 		this.vue = vue;
-		this.App = App;
+		this.app = app;
 		this.controleurVoirieTarif = new ControleurVoirieTarif(this);
 		try {
 			this.zones = new DaoZone().findAll();
@@ -42,12 +42,13 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 
 	public class ControleurVoirieTarif implements ItemListener {
 
-		private ControleurInfoSeGarerVoirie controleurParent;
+		private final ControleurInfoSeGarerVoirie controleurParent;
 
 		public ControleurVoirieTarif(ControleurInfoSeGarerVoirie controleurParent) {
 			this.controleurParent = controleurParent;
 		}
 
+		@Override
 		public void itemStateChanged(ItemEvent arg0) {
 			this.controleurParent.updateComboTarif();
 		}
@@ -57,34 +58,33 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Valider":
-				if (App.getUtilisateur().getVehicules().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
-				Vehicule vehicule = (Vehicule) vue.getComboVehicule().getModel().getSelectedItem();
-				Zone zone = (Zone) vue.getComboZone().getModel().getSelectedItem();
-				Tarif tarif = (Tarif) vue.getComboTarif().getSelectedItem();
-				LocalDateTime heureArrivee = LocalDateTime.now();
-				LocalDateTime heureSortie = LocalDateTime.now();
-				heureSortie = heureSortie.plusHours((long)Math.floor(tarif.getDurée()));
-				heureSortie = heureSortie.plusMinutes((long)((tarif.getDurée() - Math.floor(tarif.getDurée()))*60f));
-				int place = 0;
-				byte borne = 0;
-				try {
-					new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivee, heureSortie, place, borne);
-					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
-					App.refresh();
-					App.ChangementVue(VUE.CHOIXSEGARER);
-				} catch(SQLException eee) {
-					//empty
-				}
-				break;
-			case "Annuler":
-				App.ChangementVue(VUE.CHOIXSEGARER);
-				break;
-			default:
-				break;
+			case "Valider" -> {
+                            if (app.getUtilisateur().getVehicules().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
+                                return;
+                            }
+                            Vehicule vehicule = (Vehicule) vue.getComboVehicule().getModel().getSelectedItem();
+                            Zone zone = (Zone) vue.getComboZone().getModel().getSelectedItem();
+                            Tarif tarif = (Tarif) vue.getComboTarif().getSelectedItem();
+                            LocalDateTime heureArrivee = LocalDateTime.now();
+                            LocalDateTime heureSortie = LocalDateTime.now();
+                            heureSortie = heureSortie.plusHours((long)Math.floor(tarif.getDurée()));
+                            heureSortie = heureSortie.plusMinutes((long)((tarif.getDurée() - Math.floor(tarif.getDurée()))*60f));
+                            int place = 0;
+                            byte borne = 0;
+                            try {
+                                new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivee, heureSortie, place, borne);
+                                JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+                                app.refresh();
+                                app.ChangementVue(VUE.CHOIXSEGARER);
+                            } catch(SQLException eee) {
+                                //empty
+                            }
+                }
+			case "Annuler" -> app.ChangementVue(VUE.CHOIXSEGARER);
+			default -> {
+				//aucun autre cas
+                }
 		}
 	}
 

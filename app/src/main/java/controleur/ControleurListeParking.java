@@ -5,23 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import vue.App;
 import vue.ListeParking;
 
 public class ControleurListeParking implements ActionListener{
 	
-	private ListeParking vue;
-	public ControleurListeParking(ListeParking vue, App fenPrinc) {
+	private final  ListeParking vue;
+	public ControleurListeParking(ListeParking vue) {
 		this.vue = vue;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		switch (b.getText()) {
-		case "Rechercher":
+		if (b.getText().equals("Rechercher")) {
 			vue.repaint();
-			break;
 		}
 	}
 

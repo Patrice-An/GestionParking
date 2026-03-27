@@ -6,20 +6,21 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import vue.AjouterVehicule;
-import vue.App;
-import vue.App.VUE;
+
 import modele.Type_vehicule;
 import modele.Vehicule;
 import modele.dao.DaoVehicule;
+import vue.AjouterVehicule;
+import vue.App;
+import vue.App.VUE;
 
 public class ControleurAjouterVehicule implements ActionListener{
 	
-	private App App;
-	private AjouterVehicule vue;
+	private final  App app;
+	private final AjouterVehicule vue;
 
-	public ControleurAjouterVehicule(AjouterVehicule vue, App App) {
-		this.App = App;
+	public ControleurAjouterVehicule(AjouterVehicule vue, App app) {
+		this.app = app;
 		this.vue = vue;
 	}
 
@@ -27,29 +28,27 @@ public class ControleurAjouterVehicule implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Enregistrer":
-				String immat = vue.getImmatriculation();
-				float hauteur = vue.getHauteur();
-				int idUser = App.getUtilisateur().getid();
-				String designation = vue.getDésignation();
-				Type_vehicule type = vue.getTypeVehicule();
-				Vehicule vehicule = new Vehicule(immat, hauteur, idUser, designation, type);
-				try {
-					new DaoVehicule().create(vehicule);
-					App.getUtilisateur().addVehicule(vehicule);
-					App.getUtilisateur().getVehicules();
-					JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
-					App.refresh();
-					App.ChangementVue(VUE.GESTIONVEHICULE);
-				} catch(SQLException eee) {
-					//empty
-				}
-				break;
-			case "Annuler":
-				App.ChangementVue(VUE.GESTIONVEHICULE);
-				break;
-			default:
-				break;
+			case "Enregistrer" -> {
+                            String immat = vue.getImmatriculation();
+                            float hauteur = vue.getHauteur();
+                            int idUser = app.getUtilisateur().getid();
+                            String designation = vue.getDésignation();
+                            Type_vehicule type = vue.getTypeVehicule();
+                            Vehicule vehicule = new Vehicule(immat, hauteur, idUser, designation, type);
+                            try {
+                                new DaoVehicule().create(vehicule);
+                                app.getUtilisateur().addVehicule(vehicule);
+                                app.getUtilisateur().getVehicules();
+                                JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
+                                app.refresh();
+                                app.ChangementVue(VUE.GESTIONVEHICULE);
+                            } catch(SQLException eee) {
+                                //empty
+                            }
+                }
+			case "Annuler" -> app.ChangementVue(VUE.GESTIONVEHICULE);
+			default -> {//aucun autre cas
+                }
 		}
 	}
 }

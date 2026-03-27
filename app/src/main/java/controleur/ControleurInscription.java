@@ -15,21 +15,21 @@ import javax.swing.JOptionPane;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import vue.App;
-import vue.Inscription;
-import vue.App.VUE;
 import modele.Utilisateur;
 import modele.Vehicule;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoVehicule;
+import vue.App;
+import vue.App.VUE;
+import vue.Inscription;
 
 public class ControleurInscription implements ActionListener{
 	
-	private App App;
+	private final App app;
 
-	public ControleurInscription(Inscription vue, App App) {
+	public ControleurInscription(Inscription vue, App app) {
 		this.vue = vue;
-		this.App = App;
+		this.app = app;
 	}
 
 	Inscription vue;
@@ -38,14 +38,10 @@ public class ControleurInscription implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Valider":
-				validerInscription();
-				break;
-			case "Connectez-vous":
-				App.ChangementVue(VUE.SECONNECTER);
-				break;
-			default:
-				break;
+			case "Valider" -> validerInscription();
+			case "Connectez-vous" -> app.ChangementVue(VUE.SECONNECTER);
+			default -> { //aucun autre cas
+			}
 		}
 	}
 
@@ -104,8 +100,8 @@ public class ControleurInscription implements ActionListener{
 				for (Vehicule v : vehiculeUtilisateur) {
 					utilisateur.addVehicule(v);
 				}
-				App.setUtilisateur(utilisateur);
-				App.ChangementVue(VUE.ACCUEIL);
+				app.setUtilisateur(utilisateur);
+				app.ChangementVue(VUE.ACCUEIL);
 				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);

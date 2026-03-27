@@ -17,42 +17,41 @@ import vue.InfoSeGarerParking;
 
 public class ControleurInfoSeGarer implements ActionListener {
 
-    private InfoSeGarerParking vue;
-	private App App;
+    private final InfoSeGarerParking vue;
+	private final App app;
 
-    public ControleurInfoSeGarer(InfoSeGarerParking vue, App App) {
+    public ControleurInfoSeGarer(InfoSeGarerParking vue, App app) {
         this.vue = vue;
-        this.App = App;
+        this.app = app;
     }
 
     @Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Valider":
-				if (App.getUtilisateur().getVehicules().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
-				Parking parking = (Parking) vue.getDeroulantSelectionParking().getModel().getSelectedItem();
-				Vehicule vehicule = (Vehicule) vue.getChoixVehicule().getModel().getSelectedItem();
-				int place = 0;
-				byte borne = 0;
-				LocalDateTime heureArrivee = LocalDateTime.now();
-				try {
-					new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivee, place, borne);
-					JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
-					App.refresh();
-					App.ChangementVue(VUE.CHOIXSEGARER);
-				} catch(SQLException eee) {
-					//empty
-				}
-				break;
-			case "Annuler":
-				App.ChangementVue(VUE.CHOIXSEGARER);
-				break;
-			default:
-				break;
+			case "Valider" -> {
+                            if (app.getUtilisateur().getVehicules().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Aucun véhicule utilisable pour se garer", "Informations invalides", JOptionPane.INFORMATION_MESSAGE);
+                                return;
+                            }
+                            Parking parking = (Parking) vue.getDeroulantSelectionParking().getModel().getSelectedItem();
+                            Vehicule vehicule = (Vehicule) vue.getChoixVehicule().getModel().getSelectedItem();
+                            int place = 0;
+                            byte borne = 0;
+                            LocalDateTime heureArrivee = LocalDateTime.now();
+                            try {
+                                new DaoParking().seGarerParking(parking.getId_parking(), vehicule.getImmatriculation(), heureArrivee, place, borne);
+                                JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+                                app.refresh();
+                                app.ChangementVue(VUE.CHOIXSEGARER);
+                            } catch(SQLException eee) {
+                                //empty
+                            }
+            }
+			case "Annuler" -> app.ChangementVue(VUE.CHOIXSEGARER);
+			default -> {
+				//aucun autre cas
+            }
 		}
 	}
 

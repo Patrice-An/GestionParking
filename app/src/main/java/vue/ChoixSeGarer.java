@@ -9,16 +9,16 @@ import java.awt.*;
 public class ChoixSeGarer extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private App App;
+    private final App app;
 
-    public ChoixSeGarer(App App) {
-    	this.App = App;
+    public ChoixSeGarer(App app) {
+    	this.app = app;
         FlatDarculaLaf.setup();
         initialize();
     }
 
     private void initialize() {
-        ControleurSeGarer controler = new ControleurSeGarer(this, App);
+        ControleurSeGarer controler = new ControleurSeGarer(app);
 
        
         setSize(1080, 720);

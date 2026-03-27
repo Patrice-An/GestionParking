@@ -12,27 +12,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.WindowConstants;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import controleur.ControleurApp;
 import modele.Utilisateur;
 
-public class App extends JFrame {
 
-	private JPanel contentPane;
-	private CardLayout layout;
-	private JButton btnPrecedent;
+public final class App extends JFrame {
+
+	private final JPanel contentPane;
+	private final CardLayout layout;
+	private final JButton btnPrecedent;
 	private Utilisateur utilisateur;
-	private Accueil accueil;
 	private GestionVehicule gestionVehicule;
 	private InfoSeGarerParking infoSeGarerParking;
 	private InfoSeGarerVoirie infoSeGarerVoirie;
-	private AjouterVehicule ajouterVehicule;
-	private FenRecapitulatif fenRecapitulatif;
 	private HistoriqueStationnement historiqueStationnement;
-	private GestionAbonnement gestionAbonnement;
-	private Facture facture;
 
 	public enum VUE {
 
@@ -44,20 +41,18 @@ public class App extends JFrame {
 
 		VUE(String designation) {
 		}
-	};
+	}
 
 	public static void main(String[] args) {
 		FlatDarculaLaf.setup();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					App frame = new App();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					//empty
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+                    try {
+                        App frame = new App();
+                        frame.setVisible(true);
+                    } catch (Exception e) {
+                        //empty
+                    }
+                });
 	}
 
 	public App() {
@@ -77,7 +72,7 @@ public class App extends JFrame {
 		setTitle("Parkéo");
 		setSize(500, 720);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// Layout principal
 		setLayout(new BorderLayout());
@@ -100,11 +95,11 @@ public class App extends JFrame {
 		contentPane.add(new ListeParking(), VUE.LISTEPARKING.name());
 		contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
 
-		ChangementVue(VUE.SECONNECTER);
+		changementVue(VUE.SECONNECTER);
 		btnPrecedent.addActionListener(controleur);
 	}
 
-	public void ChangementVue(VUE fen) {
+	public void changementVue(VUE fen) {
 		if (fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
 			this.setVisiblePrecedent(true);
 		} else {
@@ -129,6 +124,12 @@ public class App extends JFrame {
 	}
 
 	private void chargerVueDependante() {
+
+			Accueil accueil;
+			AjouterVehicule ajouterVehicule;
+			FenRecapitulatif fenRecapitulatif;
+			GestionAbonnement gestionAbonnement;
+
 			accueil = new Accueil(this);
 			gestionVehicule = new GestionVehicule(this);
 			infoSeGarerParking = new InfoSeGarerParking(this);

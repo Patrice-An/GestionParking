@@ -30,13 +30,13 @@ public class InfoSeGarerParking extends JPanel {
 	private LocalDateTime heureArrive;
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Parking> deroulantSelectionParking;
-	private App App;
+	private final App app;
 	/**
 	 * Launch the application.
 	 * @param App 
 	 */
-	public InfoSeGarerParking(App App) {
-		this.App = App;
+	public InfoSeGarerParking(App app) {
+		this.app = app;
 		this.initialize();
 	}
 
@@ -44,8 +44,8 @@ public class InfoSeGarerParking extends JPanel {
 	 * Create the frame.
 	 * @return 
 	 */
-	public void initialize() {
-		ControleurInfoSeGarer controleur = new ControleurInfoSeGarer(this, App);
+	private void initialize() {
+		ControleurInfoSeGarer controleur = new ControleurInfoSeGarer(this, app);
 
 
 		setBounds(100, 100, 450, 300);
@@ -150,7 +150,7 @@ public class InfoSeGarerParking extends JPanel {
 	
 	private void build() {
 		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<>();
-		for (Vehicule v : App.getUtilisateur().getVehicules()) {
+		for (Vehicule v : app.getUtilisateur().getVehicules()) {
 			vehiculeModel.addElement(v);
 		}
 		this.choixVehicule.setModel(vehiculeModel);

@@ -25,19 +25,19 @@ import java.awt.Font;
 
 public class AjouterVehicule extends JPanel{
 
-	private JTextField txtDésignation;
-	private JTextField ImmatriculationField;
+	private JTextField txtDesignation;
+	private JTextField immatriculationField;
 	private JSpinner hauteurField;
 	private JComboBox<Type_vehicule> typeVehiculeComboBox;
-	private App App;
+	private final App app;
 	
 
 	/**
 	 * Create the application.
 	 * @param App
 	 */
-	public AjouterVehicule(App App) {
-		this.App = App;
+	public AjouterVehicule(App app) {
+		this.app = app;
 		FlatDarculaLaf.setup();
 		initialize();
 	}
@@ -46,28 +46,29 @@ public class AjouterVehicule extends JPanel{
 	 * Initialize the contents of the frame.	*
 	 ********************************************/
 	private void initialize() {
-		ControleurAjouterVehicule controleur = new ControleurAjouterVehicule(this, App);
+		ControleurAjouterVehicule controleur = new ControleurAjouterVehicule(this, app);
 		
 		JLabel enregistrerLabel = new JLabel("Enregister un nouveau véhicule");
 		enregistrerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		String defaultGrow = "default:grow";
 		
-		JPanel PanneauCentre = new JPanel();
-		PanneauCentre.setLayout(new FormLayout(new ColumnSpec[] {
+		JPanel panneauCentre = new JPanel();
+		panneauCentre.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
+				ColumnSpec.decode(defaultGrow),
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
+				ColumnSpec.decode(defaultGrow),
 				FormSpecs.RELATED_GAP_COLSPEC,
 				FormSpecs.DEFAULT_COLSPEC,
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode(defaultGrow),},
 			new RowSpec[] {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),
+				RowSpec.decode(defaultGrow),
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
@@ -81,63 +82,63 @@ public class AjouterVehicule extends JPanel{
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+				RowSpec.decode(defaultGrow),}));
 		
 		JLabel labelTitre = new JLabel("Enregistrer un nouveau véhicule");
 		labelTitre.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
-		PanneauCentre.add(labelTitre, "1, 2, 10, 1, center, default");
+		panneauCentre.add(labelTitre, "1, 2, 10, 1, center, default");
 		
 		JLabel lblNewLabel = new JLabel("Hauteur :");
-		PanneauCentre.add(lblNewLabel, "8, 6, left, bottom");
+		panneauCentre.add(lblNewLabel, "8, 6, left, bottom");
 		
-		txtDésignation = new JTextField();
-		txtDésignation.setForeground(new Color(128, 128, 128));
-		txtDésignation.setText("Désignation");
-		PanneauCentre.add(txtDésignation, "2, 8, fill, default");
-		txtDésignation.setColumns(10);
+		txtDesignation = new JTextField();
+		txtDesignation.setForeground(new Color(128, 128, 128));
+		txtDesignation.setText("Désignation");
+		panneauCentre.add(txtDesignation, "2, 8, fill, default");
+		txtDesignation.setColumns(10);
 		
 		this.hauteurField = new JSpinner();
-		this.hauteurField.setModel(new SpinnerNumberModel(Float.valueOf(0), null, null, Float.valueOf(0.1F)));
-		PanneauCentre.add(this.hauteurField, "8, 8, fill, default");
+		this.hauteurField.setModel(new SpinnerNumberModel(Float.valueOf(0), null, null, 0.1F));
+		panneauCentre.add(this.hauteurField, "8, 8, fill, default");
 		
-		JLabel lblNewLabel_1 = new JLabel("m");
-		PanneauCentre.add(lblNewLabel_1, "10, 8");
+		JLabel lblNewLabel11 = new JLabel("m");
+		panneauCentre.add(lblNewLabel11, "10, 8");
 		
-		JLabel ImmatriculationLabel = new JLabel("Immatriculation :");
-		PanneauCentre.add(ImmatriculationLabel, "2, 12, default, fill");
+		JLabel immatriculationLabel = new JLabel("Immatriculation :");
+		panneauCentre.add(immatriculationLabel, "2, 12, default, fill");
 		
 		JLabel typeVehiculeLabel = new JLabel("Type de véhicule :");
-		PanneauCentre.add(typeVehiculeLabel, "8, 12");
+		panneauCentre.add(typeVehiculeLabel, "8, 12");
 		
-		ImmatriculationField = new JTextField();
-		ImmatriculationField.setForeground(new Color(128, 128, 128));
-		ImmatriculationField.setText("AB-123-CD");
-		PanneauCentre.add(ImmatriculationField, "2, 14, fill, top");
-		ImmatriculationField.setColumns(10);
-		ImmatriculationField.addActionListener(controleur);
+		immatriculationField = new JTextField();
+		immatriculationField.setForeground(new Color(128, 128, 128));
+		immatriculationField.setText("AB-123-CD");
+		panneauCentre.add(immatriculationField, "2, 14, fill, top");
+		immatriculationField.setColumns(10);
+		immatriculationField.addActionListener(controleur);
 		
-		this.typeVehiculeComboBox = new JComboBox<Type_vehicule>();
-		DefaultComboBoxModel<Type_vehicule> typeVehiculeModel = new DefaultComboBoxModel<Type_vehicule>(Type_vehicule.values());
+		this.typeVehiculeComboBox = new JComboBox<>();
+		DefaultComboBoxModel<Type_vehicule> typeVehiculeModel = new DefaultComboBoxModel<>(Type_vehicule.values());
 		this.typeVehiculeComboBox.setModel(typeVehiculeModel);
-		PanneauCentre.add(this.typeVehiculeComboBox, "8, 14, fill, top");
+		panneauCentre.add(this.typeVehiculeComboBox, "8, 14, fill, top");
 		
 		JButton btnAnnuler = new JButton("Annuler");
-		PanneauCentre.add(btnAnnuler, "2, 18, center, default");
+		panneauCentre.add(btnAnnuler, "2, 18, center, default");
 		btnAnnuler.addActionListener(controleur);
 		
 		JButton btnEnregistrer = new JButton("Enregistrer");
-		PanneauCentre.add(btnEnregistrer, "8, 18, center, center");
+		panneauCentre.add(btnEnregistrer, "8, 18, center, center");
 		btnEnregistrer.addActionListener(controleur);
 
-		this.add(PanneauCentre);
+		this.add(panneauCentre);
 	}
 
-	public String getDésignation() {
-		return txtDésignation.getText();
+	public String getDesignation() {
+		return txtDesignation.getText();
 	}
 
 	public String getImmatriculation() {
-		return ImmatriculationField.getText();
+		return immatriculationField.getText();
 	}
 
 	public float getHauteur() {

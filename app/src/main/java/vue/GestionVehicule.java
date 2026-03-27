@@ -17,11 +17,8 @@ import java.awt.FlowLayout;
 public class GestionVehicule extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private App fenetre;
-	private JTextField searchField;
+	private final App fenetre;
 	private JPanel listevehicules;
-	private JPanel Listevéhicules;
-	private Box verticalBox;
 	public GestionVehicule(App fenetre) {
 		setSize(new Dimension(500, 720));
 		setMaximumSize(new Dimension(32767, 300));
@@ -33,18 +30,21 @@ public class GestionVehicule extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public void initialize() {
+	private void initialize() {
 		
-		ControleurGestionVehicule controleur = new ControleurGestionVehicule(this, fenetre);
+			JTextField searchField;
+
+
+		ControleurGestionVehicule controleur = new ControleurGestionVehicule(fenetre);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel Title = new JLabel("Gestion des véhicules");
-		Title.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(Title, BorderLayout.NORTH);
+		JLabel title = new JLabel("Gestion des véhicules");
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(title, BorderLayout.NORTH);
 		
 		JPanel paneSearch = new JPanel();
 		panel.add(paneSearch, BorderLayout.WEST);
@@ -60,17 +60,17 @@ public class GestionVehicule extends JPanel {
 		JPanel marginTop = new JPanel();
 		paneSearch.add(marginTop, BorderLayout.NORTH);
 		
-		JPanel panel_7 = new JPanel();
-		paneSearch.add(panel_7, BorderLayout.EAST);
-		panel_7.setLayout(new BorderLayout(0, 0));
+		JPanel panel7 = new JPanel();
+		paneSearch.add(panel7, BorderLayout.EAST);
+		panel7.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAjout = new JButton("Ajouter un véhicule");
 		btnAjout.addActionListener(controleur);
-		panel_7.add(btnAjout, BorderLayout.EAST);
+		panel7.add(btnAjout, BorderLayout.EAST);
 		
 		JPanel marginBtwinBtn = new JPanel();
 		marginBtwinBtn.setPreferredSize(new Dimension(100, 10));
-		panel_7.add(marginBtwinBtn, BorderLayout.CENTER);
+		panel7.add(marginBtwinBtn, BorderLayout.CENTER);
 		
 		JPanel marginTopCenter = new JPanel();
 		panel.add(marginTopCenter, BorderLayout.SOUTH);
@@ -90,51 +90,52 @@ public class GestionVehicule extends JPanel {
 		listevehicules = new JPanel();
 		scrollPane.setViewportView(listevehicules);
 		listevehicules.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		BuildBox();
+		buildBox();
 		
 	}
 	
 	public void refresh() {
 		listevehicules.removeAll();
-		BuildBox();
+		buildBox();
 		revalidate();
 		repaint();
 	}
 	
-	private void BuildBox() { 
+	private void buildBox() { 
+		Box verticalBox;
 		Set<Vehicule> listeVehicule = fenetre.getUtilisateur().getVehicules();
-		ControleurGestionVehicule controleur = new ControleurGestionVehicule(this, fenetre);
+		ControleurGestionVehicule controleur = new ControleurGestionVehicule(fenetre);
 		for (Vehicule vehiculeIt:listeVehicule) {
 			verticalBox = Box.createVerticalBox();
 			verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
 			listevehicules.add(verticalBox);
 				
-			JTextField LabelDésignation = new JTextField(vehiculeIt.getDésignation());
-			LabelDésignation.setHorizontalAlignment(SwingConstants.CENTER);
-			LabelDésignation.setEnabled(false);
-			verticalBox.add(LabelDésignation);
+			JTextField labelDesignation = new JTextField(vehiculeIt.getDesignation());
+			labelDesignation.setHorizontalAlignment(SwingConstants.CENTER);
+			labelDesignation.setEnabled(false);
+			verticalBox.add(labelDesignation);
 				
-			JTextField LabelType = new JTextField(vehiculeIt.getType().toString());
-			LabelType.setEnabled(false);
-			LabelType.setHorizontalAlignment(SwingConstants.CENTER);
-			verticalBox.add(LabelType);
+			JTextField labelType = new JTextField(vehiculeIt.getType().toString());
+			labelType.setEnabled(false);
+			labelType.setHorizontalAlignment(SwingConstants.CENTER);
+			verticalBox.add(labelType);
 				
-			JTextField LabelImmat = new JTextField(vehiculeIt.getImmatriculation());
-			LabelImmat.setEnabled(false);
-			LabelImmat.setHorizontalAlignment(SwingConstants.CENTER);
-			verticalBox.add(LabelImmat);
+			JTextField labelImmat = new JTextField(vehiculeIt.getImmatriculation());
+			labelImmat.setEnabled(false);
+			labelImmat.setHorizontalAlignment(SwingConstants.CENTER);
+			verticalBox.add(labelImmat);
 				
-			JTextField LabelHauteur = new JTextField(Float.toString(vehiculeIt.getHauteur()) + " m");
-			LabelHauteur.setEnabled(false);
-			LabelHauteur.setHorizontalAlignment(SwingConstants.CENTER);
-			verticalBox.add(LabelHauteur);
+			JTextField labelHauteur = new JTextField(Float.toString(vehiculeIt.getHauteur()) + " m");
+			labelHauteur.setEnabled(false);
+			labelHauteur.setHorizontalAlignment(SwingConstants.CENTER);
+			verticalBox.add(labelHauteur);
 				
 			JButton btnModifier = new JButton("Modifier");
 			verticalBox.add(btnModifier);
 			btnModifier.putClientProperty("vehicule", vehiculeIt);
-			btnModifier.putClientProperty("désignation", LabelDésignation);
-			btnModifier.putClientProperty("type", LabelType);
-			btnModifier.putClientProperty("hauteur", LabelHauteur);
+			btnModifier.putClientProperty("désignation", labelDesignation);
+			btnModifier.putClientProperty("type", labelType);
+			btnModifier.putClientProperty("hauteur", labelHauteur);
 			btnModifier.addActionListener(controleur);
 			
 			JButton btnSupprimer = new JButton("Supprimer");

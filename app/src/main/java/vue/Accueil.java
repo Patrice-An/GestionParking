@@ -22,10 +22,10 @@ public class Accueil extends JPanel {
 
     private static final long serialVersionUID = 2L;
     
-    private App App;
+    private final App app;
     
-    public Accueil(App App) {
-    	this.App = App;
+    public Accueil(App app) {
+    	this.app = app;
         FlatDarculaLaf.setup();
         initialize();
     }
@@ -33,7 +33,7 @@ public class Accueil extends JPanel {
     private void initialize() {
 
         // --- Contrôleur ---
-        ControleurAccueil controleur = new ControleurAccueil(this, this.App);
+        ControleurAccueil controleur = new ControleurAccueil(this.app);
 
         setSize(1080, 720);
         setLayout(new BorderLayout());
@@ -44,7 +44,7 @@ public class Accueil extends JPanel {
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel labelTitre = new JLabel("Bonjour "+App.getUtilisateur().toString(), SwingConstants.CENTER);
+        JLabel labelTitre = new JLabel("Bonjour "+app.getUtilisateur().toString(), SwingConstants.CENTER);
         labelTitre.setFont(new Font("Arial", Font.BOLD, 32));
 
         topPanel.add(labelTitre, BorderLayout.CENTER);

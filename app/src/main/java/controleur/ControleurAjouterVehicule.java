@@ -41,12 +41,12 @@ public class ControleurAjouterVehicule implements ActionListener{
                                 app.getUtilisateur().getVehicules();
                                 JOptionPane.showMessageDialog(null, "Le véhicule a bien été ajouté");
                                 app.refresh();
-                                app.ChangementVue(VUE.GESTIONVEHICULE);
+                                app.changementVue(VUE.GESTIONVEHICULE);
                             } catch(SQLException eee) {
                                 //empty
                             }
                 }
-			case "Annuler" -> app.ChangementVue(VUE.GESTIONVEHICULE);
+			case "Annuler" -> app.changementVue(VUE.GESTIONVEHICULE);
 			default -> {//aucun autre cas
                 }
 		}

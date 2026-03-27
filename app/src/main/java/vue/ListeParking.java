@@ -24,15 +24,14 @@ import java.awt.Font;
 public class ListeParking extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable table_1;
+	private JTable table;
 	private JTextField textField;
-	private App App;
 
 	/**
 	 * Create the panel.
 	 */
 	public ListeParking() {
-		ControleurListeParking controleur = new ControleurListeParking(this, this.App);
+		ControleurListeParking controleur = new ControleurListeParking(this);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel paneCenter = new JPanel();
@@ -51,10 +50,10 @@ public class ListeParking extends JPanel {
 		btnSearch.addActionListener(controleur);
 		paneSearch.add(btnSearch, BorderLayout.EAST);
 		
-		JLabel LabelTitre = new JLabel("Parking disponibles");
-		LabelTitre.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
-		LabelTitre.setHorizontalAlignment(SwingConstants.CENTER);
-		add(LabelTitre, BorderLayout.NORTH);
+		JLabel labelTitre = new JLabel("Parking disponibles");
+		labelTitre.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+		labelTitre.setHorizontalAlignment(SwingConstants.CENTER);
+		add(labelTitre, BorderLayout.NORTH);
 		
 		JPanel paneEast = new JPanel();
 		add(paneEast, BorderLayout.EAST);
@@ -83,15 +82,15 @@ public class ListeParking extends JPanel {
 			//empty
 		}
 		
-		table_1 = new JTable();
-		table_1.setEnabled(false);
-		table_1.setRowSelectionAllowed(false);
-		table_1.setModel(modele);
-		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table_1.setPreferredSize(new Dimension(800, 400));
-		table_1.setMinimumSize(new Dimension(400, 200));
-		table_1.setMaximumSize(new Dimension(1200, 600));
-		paneCenter.add(table_1);
+		table = new JTable();
+		table.setEnabled(false);
+		table.setRowSelectionAllowed(false);
+		table.setModel(modele);
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setPreferredSize(new Dimension(800, 400));
+		table.setMinimumSize(new Dimension(400, 200));
+		table.setMaximumSize(new Dimension(1200, 600));
+		paneCenter.add(table);
 
 	}
 

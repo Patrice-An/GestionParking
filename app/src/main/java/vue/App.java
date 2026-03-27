@@ -32,7 +32,6 @@ public class App extends JFrame {
 	private FenRecapitulatif fenRecapitulatif;
 	private HistoriqueStationnement historiqueStationnement;
 	private GestionAbonnement gestionAbonnement;
-	private Facture facture;
 
 	public enum VUE {
 
@@ -100,16 +99,12 @@ public class App extends JFrame {
 		contentPane.add(new ListeParking(), VUE.LISTEPARKING.name());
 		contentPane.add(new ChoixSeGarer(this), VUE.CHOIXSEGARER.name());
 
-		ChangementVue(VUE.SECONNECTER);
+		changementVue(VUE.SECONNECTER);
 		btnPrecedent.addActionListener(controleur);
 	}
 
-	public void ChangementVue(VUE fen) {
-		if (fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
-			this.setVisiblePrecedent(true);
-		} else {
-			this.setVisiblePrecedent(false);
-		}
+	public void changementVue(VUE fen) {
+		this.setVisiblePrecedent(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL);
 		layout.show(contentPane, fen.name());
 	}
 
@@ -134,7 +129,7 @@ public class App extends JFrame {
 			infoSeGarerParking = new InfoSeGarerParking(this);
 			infoSeGarerVoirie = new InfoSeGarerVoirie(this);
 			ajouterVehicule = new AjouterVehicule(this);
-			fenRecapitulatif = new FenRecapitulatif(this);
+			fenRecapitulatif = new FenRecapitulatif();
 			historiqueStationnement = new HistoriqueStationnement(this);
 			gestionAbonnement = new GestionAbonnement(this);
 			contentPane.add(accueil, VUE.ACCUEIL.name());

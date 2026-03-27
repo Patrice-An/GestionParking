@@ -21,7 +21,7 @@ public class ControleurApp implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		if (b.getText().equals("← Précédent")) {
-			vue.ChangementVue(VUE.ACCUEIL);
+			vue.changementVue(VUE.ACCUEIL);
 		}
 	}
 

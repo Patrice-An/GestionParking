@@ -13,7 +13,6 @@ import javax.swing.border.LineBorder;
 import controleur.ControleurHistorique;
 
 import java.awt.Color;
-import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -21,119 +20,116 @@ import java.awt.Insets;
 public class Facture extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private App fenPrincipal;
-	private ControleurHistorique accesDonnees;
 	private List<String> listeDonnees;
-	//private ControleurFacture controleur;
+	private static final String FONT = "Tahoma";
 
 	/**
 	 * Create the panel.
 	 */
-	public Facture(App fenPrincipal, ControleurHistorique accesDonnees) {
+	public Facture(ControleurHistorique accesDonnees) {
 		this.listeDonnees = accesDonnees.getDonneesFacture();
-		this.fenPrincipal = fenPrincipal;
 		setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Facture");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 21));
+		lblNewLabel.setFont(new Font(FONT, Font.BOLD, 21));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel paneCenter = new JPanel();
 		add(paneCenter, BorderLayout.CENTER);
-		GridBagLayout gbl_paneCenter = new GridBagLayout();
-		gbl_paneCenter.columnWidths = new int[]{46, 124, 96, 0};
-		gbl_paneCenter.rowHeights = new int[]{39, 17, 17, 17, 17, 39, 19, 0};
-		gbl_paneCenter.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_paneCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		paneCenter.setLayout(gbl_paneCenter);
+		GridBagLayout gblPaneCenter = new GridBagLayout();
+		gblPaneCenter.columnWidths = new int[]{46, 124, 96, 0};
+		gblPaneCenter.rowHeights = new int[]{39, 17, 17, 17, 17, 39, 19, 0};
+		gblPaneCenter.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gblPaneCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		paneCenter.setLayout(gblPaneCenter);
 		
-		JLabel LabelNom = new JLabel("Nom");
-		LabelNom.setText(listeDonnees.get(0));
-		LabelNom.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelNom = new GridBagConstraints();
-		gbc_LabelNom.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelNom.insets = new Insets(0, 0, 5, 5);
-		gbc_LabelNom.gridx = 1;
-		gbc_LabelNom.gridy = 1;
-		paneCenter.add(LabelNom, gbc_LabelNom);
+		JLabel labelNom = new JLabel("Nom");
+		labelNom.setText(listeDonnees.get(0));
+		labelNom.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelNom = new GridBagConstraints();
+		gbcLabelNom.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelNom.insets = new Insets(0, 0, 5, 5);
+		gbcLabelNom.gridx = 1;
+		gbcLabelNom.gridy = 1;
+		paneCenter.add(labelNom, gbcLabelNom);
 		
-		JLabel LabelPrenom = new JLabel("Prenom");
-		LabelPrenom.setText(listeDonnees.get(1));
-		LabelPrenom.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelPrenom = new GridBagConstraints();
-		gbc_LabelPrenom.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelPrenom.insets = new Insets(0, 0, 5, 0);
-		gbc_LabelPrenom.gridx = 2;
-		gbc_LabelPrenom.gridy = 1;
-		paneCenter.add(LabelPrenom, gbc_LabelPrenom);
+		JLabel labelPrenom = new JLabel("Prenom");
+		labelPrenom.setText(listeDonnees.get(1));
+		labelPrenom.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelPrenom = new GridBagConstraints();
+		gbcLabelPrenom.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelPrenom.insets = new Insets(0, 0, 5, 0);
+		gbcLabelPrenom.gridx = 2;
+		gbcLabelPrenom.gridy = 1;
+		paneCenter.add(labelPrenom, gbcLabelPrenom);
 		
-		JLabel LabelVehicule = new JLabel("Vehicule :");
-		LabelVehicule.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelVehicule = new GridBagConstraints();
-		gbc_LabelVehicule.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelVehicule.insets = new Insets(0, 0, 5, 5);
-		gbc_LabelVehicule.gridx = 1;
-		gbc_LabelVehicule.gridy = 2;
-		paneCenter.add(LabelVehicule, gbc_LabelVehicule);
+		JLabel labelVehicule = new JLabel("Vehicule :");
+		labelVehicule.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelVehicule = new GridBagConstraints();
+		gbcLabelVehicule.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelVehicule.insets = new Insets(0, 0, 5, 5);
+		gbcLabelVehicule.gridx = 1;
+		gbcLabelVehicule.gridy = 2;
+		paneCenter.add(labelVehicule, gbcLabelVehicule);
 		
-		JLabel LabelVehiculeAffiche = new JLabel("Vehicule");
-		LabelVehiculeAffiche.setText(listeDonnees.get(2));
-		LabelVehiculeAffiche.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelVehiculeAffiche = new GridBagConstraints();
-		gbc_LabelVehiculeAffiche.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelVehiculeAffiche.insets = new Insets(0, 0, 5, 0);
-		gbc_LabelVehiculeAffiche.gridx = 2;
-		gbc_LabelVehiculeAffiche.gridy = 2;
-		paneCenter.add(LabelVehiculeAffiche, gbc_LabelVehiculeAffiche);
+		JLabel labelVehiculeAffiche = new JLabel("Vehicule");
+		labelVehiculeAffiche.setText(listeDonnees.get(2));
+		labelVehiculeAffiche.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelVehiculeAffiche = new GridBagConstraints();
+		gbcLabelVehiculeAffiche.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelVehiculeAffiche.insets = new Insets(0, 0, 5, 0);
+		gbcLabelVehiculeAffiche.gridx = 2;
+		gbcLabelVehiculeAffiche.gridy = 2;
+		paneCenter.add(labelVehiculeAffiche, gbcLabelVehiculeAffiche);
 		
-		JLabel LabelParking = new JLabel("Parking ");
-		LabelParking.setText("Parking "+listeDonnees.get(3));
-		LabelParking.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelParking = new GridBagConstraints();
-		gbc_LabelParking.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelParking.insets = new Insets(0, 0, 5, 5);
-		gbc_LabelParking.gridx = 1;
-		gbc_LabelParking.gridy = 3;
-		paneCenter.add(LabelParking, gbc_LabelParking);
+		JLabel labelParking = new JLabel("Parking ");
+		labelParking.setText("Parking "+listeDonnees.get(3));
+		labelParking.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelParking = new GridBagConstraints();
+		gbcLabelParking.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelParking.insets = new Insets(0, 0, 5, 5);
+		gbcLabelParking.gridx = 1;
+		gbcLabelParking.gridy = 3;
+		paneCenter.add(labelParking, gbcLabelParking);
 		
-		JLabel LabelArrivee = new JLabel("De : arrivee");
-		LabelArrivee.setText("De : "+listeDonnees.get(4));
-		LabelArrivee.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelArrivee = new GridBagConstraints();
-		gbc_LabelArrivee.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelArrivee.insets = new Insets(0, 0, 5, 5);
-		gbc_LabelArrivee.gridx = 1;
-		gbc_LabelArrivee.gridy = 4;
-		paneCenter.add(LabelArrivee, gbc_LabelArrivee);
+		JLabel labelArrivee = new JLabel("De : arrivee");
+		labelArrivee.setText("De : "+listeDonnees.get(4));
+		labelArrivee.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelArrivee = new GridBagConstraints();
+		gbcLabelArrivee.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelArrivee.insets = new Insets(0, 0, 5, 5);
+		gbcLabelArrivee.gridx = 1;
+		gbcLabelArrivee.gridy = 4;
+		paneCenter.add(labelArrivee, gbcLabelArrivee);
 		
-		JLabel LabelDepart = new JLabel("A : depart");
-		LabelDepart.setText("A : "+listeDonnees.get(4));
-		LabelDepart.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_LabelDepart = new GridBagConstraints();
-		gbc_LabelDepart.anchor = GridBagConstraints.NORTHWEST;
-		gbc_LabelDepart.insets = new Insets(0, 0, 5, 0);
-		gbc_LabelDepart.gridx = 2;
-		gbc_LabelDepart.gridy = 4;
-		paneCenter.add(LabelDepart, gbc_LabelDepart);
+		JLabel labelDepart = new JLabel("A : depart");
+		labelDepart.setText("A : "+listeDonnees.get(4));
+		labelDepart.setFont(new Font(FONT, Font.PLAIN, 14));
+		GridBagConstraints gbcLabelDepart = new GridBagConstraints();
+		gbcLabelDepart.anchor = GridBagConstraints.NORTHWEST;
+		gbcLabelDepart.insets = new Insets(0, 0, 5, 0);
+		gbcLabelDepart.gridx = 2;
+		gbcLabelDepart.gridy = 4;
+		paneCenter.add(labelDepart, gbcLabelDepart);
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		horizontalBox.setBorder(new LineBorder(new Color(0, 0, 0)));
-		GridBagConstraints gbc_horizontalBox = new GridBagConstraints();
-		gbc_horizontalBox.anchor = GridBagConstraints.NORTHWEST;
-		gbc_horizontalBox.insets = new Insets(0, 0, 0, 5);
-		gbc_horizontalBox.gridx = 1;
-		gbc_horizontalBox.gridy = 6;
-		paneCenter.add(horizontalBox, gbc_horizontalBox);
+		GridBagConstraints gbcHorizontalBox = new GridBagConstraints();
+		gbcHorizontalBox.anchor = GridBagConstraints.NORTHWEST;
+		gbcHorizontalBox.insets = new Insets(0, 0, 0, 5);
+		gbcHorizontalBox.gridx = 1;
+		gbcHorizontalBox.gridy = 6;
+		paneCenter.add(horizontalBox, gbcHorizontalBox);
 		
-		JLabel LabelPrix = new JLabel("Prix : ");
-		LabelPrix.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		horizontalBox.add(LabelPrix);
+		JLabel labelPrix = new JLabel("Prix : ");
+		labelPrix.setFont(new Font(FONT, Font.PLAIN, 14));
+		horizontalBox.add(labelPrix);
 		
-		JLabel LabelPrixNombre = new JLabel("Nombre");
-		LabelPrixNombre.setText("10€");
-		LabelPrixNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		horizontalBox.add(LabelPrixNombre);
+		JLabel labelPrixNombre = new JLabel("Nombre");
+		labelPrixNombre.setText("10€");
+		labelPrixNombre.setFont(new Font(FONT, Font.PLAIN, 14));
+		horizontalBox.add(labelPrixNombre);
 		
 		JPanel paneSouth = new JPanel();
 		add(paneSouth, BorderLayout.SOUTH);

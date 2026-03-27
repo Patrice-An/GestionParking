@@ -24,14 +24,14 @@ public class InfoSeGarerVoirie extends JPanel {
 	private JComboBox<Vehicule> choixVehicule;
 	private JComboBox<Zone> comboZone;
 	private JComboBox<Tarif> comboTarif;
-	private App App;
+	private App app;
 
 	/**
 	 * Launch the application.
 	 * @param App 
 	 */
-	public InfoSeGarerVoirie(App App) {
-		this.App = App;
+	public InfoSeGarerVoirie(App app) {
+		this.app = app;
 		this.initialize();
 		
 	}
@@ -42,63 +42,57 @@ public class InfoSeGarerVoirie extends JPanel {
 	 * @return 
 	 */
 	public void initialize() {
-		if (App.getUtilisateur() == null) {
+		if (app.getUtilisateur() == null) {
 			return;
 		}
-		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this, App);
+		ControleurInfoSeGarerVoirie controleur = new ControleurInfoSeGarerVoirie(this, app);
 		setBounds(100, 100, 450, 300);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new BorderLayout(0, 0));
 
-		JPanel PanneauNord = new JPanel();
-		this.add(PanneauNord, BorderLayout.NORTH);
+		JPanel panneauNord = new JPanel();
+		this.add(panneauNord, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("Garer en voirie");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
-		PanneauNord.add(lblNewLabel);
+		panneauNord.add(lblNewLabel);
 
-		JPanel PanneauCentre = new JPanel();
-		this.add(PanneauCentre, BorderLayout.CENTER);
-		PanneauCentre.setLayout(new BorderLayout(0, 0));
+		JPanel panneauCentre = new JPanel();
+		this.add(panneauCentre, BorderLayout.CENTER);
+		panneauCentre.setLayout(new BorderLayout(0, 0));
 
-		JLabel TitreDonnees = new JLabel("Sélectionner un véhicule");
-		TitreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
-		PanneauCentre.add(TitreDonnees, BorderLayout.NORTH);
+		JLabel titreDonnees = new JLabel("Sélectionner un véhicule");
+		titreDonnees.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panneauCentre.add(titreDonnees, BorderLayout.NORTH);
 		
-		JPanel ListeInfos = new JPanel();
-		PanneauCentre.add(ListeInfos, BorderLayout.CENTER);
-		ListeInfos.setLayout(new GridLayout(6, 2, 0, 0));
+		JPanel listeInfos = new JPanel();
+		panneauCentre.add(listeInfos, BorderLayout.CENTER);
+		listeInfos.setLayout(new GridLayout(6, 2, 0, 0));
 		
-		/*this.choixVehicule = new JComboBox<Vehicule>();
-		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
-		for (Vehicule v : App.getUtilisateur().getVehicules()) {
-			vehiculeModel.addElement(v);
-		}
-		this.choixVehicule.setModel(vehiculeModel);*/
-		this.choixVehicule = new JComboBox<Vehicule>();
+		this.choixVehicule = new JComboBox<>();
 		build();
-		ListeInfos.add(choixVehicule);
+		listeInfos.add(choixVehicule);
 		
-		JLabel LabelSelectionVoirie = new JLabel("Sélectionnez la zone utilisé :");
-		LabelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ListeInfos.add(LabelSelectionVoirie);
+		JLabel labelSelectionVoirie = new JLabel("Sélectionnez la zone utilisé :");
+		labelSelectionVoirie.setFont(new Font("Tahoma", Font.BOLD, 14));
+		listeInfos.add(labelSelectionVoirie);
 
-		this.comboZone = new JComboBox<Zone>();
+		this.comboZone = new JComboBox<>();
 		this.comboZone.addItemListener(controleur.controleurVoirieTarif);
-		DefaultComboBoxModel<Zone> voirieModel = new DefaultComboBoxModel<Zone>();
+		DefaultComboBoxModel<Zone> voirieModel = new DefaultComboBoxModel<>();
 		for (Zone z : controleur.getZones()) {
 			voirieModel.addElement(z);
 		}
 		this.comboZone.setModel(voirieModel);
-		ListeInfos.add(this.comboZone);
+		listeInfos.add(this.comboZone);
 		
-		this.comboTarif = new JComboBox<Tarif>();
+		this.comboTarif = new JComboBox<>();
 		controleur.updateComboTarif();
-		ListeInfos.add(this.comboTarif);
+		listeInfos.add(this.comboTarif);
 
-		JPanel PanneauSud = new JPanel();
-		this.add(PanneauSud, BorderLayout.SOUTH);
-		PanneauSud.setLayout(new BorderLayout(0, 0));
+		JPanel panneauSud = new JPanel();
+		this.add(panneauSud, BorderLayout.SOUTH);
+		panneauSud.setLayout(new BorderLayout(0, 0));
 
 		JButton btnValider = new JButton("Valider");
 		btnValider.setHorizontalTextPosition(SwingConstants.RIGHT);
@@ -106,14 +100,14 @@ public class InfoSeGarerVoirie extends JPanel {
 		btnValider.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnValider.addActionListener(controleur);
-		PanneauSud.add(btnValider, BorderLayout.EAST);
+		panneauSud.add(btnValider, BorderLayout.EAST);
 
 		JButton btnAnnuler = new JButton("Annuler");
-		PanneauSud.add(btnAnnuler, BorderLayout.WEST);
+		panneauSud.add(btnAnnuler, BorderLayout.WEST);
 		btnAnnuler.addActionListener(controleur);
 
 		JPanel panel = new JPanel();
-		PanneauSud.add(panel, BorderLayout.NORTH);
+		panneauSud.add(panel, BorderLayout.NORTH);
 
 	}
 
@@ -130,8 +124,8 @@ public class InfoSeGarerVoirie extends JPanel {
 	}
 	
 	private void build() {
-		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<Vehicule>();
-		for (Vehicule v : App.getUtilisateur().getVehicules()) {
+		DefaultComboBoxModel<Vehicule> vehiculeModel = new DefaultComboBoxModel<>();
+		for (Vehicule v : app.getUtilisateur().getVehicules()) {
 			vehiculeModel.addElement(v);
 		}
 		this.choixVehicule.setModel(vehiculeModel);

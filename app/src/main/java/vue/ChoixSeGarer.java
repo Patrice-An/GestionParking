@@ -18,7 +18,7 @@ public class ChoixSeGarer extends JPanel {
     }
 
     private void initialize() {
-        ControleurSeGarer controler = new ControleurSeGarer(this, App);
+        ControleurSeGarer controler = new ControleurSeGarer(App);
 
        
         setSize(1080, 720);

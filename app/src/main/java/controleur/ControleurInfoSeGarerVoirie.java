@@ -76,12 +76,12 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
                                 new DaoZone().seGarerZone(zone.getId(), vehicule.getImmatriculation(), heureArrivee, heureSortie, place, borne);
                                 JOptionPane.showMessageDialog(null, "Le stationnement est validé !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
                                 app.refresh();
-                                app.ChangementVue(VUE.CHOIXSEGARER);
+                                app.changementVue(VUE.CHOIXSEGARER);
                             } catch(SQLException eee) {
                                 //empty
                             }
                 }
-			case "Annuler" -> app.ChangementVue(VUE.CHOIXSEGARER);
+			case "Annuler" -> app.changementVue(VUE.CHOIXSEGARER);
 			default -> {
 				//aucun autre cas
                 }

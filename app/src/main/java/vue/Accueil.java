@@ -33,7 +33,7 @@ public class Accueil extends JPanel {
     private void initialize() {
 
         // --- Contrôleur ---
-        ControleurAccueil controleur = new ControleurAccueil(this, this.App);
+        ControleurAccueil controleur = new ControleurAccueil(this.App);
 
         setSize(1080, 720);
         setLayout(new BorderLayout());

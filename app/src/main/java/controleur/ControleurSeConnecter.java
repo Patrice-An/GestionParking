@@ -22,7 +22,8 @@ public class ControleurSeConnecter implements ActionListener{
 	private final SeConnecter vue;
 	private App app;
 			
-	public ControleurSeConnecter(SeConnecter vue) {
+	public ControleurSeConnecter(SeConnecter vue, App app) {
+		this.app = app;
 		this.vue = vue;
 	}
 
@@ -41,7 +42,7 @@ public class ControleurSeConnecter implements ActionListener{
 						utilisateur.addVehicule(v);
 					}
 					app.setUtilisateur(utilisateur);
-					app.ChangementVue(VUE.ACCUEIL);
+					app.changementVue(VUE.ACCUEIL);
 				} else {
 					JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect", "Formulaire erroné", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -49,7 +50,7 @@ public class ControleurSeConnecter implements ActionListener{
 				//empty
 			}
 		} else if (b.getText().equals("S'inscrire")) {
-			app.ChangementVue(VUE.INSCRIPTION);
+			app.changementVue(VUE.INSCRIPTION);
 		}
 	}
 }

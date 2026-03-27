@@ -20,13 +20,13 @@ public class ControleurAccueil implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
-			case "Se Garer" -> app.ChangementVue(VUE.CHOIXSEGARER);
-			case "Historique des Stationnements" -> app.ChangementVue(VUE.HISTORIQUESTATIONNEMENT);
-			case "Gérer mes Véhicules" -> app.ChangementVue(VUE.GESTIONVEHICULE);
-			case "Parkings disponibles" -> app.ChangementVue(VUE.LISTEPARKING);
-			case "Gestion abonnement" -> app.ChangementVue(VUE.GESTION_ABONNEMENT);
+			case "Se Garer" -> app.changementVue(VUE.CHOIXSEGARER);
+			case "Historique des Stationnements" -> app.changementVue(VUE.HISTORIQUESTATIONNEMENT);
+			case "Gérer mes Véhicules" -> app.changementVue(VUE.GESTIONVEHICULE);
+			case "Parkings disponibles" -> app.changementVue(VUE.LISTEPARKING);
+			case "Gestion abonnement" -> app.changementVue(VUE.GESTION_ABONNEMENT);
 			case "Se déconnecter" -> {
-                            app.ChangementVue(VUE.SECONNECTER);
+                            app.changementVue(VUE.SECONNECTER);
                             this.app.setUtilisateur(null);
                 }
 			case "Quitter l'application" -> app.dispose();

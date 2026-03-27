@@ -25,7 +25,7 @@ public class ControleurGestionVehicule implements ActionListener {
 		Vehicule vehicule = (Vehicule) b.getClientProperty("vehicule");
 		switch (b.getText()) {
 			case "Ajouter un véhicule" -> {
-                            app.ChangementVue(VUE.AJOUTERVEHICULE);
+                            app.changementVue(VUE.AJOUTERVEHICULE);
                             app.refresh();
                 }
 			case "Modifier" -> {

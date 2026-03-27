@@ -35,7 +35,7 @@ public class GestionVehicule extends JPanel {
 	 */
 	public void initialize() {
 		
-		ControleurGestionVehicule controleur = new ControleurGestionVehicule(this, fenetre);
+		ControleurGestionVehicule controleur = new ControleurGestionVehicule(fenetre);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -103,7 +103,7 @@ public class GestionVehicule extends JPanel {
 	
 	private void BuildBox() { 
 		Set<Vehicule> listeVehicule = fenetre.getUtilisateur().getVehicules();
-		ControleurGestionVehicule controleur = new ControleurGestionVehicule(this, fenetre);
+		ControleurGestionVehicule controleur = new ControleurGestionVehicule(fenetre);
 		for (Vehicule vehiculeIt:listeVehicule) {
 			verticalBox = Box.createVerticalBox();
 			verticalBox.setBorder(new LineBorder(new Color(0, 0, 0)));

@@ -58,7 +58,7 @@ public class ControleurHistorique implements ActionListener {
 		Optional<Utilisateur> userOptional = Optional.empty();
 		
 		try {
-			userOptional = daoU.findById(vehicule.getId_utilisateur());
+			userOptional = daoU.findById(vehicule.getidUtilisateur());
 		} catch (SQLException e1) {
 			//
 		}

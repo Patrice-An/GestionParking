@@ -17,14 +17,14 @@ public class TestTarif {
     @Test
     public void testGetters() {
         assertEquals(1, tarif.getId());
-        assertEquals(2.5f, tarif.getDurée(), 0.001f);
+        assertEquals(2.5f, tarif.getDuree(), 0.001f);
         assertEquals(10, tarif.getMajoration(), 0.001f);
     }
 
     @Test
     public void testSetDurée() {
-        tarif.setDurée(3.75f);
-        assertEquals(3.75f, tarif.getDurée(), 0.001f);
+        tarif.setDuree(3.75f);
+        assertEquals(3.75f, tarif.getDuree(), 0.001f);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class TestTarif {
         String expected = "Durée : 2H30M, tarif : 10€";
         assertEquals(expected, tarif.toString());
 
-        tarif.setDurée(1.75f);
+        tarif.setDuree(1.75f);
         tarif.setMajoration(15);
         expected = "Durée : 1H45M, tarif : 15€";
         assertEquals(expected, tarif.toString());

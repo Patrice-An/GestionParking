@@ -68,8 +68,8 @@ public class ControleurInfoSeGarerVoirie implements ActionListener {
                             Tarif tarif = (Tarif) vue.getComboTarif().getSelectedItem();
                             LocalDateTime heureArrivee = LocalDateTime.now();
                             LocalDateTime heureSortie = LocalDateTime.now();
-                            heureSortie = heureSortie.plusHours((long)Math.floor(tarif.getDurée()));
-                            heureSortie = heureSortie.plusMinutes((long)((tarif.getDurée() - Math.floor(tarif.getDurée()))*60f));
+                            heureSortie = heureSortie.plusHours((long)Math.floor(tarif.getDuree()));
+                            heureSortie = heureSortie.plusMinutes((long)((tarif.getDuree() - Math.floor(tarif.getDuree()))*60f));
                             int place = 0;
                             byte borne = 0;
                             try {

@@ -113,7 +113,7 @@ public class TestParking {
         parking.addVehicule(vMoto);
 
         int expected = parking.getplacesMax() - 3;
-        assertEquals(expected, parking.nb_place_libres());
+        assertEquals(expected, parking.nbPlaceLibres());
     }
 
     @Test

@@ -32,7 +32,7 @@ public class ControleurAjouterVehicule implements ActionListener{
                             String immat = vue.getImmatriculation();
                             float hauteur = vue.getHauteur();
                             int idUser = app.getUtilisateur().getid();
-                            String designation = vue.getDésignation();
+                            String designation = vue.getDesignation();
                             Type_vehicule type = vue.getTypeVehicule();
                             Vehicule vehicule = new Vehicule(immat, hauteur, idUser, designation, type);
                             try {

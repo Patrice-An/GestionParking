@@ -12,12 +12,12 @@ import modele.Transport;
 import modele.Type_Transport;
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requetetransport.CreateTransport;
-import modele.dao.requetes.requetetransport.TransportFindAll;
-import modele.dao.requetes.requetetransport.TransportFindById;
-import modele.dao.requetes.requeteutilisateur.EmailUnique;
-import modele.dao.requetes.requeteutilisateur.UtilisateurConnection;
-import modele.dao.requetes.requeteutilisateur.UtilisateurDeleteById;
+import modele.dao.requetes.requeteTransport.CreateTransport;
+import modele.dao.requetes.requeteTransport.TransportFindAll;
+import modele.dao.requetes.requeteTransport.TransportFindById;
+import modele.dao.requetes.requeteUtilisateur.EmailUnique;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
 
 public class DaoTransport implements Dao<Transport, Integer> {
 

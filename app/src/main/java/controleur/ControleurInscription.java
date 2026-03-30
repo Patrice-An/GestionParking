@@ -47,6 +47,8 @@ public class ControleurInscription implements ActionListener{
 
 	public void validerInscription() {
 
+		System.out.println("1");
+
 		final String FORMULAIRE_INVALIDE_MESSAGE = "Formulaire invalide";
 
 		if (vue.getNomField().getText().isEmpty()
@@ -57,37 +59,44 @@ public class ControleurInscription implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Champs non remplis", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
+		System.out.println("2");
 		String nom = vue.getNomField().getText();
 		if(contientNombre(nom)){
 			JOptionPane.showMessageDialog(null, "Nom invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		System.out.println("2");
 		String prenom = vue.getPrenomField().getText();
 		if(contientNombre(prenom)){
 			JOptionPane.showMessageDialog(null, "Prenom invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		System.out.println("2");
 		String mail = vue.getMailField().getText();
 		if (!bonFormattageMail(mail)) {
 			JOptionPane.showMessageDialog(null, "Mail invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		System.out.println("3");
 		JDatePickerImpl naissancePicker = vue.getNaissancePicker();
 		UtilDateModel dateModel = (UtilDateModel) naissancePicker.getModel();
 		if (dateModel.getYear() > 2010) {
 			JOptionPane.showMessageDialog(null, "Date de naissance invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		System.out.println("4");
 		LocalDate naissance = LocalDate.of(dateModel.getYear(), dateModel.getMonth()+1, dateModel.getDay());
 		String tel = vue.getTelField().getText();
 		if(!bonFormattageTelephone(tel)) {
 			JOptionPane.showMessageDialog(null, "Numéro de téléphone invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		System.out.println("5");
 		String password = String.valueOf(vue.getPasswordField().getPassword());
 		Utilisateur utilisateur = new Utilisateur(0, nom, prenom, tel, naissance, mail, password);
 		try {
 			DaoUtilisateur dao = new DaoUtilisateur();
+			System.out.println("6");
 			if (dao.emailUnique(mail)) {
 				dao.create(utilisateur);
 				Optional<Utilisateur> optionalUser = new DaoUtilisateur().utilisateurCanConnect(mail, password);
@@ -96,10 +105,11 @@ public class ControleurInscription implements ActionListener{
 				} else {
 					return;
 				}
-				List<Vehicule> vehiculeUtilisateur = new DaoVehicule().findVehiculeByUser(utilisateur.getid());
-				for (Vehicule v : vehiculeUtilisateur) {
-					utilisateur.addVehicule(v);
-				}
+				System.out.println("8");
+				// List<Vehicule> vehiculeUtilisateur = new DaoVehicule().findVehiculeByUser(utilisateur.getid());
+				// for (Vehicule v : vehiculeUtilisateur) {
+				// 	utilisateur.addVehicule(v);
+				// }
 				app.setUtilisateur(utilisateur);
 				app.changementVue(VUE.ACCUEIL);
 				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
@@ -107,7 +117,7 @@ public class ControleurInscription implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
 			}
 		} catch (SQLException eee) {
-			//empty
+			eee.printStackTrace();
 		}
 	}
 	

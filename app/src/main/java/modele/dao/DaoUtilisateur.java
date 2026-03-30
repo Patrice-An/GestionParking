@@ -12,13 +12,13 @@ import java.util.Optional;
 
 import modele.Utilisateur;
 import modele.dao.requetes.Requete;
-import modele.dao.requetes.requeteutilisateur.CreateUtilisateur;
-import modele.dao.requetes.requeteutilisateur.EmailUnique;
-import modele.dao.requetes.requeteutilisateur.SelectAllUtilisateur;
-import modele.dao.requetes.requeteutilisateur.SelectUtilisateurById;
-import modele.dao.requetes.requeteutilisateur.UtilisateurConnection;
-import modele.dao.requetes.requeteutilisateur.UtilisateurDeleteById;
-import modele.dao.requetes.requeteutilisateur.UtilisateurSelectSeGarer;
+import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.EmailUnique;
+import modele.dao.requetes.requeteUtilisateur.SelectAllUtilisateur;
+import modele.dao.requetes.requeteUtilisateur.SelectUtilisateurById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurConnection;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
+import modele.dao.requetes.requeteUtilisateur.UtilisateurSelectSeGarer;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 	

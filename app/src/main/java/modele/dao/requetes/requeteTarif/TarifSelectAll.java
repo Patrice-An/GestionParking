@@ -1,4 +1,4 @@
-package modele.dao.requetes.requetetarif;
+package modele.dao.requetes.requeteTarif;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

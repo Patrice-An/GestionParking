@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteparking;
+package modele.dao.requetes.requeteParking;
 
 import modele.Parking;
 import modele.dao.requetes.Requete;

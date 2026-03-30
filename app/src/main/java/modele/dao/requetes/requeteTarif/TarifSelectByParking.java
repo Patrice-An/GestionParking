@@ -1,4 +1,4 @@
-package modele.dao.requetes.requetetarif;
+package modele.dao.requetes.requeteTarif;
 
 public class TarifSelectByParking {
 

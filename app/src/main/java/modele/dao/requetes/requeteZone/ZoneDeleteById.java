@@ -1,4 +1,4 @@
-package modele.dao.requetes.requetezone;
+package modele.dao.requetes.requeteZone;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

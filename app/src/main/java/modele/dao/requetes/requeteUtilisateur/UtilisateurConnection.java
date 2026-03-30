@@ -1,4 +1,4 @@
-package modele.dao.requetes.requeteutilisateur;
+package modele.dao.requetes.requeteUtilisateur;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

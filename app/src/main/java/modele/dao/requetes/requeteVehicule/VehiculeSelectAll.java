@@ -1,4 +1,4 @@
-package modele.dao.requetes.requetevehicule;
+package modele.dao.requetes.requeteVehicule;
 
 import modele.Vehicule;
 import modele.dao.requetes.Requete;

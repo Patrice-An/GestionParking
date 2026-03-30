@@ -100,11 +100,7 @@ public final class App extends JFrame {
 	}
 
 	public void changementVue(VUE fen) {
-		if (fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL) {
-			this.setVisiblePrecedent(true);
-		} else {
-			this.setVisiblePrecedent(false);
-		}
+		this.setVisiblePrecedent(fen != VUE.INSCRIPTION && fen != VUE.SECONNECTER && fen != VUE.ACCUEIL);
 		layout.show(contentPane, fen.name());
 	}
 
@@ -135,7 +131,7 @@ public final class App extends JFrame {
 			infoSeGarerParking = new InfoSeGarerParking(this);
 			infoSeGarerVoirie = new InfoSeGarerVoirie(this);
 			ajouterVehicule = new AjouterVehicule(this);
-			fenRecapitulatif = new FenRecapitulatif(this);
+			fenRecapitulatif = new FenRecapitulatif();
 			historiqueStationnement = new HistoriqueStationnement(this);
 			gestionAbonnement = new GestionAbonnement(this);
 			contentPane.add(accueil, VUE.ACCUEIL.name());

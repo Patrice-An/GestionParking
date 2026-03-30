@@ -25,7 +25,7 @@ public class Facture extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Facture(App fenPrincipal, ControleurHistorique accesDonnees) {
+	public Facture(ControleurHistorique accesDonnees) {
 		String policeTahoma = "Tahoma";
 		this.listeDonnees = accesDonnees.getDonneesFacture();
 		setLayout(new BorderLayout(0, 0));

@@ -16,7 +16,7 @@ public class FenRecapitulatif extends JPanel {
 	 * Launch the application.
 	 * @param App 
 	 */
-	public FenRecapitulatif(App app) {
+	public FenRecapitulatif() {
 		this.initialize();
 	}
 

@@ -29,7 +29,7 @@ public class HistoriqueStationnement extends JPanel {
 
 	private static final long serialVersionUID = 1L;
     private final App app;
-    private final ControleurHistorique controleur;
+    private final transient ControleurHistorique controleur;
 	private final JPanel paneParking;
 	private final JPanel paneZone;
 	private JButton btnPartir;

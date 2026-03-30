@@ -18,7 +18,7 @@ import java.awt.Dimension;
 public class GestionAbonnement extends JPanel {
 
     private final App app;
-    private final ControleurAbonnement controleur;
+    private final transient ControleurAbonnement controleur;
 
     public GestionAbonnement(App app) {
         String policeTahoma = "Tahoma";

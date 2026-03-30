@@ -93,7 +93,7 @@ public class ControleurHistorique implements ActionListener {
 			donneesFacture.add(b.getClientProperty("arrivee").toString());
 			donneesFacture.add(b.getClientProperty("depart").toString());
 			
-			Facture facture = new Facture(fenPrincipal, this);
+			Facture facture = new Facture(this);
 			JOptionPane.showMessageDialog(null, facture);
 			donneesFacture = new ArrayList<>();
 		}

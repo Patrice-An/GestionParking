@@ -57,6 +57,9 @@ public final class App extends JFrame {
 
 	public App() {
 
+		System.out.println("LAUNCH");
+
+
 		ControleurApp controleur = new ControleurApp(this);
 		// --- Icone ---
 		try (InputStream imgStream = getClass().getResourceAsStream("/images/Parkeo_Logo.png")) {

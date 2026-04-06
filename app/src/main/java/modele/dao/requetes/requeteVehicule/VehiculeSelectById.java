@@ -8,8 +8,6 @@ import modele.dao.requetes.Requete;
 
 public class VehiculeSelectById extends Requete<Vehicule> {
 
-    
-
     @Override
 	public String requete()  {
 		return "select * from vehicule where immat = ?";

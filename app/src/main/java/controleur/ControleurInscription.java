@@ -23,8 +23,8 @@ import vue.App;
 import vue.App.VUE;
 import vue.Inscription;
 
-public class ControleurInscription implements ActionListener{
-	
+public class ControleurInscription implements ActionListener {
+
 	private final App app;
 
 	public ControleurInscription(Inscription vue, App app) {
@@ -33,14 +33,14 @@ public class ControleurInscription implements ActionListener{
 	}
 
 	Inscription vue;
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
 		switch (b.getText()) {
 			case "Valider" -> validerInscription();
 			case "Connectez-vous" -> app.changementVue(VUE.SECONNECTER);
-			default -> { //aucun autre cas
+			default -> { // aucun autre cas
 			}
 		}
 	}
@@ -49,38 +49,44 @@ public class ControleurInscription implements ActionListener{
 		final String FORMULAIRE_INVALIDE_MESSAGE = "Formulaire invalide";
 
 		if (vue.getNomField().getText().isEmpty()
-			|| vue.getPrenomField().getText().isEmpty()
-			|| vue.getMailField().getText().isEmpty()
-			|| vue.getTelField().getText().isEmpty()
-			|| vue.getPasswordField().getPassword().length == 0) {
-				JOptionPane.showMessageDialog(null, "Champs non remplis", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
+				|| vue.getPrenomField().getText().isEmpty()
+				|| vue.getMailField().getText().isEmpty()
+				|| vue.getTelField().getText().isEmpty()
+				|| vue.getPasswordField().getPassword().length == 0) {
+			JOptionPane.showMessageDialog(null, "Champs non remplis", FORMULAIRE_INVALIDE_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		String nom = vue.getNomField().getText();
-		if(contientNombre(nom)){
-			JOptionPane.showMessageDialog(null, "Nom invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+		if (contientNombre(nom)) {
+			JOptionPane.showMessageDialog(null, "Nom invalide", FORMULAIRE_INVALIDE_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String prenom = vue.getPrenomField().getText();
-		if(contientNombre(prenom)){
-			JOptionPane.showMessageDialog(null, "Prenom invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+		if (contientNombre(prenom)) {
+			JOptionPane.showMessageDialog(null, "Prenom invalide", FORMULAIRE_INVALIDE_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String mail = vue.getMailField().getText();
 		if (!bonFormattageMail(mail)) {
-			JOptionPane.showMessageDialog(null, "Mail invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Mail invalide", FORMULAIRE_INVALIDE_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		JDatePickerImpl naissancePicker = vue.getNaissancePicker();
 		UtilDateModel dateModel = (UtilDateModel) naissancePicker.getModel();
 		if (dateModel.getYear() > 2010) {
-			JOptionPane.showMessageDialog(null, "Date de naissance invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Date de naissance invalide", FORMULAIRE_INVALIDE_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		LocalDate naissance = LocalDate.of(dateModel.getYear(), dateModel.getMonth()+1, dateModel.getDay());
+		LocalDate naissance = LocalDate.of(dateModel.getYear(), dateModel.getMonth() + 1, dateModel.getDay());
 		String tel = vue.getTelField().getText();
-		if(!bonFormattageTelephone(tel)) {
-			JOptionPane.showMessageDialog(null, "Numéro de téléphone invalide", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+		if (!bonFormattageTelephone(tel)) {
+			JOptionPane.showMessageDialog(null, "Numéro de téléphone invalide", FORMULAIRE_INVALIDE_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String password = String.valueOf(vue.getPasswordField().getPassword());
@@ -101,31 +107,34 @@ public class ControleurInscription implements ActionListener{
 				}
 				app.setUtilisateur(utilisateur);
 				app.changementVue(VUE.ACCUEIL);
-				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Inscription effectuée !", "Opération réussie",
+						JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Email déjà utilisé", FORMULAIRE_INVALIDE_MESSAGE,
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		} catch (SQLException eee) {
-			//empty
+			eee.printStackTrace();
 		}
 	}
-	
+
 	private boolean bonFormattageTelephone(String mot) {
 		Pattern pattern = Pattern.compile("^(\\+|00|0)[1-9]\\d{6,14}$", Pattern.CASE_INSENSITIVE);
-	    Matcher matcher = pattern.matcher(mot);
-	    return matcher.find();
+		Matcher matcher = pattern.matcher(mot);
+		return matcher.find();
 	}
-	
+
 	private boolean contientNombre(String mot) {
 		Pattern pattern = Pattern.compile("\\d", Pattern.CASE_INSENSITIVE);
-	    Matcher matcher = pattern.matcher(mot);
-	    return matcher.find();
+		Matcher matcher = pattern.matcher(mot);
+		return matcher.find();
 	}
-	
+
 	private boolean bonFormattageMail(String mail) {
-		Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\\.[a-zA-Z]{2,}$", Pattern.CASE_INSENSITIVE);
-	    Matcher matcher = pattern.matcher(mail);
-	    return matcher.find();
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\\.[a-zA-Z]{2,}$",
+				Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(mail);
+		return matcher.find();
 	}
-	
+
 }

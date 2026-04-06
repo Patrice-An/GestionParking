@@ -21,19 +21,19 @@ import modele.dao.requetes.requeteUtilisateur.UtilisateurDeleteById;
 import modele.dao.requetes.requeteUtilisateur.UtilisateurSelectSeGarer;
 
 public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
-	
+
 	@Override
 	public Utilisateur createInstance(ResultSet curseur) throws SQLException {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate date = LocalDate.parse(curseur.getString(5), formatter);
 		return new Utilisateur(
-			curseur.getInt(1),
-			curseur.getString(2),
-			curseur.getString(3),
-			curseur.getString(4),
-			date,
-			curseur.getString(6),
-			curseur.getString(7));
+				curseur.getInt(1),
+				curseur.getString(2),
+				curseur.getString(3),
+				curseur.getString(4),
+				date,
+				curseur.getString(6),
+				curseur.getString(7));
 	}
 
 	@Override
@@ -44,16 +44,16 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String date = formatter.format(utilisateur.getNaissance());
 		req.parametres(
-			stUtil,
-			utilisateur.getNom(),
-			utilisateur.getPrenom(),
-			utilisateur.getTel(),
-			date,
-			utilisateur.getMail(),
-			utilisateur.getPassword());
+				stUtil,
+				utilisateur.getNom(),
+				utilisateur.getPrenom(),
+				utilisateur.getTel(),
+				date,
+				utilisateur.getMail(),
+				utilisateur.getPassword());
 		stUtil.executeUpdate();
 	}
-	
+
 	@Override
 	public Optional<Utilisateur> findById(Integer id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
@@ -67,7 +67,7 @@ public class DaoUtilisateur implements Dao<Utilisateur, Integer> {
 			return Optional.empty();
 		}
 	}
-	
+
 	@Override
 	public List<Utilisateur> findAll() throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();

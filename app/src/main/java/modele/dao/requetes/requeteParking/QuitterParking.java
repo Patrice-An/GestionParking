@@ -8,11 +8,11 @@ import modele.dao.requetes.Requete;
 
 public class QuitterParking extends Requete<Parking> {
 
-    @Override
-	public String requete()  {
-		return "update garer set heureSortie = ? where idParking = ? and heureArrivee = ?";
+	@Override
+	public String requete() {
+		return "update garer set heureSortie = ? where id_Parking = ? and heureArrivée = ?";
 	}
-	
+
 	@Override
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
 		prSt.setString(1, id[0]);

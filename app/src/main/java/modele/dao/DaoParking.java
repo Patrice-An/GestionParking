@@ -22,17 +22,16 @@ import modele.dao.requetes.requeteUtilisateur.CreateUtilisateur;
 
 public class DaoParking implements Dao<Parking, Integer> {
 
-    @Override
+	@Override
 	public Parking createInstance(ResultSet curseur) throws SQLException {
 		return new Parking(
-			curseur.getInt(1),
-            curseur.getString(2),
-            curseur.getString(3),
-            curseur.getFloat(4),
-            curseur.getInt(5),
-            curseur.getInt(6),
-            curseur.getInt(7)
-		);
+				curseur.getInt(1),
+				curseur.getString(2),
+				curseur.getString(3),
+				curseur.getFloat(4),
+				curseur.getInt(5),
+				curseur.getInt(6),
+				curseur.getInt(7));
 	}
 
 	@Override
@@ -41,16 +40,16 @@ public class DaoParking implements Dao<Parking, Integer> {
 		Requete<Utilisateur> req = new CreateUtilisateur();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		req.parametres(
-			stUtil,
-			parking.getAdresse(),
-            parking.getNom(),
-            String.valueOf(parking.getHauteur()),
-            String.valueOf(parking.getplacesMax()),
-            String.valueOf(parking.getplacesMaxMoto()),
-            String.valueOf(parking.getplacesMaxElectrique()));
+				stUtil,
+				parking.getAdresse(),
+				parking.getNom(),
+				String.valueOf(parking.getHauteur()),
+				String.valueOf(parking.getplacesMax()),
+				String.valueOf(parking.getplacesMaxMoto()),
+				String.valueOf(parking.getplacesMaxElectrique()));
 		stUtil.executeUpdate();
 	}
-	
+
 	@Override
 	public Optional<Parking> findById(Integer id) throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
@@ -64,7 +63,7 @@ public class DaoParking implements Dao<Parking, Integer> {
 			return Optional.empty();
 		}
 	}
-	
+
 	@Override
 	public List<Parking> findAll() throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
@@ -97,20 +96,20 @@ public class DaoParking implements Dao<Parking, Integer> {
 		return res > 0;
 	}
 
-	public void seGarerParking(int idParking, String immat, LocalDateTime heureArrivee, int place, byte borne) throws SQLException {
+	public void seGarerParking(int idParking, String immat, LocalDateTime heureArrivee, int place, byte borne)
+			throws SQLException {
 		Connection cn = AzureSQLDataSource.getConnexion();
 		Requete<Parking> req = new ParkingSeGarer();
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		req.parametres(
-			stUtil,
-			String.valueOf(idParking),
-			immat,
-			heureArrivee.format(formatter),
-			null,
-			String.valueOf(place),
-			String.valueOf(borne)
-		);
+				stUtil,
+				String.valueOf(idParking),
+				immat,
+				heureArrivee.format(formatter),
+				null,
+				String.valueOf(place),
+				String.valueOf(borne));
 		stUtil.executeUpdate();
 	}
 
@@ -120,11 +119,10 @@ public class DaoParking implements Dao<Parking, Integer> {
 		PreparedStatement stUtil = cn.prepareStatement(req.requete());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		req.parametres(
-			stUtil,
-			LocalDateTime.now().format(formatter),
-			String.valueOf(idParking),
-			heureArrivee
-		);
+				stUtil,
+				LocalDateTime.now().format(formatter),
+				String.valueOf(idParking),
+				heureArrivee);
 		stUtil.executeUpdate();
 	}
 

@@ -8,11 +8,11 @@ import modele.dao.requetes.Requete;
 
 public class ParkingSelectById extends Requete<Parking> {
 
-    @Override
-	public String requete()  {
-		return "select * from parking where idParking = ?";
+	@Override
+	public String requete() {
+		return "select * from parking where id_Parking = ?";
 	}
-	
+
 	@Override
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
 		prSt.setString(1, id[0]);

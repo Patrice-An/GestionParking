@@ -28,8 +28,8 @@ import java.awt.Font;
 public class HistoriqueStationnement extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-    private final App app;
-    private final transient ControleurHistorique controleur;
+	private final App app;
+	private final transient ControleurHistorique controleur;
 	private final JPanel paneParking;
 	private final JPanel paneZone;
 	private JButton btnPartir;
@@ -38,57 +38,57 @@ public class HistoriqueStationnement extends JPanel {
 	 * Create the panel.
 	 */
 	public HistoriqueStationnement(App app) {
-		
-    	this.app = app;
-    	controleur = new ControleurHistorique(this, this.app);
+
+		this.app = app;
+		controleur = new ControleurHistorique(this, this.app);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel = new JLabel("Historique de stationnement");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblNewLabel, BorderLayout.NORTH);
-		
+
 		JPanel paneSouth = new JPanel();
 		add(paneSouth, BorderLayout.SOUTH);
 		paneSouth.setLayout(new BorderLayout(0, 0));
-		
+
 		JButton btnPrec = new JButton("Annuler");
 		btnPrec.setHorizontalAlignment(SwingConstants.LEFT);
 		paneSouth.add(btnPrec, BorderLayout.WEST);
-		
+
 		JPanel paneWest = new JPanel();
 		add(paneWest, BorderLayout.WEST);
-		
+
 		JPanel paneEast = new JPanel();
 		add(paneEast, BorderLayout.EAST);
-		
+
 		JPanel paneCenter = new JPanel();
 		add(paneCenter, BorderLayout.CENTER);
 		paneCenter.setLayout(new BoxLayout(paneCenter, BoxLayout.Y_AXIS));
-		
+
 		JPanel paneParentParking = new JPanel();
 		paneParentParking.setBorder(new LineBorder(new Color(0, 0, 0)));
 		paneCenter.add(paneParentParking);
 		paneParentParking.setLayout(new BorderLayout(0, 0));
-		
+
 		paneParking = new JPanel();
 		paneParentParking.add(paneParking);
-		
+
 		JLabel lblNewLabel2 = new JLabel("Dans un parking :");
 		lblNewLabel2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel2.setHorizontalAlignment(SwingConstants.CENTER);
 		paneParentParking.add(lblNewLabel2, BorderLayout.NORTH);
-		
+
 		JSeparator separator = new JSeparator();
 		paneCenter.add(separator);
-		
+
 		JPanel paneParentZone = new JPanel();
 		paneParentZone.setBorder(new LineBorder(new Color(0, 0, 0)));
 		paneCenter.add(paneParentZone);
 		paneParentZone.setLayout(new BorderLayout(0, 0));
-		
+
 		paneZone = new JPanel();
 		paneParentZone.add(paneZone);
-		
+
 		JLabel lblNewLabel1 = new JLabel("En voirie :");
 		lblNewLabel1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,29 +99,31 @@ public class HistoriqueStationnement extends JPanel {
 	private void build() {
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(app.getUtilisateur().getid());
+			System.out.println(res.toString());
 			while (res.next()) {
 				Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
 				if (parking.isPresent()) {
+					System.out.println("PARKING IS PRESENT");
 					Box verticalBox = Box.createVerticalBox();
 					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-					
-					JLabel labelNom = new JLabel("Parking : " +parking.get().getNom());
+
+					JLabel labelNom = new JLabel("Parking : " + parking.get().getNom());
 					labelNom.setHorizontalAlignment(SwingConstants.CENTER);
 					verticalBox.add(labelNom);
-						
-					JLabel labelVehicule = new JLabel("Vehicule : "+res.getString(3));
+
+					JLabel labelVehicule = new JLabel("Vehicule : " + res.getString(3));
 					labelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
 					verticalBox.add(labelVehicule);
-					
-					JLabel labelArrivee = new JLabel("De : "+res.getString(5));
+
+					JLabel labelArrivee = new JLabel("De : " + res.getString(5));
 					labelArrivee.setHorizontalAlignment(SwingConstants.CENTER);
 					verticalBox.add(labelArrivee);
-					
+
 					if (res.getString(6) != null) {
-						JLabel labelSortie = new JLabel("A :"+res.getString(6));
+						JLabel labelSortie = new JLabel("A :" + res.getString(6));
 						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
 						verticalBox.add(labelSortie);
-						
+
 						JButton btnFacture = new JButton("Facture");
 						verticalBox.add(btnFacture);
 						btnFacture.setBackground(new Color(0, 128, 192));
@@ -135,7 +137,7 @@ public class HistoriqueStationnement extends JPanel {
 						JLabel labelSortie = new JLabel("A : Maintenant");
 						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
 						verticalBox.add(labelSortie);
-						
+
 						JButton btnPartir = new JButton("Partir");
 						verticalBox.add(btnPartir);
 						btnPartir.setBackground(new Color(255, 128, 128));
@@ -147,8 +149,8 @@ public class HistoriqueStationnement extends JPanel {
 					paneParking.add(verticalBox);
 				}
 			}
-		} catch(SQLException eee) {
-			//empty
+		} catch (SQLException eee) {
+			eee.printStackTrace();
 		}
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(app.getUtilisateur().getid());
@@ -157,24 +159,24 @@ public class HistoriqueStationnement extends JPanel {
 				if (zone.isPresent()) {
 					Box verticalBox = Box.createVerticalBox();
 					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-					
-					JLabel labelNom = new JLabel("Zone : " +zone.get().getCouleur());
+
+					JLabel labelNom = new JLabel("Zone : " + zone.get().getCouleur());
 					labelNom.setHorizontalAlignment(SwingConstants.CENTER);
 					verticalBox.add(labelNom);
-						
-					JLabel labelVehicule = new JLabel("Vehicule : "+res.getString(3));
+
+					JLabel labelVehicule = new JLabel("Vehicule : " + res.getString(3));
 					labelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
 					verticalBox.add(labelVehicule);
-					
-					JLabel labelArrivee = new JLabel("De : "+res.getString(5));
+
+					JLabel labelArrivee = new JLabel("De : " + res.getString(5));
 					labelArrivee.setHorizontalAlignment(SwingConstants.CENTER);
 					verticalBox.add(labelArrivee);
-					
+
 					if (res.getString(6) != null) {
-						JLabel labelSortie = new JLabel("A :"+res.getString(6));
+						JLabel labelSortie = new JLabel("A :" + res.getString(6));
 						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
 						verticalBox.add(labelSortie);
-						
+
 						JButton btnFacture = new JButton("Facture");
 						verticalBox.add(btnFacture);
 						btnFacture.setBackground(new Color(0, 128, 192));
@@ -188,7 +190,7 @@ public class HistoriqueStationnement extends JPanel {
 						JLabel labelSortie = new JLabel("A : Maintenant");
 						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
 						verticalBox.add(labelSortie);
-						
+
 						btnPartir = new JButton("Partir");
 						verticalBox.add(btnPartir);
 						btnPartir.setBackground(new Color(255, 128, 128));
@@ -199,17 +201,17 @@ public class HistoriqueStationnement extends JPanel {
 					paneZone.add(verticalBox);
 				}
 			}
-		} catch(SQLException eee) {
-			//empty
+		} catch (SQLException eee) {
+			eee.printStackTrace();
 		}
 	}
-	
+
 	public void refresh() {
 		paneZone.removeAll();
 		paneParking.removeAll();
 		build();
 	}
-	
+
 	public JButton getbtnPartir() {
 		return btnPartir;
 	}

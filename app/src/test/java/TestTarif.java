@@ -1,5 +1,4 @@
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,12 +35,12 @@ public class TestTarif {
     @Test
     public void testToString() {
         // 2.5h = 2H30M
-        String expected = "Durée : 2H30M, tarif : 10€";
+        String expected = "Duree : 2H30M, tarif : 10€";
         assertEquals(expected, tarif.toString());
 
         tarif.setDuree(1.75f);
         tarif.setMajoration(15);
-        expected = "Durée : 1H45M, tarif : 15€";
+        expected = "Duree : 1H45M, tarif : 15€";
         assertEquals(expected, tarif.toString());
     }
 }

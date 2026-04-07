@@ -1,6 +1,8 @@
 package vue;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -9,8 +11,15 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Font;
+import java.awt.Cursor;
+import java.awt.GraphicsEnvironment;
+import java.util.Arrays;
 
 import controleur.ControleurHistorique;
 
@@ -19,13 +28,22 @@ import modele.Zone;
 import modele.dao.DaoParking;
 import modele.dao.DaoUtilisateur;
 import modele.dao.DaoZone;
+import vue.components.RoundedBorder;
+import vue.components.RoundedPanel;
 
+import javax.swing.JSeparator;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JSeparator;
-import java.awt.Font;
 
-public class HistoriqueStationnement extends JPanel {
+/*
+  Styled to match Accueil page:
+  - Uses same palette, fonts, rounded panels and button styling.
+  - Keeps original control flow and action listeners.
+  - Converts the vertical Box + LineBorder items into rounded "cards" (table-like rows)
+    while preserving properties and listeners.
+*/
+
+public class HistoriqueStationnement extends RoundedPanel {
 
 	private static final long serialVersionUID = 1L;
 	private App fenetreprincipal;
@@ -34,97 +52,202 @@ public class HistoriqueStationnement extends JPanel {
 	private JPanel paneZone;
 	private JButton btnPartir;
 
-	/**
-	 * Create the panel.
-	 */
-	public HistoriqueStationnement(App fenetreprincipal) {
+	// Palette and fonts copied from Accueil
+	private static final Color BG = new Color(22, 28, 38);
+	private static final Color PANEL = new Color(28, 36, 52);
+	private static final Color CARD = new Color(30, 38, 56);
+	private static final Color ACCENT = new Color(100, 170, 255);
+	private static final Color ACCENT_HOVER = new Color(85, 150, 235);
+	private static final Color MUTED = new Color(170, 185, 205);
+	private static final Color FIELD_BG = new Color(26, 34, 46);
+	private static final Color FIELD_BORDER = new Color(56, 72, 104);
 
+	private static final Font TITLE_FONT;
+	private static final Font LABEL_FONT;
+	private static final Font FIELD_FONT;
+
+	static {
+		String[] prefs = { "San Francisco", "Inter", "Roboto", "Segoe UI", "Noto Sans", "Dialog" };
+		String chosen = Arrays.stream(prefs)
+				.filter(n -> Arrays
+						.asList(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames())
+						.contains(n))
+				.findFirst().orElse("Dialog");
+		TITLE_FONT = new Font(chosen, Font.PLAIN, 20);
+		LABEL_FONT = new Font(chosen, Font.PLAIN, 13);
+		FIELD_FONT = new Font(chosen, Font.PLAIN, 13);
+	}
+
+	public HistoriqueStationnement(App fenetreprincipal) {
+		super(12, PANEL);
 		this.fenetreprincipal = fenetreprincipal;
 		controleur = new ControleurHistorique(this, this.fenetreprincipal);
-		setLayout(new BorderLayout(0, 0));
+		initialize();
+		this.build(); // keep original build invocation (will reuse methods below)
+	}
 
-		JLabel lblNewLabel = new JLabel("Historique de stationnement");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblNewLabel, BorderLayout.NORTH);
+	private void initialize() {
+		setLayout(new BorderLayout());
+		setBackground(BG);
+		setBorder(new EmptyBorder(20, 20, 20, 20));
 
-		JPanel paneSouth = new JPanel();
-		add(paneSouth, BorderLayout.SOUTH);
-		paneSouth.setLayout(new BorderLayout(0, 0));
+		JLabel title = new JLabel("Historique de stationnement", SwingConstants.CENTER);
+		title.setFont(TITLE_FONT.deriveFont(Font.BOLD, 20f));
+		title.setForeground(Color.WHITE);
+		title.setBorder(new EmptyBorder(8, 0, 12, 0));
+		add(title, BorderLayout.NORTH);
 
-		JButton btnPrec = new JButton("Annuler");
+		// Center card container to match Accueil style
+		RoundedPanel card = new RoundedPanel(12, CARD);
+		card.setLayout(new BorderLayout());
+		card.setBorder(new EmptyBorder(14, 14, 14, 14));
+
+		JSeparator sep = new JSeparator();
+		sep.setForeground(new Color(46, 58, 82));
+		sep.setPreferredSize(new Dimension(1, 1));
+		card.add(sep, BorderLayout.NORTH);
+
+		// content area
+		JPanel content = new JPanel(new GridBagLayout());
+		content.setOpaque(false);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+
+		// Vertical container for parking and zone sections
+		JPanel centerColumn = new JPanel();
+		// put centerColumn inside a scroll pane so many items become scrollable
+		JScrollPane centerScroll = new JScrollPane(centerColumn);
+		centerScroll.setBorder(null);
+		centerScroll.getViewport().setOpaque(false);
+		centerScroll.getViewport().setBackground(CARD);
+		centerScroll.setOpaque(false);
+		centerScroll.getVerticalScrollBar().setUnitIncrement(12);
+		content.add(centerScroll, gbc);
+		card.add(content, BorderLayout.CENTER);
+
+		centerColumn.setOpaque(false);
+		centerColumn.setLayout(new BoxLayout(centerColumn, BoxLayout.Y_AXIS));
+
+		// Parking section wrapper (rounded)
+		RoundedPanel paneParentParking = new RoundedPanel(10, FIELD_BG);
+		paneParentParking.setLayout(new BorderLayout(8, 8));
+		paneParentParking.setBorder(new EmptyBorder(12, 12, 12, 12));
+
+		JLabel lblParking = new JLabel("Dans un parking :", SwingConstants.CENTER);
+		lblParking.setFont(LABEL_FONT.deriveFont(Font.BOLD, 14f));
+		lblParking.setForeground(Color.WHITE);
+		paneParentParking.add(lblParking, BorderLayout.NORTH);
+
+		paneParking = new JPanel();
+		paneParking.setOpaque(false);
+		paneParking.setLayout(new BoxLayout(paneParking, BoxLayout.Y_AXIS));
+		paneParentParking.add(paneParking, BorderLayout.CENTER);
+
+		centerColumn.add(paneParentParking);
+		centerColumn.add(Box.createVerticalStrut(12));
+
+		// Separator
+		JSeparator centerSep = new JSeparator();
+		centerSep.setForeground(new Color(46, 58, 82));
+		centerSep.setPreferredSize(new Dimension(1, 1));
+		centerColumn.add(centerSep);
+		centerColumn.add(Box.createVerticalStrut(12));
+
+		// Zone section wrapper
+		RoundedPanel paneParentZone = new RoundedPanel(10, FIELD_BG);
+		paneParentZone.setLayout(new BorderLayout(8, 8));
+		paneParentZone.setBorder(new EmptyBorder(12, 12, 12, 12));
+
+		JLabel lblZone = new JLabel("En voirie :", SwingConstants.CENTER);
+		lblZone.setFont(LABEL_FONT.deriveFont(Font.BOLD, 14f));
+		lblZone.setForeground(Color.WHITE);
+		paneParentZone.add(lblZone, BorderLayout.NORTH);
+
+		paneZone = new JPanel();
+		paneZone.setOpaque(false);
+		paneZone.setLayout(new BoxLayout(paneZone, BoxLayout.Y_AXIS));
+		paneParentZone.add(paneZone, BorderLayout.CENTER);
+
+		centerColumn.add(paneParentZone);
+
+		content.add(centerColumn, gbc);
+		card.add(content, BorderLayout.CENTER);
+
+		JPanel centerWrapper = new JPanel(new GridBagLayout());
+		centerWrapper.setOpaque(false);
+		centerWrapper.add(card);
+
+		JPanel sizeLimiter = new JPanel(new BorderLayout());
+		sizeLimiter.setOpaque(false);
+		sizeLimiter.setPreferredSize(new Dimension(640, 520));
+		sizeLimiter.add(centerWrapper, BorderLayout.CENTER);
+
+		add(sizeLimiter, BorderLayout.CENTER);
+
+		// South buttons (keeps original layout but styled)
+		JPanel paneSouth = new JPanel(new BorderLayout());
+		paneSouth.setOpaque(false);
+		paneSouth.setBorder(new EmptyBorder(12, 0, 0, 0));
+
+		JButton btnPrec = styledButton("Annuler", false);
 		btnPrec.setHorizontalAlignment(SwingConstants.LEFT);
 		paneSouth.add(btnPrec, BorderLayout.WEST);
 
-		JPanel paneWest = new JPanel();
-		add(paneWest, BorderLayout.WEST);
-
-		JPanel paneEast = new JPanel();
-		add(paneEast, BorderLayout.EAST);
-
-		JPanel paneCenter = new JPanel();
-		add(paneCenter, BorderLayout.CENTER);
-		paneCenter.setLayout(new BoxLayout(paneCenter, BoxLayout.Y_AXIS));
-
-		JPanel paneParentParking = new JPanel();
-		paneParentParking.setBorder(new LineBorder(new Color(0, 0, 0)));
-		paneCenter.add(paneParentParking);
-		paneParentParking.setLayout(new BorderLayout(0, 0));
-
-		paneParking = new JPanel();
-		paneParentParking.add(paneParking);
-
-		JLabel lblNewLabel_2 = new JLabel("Dans un parking :");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		paneParentParking.add(lblNewLabel_2, BorderLayout.NORTH);
-
-		JSeparator separator = new JSeparator();
-		paneCenter.add(separator);
-
-		JPanel paneParentZone = new JPanel();
-		paneParentZone.setBorder(new LineBorder(new Color(0, 0, 0)));
-		paneCenter.add(paneParentZone);
-		paneParentZone.setLayout(new BorderLayout(0, 0));
-
-		paneZone = new JPanel();
-		paneParentZone.add(paneZone);
-
-		JLabel lblNewLabel_1 = new JLabel("En voirie :");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		paneParentZone.add(lblNewLabel_1, BorderLayout.NORTH);
-		this.build();
+		add(paneSouth, BorderLayout.SOUTH);
 	}
 
 	public void build() {
+		// Clear existing contents so repeated builds (called from constructor or
+		// refresh) won't duplicate
+		if (paneParking != null)
+			paneParking.removeAll();
+		if (paneZone != null)
+			paneZone.removeAll();
+
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
 			while (res.next()) {
 				Optional<Parking> parking = new DaoParking().findById(res.getInt(2));
 				if (parking.isPresent()) {
-					Box verticalBox = Box.createVerticalBox();
-					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					// create a card-like row for each parking record
+					RoundedPanel row = new RoundedPanel(8, CARD);
+					row.setLayout(new BorderLayout(8, 8));
+					row.setBorder(new EmptyBorder(10, 10, 10, 10));
+					row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110));
 
-					JLabel LabelNom = new JLabel("Parking : " + parking.get().getNom());
-					LabelNom.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(LabelNom);
+					JPanel labels = new JPanel(new GridBagLayout());
+					labels.setOpaque(false);
+					GridBagConstraints gbc = new GridBagConstraints();
+					gbc.gridx = 0;
+					gbc.anchor = GridBagConstraints.WEST;
+					gbc.fill = GridBagConstraints.HORIZONTAL;
 
-					JLabel LabelVehicule = new JLabel("Vehicule : " + res.getString(3));
-					LabelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(LabelVehicule);
+					JLabel LabelNom = new JLabel("Parking: " + parking.get().getNom());
+					LabelNom.setFont(LABEL_FONT.deriveFont(Font.BOLD, 13f));
+					LabelNom.setForeground(Color.WHITE);
+					labels.add(LabelNom, gbc);
 
-					JLabel LabelArrivee = new JLabel("De : " + res.getString(5));
-					LabelArrivee.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(LabelArrivee);
+					JLabel LabelVehicule = new JLabel("Véhicule: " + res.getString(3));
+					LabelVehicule.setFont(FIELD_FONT);
+					LabelVehicule.setForeground(MUTED);
+					gbc.gridy = 1;
+					labels.add(LabelVehicule, gbc);
 
+					JLabel LabelArrivee = new JLabel("De: " + res.getString(5));
+					LabelArrivee.setFont(FIELD_FONT);
+					LabelArrivee.setForeground(MUTED);
+					gbc.gridy = 2;
+					labels.add(LabelArrivee, gbc);
+
+					gbc.gridy = 3;
 					if (res.getString(6) != null) {
-						JLabel LabelSortie = new JLabel("A :" + res.getString(6));
-						LabelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(LabelSortie);
+						JLabel LabelSortie = new JLabel("A: " + res.getString(6));
+						LabelSortie.setFont(FIELD_FONT);
+						LabelSortie.setForeground(MUTED);
+						labels.add(LabelSortie, gbc);
 
-						JButton btnFacture = new JButton("Facture");
-						verticalBox.add(btnFacture);
-						btnFacture.setBackground(new Color(0, 128, 192));
+						JButton btnFacture = styledButton("Facture", true);
 						btnFacture.putClientProperty("vehiculeImmat", res.getString(3));
 						btnFacture.putClientProperty("utilisateur", null);
 						btnFacture.putClientProperty("isParking", true);
@@ -132,54 +255,76 @@ public class HistoriqueStationnement extends JPanel {
 						btnFacture.putClientProperty("arrivee", res.getString(5));
 						btnFacture.putClientProperty("depart", res.getString(6));
 						btnFacture.addActionListener(controleur);
-					} else {
-						JLabel LabelSortie = new JLabel("A : Maintenant");
-						LabelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(LabelSortie);
 
-						JButton btnPartir = new JButton("Partir");
-						verticalBox.add(btnPartir);
-						btnPartir.setBackground(new Color(255, 128, 128));
-						btnPartir.putClientProperty("isParking", true);
-						btnPartir.putClientProperty("vehiculeImmat", res.getString(3));
-						btnPartir.putClientProperty("arrivee", res.getString(5));
-						btnPartir.putClientProperty("parkingID", parking.get().getidParking());
-						btnPartir.addActionListener(controleur);
+						row.add(labels, BorderLayout.CENTER);
+						row.add(wrapButtonPanel(btnFacture), BorderLayout.EAST);
+					} else {
+						JLabel LabelSortie = new JLabel("A: Maintenant");
+						LabelSortie.setFont(FIELD_FONT);
+						LabelSortie.setForeground(MUTED);
+						labels.add(LabelSortie, gbc);
+
+						JButton btnPartirLocal = styledButton("Partir", false);
+						btnPartirLocal.putClientProperty("isParking", true);
+						btnPartirLocal.putClientProperty("vehiculeImmat", res.getString(3));
+						btnPartirLocal.putClientProperty("arrivee", res.getString(5));
+						btnPartirLocal.putClientProperty("parkingID", parking.get().getidParking());
+						btnPartirLocal.addActionListener(controleur);
+
+						row.add(labels, BorderLayout.CENTER);
+						row.add(wrapButtonPanel(btnPartirLocal), BorderLayout.EAST);
 					}
-					paneParking.add(verticalBox);
+
+					paneParking.add(row);
+					paneParking.add(Box.createVerticalStrut(8));
 				}
 			}
 		} catch (SQLException ee) {
-			// empty
+			// original code swallowed exceptions; keep same behavior
 		}
+
 		try {
 			ResultSet res = new DaoUtilisateur().garerByUtilisateur(fenetreprincipal.getUtilisateur().getid());
 			while (res.next()) {
 				Optional<Zone> zone = new DaoZone().findById(res.getInt(1));
 				if (zone.isPresent()) {
-					Box verticalBox = Box.createVerticalBox();
-					verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					RoundedPanel row = new RoundedPanel(8, CARD);
+					row.setLayout(new BorderLayout(8, 8));
+					row.setBorder(new EmptyBorder(10, 10, 10, 10));
+					row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110));
 
-					JLabel labelNom = new JLabel("Zone : " + zone.get().getCouleur());
-					labelNom.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(labelNom);
+					JPanel labels = new JPanel(new GridBagLayout());
+					labels.setOpaque(false);
+					GridBagConstraints gbc = new GridBagConstraints();
+					gbc.gridx = 0;
+					gbc.anchor = GridBagConstraints.WEST;
+					gbc.fill = GridBagConstraints.HORIZONTAL;
 
-					JLabel labelVehicule = new JLabel("Vehicule : " + res.getString(3));
-					labelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(labelVehicule);
+					JLabel labelNom = new JLabel("Zone: " + zone.get().getCouleur());
+					labelNom.setFont(LABEL_FONT.deriveFont(Font.BOLD, 13f));
+					labelNom.setForeground(Color.WHITE);
+					labels.add(labelNom, gbc);
 
-					JLabel labelArrivee = new JLabel("De : " + res.getString(5));
-					labelArrivee.setHorizontalAlignment(SwingConstants.CENTER);
-					verticalBox.add(labelArrivee);
+					JLabel labelVehicule = new JLabel("Véhicule: " + res.getString(3));
+					labelVehicule.setFont(FIELD_FONT);
+					labelVehicule.setForeground(MUTED);
+					gbc.gridy = 1;
+					labels.add(labelVehicule, gbc);
 
+					JLabel labelArrivee = new JLabel("De: " + res.getString(5));
+					labelArrivee.setFont(FIELD_FONT);
+					labelArrivee.setForeground(MUTED);
+					gbc.gridy = 2;
+					labels.add(labelArrivee, gbc);
+
+					gbc.gridy = 3;
 					if (res.getString(6) != null) {
-						JLabel labelSortie = new JLabel("A :" + res.getString(6));
-						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(labelSortie);
+						JLabel labelSortie = new JLabel("A: " + res.getString(6));
+						labelSortie.setFont(FIELD_FONT);
+						labelSortie.setForeground(MUTED);
+						labels.add(labelSortie, gbc);
 
-						JButton btnFacture = new JButton("Facture");
-						verticalBox.add(btnFacture);
-						btnFacture.setBackground(new Color(0, 128, 192));
+						JButton btnFacture = styledButton("Facture", true);
 						btnFacture.putClientProperty("vehiculeImmat", res.getString(3));
 						btnFacture.putClientProperty("utilisateur", null);
 						btnFacture.putClientProperty("isParking", false);
@@ -187,29 +332,47 @@ public class HistoriqueStationnement extends JPanel {
 						btnFacture.putClientProperty("arrivee", res.getString(5));
 						btnFacture.putClientProperty("depart", res.getString(6));
 						btnFacture.addActionListener(controleur);
-					} else {
-						JLabel labelSortie = new JLabel("A : Maintenant");
-						labelSortie.setHorizontalAlignment(SwingConstants.CENTER);
-						verticalBox.add(labelSortie);
 
-						btnPartir = new JButton("Partir");
-						verticalBox.add(btnPartir);
-						btnPartir.setBackground(new Color(255, 128, 128));
+						row.add(labels, BorderLayout.CENTER);
+						row.add(wrapButtonPanel(btnFacture), BorderLayout.EAST);
+					} else {
+						JLabel labelSortie = new JLabel("A: Maintenant");
+						labelSortie.setFont(FIELD_FONT);
+						labelSortie.setForeground(MUTED);
+						labels.add(labelSortie, gbc);
+
+						btnPartir = styledButton("Partir", false);
 						btnPartir.putClientProperty("vehicule", res.getString(3));
 						btnPartir.addActionListener(controleur);
+
+						row.add(labels, BorderLayout.CENTER);
+						row.add(wrapButtonPanel(btnPartir), BorderLayout.EAST);
 					}
 
-					paneZone.add(verticalBox);
+					paneZone.add(row);
+					paneZone.add(Box.createVerticalStrut(8));
 				}
 			}
 		} catch (SQLException ee) {
-			// empty
+			// keep original behavior
+		}
+
+		// revalidate/repaint to reflect UI changes
+		if (paneParking != null) {
+			paneParking.revalidate();
+			paneParking.repaint();
+		}
+		if (paneZone != null) {
+			paneZone.revalidate();
+			paneZone.repaint();
 		}
 	}
 
 	public void refresh() {
-		paneZone.removeAll();
-		paneParking.removeAll();
+		if (paneZone != null)
+			paneZone.removeAll();
+		if (paneParking != null)
+			paneParking.removeAll();
 		build();
 	}
 
@@ -217,4 +380,50 @@ public class HistoriqueStationnement extends JPanel {
 		return btnPartir;
 	}
 
+	/* Helper methods mirroring styles from Accueil */
+
+	private JButton styledButton(String text, boolean primary) {
+		JButton b = new JButton(text);
+		b.setFont(FIELD_FONT.deriveFont(Font.BOLD, 14f));
+		b.setFocusPainted(false);
+		b.setBorderPainted(false);
+		b.setOpaque(true);
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		if (primary) {
+			b.setBackground(ACCENT);
+			b.setForeground(Color.WHITE);
+			b.setBorder(new RoundedBorder(new Color(0, 0, 0, 0), 10));
+		} else {
+			b.setBackground(new Color(28, 36, 52));
+			b.setForeground(MUTED);
+			b.setBorder(new RoundedBorder(new Color(34, 44, 66), 10, 1));
+		}
+		b.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent e) {
+				if (primary)
+					b.setBackground(ACCENT_HOVER);
+				else
+					b.setBackground(new Color(36, 46, 64));
+			}
+
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent e) {
+				if (primary)
+					b.setBackground(ACCENT);
+				else
+					b.setBackground(new Color(28, 36, 52));
+			}
+		});
+		b.setBorder(javax.swing.BorderFactory.createCompoundBorder(b.getBorder(),
+				javax.swing.BorderFactory.createEmptyBorder(8, 12, 8, 12)));
+		return b;
+	}
+
+	private JPanel wrapButtonPanel(JButton b) {
+		JPanel p = new JPanel(new GridBagLayout());
+		p.setOpaque(false);
+		p.add(b);
+		return p;
+	}
 }

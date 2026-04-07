@@ -19,7 +19,6 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 public class Inscription extends RoundedPanel {
-
 	private static final long serialVersionUID = 1L;
 	private JTextField nomField;
 	private JTextField prenomField;
@@ -29,13 +28,16 @@ public class Inscription extends RoundedPanel {
 	private JPasswordField passwordField;
 	private App app;
 
-	private static final Color BG = new Color(10, 14, 25);
-	private static final Color PANEL = new Color(15, 25, 45);
-	private static final Color CARD = new Color(18, 26, 44); // closer to panel to reduce isolation
-	private static final Color ACCENT = new Color(58, 130, 255);
-	private static final Color MUTED = new Color(170, 180, 200);
-	private static final Color FIELD_BG = new Color(14, 20, 34); // subtler contrast
-	private static final Color FIELD_BORDER = new Color(34, 44, 66); // thin border
+	// Palette: still dark overall, with a softer, lighter blue accent and warmer
+	// muted tones
+	private static final Color BG = new Color(22, 28, 38); // slightly lighter main background
+	private static final Color PANEL = new Color(28, 36, 52); // card container darker but warmer
+	private static final Color CARD = new Color(30, 38, 56); // card surface close to panel
+	private static final Color ACCENT = new Color(100, 170, 255); // lighter, friendly blue accent
+	private static final Color ACCENT_HOVER = new Color(85, 150, 235); // hover shade for accent buttons
+	private static final Color MUTED = new Color(170, 185, 205); // slight cool tint for secondary text
+	private static final Color FIELD_BG = new Color(26, 34, 46); // form field background a bit lighter
+	private static final Color FIELD_BORDER = new Color(56, 72, 104); // softer border color
 
 	private static final Font TITLE_FONT;
 	private static final Font LABEL_FONT;
@@ -117,7 +119,7 @@ public class Inscription extends RoundedPanel {
 		JPanel actions = new JPanel(new BorderLayout());
 		actions.setOpaque(false);
 		JSeparator sep = new JSeparator();
-		sep.setForeground(new Color(30, 38, 56));
+		sep.setForeground(new Color(46, 58, 82)); // subtle, slightly bluish divider
 		sep.setPreferredSize(new Dimension(1, 1));
 		actions.add(sep, BorderLayout.NORTH);
 
@@ -202,7 +204,7 @@ public class Inscription extends RoundedPanel {
 			b.setBackground(ACCENT);
 			b.setForeground(Color.WHITE);
 		} else {
-			b.setBackground(new Color(20, 26, 40));
+			b.setBackground(new Color(28, 36, 52));
 			b.setForeground(MUTED);
 			b.setBorder(new RoundedBorder(new Color(34, 44, 66), 10, 1));
 		}
@@ -210,9 +212,9 @@ public class Inscription extends RoundedPanel {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent e) {
 				if (primary)
-					b.setBackground(ACCENT.darker());
+					b.setBackground(ACCENT_HOVER);
 				else
-					b.setBackground(new Color(24, 32, 52));
+					b.setBackground(new Color(36, 46, 64));
 			}
 
 			@Override
@@ -220,7 +222,7 @@ public class Inscription extends RoundedPanel {
 				if (primary)
 					b.setBackground(ACCENT);
 				else
-					b.setBackground(new Color(20, 26, 40));
+					b.setBackground(new Color(28, 36, 52));
 			}
 		});
 		b.setBorder(new RoundedBorder(new Color(0, 0, 0, 0), 10));
@@ -285,5 +287,4 @@ public class Inscription extends RoundedPanel {
 	public JPasswordField getPasswordField() {
 		return passwordField;
 	}
-
 }

@@ -19,7 +19,6 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import controleur.ControleurApp;
 import modele.Utilisateur;
 
-
 public final class App extends JFrame {
 
 	private final JPanel contentPane;
@@ -46,19 +45,18 @@ public final class App extends JFrame {
 	public static void main(String[] args) {
 		FlatDarculaLaf.setup();
 		EventQueue.invokeLater(() -> {
-                    try {
-                        App frame = new App();
-                        frame.setVisible(true);
-                    } catch (Exception e) {
-                        //empty
-                    }
-                });
+			try {
+				App frame = new App();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				// empty
+			}
+		});
 	}
 
 	public App() {
 
 		System.out.println("LAUNCH");
-
 
 		ControleurApp controleur = new ControleurApp(this);
 		// --- Icone ---
@@ -68,7 +66,7 @@ public final class App extends JFrame {
 				setIconImage(img);
 			}
 		} catch (IOException e) {
-			//empty
+			// empty
 		}
 
 		// --- Paramètres fenêtre ---
@@ -113,7 +111,7 @@ public final class App extends JFrame {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
-		if(utilisateur != null) {
+		if (utilisateur != null) {
 			chargerVueDependante();
 		}
 	}
@@ -124,27 +122,27 @@ public final class App extends JFrame {
 
 	private void chargerVueDependante() {
 
-			Accueil accueil;
-			AjouterVehicule ajouterVehicule;
-			FenRecapitulatif fenRecapitulatif;
-			GestionAbonnement gestionAbonnement;
+		Accueil accueil;
+		AjouterVehicule ajouterVehicule;
+		FenRecapitulatif fenRecapitulatif;
+		GestionAbonnement gestionAbonnement;
 
-			accueil = new Accueil(this);
-			gestionVehicule = new GestionVehicule(this);
-			infoSeGarerParking = new InfoSeGarerParking(this);
-			infoSeGarerVoirie = new InfoSeGarerVoirie(this);
-			ajouterVehicule = new AjouterVehicule(this);
-			fenRecapitulatif = new FenRecapitulatif();
-			historiqueStationnement = new HistoriqueStationnement(this);
-			gestionAbonnement = new GestionAbonnement(this);
-			contentPane.add(accueil, VUE.ACCUEIL.name());
-			contentPane.add(gestionVehicule, VUE.GESTIONVEHICULE.name());
-			contentPane.add(infoSeGarerParking, VUE.INFOSEGARERPARKING.name());
-			contentPane.add(infoSeGarerVoirie, VUE.INFOSEGARERVOIRIE.name());
-			contentPane.add(ajouterVehicule, VUE.AJOUTERVEHICULE.name());
-			contentPane.add(fenRecapitulatif, VUE.FENRECAPITULATIF.name());
-			contentPane.add(historiqueStationnement, VUE.HISTORIQUESTATIONNEMENT.name());
-			contentPane.add(gestionAbonnement, VUE.GESTION_ABONNEMENT.name());
+		accueil = new Accueil(this);
+		gestionVehicule = new GestionVehicule(this);
+		infoSeGarerParking = new InfoSeGarerParking(this);
+		infoSeGarerVoirie = new InfoSeGarerVoirie(this);
+		ajouterVehicule = new AjouterVehicule(this);
+		fenRecapitulatif = new FenRecapitulatif();
+		historiqueStationnement = new HistoriqueStationnement(this);
+		gestionAbonnement = new GestionAbonnement(this);
+		contentPane.add(accueil, VUE.ACCUEIL.name());
+		contentPane.add(gestionVehicule, VUE.GESTIONVEHICULE.name());
+		contentPane.add(infoSeGarerParking, VUE.INFOSEGARERPARKING.name());
+		contentPane.add(infoSeGarerVoirie, VUE.INFOSEGARERVOIRIE.name());
+		contentPane.add(ajouterVehicule, VUE.AJOUTERVEHICULE.name());
+		contentPane.add(fenRecapitulatif, VUE.FENRECAPITULATIF.name());
+		contentPane.add(historiqueStationnement, VUE.HISTORIQUESTATIONNEMENT.name());
+		contentPane.add(gestionAbonnement, VUE.GESTION_ABONNEMENT.name());
 	}
 
 	public void refresh() {
